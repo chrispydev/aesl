@@ -1,4 +1,67 @@
 {% load static %}
-<nav class="">
-  <h1>This is side nav</h1>
-</nav>
+<aside class="sidebar">
+  {% comment %}
+  navbar logo section
+  {% endcomment %}
+  <div class="nav__barlogo">
+    <a href="{% url 'home' %}" class="sidebar__details">
+      <img
+        class="img__logo"
+        src="{% static 'img/aesl_logo.png' %}"
+        alt="aesl-logo"
+      />
+      <h4 class="company__name">A E S L</h4>
+      <h5 class="company__details">
+        Consulting Architects, <br />
+        Engineers and Surveyors
+      </h5>
+      <div class="company__date">
+        <div class="">
+          <div class="bars"></div>
+          <div class="bars"></div>
+        </div>
+        SINCE 1973
+        <div>
+          <div class="bars"></div>
+          <div class="bars"></div>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  {% comment %}
+  navbar links section
+  {% endcomment %}
+  <div class="nav__links">
+  <input type="search" id="nav-toggle" placeholder="Search for People and Projects" class="search__input" />
+    <button class="search__btn">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+
+   <nav class="nav__menu">
+      <a href="#" class="nav-item active"><i class="fas fa-building"></i> Projects</a>
+      <a href="#"><i class="fas fa-city"></i> Practice</a>
+      <a href="#"><i class="fas fa-drafting-compass"></i> Principles</a>
+      <a href="#"><i class="fas fa-users"></i> People</a>
+      <a href="#"><i class="fas fa-newspaper"></i> News</a>
+      <a href="#"><i class="fas fa-book-open"></i> Publications</a>
+    </nav>
+    <hr class="horizontal__line"/>
+
+    <div class="footer">
+      <div class="social__icons">
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+      <div class="legal">
+        <a href="#">Legal</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Accessibility</a>
+      </div>
+    </div>
+
+</aside>
