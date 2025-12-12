@@ -3,6 +3,8 @@
     .mobile__nav {
       display: none;
     }
+
+
   }
 
   /* Tablets and large phones */
@@ -35,6 +37,40 @@
       margin-left: 0;
     }
 
+    .mobile__menuoverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 30%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+    }
 
-    /* Mobile phones */
-    @media (max-width: 480px) {}
+    .mobile__side {
+      padding: 0 2rem
+    }
+
+    .closebtn {
+      color: #f1f1f1;
+      float: right;
+      background-color: transparent;
+      padding: 0.1rem 0.5rem;
+      border: 1px solid #f1f1f1;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+
+    .mobile__menuoverlay {
+      padding: 0 1rem
+    }
+
+    .company__name {
+      margin-top: 2rem;
+    }
+
+
+  }
+
+  /* Mobile phones */
+  @media (max-width: 480px) {}
