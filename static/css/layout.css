@@ -171,3 +171,7 @@ a:active {
   color: #999;
   text-decoration: underline;
 }
+
+.toggle__sidebar {
+  display: none;
+}

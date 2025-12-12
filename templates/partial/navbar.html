@@ -63,5 +63,21 @@
         <a href="#">Accessibility</a>
       </div>
     </div>
-
 </aside>
+
+<!-- Mobile navigation bar -->
+<nav class="mobile__nav">
+  <div class="mobile__navlogo">
+    <a href="{% url 'home' %}">
+      <img
+        class="mobileimg__logo"
+        src="{% static 'img/aesl_logo.png' %}"
+        alt="aesl-logo"
+      />
+    </a>
+  </div>
+    <button class="mobile__menubtn">
+      <i class="fa fa-bars"></i>
+    </button>
+  </div>
+</nav>

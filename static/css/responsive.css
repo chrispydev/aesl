@@ -1,0 +1,40 @@
+  /* Desktop */
+  @media (min-width: 998px) {
+    .mobile__nav {
+      display: none;
+    }
+  }
+
+  /* Tablets and large phones */
+  @media (max-width: 998px) {
+    .sidebar {
+      display: none;
+    }
+
+    .mobile__nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.3rem 0.5rem;
+      background-color: var(--primary-color);
+    }
+
+    .mobileimg__logo {
+      max-width: 20%;
+    }
+
+    .mobile__menubtn {
+      color: #f1f1f1;
+      background-color: transparent;
+      padding: 0.1rem 0.5rem;
+      border: 1px solid #f1f1f1;
+      cursor: pointer;
+    }
+
+    .main-content {
+      margin-left: 0;
+    }
+
+
+    /* Mobile phones */
+    @media (max-width: 480px) {}
