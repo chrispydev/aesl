@@ -1,8 +1,26 @@
-// Get DoM elements
-// ge the element when the windows is loaded
-window.onload = function () {
-  const closeBtn = document.getElementById('closebtn');
+const toggleDiv = document.querySelector(".mobile__menuoverlay");
+const closeBtn = document.querySelector(".closebtn");
+const showSidebar = document.querySelector(".mobile__menubtn")
 
-  console.log(closeBtn)
 
-}
+closeBtn.addEventListener("click", function () {
+  toggleDiv.classList.remove('toggle__sidebar')
+
+});
+
+showSidebar.addEventListener("click", function () {
+  toggleDiv.classList.add('toggle__sidebar')
+})
+
+
+
+// document.addEventListener("DOMContentLoaded", function () {
+//   const toggleDiv = document.querySelector(".mobile__menuoverlay");
+//   const toggleBtn = document.querySelector(".closebtn");
+//
+//
+//   toggleBtn.addEventListener("click", function () {
+//     toggleDiv.style.width = '100%'
+//   });
+// });
+
