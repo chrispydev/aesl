@@ -245,3 +245,19 @@ a:active {
   color: var(--primary-color);
   margin-bottom: 1.2rem;
 }
+
+.image__content {
+  padding: 0.7rem;
+  margin: 2rem 0;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-image: url('../img/home_about_1.jpeg');
+  background-position: center center;
+}
+
+.image__content h3 {
+  text-align: left;
+  font-size: 1.3rem;
+  font-weight: 600;
+
+}
