@@ -11,7 +11,9 @@
 
 :root {
   --primary-color: #2d4f7b;
-  --secondary-color: #ff0;
+  /* --secondary-color: #ff0; */
+  --secondary-color: #F4B400;
+  --secondary-color-light: #F6BE2C;
   --text-color: #1a1a1a;
   --text-base-color: #f1f1f1;
   --background-color: #f5f5f5;

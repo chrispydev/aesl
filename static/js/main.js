@@ -14,13 +14,4 @@ showSidebar.addEventListener("click", function () {
 
 
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   const toggleDiv = document.querySelector(".mobile__menuoverlay");
-//   const toggleBtn = document.querySelector(".closebtn");
-//
-//
-//   toggleBtn.addEventListener("click", function () {
-//     toggleDiv.style.width = '100%'
-//   });
-// });
 
