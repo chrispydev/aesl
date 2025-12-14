@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <!-- Main content -->
@@ -15,25 +16,36 @@
   </section>
   <section class="info"> 
     <div class="info__content">
+      <h5>Architectural and Engineering Services Limited (AESL) is a practicing and a multidisciplinary firm that provides comprehensive Architectural and Engineering solutions for public and sector clients in the construction industry.</h5>
       <h5>AESL offers a wide range of services combining the fields of Architecture and Engineering to create innovative and sustainable designs that are not only visually appealing but also structurally sound and efficient.</h5>
       <h5>AESL operates from its head office in the capital of Ghana-Accra, with other offices located in the 16 regions of Ghana.</h5>
     </div>
     <div class="info__image">
-      <div class="image__content">
-        <h3>Architecture & Planning</h3>
+      <div class="image__content image__background_1">
+      <div class="image__overlay"></div>
+        <h3 class="font__weight">Architecture & Planning</h3>
         <h3>Architecture</h3>
         <h3>Land Surveying</h3>
         <h3>Quantity Surveying</h3>
         <h3>Valuation</h3>
       </div>
-      <div class="image__content">
-        <h3>Architecture & Planning</h3>
-        <h3>Architecture</h3>
-        <h3>Land Surveying</h3>
-        <h3>Quantity Surveying</h3>
-        <h3>Valuation</h3>
+      <div class="image__content image__background_2">
+      <div class="image__overlay"></div>
+        <h3 class="font__weight">Engineering</h3>
+        <h3>Civil/Structural</h3>
+        <h3>Geotech</h3>
+        <h3>Installations</h3>
+        <h3>Water </h3>
       </div>
     </div>
+</section>
+<section class="trusted__companies">
+    <img src="{% static 'img/vertered_1.jpg' %}" alt="AESL company under" class="info__building-image">
+    <img src="{% static 'img/vertered_2.jpeg' %}" alt="AESL company under" class="info__building-image">
+    <img src="{% static 'img/vertered_3.jpeg' %}" alt="AESL company under " class="info__building-image">
+    <img src="{% static 'img/vertered_4.jpeg' %}" alt="AESL Building" class="info__building-image">
+    <img src="{% static 'img/vertered_5.jpeg' %}" alt="AESL company under " class="info__building-image">
+    <img src="{% static 'img/vertered_6.jpeg' %}" alt="AESL company under " class="info__building-image">
 
 </section>
 {% endblock content %}

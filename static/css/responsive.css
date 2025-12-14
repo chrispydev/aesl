@@ -90,6 +90,24 @@
       z-index: 1000;
     }
 
+    /* info section*/
+    .info {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      padding: 1rem;
+    }
+
+    .info__image {
+      display: flex;
+      margin-top: -2rem;
+    }
+
+    .trusted__companies {
+      margin-top: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
   }
 
   /* Tablet phones */
@@ -98,5 +116,30 @@
       width: 80%;
       z-index: 1000;
     }
+
+    .info__content {
+      margin-top: -2rem
+    }
+
+    .info__content {
+      margin-top: -2rem
+    }
+
+    .info__content h5 {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      margin-bottom: 1.5em;
+    }
+
+    .info__image {
+      flex-direction: column;
+    }
+
+    .trusted__companies {
+      gap: 1rem;
+      padding: 0 2rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
 
   }
