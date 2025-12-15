@@ -37,7 +37,8 @@
       cursor: pointer;
     }
 
-    .main-content {
+    .main-content,
+    .site__footer {
       margin-left: 0;
     }
 
@@ -116,7 +117,6 @@
       max-width: 90%;
     }
 
-
   }
 
   /* Tablet phones */
@@ -172,6 +172,13 @@
       grid-column: span 1;
     }
 
+    .footer__nav {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .footer__icons {
+      grid-template-columns: repeat(1, 1fr);
+    }
 
 
   }
