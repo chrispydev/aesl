@@ -293,15 +293,20 @@ a:active {
 }
 
 .image__content h3:first-of-type {
-  color: var(--secondary-color);
+  color: white;
   font-weight: 600;
   font-size: 1.4rem;
 }
 
 .image__content h3:not(:first-of-type) {
-  color: white;
+  color: var(--secondary-color);
   font-weight: 400;
   font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.image__content h3:not(:first-of-type):hover {
+  text-decoration: underline;
 }
 
 
@@ -321,4 +326,131 @@ a:active {
   max-width: 80px;
   opacity: 0.8;
   transition: opacity 0.3s ease;
+}
+
+.projects {
+  position: relative;
+  height: 50vh;
+  width: 100%;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.projects__header {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 2rem;
+  height: 100%;
+  background: linear-gradient(90deg, #004e7c 30%, #0000);
+  padding: 1rem 1.2rem
+}
+
+.projects img {
+  position: absolute;
+  background-size: cover;
+  top: 2rem;
+  height: 100%;
+  z-index: -1;
+}
+
+.projects__header h2 {
+  text-align: right;
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+}
+
+.projects__header p {
+  grid-column: span 3;
+  font-weight: 700;
+  font-size: 1.3rem;
+  color: var(--secondary-color);
+}
+
+.projects__gallery-section {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 80%;
+}
+
+.projects__gallery {
+  background-color: var(--primary-color);
+}
+
+.projects__gallery {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1.5rem;
+}
+
+.gallery__item img {
+  border-radius: 0.8rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  height: 100%;
+}
+
+.gallery__item_6 {
+  grid-column: span 2;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.8rem;
+}
+
+.gallery__item_6 h4 {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.gallery__empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.gallery__button {
+  background-color: transparent;
+  color: var(--primary-color);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.gallery__button:hover {
+  background-color: var(--primary-color);
+}
+
+.gallery__button:hover a {
+  color: white;
+}
+
+.gallery__button a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.gallery__button a:hover {
+  text-decoration: none;
+  color: white
+}
+
+.empty__card {
+  border: 1px solid #fff;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.8rem;
 }

@@ -108,6 +108,15 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
+    .projects__header p {
+      font-size: 1.1rem
+    }
+
+    .projects__gallery-section {
+      max-width: 90%;
+    }
+
+
   }
 
   /* Tablet phones */
@@ -116,6 +125,15 @@
       width: 80%;
       z-index: 1000;
     }
+
+    .parallax .content h1 {
+      font-size: 2.4rem;
+    }
+
+    .parallax .content p {
+      font-size: 1rem;
+    }
+
 
     .info__content {
       margin-top: -2rem
@@ -140,6 +158,20 @@
       padding: 0 2rem;
       grid-template-columns: repeat(2, 1fr);
     }
+
+    .projects__header p {
+      display: none
+    }
+
+    .projects__gallery {
+      padding: 1rem;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .gallery__item_6 {
+      grid-column: span 1;
+    }
+
 
 
   }
