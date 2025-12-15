@@ -617,3 +617,20 @@ a:active {
   border-radius: 0.8rem;
   margin-top: -0.8rem;
 }
+
+.footer__icons-detail {
+  text-align: justify;
+  font-size: 1.0rem !important;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.newsletter {
+  margin-top: 3rem;
+  border: 1px solid #fff;
+}
+
+.newsletter h4 {
+  text-transform: uppercase;
+  font-size: 1rem;
+}
