@@ -625,12 +625,78 @@ a:active {
   font-style: italic;
 }
 
+.footer__newsletter {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+
 .newsletter {
   margin-top: 3rem;
   border: 1px solid #fff;
+  /* position: relative; */
+  padding: 1.5rem;
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
+.footer__image-grid {
+  grid-column: span 1;
 }
 
 .newsletter h4 {
+  padding: 0 0.5rem;
+  margin-top: -4rem;
   text-transform: uppercase;
   font-size: 1rem;
+  background-color: var(--primary-color);
+  max-width: max-content;
+  z-index: 9;
+}
+
+.newsletter form input {
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.2rem;
+  border: none;
+}
+
+.footer__image-grid {
+  margin-top: 3rem;
+}
+
+.image__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.footer__image-grid img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+.grid__1 {
+  grid-row: span 2;
+  background-color: #fff;
+}
+
+
+.grid__2 {
+  grid-column: span 2;
+}
+
+.subscribe {
+  background-color: transparent;
+  color: var(--secondary-color);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }

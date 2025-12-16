@@ -180,5 +180,25 @@
       grid-template-columns: repeat(1, 1fr);
     }
 
+    .footer__newsletter {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .newsletter h4 {
+      margin-top: -2rem;
+
+    }
+
+    .newsletter form input {
+      margin-bottom: 1rem;
+      padding: 0.4rem 1.2rem;
+    }
+
+    .subscribe {
+      padding: 0.45rem 1.2rem;
+      border: 1px solid var(--secondary-color);
+    }
+
 
   }
