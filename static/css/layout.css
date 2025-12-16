@@ -618,6 +618,20 @@ a:active {
   margin-top: -0.8rem;
 }
 
+.footer__content-site a {
+  color: white;
+}
+
+.footer__content-site:hover svg {
+  color: var(--secondary-color);
+}
+
+
+.footer__content-site a:hover {
+  color: var(--secondary-color);
+  text-decoration: none;
+}
+
 .footer__icons-detail {
   text-align: justify;
   font-size: 1.0rem !important;
