@@ -56,7 +56,6 @@
 
     .toggle__sidebar {
       display: block;
-
     }
 
     .mobile__side {
@@ -95,14 +94,43 @@
     .info {
       display: grid;
       gap: 1rem;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
       padding: 1rem;
+    }
+
+    .info__content h5 {
+      margin-top: -0.2rem;
+      font-size: 1.2rem;
+      margin-bottom: 1.5em;
+
     }
 
     .info__image {
       display: flex;
       margin-top: -2rem;
     }
+
+    .image__overlay {
+      border-radius: 1rem;
+    }
+
+    .image__content {
+      position: relative;
+      padding: 1rem;
+      width: 200px;
+      height: 200px;
+      margin: 2rem 1rem;
+      border-radius: 1rem;
+    }
+
+    .image__content h3:first-of-type {
+      font-size: 1.2rem;
+    }
+
+    .image__content h3:not(:first-of-type) {
+      font-size: 1rem;
+    }
+
 
     .trusted__companies {
       margin-top: 2rem;
@@ -149,20 +177,6 @@
       font-size: 1rem;
     }
 
-
-    .info__content {
-      margin-top: -2rem
-    }
-
-    .info__content {
-      margin-top: -2rem
-    }
-
-    .info__content h5 {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      margin-bottom: 1.5em;
-    }
 
     .info__image {
       flex-direction: column;
