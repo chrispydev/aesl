@@ -199,7 +199,7 @@ a:active {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.80);
+  background: rgba(0, 0, 0, 0.70);
   /* Slight darken */
 }
 
@@ -713,4 +713,104 @@ a:active {
   cursor: pointer;
   font-size: 1rem;
   transition: background-color 0.3s ease;
+}
+
+/* projects */
+
+/* PARALLAX SECTION */
+.projects__parallax {
+  position: relative;
+  height: 40vh;
+  background-image: url('../img/projects.jpeg');
+  /* Replace with your image */
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.projects__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.70);
+  /* Slight darken */
+}
+
+.projects__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: var(--secondary-color);
+}
+
+.projects__title {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: flex;
+  gap: 1rem;
+  justify-content: start;
+  align-items: center;
+}
+
+
+.projects__cards {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+  background-color: var(--primary-color);
+}
+
+.projects__card,
+.projects__card-link {
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+  padding: 1rem;
+  box-shadow:
+    6px 6px 8px 0 rgba(244, 180, 0, 0.45);
+  border: 1px solid #fff;
+  color: #fff;
+  height: 170px;
+  width: 180px;
+}
+
+.projects__card p {
+  margin-bottom: -0.1rem;
+  font-size: 1rem;
+  line-height: 1.4rem;
+}
+
+.projects__card p:hover {
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+
+.projects__card-link {
+  background-color: #fff;
+}
+
+.projects__card-link a {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.projects__text {
+  margin-top: 2rem;
+  padding: 0.4rem 2rem;
+}
+
+.projects__text p {
+  line-height: 1.5;
+  letter-spacing: 0.5em;
+  text-align: justify;
+  font-size: 2rem;
+
 }
