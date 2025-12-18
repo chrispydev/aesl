@@ -975,3 +975,42 @@ a:active {
   background-color: var(--secondary-color);
   color: #fff;
 }
+
+/** project details page **/
+.project-detail-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.project-main-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.in-progress {
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.project-details-text p {
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.gallery img {
+  width: calc(33% - 10px);
+  border-radius: 8px;
+  object-fit: cover;
+  height: 200px;
+}

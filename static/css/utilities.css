@@ -41,3 +41,13 @@
   align-items: start;
   flex-direction: column;
 }
+
+.truncate__multi {
+  display: -webkit-box;
+  /* Use flexbox-like behavior */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  /* Number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -57,25 +57,26 @@
 
 <!--projects grid -->
 <section class="projects__showcases">
-  <div class="projects__showcase">
-    <div class="projects__showcase-title">
-      <h4>Regional Police Command Administration Block</h4>
-      <h5>New Regional Capitals</h5>
+  {% for project in projects %}
+    <div class="projects__showcase">
+      <div class="projects__showcase-title">
+        <h4>{{ project.title }}</h4>
+        <h5>{{ project.location }}</h5>
+      </div>
+      <div class="projects__client flex-col">
+        <h4>Client:</h4>
+        <div class="horizontal__rule"></div>
+        <h5>{{ project.client }}</h5>
+      </div>
+      <img src={{ project.picture.url }}/>
+      <p class="projects__into truncate__multi">{{project.little_text_details}}</p>
+      <a class="read__more" href="{% url 'project_detail' project.pk %}">Read More...</a>
+      <div class="project__category">
+        <p>{{project.category}}</p>
+        <p>{{ project.category.slug}}</p>
+      </div>
     </div>
-    <div class="projects__client flex-col">
-      <h4>Client:</h4>
-      <div class="horizontal__rule"></div>
-      <h5>Ghana Police Service</h5>
-    </div>
-    <img src={% static 'img/1_0.jpg' %}/>
-    <p class="projects__into">The Construction of 1 No. 3-storey Regional Police Command Administration Block is being constructed for six newly created regions, including Goaso-Ahafo, Nalerigu - NorthEast, Dambai - Oti, Damon ...</p>
-    <button class="read__more">Read More...</button>
-    <div class="project__category">
-      <p>Civic and Culture</p>
-      <p>civic</p>
-    </div>
-  </div>
-
+  {% endfor %}
 </section>
 
 <!-- More Projects Section -->
