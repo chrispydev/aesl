@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="projects__parallax">
+  <div class="projects__overlay"></div>
+</section>
+
+<div class="project-detail-container">
+
+  <!-- Main Image -->
+  {% if project.picture %}
+  <img src="{{ project.picture.url }}" alt="{{ project.title }}" class="project-main-image">
+  {% endif %}
+
+  <h1>{{ project.title }}</h1>
+  <p><strong>Client:</strong> {{ project.client }}</p>
+  <p><strong>Location:</strong> {{ project.location }}</p>
+  <p><strong>Project Coordinator:</strong> {{ project.project_coordinator }}</p>
+  <p><strong>Project Leaders:</strong>
+    {% for leader in project.project_leaders.all %}
+    {{ leader.full_name }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+  </p>
+  <p><strong>Total Floor Area:</strong> {{ project.total_floor_area }}</p>
+
+  <!-- Dates -->
+  <p><strong>Start Date:</strong> {{ project.start_date|date:"F Y" }}</p>
+  <p><strong>Completed Date:</strong>
+    {% if project.completed_date %}
+    {{ project.completed_date|date:"F Y" }}
+    {% else %}
+    <span class="in-progress">Still in Progress</span>
+    {% endif %}
+  </p>
+
+  <!-- Job sheets & certificate -->
+  {% if project.job_sheets %}
+  <p><strong>Job Sheets:</strong> {{ project.job_sheets }}</p>
+  {% endif %}
+  {% if project.certificate %}
+  <p><strong>Certificate:</strong> {{ project.certificate }}</p>
+  {% endif %}
+
+  <!-- Little Text Details -->
+  <div class="project-details-text">
+    <p>{{ project.little_text_details }}</p>
+  </div>
+
+  <!-- Gallery -->
+  <h2>Project Pictures</h2>
+  <div class="gallery">
+    {% for img in project_pictures %}
+    <img src="{{ img.image.url }}" alt="Project Image">
+    {% empty %}
+    <p>No project pictures available.</p>
+    {% endfor %}
+  </div>
+
+  <h2>Construction Pictures</h2>
+  <div class="gallery">
+    {% for img in construction_pictures %}
+    <img src="{{ img.image.url }}" alt="Construction Image">
+    {% empty %}
+    <p>No construction pictures available.</p>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock content %}
