@@ -34,3 +34,10 @@
   text-decoration: none;
   color: white
 }
+
+.flex-col {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+}
