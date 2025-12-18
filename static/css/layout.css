@@ -805,6 +805,10 @@ a:active {
   color: #fff;
   height: 170px;
   width: 180px;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
 }
 
 .projects__card p {
@@ -823,8 +827,12 @@ a:active {
 }
 
 .projects__card-link a {
-  color: var(--secondary-color);
+  color: var(--primary-color);
   text-decoration: underline;
+}
+
+.projects__card-link a:hover {
+  color: var(--secondary-color);
 }
 
 .projects__text {
