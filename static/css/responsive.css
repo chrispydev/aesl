@@ -214,6 +214,28 @@
       grid-template-columns: repeat(1, 1fr);
     }
 
+    .details__cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project__details-text h2,
+    .projects__details-gallery h2,
+    .projects__construction-gallery h2 {
+      font-size: 2rem;
+    }
+
+    .project__details-text p {
+      letter-spacing: 0rem;
+      line-height: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .page__location p {
+      font-size: 0.9rem;
+    }
+
+
+
 
 
   }

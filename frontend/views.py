@@ -32,5 +32,7 @@ class ProjectDetailView(DetailView):
         context["construction_pictures"] = project.gallery.filter(
             image_type="construction"
         )
+        # current page location
+        context["title"] = "Projects"
 
         return context
