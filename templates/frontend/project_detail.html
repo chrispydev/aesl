@@ -110,6 +110,101 @@
   </div>
 </section>
 
+
+<!-- Project detail Data -->
+<section class="projects__detail-data">
+  <h2>Project Data</h2>
+  <div class="projects__data">
+
+    <div class="data__grid-top">
+      <div style="border-radius:0px" class="details__card">
+        <div class="details__card-head">
+          <p class="details__head">Project Coordinator</p>
+          <p class="details__body">{{ project.project_coordinator }}</p>
+        </div>
+        <div class="details__card-body">
+          <p class="details__head">Project Leads</p>
+            {% for leader in project.project_leaders.all %}
+              <p class="details__body">{{ leader.full_name }}</p>
+              {% if not forloop.last %}
+              {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+
+      <div  style="border-radius:0px" class="details__card">
+        <div class="details__card-head">
+          <p class="details__head">Project Coordinator</p>
+          <p class="details__body">{{ project.project_coordinator }}</p>
+        </div>
+        <div class="details__card-body">
+          <p class="details__head">Project Leads</p>
+            {% for leader in project.project_leaders.all %}
+              <p class="details__body">{{ leader.full_name }}</p>
+              {% if not forloop.last %}
+              {% endif %}
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="projects__data-span">
+      <img src="{% static 'img/statlight.jpg' %}"/>
+    </div>
+
+    <div  style="border-radius:0px" class="details__card">
+      <div class="details__card-head">
+        {% if project.job_sheets %}
+        <p class="details__head">Job Sheets</p>
+        <p class="details__body">{{ project.job_sheets }}</p>
+        {% endif %}
+      </div>
+      <div class="details__card-body">
+        <p class="details__head">Certificate</p> 
+        {% if project.certificate %}
+          <p class="details__body">{{ project.certificate }}</p>
+        {% else %}
+          <p class="details__body"></p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div  style="border-radius:0px" class="details__card">
+      <div class="details__card-head">
+        {% if project.job_sheets %}
+        <p class="details__head">Awards</p>
+        <p class="details__body">{{ project.job_sheets }}</p>
+        {% endif %}
+      </div>
+      <div class="details__card-body">
+        <p class="details__head">Certificate</p> 
+        {% if project.certificate %}
+          <p class="details__body">{{ project.certificate }}</p>
+        {% else %}
+          <p class="details__body"></p>
+        {% endif %}
+      </div>
+    </div>
+
+
+    <div  style="border-radius:0px" class="details__card">
+      <div class="details__card-head">
+        <p class="details__head">News Item</p>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+
+
+    
+
+</section>
+
+
 <!-- page location Section -->
 <section class="page__location">
   <div class="page__flex">
@@ -118,6 +213,7 @@
   </div>
   <p>Consulting Architects,<br/> Engineers and Surveyors</p>
 </section>
+
 
 
 {% endblock content %}

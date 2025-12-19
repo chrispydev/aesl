@@ -22,6 +22,13 @@ class ProjectLeader(models.Model):
         return self.full_name
 
 
+class ProjectTeamMember(models.Model):
+    full_name = models.CharField(max_length=150)
+
+    def __str__(self):
+        return self.full_name
+
+
 class Project(models.Model):
     title = models.CharField(max_length=200)
     client = models.CharField(max_length=200)
@@ -37,6 +44,10 @@ class Project(models.Model):
     project_coordinator = models.CharField(max_length=150)
 
     project_leaders = models.ManyToManyField(ProjectLeader, related_name="projects")
+
+    other_team_members = models.ManyToManyField(
+        ProjectTeamMember, related_name="projects", blank=True
+    )
 
     total_floor_area = models.CharField(max_length=100, help_text="e.g. 5,000 sqm")
 
@@ -54,6 +65,26 @@ class Project(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ProjectAward(models.Model):
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name="awards"
+    )
+
+    year = models.PositiveIntegerField()
+
+    award_name = models.CharField(max_length=200)
+    awarded_by = models.CharField(max_length=200)
+    website = models.URLField(blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-year", "award_name"]
+
+    def __str__(self):
+        return f"{self.year} - {self.award_name}"
 
 
 class ProjectImage(models.Model):
