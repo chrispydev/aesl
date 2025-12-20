@@ -234,6 +234,16 @@
       font-size: 0.9rem;
     }
 
+    /* project data */
+    .projects__data {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .projects__data-span {
+      grid-column: span 1;
+    }
+
+
 
 
 

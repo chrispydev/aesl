@@ -159,35 +159,53 @@
         <p class="details__body">{{ project.job_sheets }}</p>
         {% endif %}
       </div>
-      <div class="details__card-body">
-        <p class="details__head">Certificate</p> 
-        {% if project.certificate %}
-          <p class="details__body">{{ project.certificate }}</p>
-        {% else %}
-          <p class="details__body"></p>
-        {% endif %}
-      </div>
     </div>
 
-    <div  style="border-radius:0px" class="details__card">
+    <div style="border-radius:0px" class="details__card">
       <div class="details__card-head">
-        {% if project.job_sheets %}
         <p class="details__head">Awards</p>
-        <p class="details__body">{{ project.job_sheets }}</p>
-        {% endif %}
       </div>
       <div class="details__card-body">
-        <p class="details__head">Certificate</p> 
-        {% if project.certificate %}
-          <p class="details__body">{{ project.certificate }}</p>
-        {% else %}
-          <p class="details__body"></p>
-        {% endif %}
+          {% for award in project.awards.all %}
+          <div class="awards__container">
+            <p class="details__body">{{ award.year }}</p>
+            <div class="award__detail">
+              <p class="details__body">Awards Name: {{ award.award_name}}</p>
+              {% if award.website %}
+              <a href="{{ award.website }}" target="_blank">{{ award.website }}</a>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
       </div>
     </div>
 
+    <div style="border-radius:0px" class="details__card">
+      <div class="details__card-head">
+        <p class="details__head">News Item</p>
+      </div>
+    </div>
 
-    <div  style="border-radius:0px" class="details__card">
+    <div style="border-radius:0px" class="details__card">
+      <div class="details__card-head">
+        <p class="details__head">Other Project Team Members</p>
+      </div>
+      <div class="details__card-body">
+      {% for member in project.other_team_members.all %}
+        <p class="details__body">{{ member.full_name }}</p>
+      {% empty %}
+        <p>No additional team members</p>
+      {% endfor %}
+      </div>
+    </div>
+
+    <div style="border-radius:0px" class="details__card">
+      <div class="details__card-head">
+        <p class="details__head">News Item</p>
+      </div>
+    </div>
+
+    <div style="border-radius:0px" class="details__card">
       <div class="details__card-head">
         <p class="details__head">News Item</p>
       </div>
@@ -196,11 +214,11 @@
 
 
 
+
   </div>
 
 
 
-    
 
 </section>
 

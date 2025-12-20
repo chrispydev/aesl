@@ -5,24 +5,24 @@ from .models import (
     Project,
     ProjectCategory,
     ProjectLeader,
+    ProjectTeamMember,
     ProjectImage,
     ProjectAward,
-    ProjectTeamMember,
+    ContractorRole,
+    ProjectContractor,
 )
 
+# ==================================================
+# INLINE MODELS
+# ==================================================
 
-# -----------------------------
-# PROJECT IMAGE INLINE
-# -----------------------------
+
 class ProjectImageInline(admin.TabularInline):
     model = ProjectImage
     extra = 1
     fields = ("image", "image_type")
 
 
-# -----------------------------
-# PROJECT AWARD INLINE (NEW)
-# -----------------------------
 class ProjectAwardInline(admin.TabularInline):
     model = ProjectAward
     extra = 1
@@ -30,9 +30,16 @@ class ProjectAwardInline(admin.TabularInline):
     ordering = ("-year",)
 
 
-# -----------------------------
+class ProjectContractorInline(admin.TabularInline):
+    model = ProjectContractor
+    extra = 1
+
+
+# ==================================================
 # PROJECT ADMIN
-# -----------------------------
+# ==================================================
+
+
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = (
@@ -51,7 +58,7 @@ class ProjectAdmin(admin.ModelAdmin):
         "location",
         "project_coordinator",
         "project_leaders__full_name",
-        "other_team_members__full_name",  # ✅ NEW
+        "other_team_members__full_name",
     )
 
     filter_horizontal = (
@@ -59,10 +66,10 @@ class ProjectAdmin(admin.ModelAdmin):
         "other_team_members",
     )
 
-    # ✅ CONNECTED HERE
     inlines = [
         ProjectImageInline,
         ProjectAwardInline,
+        ProjectContractorInline,
     ]
 
     fieldsets = (
@@ -114,9 +121,7 @@ class ProjectAdmin(admin.ModelAdmin):
     # CUSTOM DATE DISPLAY
     # -----------------------------
     def formatted_start_date(self, obj):
-        if obj.start_date:
-            return obj.start_date.strftime("%B %Y")
-        return "-"
+        return obj.start_date.strftime("%B %Y") if obj.start_date else "-"
 
     formatted_start_date.short_description = "Start Date"
     formatted_start_date.admin_order_field = "start_date"
@@ -124,19 +129,19 @@ class ProjectAdmin(admin.ModelAdmin):
     def formatted_completed_date(self, obj):
         if obj.completed_date:
             return obj.completed_date.strftime("%B %Y")
-
         return format_html(
-            '<span style="color:#8a1f1f;font-weight:500;">{}</span>',
-            "Still in Progress",
+            '<span style="color:#8a1f1f;font-weight:500;">Still in Progress</span>'
         )
 
     formatted_completed_date.short_description = "Completed Date"
     formatted_completed_date.admin_order_field = "completed_date"
 
 
-# -----------------------------
-# PROJECT AWARD ADMIN (OPTIONAL BUT RECOMMENDED)
-# -----------------------------
+# ==================================================
+# SUPPORTING ADMINS
+# ==================================================
+
+
 @admin.register(ProjectAward)
 class ProjectAwardAdmin(admin.ModelAdmin):
     list_display = ("year", "award_name", "awarded_by", "project")
@@ -145,26 +150,29 @@ class ProjectAwardAdmin(admin.ModelAdmin):
     ordering = ("-year",)
 
 
-# -----------------------------
-# CATEGORY ADMIN
-# -----------------------------
+@admin.register(ProjectContractor)
+class ProjectContractorAdmin(admin.ModelAdmin):
+    list_display = ("project", "role", "company_name")
+    list_filter = ("role",)
+    search_fields = ("company_name", "project__title")
+
+
+@admin.register(ContractorRole)
+class ContractorRoleAdmin(admin.ModelAdmin):
+    search_fields = ("name",)
+
+
 @admin.register(ProjectCategory)
 class ProjectCategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
     search_fields = ("name",)
 
 
-# -----------------------------
-# PROJECT LEADER ADMIN
-# -----------------------------
 @admin.register(ProjectLeader)
 class ProjectLeaderAdmin(admin.ModelAdmin):
     search_fields = ("full_name",)
 
 
-# -----------------------------
-# PROJECT OTHER TEAM MEMBERS
-# -----------------------------
 @admin.register(ProjectTeamMember)
 class ProjectTeamMemberAdmin(admin.ModelAdmin):
     search_fields = ("full_name",)

@@ -1129,3 +1129,26 @@ a:active {
   width: 100%;
   height: 400px;
 }
+
+.awards__container {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+}
+
+.award__detail {
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+}
+
+.award__detail p {
+  margin-bottom: -0.3rem;
+}
+
+.award__detail a {
+  color: var(--secondary-color)
+}
+
+.award__detail a:hover {
+  color: var(--secondary-color-light);
+}

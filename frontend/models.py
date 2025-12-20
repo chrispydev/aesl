@@ -106,3 +106,33 @@ class ProjectImage(models.Model):
 
     def __str__(self):
         return f"{self.project.title} - {self.image_type}"
+
+
+class ContractorRole(models.Model):
+    name = models.CharField(max_length=150, unique=True)
+
+    class Meta:
+        verbose_name = "Contractor Role"
+        verbose_name_plural = "Contractor Roles"
+
+    def __str__(self):
+        return self.name
+
+
+class ProjectContractor(models.Model):
+    project = models.ForeignKey(
+        Project, on_delete=models.CASCADE, related_name="contractors"
+    )
+
+    role = models.ForeignKey(
+        ContractorRole, on_delete=models.PROTECT, related_name="project_contractors"
+    )
+
+    company_name = models.CharField(max_length=200)
+
+    class Meta:
+        unique_together = ("project", "role")
+        ordering = ("role__name",)
+
+    def __str__(self):
+        return f"{self.role.name} - {self.company_name}"
