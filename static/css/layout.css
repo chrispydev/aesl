@@ -1039,6 +1039,52 @@ a:active {
   font-weight: 300;
 }
 
+.details__wrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1;
+  overflow: hidden;
+}
+
+.wrapper__1 {
+  grid-column: span 3
+}
+
+.wrapper_2 {
+  grid-column: span 1;
+
+}
+
+.wrapper_2>a {
+  color: var(--primary-color);
+  padding: 1rem 0.8rem;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+}
+
+.wrapper_2>a:hover {
+  color: var(--secondary-color);
+}
+
+.wrapper__links {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+
+.wrapper__links a {
+  color: var(--primary-color);
+  font-style: italic;
+  transition: hover cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+.wrapper__links a:hover {
+  color: var(--secondary-color);
+  font-weight: 800;
+}
+
 .project__details-text,
 .projects__details-gallery,
 .projects__construction-gallery,

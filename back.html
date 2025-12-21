@@ -1,0 +1,249 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main content -->
+{% if project.picture %}
+<section style="background-image: url('{{ project.picture.url }}')" class="projects__detail__parallax">
+  <div class="projects__detail__overlay"></div>
+  <div class="details__content">
+    <h4>{{project.title}}</h4>
+    <p><strong>Location:</strong> {{ project.location }}</p>
+  </div>
+
+</section>
+{% endif %}
+
+<!--details card -->
+<section class="details__cards">
+  <div class="details__card">
+    <div class="details__card-head">
+      <p class="details__head">Project Coordinator</p>
+      <p class="details__body">{{ project.project_coordinator }}</p>
+    </div>
+    <div class="details__card-body">
+      <p class="details__head">Project Leads</p>
+      {% for leader in project.project_leaders.all %}
+      <p class="details__body">{{ leader.full_name }}</p>
+      {% if not forloop.last %}
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="details__card">
+    <div class="details__card-head">
+      <p class="details__head">Client</p>
+      <p class="details__body">{{ project.client }}</p>
+    </div>
+    <div class="details__card-body">
+      <p class="details__head">Total Floor Area</p>
+      <p class="details__body">{{ project.total_floor_area }}</p>
+    </div>
+  </div>
+
+  <div class="details__card">
+    <div class="details__card-head">
+      <p class="details__head">Start Date</p>
+      <p class="details__body">{{ project.start_date|date:"F Y" }}</p>
+    </div>
+    <div class="details__card-body">
+      <p class="details__head">Completed Date</p>
+      {% if project.completed_date %}
+      {{ project.completed_date|date:"F Y" }}
+      {% else %}
+      <span class="details__body">Still in Progress</span>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="details__card">
+    <div class="details__card-head">
+      {% if project.job_sheets %}
+      <p class="details__head">Job Sheets</p>
+      <p class="details__body">{{ project.job_sheets }}</p>
+      {% endif %}
+    </div>
+    <div class="details__card-body">
+      <p class="details__head">Certificate</p>
+      {% if project.certificate %}
+      <p class="details__body">{{ project.certificate }}</p>
+      {% else %}
+      <p class="details__body"></p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="details__wrapper">
+  <!-- project deail overview -->
+  <section class="project__details-text wrapper__1">
+    <h2>Project Overview</h2>
+    <p>{{ project.little_text_details }}</p>
+  </section>
+
+  <!-- Project Gallery Details-->
+  <section class="projects__details-gallery">
+    <h2>Project Pictures</h2>
+    <div class="projects__masonry-gallery">
+      {% for img in project_pictures %}
+      <div class="projects__image">
+        <img src="{{ img.image.url }}" alt="Project Image">
+      </div>
+      {% empty %}
+      <p>No project pictures available.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Project Construction Details-->
+  <section class="projects__construction-gallery">
+    <h2>Project Pictures</h2>
+    <div class="projects__masonry-gallery">
+      {% for img in construction_pictures %}
+      <div class="projects__image">
+        <img src="{{ img.image.url }}" alt="Project Image">
+      </div>
+      {% empty %}
+      <p>No project pictures available.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+
+  <!-- Project detail Data -->
+  <section class="projects__detail-data">
+    <h2>Project Data</h2>
+    <div class="projects__data">
+
+      <div class="data__grid-top">
+        <div style="border-radius:0px" class="details__card">
+          <div class="details__card-head">
+            <p class="details__head">Project Coordinator</p>
+            <p class="details__body">{{ project.project_coordinator }}</p>
+          </div>
+          <div class="details__card-body">
+            <p class="details__head">Project Leads</p>
+            {% for leader in project.project_leaders.all %}
+            <p class="details__body">{{ leader.full_name }}</p>
+            {% if not forloop.last %}
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div style="border-radius:0px" class="details__card">
+          <div class="details__card-head">
+            <p class="details__head">Project Coordinator</p>
+            <p class="details__body">{{ project.project_coordinator }}</p>
+          </div>
+          <div class="details__card-body">
+            <p class="details__head">Project Leads</p>
+            {% for leader in project.project_leaders.all %}
+            <p class="details__body">{{ leader.full_name }}</p>
+            {% if not forloop.last %}
+            {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+      <div class="projects__data-span">
+        <img src="{% static 'img/statlight.jpg' %}" />
+      </div>
+
+      <div style="border-radius:0px" class="details__card">
+        <div class="details__card-head">
+          {% if project.job_sheets %}
+          <p class="details__head">Job Sheets</p>
+          <p class="details__body">{{ project.job_sheets }}</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div style="border-radius:0px" class="details__card">
+        <div class="details__card-head">
+          <p class="details__head">Awards</p>
+        </div>
+        <div class="details__card-body">
+          {% for award in project.awards.all %}
+          <div class="awards__container">
+            <p class="details__body">{{ award.year }}</p>
+            <div class="award__detail">
+              <p class="details__body">Awards Name: {{ award.award_name}}</p>
+              {% if award.website %}
+              <a href="{{ award.website }}" target="_blank">{{ award.website }}</a>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div style="border-radius:0px" class="details__card">
+        <div class="details__card-head">
+          <p class="details__head">News Item</p>
+        </div>
+      </div>
+
+
+      <div style="border-radius:0px" class="details__card">
+        <div class="details__card-head">
+          <p class="details__head">Start Date</p>
+          <p class="details__body">{{ project.start_date }}</p>
+          <p class="details__head">Completion Date</p>
+          <p class="details__body">{{ project.completed_date }}</p>
+          <p class="details__head">Location</p>
+          <p class="details__body">{{ project.location }}</p>
+          <p class="details__head">Client</p>
+          <p class="details__body">{{ project.client }}</p>
+          <p class="details__head">Gross Floor Area</p>
+          <p class="details__body">{{ project.total_floor_area }}</p>
+        </div>
+      </div>
+
+      <div style="border-radius:0px" class="details__card">
+        <div class="details__card-head">
+          <p class="details__head">Other Project Team Members</p>
+        </div>
+        <div class="details__card-body">
+          {% for member in project.other_team_members.all %}
+          <p class="details__body">{{ member.full_name }}</p>
+          {% empty %}
+          <p>No additional team members</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div style="border-radius:0px" class="details__card">
+        {% if project.contractors.exists %}
+        <div class="details__card-head">
+          {% for contractor in project.contractors.all %}
+          <p class="details__head">{{ contractor.role.name }}</p>
+          <p class="details__body">{{ contractor.company_name }}</p>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- page location Section -->
+  <section class="page__location">
+    <div class="page__flex">
+      <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
+      <p>AESL || {{ title }} - {{ project.title }}</p>
+    </div>
+    <p>Consulting Architects,<br /> Engineers and Surveyors</p>
+  </section>
+
+  <section class="wrapper_2">
+    <p>Back to Project</p>
+  </section>
+</section>
+
+
+
+{% endblock content %}
