@@ -535,7 +535,7 @@ a:active {
   justify-content: space-between;
   background-color: var(--primary-color);
   color: var(--secondary-color);
-  margin: 1rem 2rem;
+  margin: 1rem 1rem;
   padding: 1rem 2rem;
 }
 
@@ -1041,17 +1041,18 @@ a:active {
 
 .details__wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1;
-  overflow: hidden;
+  overflow: hidden
 }
 
 .wrapper__1 {
-  grid-column: span 3
+  grid-column: span 4
 }
 
 .wrapper_2 {
   grid-column: span 1;
+  margin-bottom: 2rem;
 
 }
 

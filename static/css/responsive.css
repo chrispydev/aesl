@@ -80,6 +80,20 @@
       margin-top: 2rem;
     }
 
+    .details__wrapper {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .wrapper__1 {
+      grid-column: span 4
+    }
+
+    .wrapper_2 {
+      display: none;
+    }
+
+
 
   }
 
