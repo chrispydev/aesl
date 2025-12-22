@@ -257,6 +257,12 @@
       grid-column: span 1;
     }
 
+    .practice__card {
+      display: flex !important;
+      padding: 0.5 1rem;
+      flex-direction: column;
+    }
+
 
 
 
