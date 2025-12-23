@@ -65,10 +65,21 @@
   font-weight: 600;
 }
 
+.practice__detail-button {
+  background-color: transparent;
+  border-radius: 0.3rem;
+  border: 1px solid #fff !important;
+  color: #fff !important;
+  padding: 0.4rem 0.8rem;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
 
 
 .practice__detail button:hover,
-.practice__detail button:hover a {
+.practice__detail button:hover a,
+.practice__detail-button:hover a {
   background-color: var(--secondary-color);
   color: #fff;
 }

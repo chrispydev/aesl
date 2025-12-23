@@ -30,6 +30,12 @@ class SectorMinistryView(View):
         return render(request, "frontend/sector_ministry.html", context)
 
 
+class CorporateGovernaceView(View):
+    def get(self, request):
+        context = {"title": "Practice"}
+        return render(request, "frontend/corporate_governance.html", context)
+
+
 class ProjectDetailView(DetailView):
     model = Project
     template_name = "frontend/project_detail.html"

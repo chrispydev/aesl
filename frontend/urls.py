@@ -1,5 +1,6 @@
 from django.urls import path
 from frontend.views import (
+    CorporateGovernaceView,
     HomeView,
     PracticeView,
     ProjectDetailView,
@@ -16,5 +17,10 @@ urlpatterns = [
         "practice/sector-ministry/",
         SectorMinistryView.as_view(),
         name="sector_ministry",
+    ),
+    path(
+        "practice/corporate-governance/",
+        CorporateGovernaceView.as_view(),
+        name="corporate_governance",
     ),
 ]
