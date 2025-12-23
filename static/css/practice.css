@@ -66,7 +66,9 @@
 }
 
 
-.practice__detail button:hover {
+
+.practice__detail button:hover,
+.practice__detail button:hover a {
   background-color: var(--secondary-color);
   color: #fff;
 }

@@ -9,6 +9,7 @@
     }
 
 
+
   }
 
   /* Tablets and large phones */
@@ -93,7 +94,14 @@
       display: none;
     }
 
+    /* sector ministry */
+    .sector__aside {
+      display: none !important;
+    }
 
+    .sector {
+      grid-template-columns: repeat(1, 1fr) !important;
+    }
 
   }
 
@@ -258,13 +266,25 @@
     }
 
     .practice__card {
-      display: flex !important;
+      display: flex;
       padding: 0.5 1rem;
       flex-direction: column;
     }
 
+    .sector__text {
+      padding: 1rem 2rem;
+    }
 
+    .sector__text p {
+      line-height: 1.2;
+      letter-spacing: 1px;
+      font-size: 1.2rem;
+    }
 
+    .sector__minister {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
 
 
 
