@@ -286,6 +286,31 @@
       grid-template-columns: repeat(1, 1fr);
     }
 
+    .corporate__images {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .sector__board-member {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .sector__board-wrapper {
+      display: grid;
+      margin: 1rem;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .sector__board-member-links a {
+      margin: 1rem;
+    }
+
+
+
+
+
+
 
 
   }
