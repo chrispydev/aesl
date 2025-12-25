@@ -2,6 +2,7 @@ from django.urls import path
 from frontend.views import (
     CorporateGovernaceView,
     HomeView,
+    ManagementView,
     PracticeView,
     ProjectDetailView,
     ProjectView,
@@ -22,5 +23,10 @@ urlpatterns = [
         "practice/corporate-governance/",
         CorporateGovernaceView.as_view(),
         name="corporate_governance",
+    ),
+    path(
+        "practice/management/",
+        ManagementView.as_view(),
+        name="management",
     ),
 ]

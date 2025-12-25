@@ -101,6 +101,7 @@
 
     .sector {
       grid-template-columns: repeat(1, 1fr) !important;
+      margin: 0.4rem 0.2rem;
     }
 
   }
@@ -192,11 +193,16 @@
     }
 
     .parallax .content h1 {
-      font-size: 2.4rem;
+      font-size: 2rem;
     }
 
     .parallax .content p {
-      font-size: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .button {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
     }
 
 
@@ -272,7 +278,21 @@
     }
 
     .sector__text {
-      padding: 1rem 2rem;
+      padding: 1rem 0.5rem;
+    }
+
+    .sector__wrapper {
+      margin: 0.5rem;
+    }
+
+    .sector__headline {
+      margin: 2rem 0;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .sector__headline h4 {
+      font-size: 1.5rem;
     }
 
     .sector__text p {
@@ -285,6 +305,11 @@
       display: grid;
       grid-template-columns: repeat(1, 1fr);
     }
+
+    .sector__minister img {
+      padding-right: 0rem;
+    }
+
 
     .corporate__images {
       display: grid;
@@ -306,6 +331,40 @@
       margin: 1rem;
     }
 
+
+    .director__wrapper {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+    .director__info {
+      z-index: 10;
+      position: absolute;
+      left: 4rem;
+      bottom: 2rem;
+      color: #fff;
+      padding: 0.7rem;
+      text-transform: uppercase;
+    }
+
+
+
+    .col__span {
+      grid-column: span 1;
+    }
+
+
+
+    .projects__title {
+      font-size: 2rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--primary-color);
+      display: flex;
+      gap: 1rem;
+      justify-content: start;
+      align-items: center;
+    }
 
 
 
