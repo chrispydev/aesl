@@ -42,6 +42,12 @@ class ManagementView(View):
         return render(request, "frontend/management.html", context)
 
 
+class ManagingDirectorView(View):
+    def get(self, request):
+        context = {"title": "Managing Director"}
+        return render(request, "frontend/managing_director.html", context)
+
+
 class ProjectDetailView(DetailView):
     model = Project
     template_name = "frontend/project_detail.html"

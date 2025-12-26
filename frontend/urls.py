@@ -3,6 +3,7 @@ from frontend.views import (
     CorporateGovernaceView,
     HomeView,
     ManagementView,
+    ManagingDirectorView,
     PracticeView,
     ProjectDetailView,
     ProjectView,
@@ -28,5 +29,10 @@ urlpatterns = [
         "practice/management/",
         ManagementView.as_view(),
         name="management",
+    ),
+    path(
+        "practice/management/managing-director/",
+        ManagingDirectorView.as_view(),
+        name="managing_director",
     ),
 ]

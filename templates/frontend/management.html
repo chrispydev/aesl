@@ -95,7 +95,7 @@
       <h5>Managing Director</h5>
       <a href="mailto:gordon.tanga@aesl.gov.gh">gordon.tanga@aesl.gov.gh</a>
       <p>They provide strategic direction and oversee the day-to-day activities of the company, working closely with employees to ensure projects are executed successfully, budgets and timelines are adhered to, and client satisfaction is achieved.</p>
-      <button class="button"><a href="">Read More</a></button>
+      <button class="button"><a href="{% url 'managing_director' %}">Read More</a></button>
     </section>
 
     <section class="managing__director-message">
@@ -234,7 +234,7 @@
     </section>
 
     <div class="director__heading">
-      <h4>Engineering</h4>
+      <h4>Administrative</h4>
       <hr/>
     </div>
 
@@ -280,9 +280,8 @@
       </div>
     </section>
 
-    <div class="director__heading">
-      <h4>Regional Consultants</h4>
-      <hr/>
+    <div id="sector" class="sector__headline padding margin">
+      <h4>Heads of Departments</h4>
     </div>
 
     <section class="dept__heads-wrapper">
@@ -370,48 +369,23 @@
       </div>
     </section>
 
-    <div class="director__heading">
-      <h4>Regional Consultants</h4>
-      <hr/>
-    </div>
-
     <section class="dept__heads-wrapper">
       <div class="dept__head">
-        <img src="{% static 'img/Ing. Frederick Owusu-Addo.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
+        <img src="{% static 'img/Arc. Abdulai Abdul-Gafaru.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
         <div class="dept__head-info">
-          <h4>Ing. Frederick Owusu-Addo</h4>
-          <p>Greater Accra</p>
-          <a href="mailto:frederick.owusu-addo@aesl.gov.gh">frederick.owusu-addo@aesl.gov.gh</a>
+          <h4>Arc. Salifu Abdul-Gafaru Abdulai</h4>
+          <p>Upper West</p>
+          <a href="mailto:salifu.abdul-gafaru.abdulai@aesl.gov.gh">salifu.abdul-gafaru.abdulai@aesl.gov.gh</a>
           <button class="read__more"><a href="">Read More</a></button>
         </div>
       </div>
 
       <div class="dept__head">
-        <img src="{% static 'img/female.png' %}" alt="Arc. Basil A. Akushey_1"/>
+        <img src="{% static 'img/SURV. Isaac Agyei-Mensah, Regional Consultant, Northern.Savannah.North-EAST.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
         <div class="dept__head-info">
-          <h4>Arc. Betsy Owusu-Antwi (Mrs.)</h4>
-          <p>Ashanti</p>
-          <a href="mailto:harriet.bediako@aesl.gov.gh">harriet.bediako@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Eric Annan</h4>
-          <p>Western / Western North</p>
-          <a href="mailto:eric.annan@aesl.gov.gh">eric.annan@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Simon Sabakpo</h4>
-          <p>Ahafo/ Bono/ Bono-East</p>
-          <a href="mailto:simon.sabakpo@aesl.gov.gh">simon.sabakpo@aesl.gov.gh</a>
+          <h4>Surv. Isaac Agyei-Mensah</h4>
+          <p>Northern/Savannah/North-East</p>
+          <a href="mailto:isaac.agyei-mensah@aesl.gov.gh">isaac.agyei-mensah@aesl.gov.gh</a>
           <button class="read__more"><a  href="">Read More</a></button>
         </div>
       </div>
@@ -423,11 +397,13 @@
   <aside class="sector__aside">
     <div class="sector__links-wrapper">
       <a href="{% url 'practice' %}">Back to Practice</a>
-      <p>Corporate Governance</p>
+      <p>Management</p>
       <div class="sector__links">
-        <a href="#ministy-work">Corporate Governance</a>
-        <a href="#sector">Board Chairman</a>
-        <a href="#sector">Board Members</a>
+        <a href="#ministy-work">Management</a>
+        <a href="#sector">Managing Director</a>
+        <a href="#sector">Deputy Managing Directors</a>
+        <a href="#sector">Heads of Departments</a>
+        <a href="#sector">Regional Consultants</a>
       </div>
     </div>
     <div class="sector__navigation">

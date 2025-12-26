@@ -1,0 +1,41 @@
+.director__details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1rem 2rem;
+}
+
+.director__CV {
+  background-color: var(--secondary-color-light);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+
+.director__text {
+  grid-column: span 2;
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+}
+
+.director__text h4 {
+  font-weight: bold;
+  font-style: italic;
+}
+
+.director__achievement {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1rem 2rem;
+}
+
+.director__achievement {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 1rem;
+  line-height: 1.8;
+
+}

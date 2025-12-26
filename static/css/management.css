@@ -118,6 +118,8 @@
   box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.2);
   margin-bottom: 2rem;
   height: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .dept__head-info {
@@ -140,4 +142,8 @@
 
 .dept__head-info a {
   margin-bottom: 1rem;
+}
+
+.margin {
+  margin-top: 2rem
 }
