@@ -1,6 +1,7 @@
 from django.urls import path
 from frontend.views import (
     CorporateGovernaceView,
+    EngineeringView,
     HomeView,
     ManagementView,
     ManagingDirectorView,
@@ -34,5 +35,10 @@ urlpatterns = [
         "practice/management/managing-director/",
         ManagingDirectorView.as_view(),
         name="managing_director",
+    ),
+    path(
+        "practice/management/deputy-managing-director/engineering/",
+        EngineeringView.as_view(),
+        name="engineering",
     ),
 ]

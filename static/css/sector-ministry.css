@@ -16,6 +16,7 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
+  position: relative;
 }
 
 .sector__text {
@@ -43,6 +44,13 @@
   justify-content: space-between;
   border-left: 2px solid var(--primary-color);
   padding-left: 0.5rem;
+}
+
+.active {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%
 }
 
 .sector__links-wrapper>a {
@@ -77,9 +85,16 @@
   gap: 1rem;
 }
 
+
+.sector__links p {
+  color: var(--primary-color);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
 .sector__links a {
   font-style: italic;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .sector__links a:hover {

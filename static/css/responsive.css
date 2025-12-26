@@ -395,5 +395,43 @@
       margin: 0 0.1rem;
     }
 
+    /* managing director*/
+
+    .director__details {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.5rem;
+      margin: 1rem 0.1rem;
+    }
+
+    .director__achievement {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.5rem;
+      margin: 1rem 0.1rem;
+    }
+
+    .padding {
+      margin: 0 0.1rem 2rem 0.1rem;
+    }
+
+    .more__projects {
+      padding: 0.2rem 0.5rem;
+    }
+
+    .director__alumni-title {
+      margin: 1rem 0.1rem 0.5rem;
+    }
+
+    .director__alumni-title h2 {
+      font-size: 1.2rem;
+    }
+
+    .director__alumni-wrapper {
+      grid-template-columns: repeat(1, 1fr);
+      margin: 1rem 0.1rem;
+    }
+
+
+
+
 
   }

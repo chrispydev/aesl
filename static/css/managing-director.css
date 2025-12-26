@@ -39,3 +39,48 @@
   line-height: 1.8;
 
 }
+
+.director__alumni-title {
+  margin: 1rem 2rem 0.5rem;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.director__alumni-title h2 {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.director__alumni-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin: 1rem 2rem;
+}
+
+.director__alumni-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.director__alumni {
+  position: relative;
+}
+
+.alumni__text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-weight: bold;
+  color: #fff;
+}
+
+.alumni__text h4 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: bold;
+}
