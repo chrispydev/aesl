@@ -2,7 +2,7 @@ from django.views import View
 from django.shortcuts import render
 from django.views.generic import DetailView
 
-from frontend.models import Project
+from frontend.models import MainCategory, Project, Staff
 
 
 class HomeView(View):
@@ -38,8 +38,19 @@ class CorporateGovernaceView(View):
 
 class ManagementView(View):
     def get(self, request):
-        context = {"title": "Management"}
+        categories = MainCategory.objects.prefetch_related("sub_categories__staff")
+
+        context = {
+            "title": "Management",
+            "categories": categories,
+        }
         return render(request, "frontend/management.html", context)
+
+
+class StaffDetailView(DetailView):
+    model = Staff
+    template_name = "frontend/staff_detail.html"
+    context_object_name = "staff"
 
 
 class ManagingDirectorView(View):

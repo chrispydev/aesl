@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="managemet__parallax">
+  <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+  <div>
+    <h1 class="projects__title">{{ staff.sub_category.main_category.name }}</h1>
+  </div>
+</section>
+
+<div>
+  <h1 class="projects__title-sub">{{ staff.sub_category.name }}</h1>
+</div>
+
+
+<section>
+  <!-- Projects Text -->
+  <section class="director__details">
+    <div class="">
+      {% if staff.image %}
+      <img src="{{ staff.image.url }}" alt="{{ staff.name }}" class="{{ staff.name }}" />
+      {% endif %}
+    </div>
+    <div class="director__text">
+      <p>" {{ staff.description }} "
+      </p>
+      <a href="mailto:{{ staff.email }}">- {{ staff.email }} -</a>
+      <h4>{{ staff.name }}</h4>
+      <button class="button"><a href="{% url 'management' %}">Back to Management</a></button>
+    </div>
+  </section>
+
+</section>
+
+
+{% endblock content %}

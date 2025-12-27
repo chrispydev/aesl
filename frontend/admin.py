@@ -10,6 +10,9 @@ from .models import (
     ProjectAward,
     ContractorRole,
     ProjectContractor,
+    MainCategory,
+    SubCategory,
+    Staff,
 )
 
 # ==================================================
@@ -33,6 +36,12 @@ class ProjectAwardInline(admin.TabularInline):
 class ProjectContractorInline(admin.TabularInline):
     model = ProjectContractor
     extra = 1
+
+
+class StaffInline(admin.TabularInline):
+    model = Staff
+    extra = 1
+    fields = ("name", "image", "grade", "region", "email", "description")
 
 
 # ==================================================
@@ -176,3 +185,31 @@ class ProjectLeaderAdmin(admin.ModelAdmin):
 @admin.register(ProjectTeamMember)
 class ProjectTeamMemberAdmin(admin.ModelAdmin):
     search_fields = ("full_name",)
+
+
+@admin.register(MainCategory)
+class MainCategoryAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    search_fields = ("name",)
+
+
+@admin.register(SubCategory)
+class SubCategoryAdmin(admin.ModelAdmin):
+    list_display = ("name", "main_category")
+    list_filter = ("main_category",)
+    search_fields = ("name",)
+
+    inlines = [StaffInline]
+
+
+@admin.register(Staff)
+class StaffAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "grade",
+        "email",
+        "sub_category",
+    )
+
+    list_filter = ("sub_category", "grade")
+    search_fields = ("name", "email", "grade")

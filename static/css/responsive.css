@@ -378,6 +378,18 @@
       align-items: center;
     }
 
+    .projects__title-sub {
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--primary-color);
+      display: flex;
+      gap: 1rem;
+      justify-content: start;
+      align-items: center;
+    }
+
+
     .managing__director-message h3 {
       margin-bottom: 1rem;
       font-size: 1.5rem;
@@ -398,8 +410,8 @@
     /* managing director*/
 
     .director__details {
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0.2rem;
       margin: 1rem 0.1rem;
     }
 

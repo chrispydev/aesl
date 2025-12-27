@@ -1,0 +1,14 @@
+.director__details img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.director__text a {
+  color: #fff;
+}
+
+.director__text a:hover {
+  color: var(--secondary-color);
+}

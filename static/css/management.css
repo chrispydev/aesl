@@ -103,7 +103,7 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  margin: 0 2rem;
+  margin: 1rem 2rem;
 }
 
 .dept__head {

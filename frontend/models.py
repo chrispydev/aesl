@@ -136,3 +136,43 @@ class ProjectContractor(models.Model):
 
     def __str__(self):
         return f"{self.role.name} - {self.company_name}"
+
+
+class MainCategory(models.Model):
+    name = models.CharField(max_length=150)
+
+    class Meta:
+        verbose_name_plural = "Main Categories"
+
+    def __str__(self):
+        return self.name
+
+
+class SubCategory(models.Model):
+    main_category = models.ForeignKey(
+        MainCategory, on_delete=models.CASCADE, related_name="sub_categories"
+    )
+    name = models.CharField(max_length=150)
+
+    class Meta:
+        verbose_name_plural = "Sub Categories"
+
+    def __str__(self):
+        return f"{self.main_category} - {self.name}"
+
+
+class Staff(models.Model):
+    sub_category = models.ForeignKey(
+        SubCategory, on_delete=models.CASCADE, related_name="staff"
+    )
+    name = models.CharField(max_length=150)
+    image = models.ImageField(upload_to="staff_images/", blank=True, null=True)
+    grade = models.CharField(max_length=100)
+    region = models.CharField(
+        max_length=100, null=False, blank=True, default="Not a Regional Head"
+    )
+    email = models.EmailField()
+    description = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name

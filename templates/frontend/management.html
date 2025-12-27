@@ -120,7 +120,7 @@
       <h5>Architecture and Planning</h5>
       <a href="mailto:naa.quartey@aesl.gov.gh">naa.quartey@aesl.gov.gh</a>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos veritatis ipsa repudiandae nisi, fugit nulla corporis reprehenderit dolores dolorum vel, mollitia excepturi laborum aperiam voluptates perferendis esse quo voluptate rem.</p>
-      <button class="button"><a href="{% url 'engineering' %}">Read More</a></button>
+      <button class="button"><a href="{% url 'managing_director' %}">Read More</a></button>
     </section>
 
     <section class="managing__director-image">
@@ -129,268 +129,47 @@
 
     <section class="managing__director">
       <h3>Ing. Charles Adigvom <br/>(Engineering)</h3>
-      <h5>Architecture and Planning</h5>
       <a href="mailto:charles.adigvom@aesl.gov.gh">charles.adigvom@aesl.gov.gh</a>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos veritatis ipsa repudiandae nisi, fugit nulla corporis reprehenderit dolores dolorum vel, mollitia excepturi laborum aperiam voluptates perferendis esse quo voluptate rem.</p>
-      <button class="button"><a href="">Read More</a></button>
+      <p>Just testing it Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos veritatis ipsa repudiandae nisi, fugit nulla corporis reprehenderit dolores dolorum vel, mollitia excepturi laborum aperiam voluptates perferendis esse quo voluptate rem.</p>
+      <button class="button"><a href="{% url 'engineering' %}">Read More</a></button>
     </section>
 
-    <div id="sector" class="sector__headline padding">
-      <h4>Heads of Departments</h4>
-    </div>
-
-    <div class="director__heading">
-      <h4>Architecture and Planning</h4>
-      <hr/>
-    </div>
-
-    <section class="dept__heads-wrapper">
-      <div class="dept__head">
-        <img src="{% static 'img/Arc. Basil A. Akushey_1.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Arc. Basil Akushey</h4>
-          <p>Architecture</p>
-          <a href="mailto:basil.akushey@aesl.gov.gh">basil.akushey@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
+    {% for main in categories %}
+      <section>
+        <div id="sector" class="sector__headline padding">
+          <h4>{{ main.name }}</h4>
         </div>
-      </div>
 
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Sylvester Akuoko</h4>
-          <p>Land Valuation</p>
-          <a href="mailto:sylvester.akuoko@aesl.gov.gh">sylvester.akuoko@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
+        {% for sub in main.sub_categories.all %}
+          {% if sub.name != "Regional Dept." %}
+          <div class="director__heading">
+            <h4>{{ sub.name }}</h4>
+            <hr/>
+          </div>
+          {% endif %}
 
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Patrick Fiajoe</h4>
-          <p>Quantity Surveying</p>
-          <a href="mailto:patrick.fiajoe@aesl.gov.gh">patrick.fiajoe@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Evans Boateng</h4>
-          <p>Land Surveying</p>
-          <a href="mailto:evans.boateng@aesl.gov.gh">evans.boateng@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-    </section>
-
-    <div class="director__heading">
-      <h4>Engineering</h4>
-      <hr/>
-    </div>
-
-    <section class="dept__heads-wrapper">
-      <div class="dept__head">
-        <img src="{% static 'img/female.png' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Ing. Gloria Kunutsor</h4>
-          <p>Structural</p>
-          <a href="mailto:gloria.kunutsor@aesl.gov.gh">gloria.kunutsor@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Ing. Michael Addo</h4>
-          <p>Installations</p>
-          <a href="mailto:michael.addo@aesl.gov.gh">michael.addo@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Ing. Ebenezer Buertet Mac-Tetteh</h4>
-          <p>Water</p>
-          <a href="mailto:ebenezer.mac-tetteh@aesl.gov.gh">ebenezer.mac-tetteh@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Ing. Joseph Kwasi Odde</h4>
-          <p>Geotechnical</p>
-          <a href="mailto:joseph.oddei@aesl.gov.gh">joseph.oddei@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-    </section>
-
-    <div class="director__heading">
-      <h4>Administrative</h4>
-      <hr/>
-    </div>
-
-    <section class="dept__heads-wrapper">
-      <div class="dept__head">
-        <img src="{% static 'img/Mr. Ibrahim Jibril (Ag. DF).jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Ibrahim Jibril</h4>
-          <p>Structural</p>
-          <a href="mailto:ibrahim.jibril@aesl.gov.gh">ibrahim.jibril@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/Harriet Ansah (Mrs.).jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Harriet Bediako</h4>
-          <p>Director, HRMS</p>
-          <a href="mailto:harriet.bediako@aesl.gov.gh">harriet.bediako@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/Emmanuel Otchere-Darko.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Arc. E. Otchere-Darko</h4>
-          <p>Information Technology</p>
-          <a href="mailto:ebenezer.mac-tetteh@aesl.gov.gh">ebenezer.mac-tetteh@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/Emmanuel Kwasi Okoh Larbi (Internal Audit Head).jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Emmanuel Okoh Larbi</h4>
-          <p>Internal Auditor</p>
-          <a href="mailto:emmanuel.larbi@aesl.gov.gh">emmanuel.larbi@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-    </section>
-
-    <div id="sector" class="sector__headline padding margin">
-      <h4>Heads of Departments</h4>
-    </div>
-
-    <section class="dept__heads-wrapper">
-      <div class="dept__head">
-        <img src="{% static 'img/Ing. Frederick Owusu-Addo.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Ing. Frederick Owusu-Addo</h4>
-          <p>Greater Accra</p>
-          <a href="mailto:frederick.owusu-addo@aesl.gov.gh">frederick.owusu-addo@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/female.png' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Arc. Betsy Owusu-Antwi (Mrs.)</h4>
-          <p>Ashanti</p>
-          <a href="mailto:harriet.bediako@aesl.gov.gh">harriet.bediako@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Eric Annan</h4>
-          <p>Western / Western North</p>
-          <a href="mailto:eric.annan@aesl.gov.gh">eric.annan@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Simon Sabakpo</h4>
-          <p>Ahafo/ Bono/ Bono-East</p>
-          <a href="mailto:simon.sabakpo@aesl.gov.gh">simon.sabakpo@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-    </section>
-
-
-    <section class="dept__heads-wrapper">
-      <div class="dept__head">
-        <img src="{% static 'img/Arc. Amen Gbeckor-Kove-Volta.Oti Region.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Arc. Amen Gbekor-Kove Jnr.</h4>
-          <p>Volta / Oti</p>
-          <a href="mailto:amen.gbekor-kove@aesl.gov.gh">amen.gbekor-kove@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Kwasi Gyebi-Ababio</h4>
-          <p>Director, HRMS</p>
-          <a href="mailto:kwasi.gyebi-ababio@aesl.gov.gh">kwasi.gyebi-ababio@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/male.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Arc. Nana Kwame Amoateng-Mensah</h4>
-          <p>Eastern</p>
-          <a href="mailto:nana.amoateng-mensah@aesl.gov.gh">nana.amoateng-mensah@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/Surv. Fidelis Apori.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Fidelis Apore</h4>
-          <p>Upper East</p>
-          <a href="mailto:fidelis.apore@aesl.gov.gh">fidelis.apore@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="dept__heads-wrapper">
-      <div class="dept__head">
-        <img src="{% static 'img/Arc. Abdulai Abdul-Gafaru.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Arc. Salifu Abdul-Gafaru Abdulai</h4>
-          <p>Upper West</p>
-          <a href="mailto:salifu.abdul-gafaru.abdulai@aesl.gov.gh">salifu.abdul-gafaru.abdulai@aesl.gov.gh</a>
-          <button class="read__more"><a href="">Read More</a></button>
-        </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/SURV. Isaac Agyei-Mensah, Regional Consultant, Northern.Savannah.North-EAST.jpg' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Surv. Isaac Agyei-Mensah</h4>
-          <p>Northern/Savannah/North-East</p>
-          <a href="mailto:isaac.agyei-mensah@aesl.gov.gh">isaac.agyei-mensah@aesl.gov.gh</a>
-          <button class="read__more"><a  href="">Read More</a></button>
-        </div>
-      </div>
-    </section>
-
+          <section class="dept__heads-wrapper">
+            {% for staff in sub.staff.all %}
+              <div class="dept__head">
+                {% if staff.image %}
+                <img src="{{ staff.image.url }}" alt="{{ staff.name }}"/>
+                {% endif %}
+                <div class="dept__head-info">
+                  <h4>{{ staff.name }}</h4>
+                  {% if staff.grade == 'Regional Dept.' %}
+                  <p>{{ staff.region }}</p>
+                  {% else %}
+                  <p>{{ staff.grade }}</p>
+                  {% endif %}
+                  <a href="mailto:basil.akushey@aesl.gov.gh">basil.akushey@aesl.gov.gh</a>
+                  <button class="read__more"><a href="{% url 'staff_detail' staff.pk %}">Read More</a></button>
+                </div>
+              </div>
+            {% endfor %}
+          </section>
+        {% endfor %}
+      </section>
+    {% endfor %}
 
   </article>
 

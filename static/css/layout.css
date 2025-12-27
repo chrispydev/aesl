@@ -794,6 +794,18 @@ a:active {
   align-items: center;
 }
 
+.projects__title-sub {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--primary-color);
+  display: flex;
+  gap: 1rem;
+  padding-left: 1rem;
+  justify-content: start;
+  align-items: center;
+}
+
 
 .projects__cards {
   display: flex;
