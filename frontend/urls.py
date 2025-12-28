@@ -2,10 +2,13 @@ from django.urls import path
 from frontend.views import (
     CorporateGovernaceView,
     EngineeringView,
+    FunctionsView,
     HistoryView,
     HomeView,
     ManagementView,
     ManagingDirectorView,
+    MandateView,
+    MissionVisionView,
     PracticeView,
     ProjectDetailView,
     ProjectView,
@@ -50,5 +53,20 @@ urlpatterns = [
         "practice/history/",
         HistoryView.as_view(),
         name="history",
+    ),
+    path(
+        "practice/functions/",
+        FunctionsView.as_view(),
+        name="functions",
+    ),
+    path(
+        "practice/mandate/",
+        MandateView.as_view(),
+        name="mandate",
+    ),
+    path(
+        "practice/mission-vision-and-values/",
+        MissionVisionView.as_view(),
+        name="mission_vision",
     ),
 ]

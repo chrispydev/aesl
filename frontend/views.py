@@ -71,6 +71,24 @@ class HistoryView(View):
         return render(request, "frontend/history.html", context)
 
 
+class FunctionsView(View):
+    def get(self, request):
+        context = {"title": "Functions"}
+        return render(request, "frontend/functions.html", context)
+
+
+class MandateView(View):
+    def get(self, request):
+        context = {"title": "Mandate"}
+        return render(request, "frontend/mandate.html", context)
+
+
+class MissionVisionView(View):
+    def get(self, request):
+        context = {"title": "Mission, Vision & Values"}
+        return render(request, "frontend/mission_vision.html", context)
+
+
 class ProjectDetailView(DetailView):
     model = Project
     template_name = "frontend/project_detail.html"
