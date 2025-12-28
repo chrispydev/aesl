@@ -1,0 +1,31 @@
+.functions__parallax {
+  position: relative;
+  height: 65vh;
+  background-image: url('../img/function.jpg');
+  /* Replace with your image */
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.functions__objs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.functions__objs svg {
+  width: 80px;
+  height: 80px;
+  justify-self: center;
+  color: var(--primary-color);
+}
+
+.functions__objs p {
+  grid-column: span 3;
+  color: var(--primary-color);
+}

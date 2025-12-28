@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="history__parallax">
+  <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+  <div>
+    <h1 class="projects__title">
+      History
+    </h1>
+  </div>
+</section>
+
+<!-- Projects__cards -->
+<section class="projects__cards">
+  <div class="projects__card">
+    <p>Practice</p>
+  </div>
+  <div class="projects__card">
+    <p>History</p>
+    <p>Mandate</p>
+    <p>Functions</p>
+    <p>Mission, Vision and Value</p>
+  </div>
+  <div class="projects__card">
+    <p>Sectory Ministry</p>
+    <p>Corporate Governance</p>
+    <p>Management </p>
+  </div>
+
+  <div class="projects__card-link">
+    <a href="">Service</a>
+    <a href="">Client Speak</a>
+    <a href="">Corporate Responsibilites</a>
+  </div>
+</section>
+
+
+<section id="overview" class="sector">
+  <!-- Projects Text -->
+  <article class="grid__span">
+    <section class="sector__text">
+      <p> AESL initially came to be known as AESC when consultancy services were separated from the Public Works
+        Department (PWD) under NRCD 193, 1973. As a government corporation, AESC became the sole consultant for public
+        works. The company was later restructured by an act of parliament, ACT 461 Statutory Corporation (Conversion to
+        Companies).
+      </p>
+    </section>
+
+    <div class="history__image">
+      <img src="{% static 'img/History.jpg' %}" alt="history image" />
+    </div>
+
+    <section id="content" class="sector__text">
+      <p> In 1993, AESL was transformed from a government corporation into a 100% state-owned limited liability company.
+      </p>
+      <p> Over the years, AESL expanded its scope and capabilities, incorporating engineering disciplines to offer
+        integrated solutions to both private and public clients. With a commitment to excellence, the company began
+        taking on increasingly complex and prestigious projects.
+      </p>
+      <p>AESL has built a reputation for delivering outstanding architectural and engineering services across various
+        sectors, which continue to shape the built environment and contribute to the development of sustainable and
+        impactful architectural and engineering solutions.</p>
+
+  </article>
+
+  <aside class="sector__aside">
+    <div class="sector__links-wrapper">
+      <a href="{% url 'practice' %}">Back to Practice</a>
+      <p>History</p>
+      <div class="sector__links">
+        <a href="#overview">AESL History Overview</a>
+        <a href="#content">AESL History Content</a>
+      </div>
+    </div>
+    <div class="sector__navigation">
+      <p>Next</p>
+      <a href="">AESL Management</a>
+    </div>
+  </aside>
+</section>
+
+
+<!-- More Projects Section -->
+<section class="more__projects padding">
+  <p>AESL || {{ title }}</p>
+  <article class="boxes">
+    <div class="box">
+    </div>
+    <div class="box">
+    </div>
+    <div class="box">
+    </div>
+  </article>
+</section>
+
+
+{% endblock content %}

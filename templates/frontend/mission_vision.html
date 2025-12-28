@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="mission__parallax">
+  <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+  <div>
+    <h1 class="projects__title">
+      Mission Vision and Values
+    </h1>
+  </div>
+</section>
+
+<!-- Projects__cards -->
+<section class="projects__cards">
+  <div class="projects__card">
+    <p>Practice</p>
+  </div>
+  <div class="projects__card">
+    <p>History</p>
+    <p>Mandate</p>
+    <p>Functions</p>
+    <p>Mission, Vision and Value</p>
+  </div>
+  <div class="projects__card">
+    <p>Sectory Ministry</p>
+    <p>Corporate Governance</p>
+    <p>Management </p>
+  </div>
+
+  <div class="projects__card-link">
+    <a href="">Service</a>
+    <a href="">Client Speak</a>
+    <a href="">Corporate Responsibilites</a>
+  </div>
+</section>
+
+
+<section id="overview" class="sector">
+  <!-- Projects Text -->
+  <article class="grid__span">
+    <section class="sector__text">
+      <p>The Mission Vision and Values of AESL established by the British was used for all state works over decades
+        post-colonial.</p>
+      <p>The institutions like State Construction Corporation (SCC), State Housing Corporation (SHC), Highways.</p>
+      <p>No privates businesses were allowed to handle state/ public works except the PWD.</p>
+    </section>
+
+  </article>
+
+  <aside class="sector__aside">
+    <div class="sector__links-wrapper">
+      <a href="{% url 'practice' %}">Back to Practice</a>
+      <p>History</p>
+      <div class="sector__links">
+        <a href="#overview">AESL Mandate</a>
+      </div>
+    </div>
+    <div class="sector__navigation">
+      <p>Next</p>
+      <a href="">AESL Management</a>
+    </div>
+  </aside>
+</section>
+
+
+<!-- More Projects Section -->
+<section class="more__projects padding">
+  <p>AESL || {{ title }}</p>
+  <article class="boxes">
+    <div class="box">
+    </div>
+    <div class="box">
+    </div>
+    <div class="box">
+    </div>
+  </article>
+</section>
+
+
+{% endblock content %}
