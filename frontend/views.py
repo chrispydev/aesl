@@ -65,6 +65,12 @@ class EngineeringView(View):
         return render(request, "frontend/engineering.html", context)
 
 
+class HistoryView(View):
+    def get(self, request):
+        context = {"title": "History"}
+        return render(request, "frontend/history.html", context)
+
+
 class ProjectDetailView(DetailView):
     model = Project
     template_name = "frontend/project_detail.html"

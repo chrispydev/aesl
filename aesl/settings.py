@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     # django apps
     "frontend",
     # third-party apps
-    # "django_browser_reload",
+    "django_browser_reload",
 ]
 
 MIDDLEWARE = [
@@ -40,7 +40,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # "django_browser_reload.middleware.BrowserReloadMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "aesl.urls"
@@ -119,4 +119,4 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
