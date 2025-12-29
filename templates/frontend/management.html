@@ -17,28 +17,7 @@
 </section>
 
 <!-- Projects__cards -->
-<section class="projects__cards">
-  <div class="projects__card">
-    <p>Practice</p>
-  </div>
-  <div class="projects__card">
-    <p>History</p>
-    <p>Mandate</p>
-    <p>Functions</p>
-    <p>Mission, Vision and Value</p>
-  </div>
-  <div class="projects__card">
-    <p>Sectory Ministry</p>
-    <p>Corporate Governance</p>
-    <p>Management </p>
-  </div>
-
-  <div class="projects__card-link">
-    <a href="">Service</a>
-    <a href="">Client Speak</a>
-    <a href="">Corporate Responsibilites</a>
-  </div>
-</section>
+{% include 'partial/card-nav.html' %}
 
 
 <section id="ministy-work" class="sector">
@@ -187,9 +166,9 @@
     </div>
     <div class="sector__navigation">
       <p>Previous</p>
-      <a href="#aesl-mision">AESL sector Ministry</a>
+      <a href="{% url 'corporate_governance' %}">AESL Corporate Governance</a>
       <p>Next</p>
-      <a href="">AESL Management</a>
+      <a href="{% url 'services' %}">AESL Services</a>
     </div>
   </aside>
 </section>

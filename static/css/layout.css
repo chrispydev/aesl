@@ -836,13 +836,14 @@ a:active {
   flex-direction: column;
 }
 
-.projects__card p {
+.projects__card a {
   margin-bottom: -0.1rem;
   font-size: 1rem;
   line-height: 1.4rem;
+  color: #fff;
 }
 
-.projects__card p:hover {
+.projects__card a:hover {
   color: var(--secondary-color);
   cursor: pointer;
 }

@@ -42,7 +42,7 @@
    <nav class="nav__menu">
      <a href="{% url 'projects' %}" class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}"><i class="fas fa-building"></i> Projects</a>
      <a  href="{% url 'practice' %}"><i class="fas fa-city"></i> Practice</a>
-      <a href="#"><i class="fas fa-drafting-compass"></i> Principles</a>
+     <a href="{% url 'principles' %}"><i class="fas fa-drafting-compass"></i> Principles</a>
       <a href="#"><i class="fas fa-users"></i> People</a>
       <a href="#"><i class="fas fa-newspaper"></i> News</a>
       <a href="#"><i class="fas fa-book-open"></i> Publications</a>
@@ -107,7 +107,7 @@
      <nav class="nav__menu">
      <a href="{% url 'projects' %}" class="{% if request.resolver_match.url_name == 'projects' %}active{% endif %}"><i class="fas fa-building"></i> Projects</a>
      <a  href="{% url 'practice' %}"><i class="fas fa-city"></i> Practice</a>
-      <a href="#"><i class="fas fa-drafting-compass"></i> Principles</a>
+     <a href="{% url 'principles' %}"><i class="fas fa-drafting-compass"></i> Principles</a>
       <a href="#"><i class="fas fa-users"></i> People</a>
       <a href="#"><i class="fas fa-newspaper"></i> News</a>
       <a href="#"><i class="fas fa-book-open"></i> Publications</a>

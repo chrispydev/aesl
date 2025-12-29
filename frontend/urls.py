@@ -10,6 +10,7 @@ from frontend.views import (
     MandateView,
     MissionVisionView,
     PracticeView,
+    PrinciplesView,
     ProjectDetailView,
     ProjectView,
     SectorMinistryView,
@@ -74,5 +75,10 @@ urlpatterns = [
         "practice/services/",
         ServiceView.as_view(),
         name="services",
+    ),
+    path(
+        "principles/",
+        PrinciplesView.as_view(),
+        name="principles",
     ),
 ]

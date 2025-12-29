@@ -18,6 +18,26 @@ class ProjectView(View):
         return render(request, "frontend/projects.html", context)
 
 
+class ProjectDetailView(DetailView):
+    model = Project
+    template_name = "frontend/project_detail.html"
+    context_object_name = "project"  # Default is 'object', but we can use 'project'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        project = self.get_object()
+
+        # Separate gallery images
+        context["project_pictures"] = project.gallery.filter(image_type="project")
+        context["construction_pictures"] = project.gallery.filter(
+            image_type="construction"
+        )
+        # current page location
+        context["title"] = "Projects"
+
+        return context
+
+
 class PracticeView(View):
     def get(self, request):
         context = {"title": "Practice"}
@@ -95,21 +115,7 @@ class ServiceView(View):
         return render(request, "frontend/services.html", context)
 
 
-class ProjectDetailView(DetailView):
-    model = Project
-    template_name = "frontend/project_detail.html"
-    context_object_name = "project"  # Default is 'object', but we can use 'project'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        project = self.get_object()
-
-        # Separate gallery images
-        context["project_pictures"] = project.gallery.filter(image_type="project")
-        context["construction_pictures"] = project.gallery.filter(
-            image_type="construction"
-        )
-        # current page location
-        context["title"] = "Projects"
-
-        return context
+class PrinciplesView(View):
+    def get(self, request):
+        context = {"title": "Principles"}
+        return render(request, "frontend/principles.html", context)
