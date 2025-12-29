@@ -11,3 +11,54 @@
   justify-content: center;
   align-items: center;
 }
+
+.explore {
+  border: 1px solid var(--secondary-color);
+  border-radius: 0.4rem;
+  padding: 0.5rem 0.8rem;
+  color: var(--secondary-color);
+  text-transform: uppercase;
+  transition: all 0.ms ease-in-out;
+}
+
+.explore:hover {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.service__text h3 {
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 2rem;
+}
+
+.service__text p {
+  line-height: 2rem;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+}
+
+.service__cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.service__card {
+  border: 1px solid #ccc;
+  padding: 1rem 2rem;
+  margin: 1rem;
+  box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.8);
+}
+
+.service__card a {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 1rem 2rem;
+}

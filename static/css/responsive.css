@@ -479,7 +479,17 @@
       line-height: 2rem;
     }
 
+    /*services*/
 
+    .service__cards {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+    }
+
+    .services {
+      grid-template-columns: repeat(1, 1fr);
+      padding: 1rem 0.2rem;
+    }
 
 
 
