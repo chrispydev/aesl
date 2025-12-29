@@ -334,6 +334,8 @@ a:active {
   transition: opacity 0.3s ease;
 }
 
+/*Projects*/
+
 .projects {
   position: relative;
   height: 55vh;

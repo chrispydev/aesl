@@ -13,6 +13,7 @@ from frontend.views import (
     ProjectDetailView,
     ProjectView,
     SectorMinistryView,
+    ServiceView,
     StaffDetailView,
 )
 
@@ -68,5 +69,10 @@ urlpatterns = [
         "practice/mission-vision-and-values/",
         MissionVisionView.as_view(),
         name="mission_vision",
+    ),
+    path(
+        "practice/services/",
+        ServiceView.as_view(),
+        name="services",
     ),
 ]

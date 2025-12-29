@@ -51,36 +51,72 @@
       <p>No privates businesses were allowed to handle state/ public works except the PWD.</p>
     </section>
 
+    <div id="sector" class="sector__headline padding">
+      <h4>Mission</h4>
+    </div>
+
+    <section id="mission" class="mission">
+      <p>“The Architectural and Engineering Services Limited, a firm of Consulting Engineers, Architects and Surveyors, exists to provide innovative and high quality services/ solutions in the design and supervision of projects in an efficient, timely and cost effective manner to delight its Clients within and outside Ghana, using the talents of highly developed, motivated, dedicated and well-managed workforce”.</p>
+      <img src="{% static 'img/Mission.png' %}" alt="mission diagram"/>
+    </section>
+
+    <div id="sector" class="sector__headline padding">
+      <h4>Vision</h4>
+    </div>
+
+    <section id="vision" class="vision">
+      <img src="{% static 'img/vision.png' %}" alt="vision"/>
+      <p>“The Corporate vision is to attain and sustain leadership in the Construction Consultancy Service industry in Ghana as a world class company”.</p>
+    </section>
+
+
+    <div id="sector" class="sector__headline padding">
+      <h4>Values</h4>
+    </div>
+
+
+    <section id="values" class="values">
+      <p>“The Corporate vision is to attain and sustain leadership in the Construction Consultancy Service industry in Ghana as a world class company”.</p>
+      <img src="{% static 'img/values.png' %}" alt="vision"/>
+    </section>
+
+
+  <!-- More Projects Section -->
+  <section class="more__projects padding">
+    <p>AESL || {{ title }}</p>
+    <article class="boxes">
+      <div class="box">
+      </div>
+      <div class="box">
+      </div>
+      <div class="box">
+      </div>
+    </article>
+  </section>
+
   </article>
 
   <aside class="sector__aside">
     <div class="sector__links-wrapper">
       <a href="{% url 'practice' %}">Back to Practice</a>
-      <p>History</p>
+      <p>Mission vision values</p>
       <div class="sector__links">
-        <a href="#overview">AESL Mandate</a>
+        <a href="#overview">Overview</a>
+        <a href="#mission">Mission</a>
+        <a href="#vision">Vision</a>
+        <a href="#values">Values</a>
       </div>
     </div>
     <div class="sector__navigation">
+      <p>Previous</p>
+      <a href="">AESL Functions</a>
       <p>Next</p>
-      <a href="">AESL Management</a>
+      <a href="">AESL Sector Ministry</a>
     </div>
   </aside>
 </section>
 
 
-<!-- More Projects Section -->
-<section class="more__projects padding">
-  <p>AESL || {{ title }}</p>
-  <article class="boxes">
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-  </article>
-</section>
 
 
 {% endblock content %}

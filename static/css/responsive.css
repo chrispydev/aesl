@@ -449,5 +449,38 @@
     }
 
 
+    /* projects */
+    .projects__text {
+      margin-top: 1.5rem;
+      padding: 1rem 0.3rem;
+    }
+
+    .projects__text p {
+      line-height: 1.4;
+      letter-spacing: 1px;
+      font-size: 1.3rem;
+    }
+
+
+    /* practice */
+    .practice__wrapper {
+      padding: 1rem 0.2rem;
+    }
+
+    .practice__card {
+      padding: 1rem 0.2rem;
+      border-radius: 0.3rem;
+      margin-bottom: 3rem;
+    }
+
+    .practice__detail {
+      padding: 0.5rem;
+      border-radius: 0.3rem;
+      line-height: 2rem;
+    }
+
+
+
+
 
   }

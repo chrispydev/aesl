@@ -89,6 +89,12 @@ class MissionVisionView(View):
         return render(request, "frontend/mission_vision.html", context)
 
 
+class ServiceView(View):
+    def get(self, request):
+        context = {"title": "Services"}
+        return render(request, "frontend/services.html", context)
+
+
 class ProjectDetailView(DetailView):
     model = Project
     template_name = "frontend/project_detail.html"

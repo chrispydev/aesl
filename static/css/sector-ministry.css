@@ -95,6 +95,7 @@
 .sector__links a {
   font-style: italic;
   font-size: 0.8rem;
+  color: #999;
 }
 
 .sector__links a:hover {

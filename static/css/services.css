@@ -1,0 +1,13 @@
+.service__parallax {
+  position: relative;
+  height: 65vh;
+  background-image: url('../img/service.jpg');
+  /* Replace with your image */
+  background-attachment: fixed;
+  background-position: left;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
