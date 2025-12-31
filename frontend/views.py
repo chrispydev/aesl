@@ -142,3 +142,33 @@ class ConsultantsView(View):
     def get(self, request):
         context = {"title": "People"}
         return render(request, "frontend/consultants.html", context)
+
+
+class SeniorProfessionalView(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/senior_professional.html", context)
+
+
+class AssistantProfessionalsView(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/assistant_professional.html", context)
+
+
+class ProfessionalView(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/professional.html", context)
+
+
+class SupportTeam(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/support_team.html", context)
+
+
+class NationalService(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/national_service.html", context)
