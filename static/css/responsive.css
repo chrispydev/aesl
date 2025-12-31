@@ -515,7 +515,22 @@
     }
 
 
+    .people__wrapper {
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+      padding: 1rem 0.2rem;
+    }
 
+    .people__text p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .senior__consultants {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      padding: 1rem 0.2rem;
+    }
 
 
   }

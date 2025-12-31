@@ -1,0 +1,67 @@
+.principal__parallax {
+  position: relative;
+  height: 65vh;
+  background-image: url('../img/management.jpeg');
+  /* Replace with your image */
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.senior__consultants {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  padding: 1rem 2rem;
+}
+
+.consultants {
+  border: 1px solid var(--primary-color);
+  padding: 1rem 0.5rem;
+  box-shadow: 2px 2px 3px #888;
+}
+
+.consultants img {
+  height: 300px;
+  width: auto;
+  object-fit: contain;
+}
+
+.consultants__details {
+  text-align: center;
+  margin: 0.4rem 0rem;
+  color: var(--primary-color);
+}
+
+.consultants__details h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.consultants__details p {
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+.consultants__details h5 {
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.consultants__media {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: var(--primary-color);
+}
+
+.consultants__media i {
+  border: 1px solid var(--primary-color);
+  padding: 0.2rem;
+  font-size: 0.8rem;
+  border-radius: 50%;
+}

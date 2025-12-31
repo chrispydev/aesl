@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import (
+    Person,
     Project,
     ProjectCategory,
     ProjectLeader,
@@ -213,3 +214,9 @@ class StaffAdmin(admin.ModelAdmin):
 
     list_filter = ("sub_category", "grade")
     search_fields = ("name", "email", "grade")
+
+
+@admin.register(Person)
+class PersonAdmin(admin.ModelAdmin):
+    list_display = ("name", "profession")
+    search_fields = ("name", "profession")

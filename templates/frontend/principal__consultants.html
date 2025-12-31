@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="principal__parallax">
+  <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+  <div>
+    <h1 class="projects__title">
+      Principal Consultants
+    </h1>
+  </div>
+</section>
+
+<!-- Projects__cards -->
+{% include 'partial/people-card.html' %}
+
+
+<section id="ministy-work" class="sector">
+  <!-- Projects Text -->
+  <article class="grid__span">
+    <section class="sector__text">
+      <p>
+        Our principal consultants lead projects from conceptualization to execution, ensuring that client needs are met
+        with precision. Their team integrates architecture, engineering, and project management expertise to create
+        functional and aesthetically pleasing environments. Committed to sustainability, they incorporate eco-friendly
+        practices into their designs. With a strong emphasis on collaboration, our principal consultants foster
+        relationships with clients and stakeholders to achieve successful project outcomes.</p>
+      </p>
+    </section>
+
+  </article>
+
+  <aside class="sector__aside">
+    <div class="sector__links-wrapper">
+      <a href="{% url 'people' %}">Back to People</a>
+      <p>Principal Consultants</p>
+      <div class="sector__links">
+        <a href="#ministy-work">AESL Principal Consultants</a>
+        <a href="#sector">AESL Principal Consultants List</a>
+      </div>
+    </div>
+    <div class="sector__navigation">
+      <p>Next</p>
+      <a href="{% url 'services' %}">Senior Consultants</a>
+    </div>
+  </aside>
+</section>
+
+
+<!-- page location Section -->
+<section class="page__location">
+  <div class="page__flex">
+    <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
+    <p>AESL || {{title}}</p>
+  </div>
+  <p>Consulting Architects,<br /> Engineers and Surveyors</p>
+</section>
+
+
+{% endblock content %}

@@ -1,6 +1,7 @@
 from django.urls import path
 
 from frontend.views import (
+    ConsultantsView,
     CorporateGovernaceView,
     EngineeringView,
     FunctionsView,
@@ -12,10 +13,12 @@ from frontend.views import (
     MissionVisionView,
     PeopleView,
     PracticeView,
+    PrincipalConsultantsView,
     PrinciplesView,
     ProjectDetailView,
     ProjectView,
     SectorMinistryView,
+    SeniorConsultantsView,
     ServiceView,
     StaffDetailView,
 )
@@ -87,5 +90,20 @@ urlpatterns = [
         "people/",
         PeopleView.as_view(),
         name="people",
+    ),
+    path(
+        "consultants/principal-consultants/",
+        PrincipalConsultantsView.as_view(),
+        name="principal_consultants",
+    ),
+    path(
+        "consultants/senior-consultants/",
+        SeniorConsultantsView.as_view(),
+        name="senior_consultants",
+    ),
+    path(
+        "consultants/consultants/",
+        ConsultantsView.as_view(),
+        name="consultants",
     ),
 ]

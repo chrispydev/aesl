@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="principal__parallax">
+  <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+  <div>
+    <h1 class="projects__title">
+      Senior Consultants
+    </h1>
+  </div>
+</section>
+
+<!-- Projects__cards -->
+{% include 'partial/people-card.html' %}
+
+
+<section id="ministy-work" class="sector">
+  <!-- Projects Text -->
+  <article class="grid__span">
+    <section class="sector__text">
+      <p>
+        Senior consultants specialize in project management and design development, guiding multidisciplinary teams to
+        ensure timely and budget-friendly completion. They prioritize client communication, stay updated with industry
+        trends, and prioritize quality and sustainability, ensuring designs meet regulatory standards and environmental
+        considerations.
+      </p>
+    </section>
+
+    <section class="senior__consultants">
+      <div class="consultants">
+        <img src="{% static 'img/board-member-01.jpeg' %}" alt="random" />
+        <div class="consultants__details">
+          <h4>Ing. Charles N.Adigvom</h4>
+          <h5>~ Civil Engineer ~ </h5>
+          <p>AESL_HEAD OFFICE - Civil Engineering</p>
+        </div>
+        <div class="consultants__media">
+          <i class="fa-brands fa-twitter"></i>
+          <i class="fa-brands fa-facebook"></i>
+          <i class="fa-brands fa-linkedin"></i>
+        </div>
+      </div>
+    </section>
+
+  </article>
+
+  <aside class="sector__aside">
+    <div class="sector__links-wrapper">
+      <a href="{% url 'people' %}">Back to People</a>
+      <p>Senior Consultants</p>
+      <div class="sector__links">
+        <a href="#ministy-work">AESL Senior Consultants</a>
+        <a href="#sector">AESL Senior Consultants List</a>
+      </div>
+    </div>
+    <div class="sector__navigation">
+      <p>Next</p>
+      <a href="{% url 'services' %}">Senior Consultants</a>
+    </div>
+  </aside>
+</section>
+
+
+<!-- page location Section -->
+<section class="page__location">
+  <div class="page__flex">
+    <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
+    <p>AESL || {{title}}</p>
+  </div>
+  <p>Consulting Architects,<br /> Engineers and Surveyors</p>
+</section>
+
+
+{% endblock content %}

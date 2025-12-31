@@ -124,3 +124,21 @@ class PeopleView(View):
     def get(self, request):
         context = {"title": "People"}
         return render(request, "frontend/people.html", context)
+
+
+class PrincipalConsultantsView(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/principal__consultants.html", context)
+
+
+class SeniorConsultantsView(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/senior_consultants.html", context)
+
+
+class ConsultantsView(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/consultants.html", context)

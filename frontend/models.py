@@ -176,3 +176,20 @@ class Staff(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Person(models.Model):
+    name = models.CharField(max_length=255)
+    profile_picture = models.ImageField(upload_to="profiles/", blank=True, null=True)
+    profession = models.CharField(max_length=255)
+    department = models.CharField(max_length=255, default="tech")
+
+    # Social media links
+    facebook = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
