@@ -1,6 +1,5 @@
-from django.views import View
 from django.shortcuts import render
-from django.views.generic import DetailView
+from django.views.generic import DetailView, View
 
 from frontend.models import MainCategory, Project, Staff
 
@@ -119,3 +118,9 @@ class PrinciplesView(View):
     def get(self, request):
         context = {"title": "Principles"}
         return render(request, "frontend/principles.html", context)
+
+
+class PeopleView(View):
+    def get(self, request):
+        context = {"title": "People"}
+        return render(request, "frontend/people.html", context)

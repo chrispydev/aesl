@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="projects__parallax">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">
+            <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 256 256"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M244,204H232V99.3A12,12,0,0,0,228,76H188V51.3A12,12,0,0,0,184,28H40a12,12,0,0,0-4,23.3V204H24a12,12,0,0,0,0,24H244a12,12,0,0,0,0-24ZM208,100V204H188V100ZM60,52H164V204H148V160a12,12,0,0,0-12-12H88a12,12,0,0,0-12,12v44H60Zm64,152H100V172h24ZM72,80A12,12,0,0,1,84,68h8a12,12,0,0,1,0,24H84A12,12,0,0,1,72,80Zm48,0a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24h-8A12,12,0,0,1,120,80ZM72,120a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24H84A12,12,0,0,1,72,120Zm48,0a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24h-8A12,12,0,0,1,120,120Z"
+                ></path>
+            </svg>
+            Practice
+        </h1>
+    </div>
+</section>
+
+<!-- Projects__cards -->
+
+{% include 'partial/card-nav.html' %}
+
+<!-- Projects Text -->
+<section class="projects__text">
+    <p>
+        AESL teams consist of experienced architects, engineers, project
+        managers, consultants, and support staff, with whom they bring a diverse
+        range of skills, knowledge, and expertise to the table, allowing the
+        company to tackle complex projects and deliver innovative solutions.The
+        team's collective expertise and passion enables the company to meet the
+        needs of clients and contribute to the successful completion of diverse
+        construction projects. Our teams consist of experienced architects,
+        engineers, project managers, consultants, and support staff who bring a
+        diverse range of skills, knowledge, and expertise to the table. This
+        team's collective expertise and passion enable the company to meet the
+        needs of clients and contribute to the successful completion of
+        construction projects.
+    </p>
+</section>
+
+<!-- More Projects Section -->
+<section class="more__projects">
+    <p>AESL || {{title}}</p>
+    <article class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </article>
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}
