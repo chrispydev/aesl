@@ -20,6 +20,7 @@ from frontend.views import (
     ProfessionalView,
     ProjectDetailView,
     ProjectView,
+    PublicationDownloadView,
     PublicationsView,
     SectorMinistryView,
     SeniorConsultantsView,
@@ -141,5 +142,10 @@ urlpatterns = [
         "people/publications/",
         PublicationsView.as_view(),
         name="publications",
+    ),
+    path(
+        "publication/download/<int:pk>/",
+        PublicationDownloadView.as_view(),
+        name="download_publication",
     ),
 ]

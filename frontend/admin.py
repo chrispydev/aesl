@@ -2,18 +2,19 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import (
+    ContractorRole,
+    MainCategory,
     Person,
     Project,
+    ProjectAward,
     ProjectCategory,
+    ProjectContractor,
+    ProjectImage,
     ProjectLeader,
     ProjectTeamMember,
-    ProjectImage,
-    ProjectAward,
-    ContractorRole,
-    ProjectContractor,
-    MainCategory,
-    SubCategory,
+    Publications,
     Staff,
+    SubCategory,
 )
 
 # ==================================================
@@ -43,6 +44,12 @@ class StaffInline(admin.TabularInline):
     model = Staff
     extra = 1
     fields = ("name", "image", "grade", "region", "email", "description")
+
+
+class PublicationsInline(admin.TabularInline):
+    model = Publications
+    extra = 1
+    fields = ("title", "type", "author", "download")
 
 
 # ==================================================
@@ -220,3 +227,10 @@ class StaffAdmin(admin.ModelAdmin):
 class PersonAdmin(admin.ModelAdmin):
     list_display = ("name", "profession")
     search_fields = ("name", "profession")
+
+
+@admin.register(Publications)
+class PublicationsAdmin(admin.ModelAdmin):
+    list_display = ("title", "type", "author", "download")
+    search_fields = ("title", "type", "author")
+    ordering = ("-title",)

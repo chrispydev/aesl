@@ -193,3 +193,10 @@ class Person(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Publications(models.Model):
+    title = models.CharField(max_length=255)
+    type = models.CharField(max_length=255)
+    author = models.CharField(max_length=255)
+    download = models.FileField(upload_to="publications/", blank=True, null=True)

@@ -1,7 +1,12 @@
-from django.shortcuts import render
+import mimetypes
+import os
+
+from django.conf import settings
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import DetailView, View
 
-from frontend.models import MainCategory, Project, Staff
+from frontend.models import MainCategory, Project, Publications, Staff
 
 
 class HomeView(View):
@@ -176,5 +181,34 @@ class NationalServiceView(View):
 
 class PublicationsView(View):
     def get(self, request):
-        context = {"title": "Publication"}
+        publications = Publications.objects.all()
+        context = {"title": "Publication", "publications": publications}
         return render(request, "frontend/publications.html", context)
+
+
+class PublicationDownloadView(View):
+    def get(self, request, pk):
+        publication = get_object_or_404(Publications, pk=pk)
+
+        if not publication.download:
+            raise Http404("File not found")
+
+        file_path = publication.download.path
+
+        if not os.path.exists(file_path):
+            raise Http404("File not found")
+
+        # Get the mime type
+        mime_type, _ = mimetypes.guess_type(file_path)
+        if mime_type is None:
+            mime_type = "application/octet-stream"
+
+        # Open and read the file
+        with open(file_path, "rb") as file:
+            response = HttpResponse(file.read(), content_type=mime_type)
+
+        # Set the filename for download
+        filename = os.path.basename(file_path)
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+
+        return response

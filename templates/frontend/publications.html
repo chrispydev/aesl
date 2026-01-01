@@ -30,6 +30,27 @@
     <hr />
 </section>
 
+<section class="publications">
+    {% for publication in publications %}
+    <div class="publication">
+        <img
+            src="{% static 'img/publications.jpg' %}"
+            alt="Publications"
+            class=""
+        />
+        <h2>{{ publication.author }}</h2>
+        <p>{{ publication.type }}</p>
+        <h4>{{ publication.title }}</h4>
+        <a
+            href="{% url 'download_publication' publication.id %}"
+            class="download__button"
+        >
+            <i class="fas fa-download"></i>Download
+        </a>
+    </div>
+    {% endfor %}
+</section>
+
 <!-- page location Section -->
 <section class="page__location">
     <div class="page__flex">
