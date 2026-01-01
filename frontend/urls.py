@@ -12,7 +12,7 @@ from frontend.views import (
     ManagingDirectorView,
     MandateView,
     MissionVisionView,
-    NationalService,
+    NationalServiceView,
     PeopleView,
     PracticeView,
     PrincipalConsultantsView,
@@ -20,12 +20,13 @@ from frontend.views import (
     ProfessionalView,
     ProjectDetailView,
     ProjectView,
+    PublicationsView,
     SectorMinistryView,
     SeniorConsultantsView,
     SeniorProfessionalView,
     ServiceView,
     StaffDetailView,
-    SupportTeam,
+    SupportTeamView,
 )
 
 urlpatterns = [
@@ -128,12 +129,17 @@ urlpatterns = [
     ),
     path(
         "people/support-team/",
-        SupportTeam.as_view(),
+        SupportTeamView.as_view(),
         name="support_team",
     ),
     path(
         "people/service-personnel/",
-        NationalService.as_view(),
+        NationalServiceView.as_view(),
         name="service_personnel",
+    ),
+    path(
+        "people/publications/",
+        PublicationsView.as_view(),
+        name="publications",
     ),
 ]

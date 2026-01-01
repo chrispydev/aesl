@@ -1,105 +1,101 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
 <section class="projects__parallax">
-  <div class="projects__overlay"></div>
+    <div class="projects__overlay"></div>
 </section>
 
 <section class="projects__caption">
-  <div>
-    <h1 class="projects__title">
-      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em" width="1em"
-        xmlns="http://www.w3.org/2000/svg">
-        <path fill="none" stroke-width="2"
-          d="M9,15 L9,23 L1,23 L1,15 L9,15 Z M23,15 L23,23 L15,23 L15,15 L23,15 Z M9,1 L9,9 L1,9 L1,1 L9,1 Z M23,1 L23,9 L15,9 L15,1 L23,1 Z">
-        </path>
-      </svg> Projects
-    </h1>
-  </div>
+    <div>
+        <h1 class="projects__title">
+            <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    fill="none"
+                    stroke-width="2"
+                    d="M9,15 L9,23 L1,23 L1,15 L9,15 Z M23,15 L23,23 L15,23 L15,15 L23,15 Z M9,1 L9,9 L1,9 L1,1 L9,1 Z M23,1 L23,9 L15,9 L15,1 L23,1 Z"
+                ></path>
+            </svg>
+            Projects
+        </h1>
+    </div>
 </section>
 
-<!-- Projects__cards -->
-<section class="projects__cards">
-  <div class="projects__card">
-    <p>Projects</p>
-  </div>
-  <div class="projects__card">
-    <p>Civic and Culture</p>
-    <p>Education</p>
-    <p>Health</p>
-    <p>Office Retail and Mixed-Use</p>
-    <p>Residential</p>
-  </div>
-  <div class="projects__card">
-    <p>Industrial and Infrastructure</p>
-    <p>Hospitality</p>
-    <p>Sport and Leisure</p>
-    <p>Landscape, Planning <br /> Survery.</p>
-  </div>
-
-  <div class="projects__card-link">
-    <a href="">Projects List</a>
-      <a href="">Projects Map</a>
-        <a href="">Projects Films</a>
-  </div>
-</section>
-
+<!-- project card -->
+{% include 'partial/projects-card.html' %}
 
 <!-- Projects Text -->
 <section class="projects__text">
-  <p>
-  Our unmatched and exceptional projects, which seamlessly blend architectural and engineering expertise, contribute to the enhancement of the built environment. Our portfolio encompasses a diverse range of ventures and projects, including residential, commercial, educational, healthcare, and infrastructure development. Our innovative professionals pay meticulous attention to details, making projects stand out and meeting the clients’ requirements.
-  </p>
+    <p>
+        Our unmatched and exceptional projects, which seamlessly blend
+        architectural and engineering expertise, contribute to the enhancement
+        of the built environment. Our portfolio encompasses a diverse range of
+        ventures and projects, including residential, commercial, educational,
+        healthcare, and infrastructure development. Our innovative professionals
+        pay meticulous attention to details, making projects stand out and
+        meeting the clients’ requirements.
+    </p>
 </section>
 
 <!--projects grid -->
 <section class="projects__showcases">
-  {% for project in projects %}
+    {% for project in projects %}
     <div class="projects__showcase">
-      <div class="projects__showcase-title">
-        <h4>{{ project.title }}</h4>
-        <h5>{{ project.location }}</h5>
-      </div>
-      <div class="projects__client flex-col">
-        <h4>Client:</h4>
-        <div class="horizontal__rule"></div>
-        <h5>{{ project.client }}</h5>
-      </div>
-      <img src={{ project.picture.url }}/>
-      <p class="projects__into truncate__multi">{{project.little_text_details}}</p>
-      <a class="read__more" href="{% url 'project_detail' project.pk %}">Read More...</a>
-      <div class="project__category">
-        <p>{{project.category}}</p>
-        <p>{{ project.category.slug}}</p>
-      </div>
+        <div class="projects__showcase-title">
+            <h4>{{ project.title }}</h4>
+            <h5>{{ project.location }}</h5>
+        </div>
+        <div class="projects__client flex-col">
+            <h4>Client:</h4>
+            <div class="horizontal__rule"></div>
+            <h5>{{ project.client }}</h5>
+        </div>
+        <img src="{{project.picture.url }}" />
+        <p class="projects__into truncate__multi">
+            {{project.little_text_details}}
+        </p>
+        <a class="read__more" href="{% url 'project_detail' project.pk %}"
+            >Read More...</a
+        >
+        <div class="project__category">
+            <p>{{project.category}}</p>
+            <p>{{ project.category.slug}}</p>
+        </div>
     </div>
-  {% endfor %}
+    {% endfor %}
 </section>
 
 <!-- More Projects Section -->
 <section class="more__projects">
-  <p>AESL || {{title}}</p>
-  <article class="boxes">
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-  </article>
+    <p>AESL || {{title}}</p>
+    <article class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </article>
 </section>
 
 <!-- page location Section -->
 <section class="page__location">
-  <div class="page__flex">
-    <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
-    <p>AESL || {{title}}</p>
-  </div>
-  <p>Consulting Architects,<br /> Engineers and Surveyors</p>
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
 </section>
-
 
 {% endblock content %}

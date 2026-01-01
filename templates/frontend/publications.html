@@ -1,0 +1,49 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="publication__parallax">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">publications</h1>
+    </div>
+</section>
+
+<!-- publications -->
+{% include 'partial/publications-card.html' %}
+
+<!-- Projects Text -->
+<section class="projects__text">
+    <p>
+        At Architectural and Engineering Services Limited, we are dedicated to
+        sharing knowledge, promoting innovation, and expanding the progress of
+        the engineering profession. Publications features a carefully curated
+        collection of Technical Reports, Financial Reports, Articles related to
+        our Institution, White Papers, and Reviews. We are proud to present
+        these works to you and confident that they serve as a fine reflection of
+        our commitment to excellence, our culture of continuous learning, and
+        our habit of always being at the leading edge of engineering and
+        infrastructure development.
+    </p>
+    <hr />
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}
