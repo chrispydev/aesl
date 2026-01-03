@@ -1,25 +1,29 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
 <section class="projects__parallax">
-  <div class="projects__overlay"></div>
+    <div class="projects__overlay"></div>
 </section>
 
 <section class="projects__caption">
-  <div>
-    <h1 class="projects__title">
-      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 256 256" height="1em" width="1em"
-        xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M244,204H232V99.3A12,12,0,0,0,228,76H188V51.3A12,12,0,0,0,184,28H40a12,12,0,0,0-4,23.3V204H24a12,12,0,0,0,0,24H244a12,12,0,0,0,0-24ZM208,100V204H188V100ZM60,52H164V204H148V160a12,12,0,0,0-12-12H88a12,12,0,0,0-12,12v44H60Zm64,152H100V172h24ZM72,80A12,12,0,0,1,84,68h8a12,12,0,0,1,0,24H84A12,12,0,0,1,72,80Zm48,0a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24h-8A12,12,0,0,1,120,80ZM72,120a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24H84A12,12,0,0,1,72,120Zm48,0a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24h-8A12,12,0,0,1,120,120Z">
-        </path>
-      </svg>
-      Practice
-    </h1>
-  </div>
+    <div>
+        <h1 class="projects__title">
+            <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 256 256"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M244,204H232V99.3A12,12,0,0,0,228,76H188V51.3A12,12,0,0,0,184,28H40a12,12,0,0,0-4,23.3V204H24a12,12,0,0,0,0,24H244a12,12,0,0,0,0-24ZM208,100V204H188V100ZM60,52H164V204H148V160a12,12,0,0,0-12-12H88a12,12,0,0,0-12,12v44H60Zm64,152H100V172h24ZM72,80A12,12,0,0,1,84,68h8a12,12,0,0,1,0,24H84A12,12,0,0,1,72,80Zm48,0a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24h-8A12,12,0,0,1,120,80ZM72,120a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24H84A12,12,0,0,1,72,120Zm48,0a12,12,0,0,1,12-12h8a12,12,0,0,1,0,24h-8A12,12,0,0,1,120,120Z"
+                ></path>
+            </svg>
+            Practice
+        </h1>
+    </div>
 </section>
 
 <!-- Projects__cards -->
@@ -28,150 +32,227 @@
 
 <!-- Projects Text -->
 <section class="projects__text">
-  <p>
-    Our practice focuses on delivering excellence to clients’ requirements. We are set apart in the industry due to our
-    comprehensive meticulous practice that focuses on delivering excellence. Combining our architectural and engineering
-    expertise, AESL consistently deliver projects that not only meet client requirements but also exceed expectations,
-    resulting in exceptional and enduring built environments.
-  </p>
+    <p>
+        Our practice focuses on delivering excellence to clients’ requirements.
+        We are set apart in the industry due to our comprehensive meticulous
+        practice that focuses on delivering excellence. Combining our
+        architectural and engineering expertise, AESL consistently deliver
+        projects that not only meet client requirements but also exceed
+        expectations, resulting in exceptional and enduring built environments.
+    </p>
 </section>
 
 <section class="practice__wrapper">
-  <!-- Practice _2 -->
-  <div class="practice__card background__primary">
-    <img src="{% static 'img/practice_1.jpg' %}" alt="practice_1" />
-    <div class="practice__detail background__white">
-      <p>The Ministry of Works and Housing is a key government agency responsible for the planning, development, and
-        management of infrastructure and housing within the country. With its significant history tied to the country’s
-        development and governance, the Ministry’s evolution reflects Ghana’s changing needs and priorities in
-        infrastructure and housing, positioning it as a key player in the country’s ongoing projects.</p>
-      <button><a href="{% url 'sector_ministry' %}">Sector Ministry</a></button>
+    <!-- Practice _2 -->
+    <div class="practice__card background__primary">
+        <img src="{% static 'img/practice_1.jpg' %}" alt="practice_1" />
+        <div class="practice__detail background__white">
+            <p>
+                The Ministry of Works and Housing is a key government agency
+                responsible for the planning, development, and management of
+                infrastructure and housing within the country. With its
+                significant history tied to the country’s development and
+                governance, the Ministry’s evolution reflects Ghana’s changing
+                needs and priorities in infrastructure and housing, positioning
+                it as a key player in the country’s ongoing projects.
+            </p>
+            <a
+                class="practice__detail-button-secondary"
+                href="{% url 'sector_ministry' %}"
+                >Sector Ministry</a
+            >
+        </div>
     </div>
-  </div>
 
-  <div class="practice__card background__white">
-    <div class="practice__detail background__primary">
-      <p>AESL's corporate governance upholds ethical standards and promotes integrity and professionalism through a
-        comprehensive code of conduct and a well-structured Board of Directors.</p>
-      <button class="practice__detail-button"><a href="{% url 'corporate_governance' %}">Corporate Governance</a></button>
+    <div class="practice__card background__white">
+        <div class="practice__detail background__primary">
+            <p>
+                AESL's corporate governance upholds ethical standards and
+                promotes integrity and professionalism through a comprehensive
+                code of conduct and a well-structured Board of Directors.
+            </p>
+            <a
+                class="practice__detail-button"
+                href="{% url 'corporate_governance' %}"
+                >Corporate Governance</a
+            >
+        </div>
+        <img src="{% static 'img/practice_2.jpeg' %}" alt="practice_1" />
     </div>
-    <img src="{% static 'img/practice_2.jpeg' %}" alt="practice_1" />
-  </div>
 
-
-  <div class="practice__card background__primary">
-    <img src="{% static 'img/practice_2.jpeg' %}" alt="practice_1" />
-    <div class="practice__detail background__white">
-      <p>The management team is responsible for driving innovation, maintaining high standards of quality, and providing
-        exceptional architectural and engineering services to clients. They provide strategic direction and oversee the
-        day-to-day activities of the company, working closely with employees to ensure projects are executed
-        successfully, budgets and timelines are adhered to, and client satisfaction is achieved.</p>
-      <button><a href="{% url 'management' %}">Management</a></button>
+    <div class="practice__card background__primary">
+        <img src="{% static 'img/practice_2.jpeg' %}" alt="practice_1" />
+        <div class="practice__detail background__white">
+            <p>
+                The management team is responsible for driving innovation,
+                maintaining high standards of quality, and providing exceptional
+                architectural and engineering services to clients. They provide
+                strategic direction and oversee the day-to-day activities of the
+                company, working closely with employees to ensure projects are
+                executed successfully, budgets and timelines are adhered to, and
+                client satisfaction is achieved.
+            </p>
+            <a
+                class="practice__detail-button-secondary"
+                href="{% url 'management' %}"
+                >Management</a
+            >
+        </div>
     </div>
-  </div>
 
-  <div class="practice__card background__white">
-    <div class="practice__detail background__primary">
-      <p>AESL initially came to be known as AESC when consultancy services were separated from the Public Works
-        Department (PWD) under NRCD 193, 1973. As a government corporation, AESC became the sole consultant for public
-        works. The company was later restructured by an act of parliament, ACT 461 Statutory Corporation (Conversion to
-        Companies).</p>
-      <button class="practice__detail-button"><a href="{% url 'history' %}">History</a></button>
+    <div class="practice__card background__white">
+        <div class="practice__detail background__primary">
+            <p>
+                AESL initially came to be known as AESC when consultancy
+                services were separated from the Public Works Department (PWD)
+                under NRCD 193, 1973. As a government corporation, AESC became
+                the sole consultant for public works. The company was later
+                restructured by an act of parliament, ACT 461 Statutory
+                Corporation (Conversion to Companies).
+            </p>
+            <a class="practice__detail-button" href="{% url 'history' %}"
+                >History</a
+            >
+        </div>
+        <img src="{% static 'img/practice_4.jpg' %}" alt="practice_1" />
     </div>
-    <img src="{% static 'img/practice_4.jpg' %}" alt="practice_1" />
-  </div>
 
-
-  <div class="practice__card background__primary">
-    <img src="{% static 'img/practice_5.jpg' %}" alt="practice_1" />
-    <div class="practice__detail background__white">
-      <p>AESL provides an extensive variety of architectural and engineering services, including architectural design,
-        engineering analysis and design, project management, construction documentation, construction supervision,
-        sustainable design and energy efficiency, and client communication as well as collaboration.</p>
-      <button><a href="{% url 'functions' %}">Functions<a/></button>
+    <div class="practice__card background__primary">
+        <img src="{% static 'img/practice_5.jpg' %}" alt="practice_1" />
+        <div class="practice__detail background__white">
+            <p>
+                AESL provides an extensive variety of architectural and
+                engineering services, including architectural design,
+                engineering analysis and design, project management,
+                construction documentation, construction supervision,
+                sustainable design and energy efficiency, and client
+                communication as well as collaboration.
+            </p>
+            <a
+                class="practice__detail-button-secondary"
+                href="{% url 'functions' %}"
+                >Functions</a
+            >
+        </div>
     </div>
-  </div>
 
-
-  <div class="practice__card background__white">
-    <img src="{% static 'img/practice_6.jpg' %}" alt="practice_1" />
-    <div class="practice__detail background__primary">
-      <p>Our company provides comprehensive architectural and engineering services to clients, including conceptualizing designing, and managing projects with high-quality, innovative, and sustainable solutions.</p>
-      <button class="practice__detail-button"><a href="{% url 'mandate' %}">Mandate</a></button>
+    <div class="practice__card background__white">
+        <img src="{% static 'img/practice_6.jpg' %}" alt="practice_1" />
+        <div class="practice__detail background__primary">
+            <p>
+                Our company provides comprehensive architectural and engineering
+                services to clients, including conceptualizing designing, and
+                managing projects with high-quality, innovative, and sustainable
+                solutions.
+            </p>
+            <a class="practice__detail-button" href="{% url 'mandate' %}"
+                >Mandate</a
+            >
+        </div>
     </div>
-  </div>
 
-
-  <div class="practice__card background__primary">
-    <img src="{% static 'img/practice_7.jpg' %}" alt="practice_1" />
-    <div class="practice__detail background__white">
-      <p>The Mission, Vision and Values of AESL is the Lorem ipsum dolor sit amet consectetur adipisicing elit.
-        Repellendus tempore saepe atque voluptatum, harum vitae..</p>
-      <button><a href="{% url 'mission_vision' %}"> Mission Vision And Values<a/></button>
+    <div class="practice__card background__primary">
+        <img src="{% static 'img/practice_7.jpg' %}" alt="practice_1" />
+        <div class="practice__detail background__white">
+            <p>
+                The Mission, Vision and Values of AESL is the Lorem ipsum dolor
+                sit amet consectetur adipisicing elit. Repellendus tempore saepe
+                atque voluptatum, harum vitae..
+            </p>
+            <a class="practice__detail-button-secondary"
+                >Mission Vision And Values</a
+            >
+        </div>
     </div>
-  </div>
 
-
-  <div class="practice__card background__white">
-    <div class="practice__detail background__primary">
-      <p>Aesl partners with other firms, clients, and organizations to manage complex projects, aiming to achieve strategic goals like service expansion, improved outcomes, and combined expertise. They offer comprehensive consulting services, technical expertise, human resources, and collaborative project management approaches.
-      </p>
-      <button class="practice__detail-button">Alliances</button>
+    <div class="practice__card background__white">
+        <div class="practice__detail background__primary">
+            <p>
+                Aesl partners with other firms, clients, and organizations to
+                manage complex projects, aiming to achieve strategic goals like
+                service expansion, improved outcomes, and combined expertise.
+                They offer comprehensive consulting services, technical
+                expertise, human resources, and collaborative project management
+                approaches.
+            </p>
+            <button class="practice__detail-button">Alliances</button>
+        </div>
+        <img src="{% static 'img/practice_8.jpg' %}" alt="practice_1" />
     </div>
-    <img src="{% static 'img/practice_8.jpg' %}" alt="practice_1" />
-  </div>
 
-
-  <div class="practice__card background__primary">
-    <img src="{% static 'img/client-speaks.jpeg' %}" alt="practice_1" />
-    <div class="practice__detail background__white">
-      <p>The management of AESL is the Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus tempore saepe atque voluptatum, harum vitae..</p>
-      <button>Client Speaks</button>
+    <div class="practice__card background__primary">
+        <img src="{% static 'img/client-speaks.jpeg' %}" alt="practice_1" />
+        <div class="practice__detail background__white">
+            <p>
+                The management of AESL is the Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Repellendus tempore saepe atque
+                voluptatum, harum vitae..
+            </p>
+            <a class="practice__detail-button-secondary">Client Speaks</a>
+        </div>
     </div>
-  </div>
 
-
-  <div class="practice__card background__white">
-    <div class="practice__detail background__primary">
-      <p>Aesl upholds high ethical standards in business practices, ensuring transparency, integrity, and accountability. It promotes sustainable design and engineering solutions, minimizing ecological impact and promoting resource conservation. The company values diversity and collaboration, fostering a culture of respect and collaboration. This commitment to ethical practices positions Aesl as a responsible leader in the architectural and engineering sectors.
-      </p>
-      <button class="practice__detail-button">Corporate Responsibilities</button>
+    <div class="practice__card background__white">
+        <div class="practice__detail background__primary">
+            <p>
+                Aesl upholds high ethical standards in business practices,
+                ensuring transparency, integrity, and accountability. It
+                promotes sustainable design and engineering solutions,
+                minimizing ecological impact and promoting resource
+                conservation. The company values diversity and collaboration,
+                fostering a culture of respect and collaboration. This
+                commitment to ethical practices positions Aesl as a responsible
+                leader in the architectural and engineering sectors.
+            </p>
+            <a class="practice__detail-button">Corporate Responsibilities</a>
+        </div>
+        <img src="{% static 'img/practice_8.jpg' %}" alt="practice_1" />
     </div>
-    <img src="{% static 'img/practice_8.jpg' %}" alt="practice_1" />
-  </div>
 
-
-  <div class="practice__card background__primary">
-    <img src="{% static 'img/services.jpeg' %}" alt="practice_1" />
-    <div class="practice__detail background__white">
-      <p>AESL offers a comprehensive suite of services that encompass architectural design, engineering, project management, and consulting, with the goal of delivering high-quality, sustainable, and innovative solutions that meet client requirements and contribute to the development of robust and well-executed construction projects.</p>
-      <button><a href="{% url 'services' %}">Services<a/></button>
+    <div class="practice__card background__primary">
+        <img src="{% static 'img/services.jpeg' %}" alt="practice_1" />
+        <div class="practice__detail background__white">
+            <p>
+                AESL offers a comprehensive suite of services that encompass
+                architectural design, engineering, project management, and
+                consulting, with the goal of delivering high-quality,
+                sustainable, and innovative solutions that meet client
+                requirements and contribute to the development of robust and
+                well-executed construction projects.
+            </p>
+            <a
+                class="practice__detail-button-secondary"
+                href="{% url 'services' %}"
+                >Services</a
+            >
+        </div>
     </div>
-  </div>
-
 </section>
 
 <!-- More Projects Section -->
 <section class="more__projects">
-  <p>AESL || {{title}}</p>
-  <article class="boxes">
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-  </article>
+    <p>AESL || {{title}}</p>
+    <article class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </article>
 </section>
 
 <!-- page location Section -->
 <section class="page__location">
-  <div class="page__flex">
-    <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
-    <p>AESL || {{title}}</p>
-  </div>
-  <p>Consulting Architects,<br /> Engineers and Surveyors</p>
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
 </section>
-
 
 {% endblock content %}

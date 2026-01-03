@@ -1,85 +1,93 @@
 /* practice */
 .practice__wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  background-color: #eee;
-  padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #eee;
+    padding: 1rem 2rem;
 }
 
 .practice__card {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  margin-bottom: 3rem;
-  border: 1px solid var(--primary-color);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    margin-bottom: 3rem;
+    border: 1px solid var(--primary-color);
 }
-
 
 .practice__card img {
-  border-radius: 0.5rem;
-  backdrop-filter: blur(6px);
-  box-shadow: 6px 6px 8px 0 #a0a0a0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    border-radius: 0.5rem;
+    backdrop-filter: blur(6px);
+    box-shadow: 6px 6px 8px 0 #a0a0a0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
 
 .practice__detail {
-  padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 6px 6px 8px 0 #a0a0a0;
-  line-height: 2rem;
-  font-weight: 600;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 6px 6px 8px 0 #a0a0a0;
+    line-height: 2rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
 }
 
-
-
 .background__white {
-  background-color: #fff;
-  color: var(--primary-color);
+    background-color: #fff;
+    color: var(--primary-color);
 }
 
 .background__primary {
-  background-color: var(--primary-color);
-  color: #fff;
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
-
 .practice__detail button {
-  background-color: transparent;
-  border-radius: 0.3rem;
-  border: 1px solid var(--primary-color);
-  padding: 0.4rem 0.8rem;
-  text-transform: uppercase;
-  color: var(--primary-color);
-  font-weight: 600;
+    background-color: transparent;
+    border-radius: 0.3rem;
+    border: 1px solid var(--primary-color);
+    padding: 0.4rem 0.8rem;
+    text-transform: uppercase;
+    color: var(--primary-color);
+    font-weight: 600;
 }
 
 .practice__detail-button {
-  background-color: transparent;
-  border-radius: 0.3rem;
-  border: 1px solid #fff !important;
-  color: #fff !important;
-  padding: 0.4rem 0.8rem;
-  text-transform: uppercase;
-  font-weight: 600;
+    background-color: transparent;
+    border-radius: 0.3rem;
+    border: 1px solid #fff !important;
+    color: #fff !important;
+    padding: 0.4rem 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
 }
 
+.practice__detail-button-secondary {
+    background-color: transparent;
+    border-radius: 0.3rem;
+    border: 1px solid var(--secondary-color);
+    color: var(--primary-color);
+    padding: 0.4rem 0.8rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+}
 
+.practice__detail-button-secondary:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
+}
 
-.practice__detail button:hover,
-.practice__detail button:hover a,
-.practice__detail-button:hover a {
-  background-color: var(--secondary-color);
-  color: #fff;
+.practice__detail-button:hover {
+    background-color: var(--secondary-color);
+    color: #fff;
 }
