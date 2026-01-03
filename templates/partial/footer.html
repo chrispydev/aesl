@@ -32,12 +32,12 @@
       </h5>
 
       <ul>
-        <li><a href="#">History</a></li>
-        <li><a href="#">Mandate</a></li>
-        <li><a href="#">Functions</a></li>
-        <li><a href="#">Mission & Vision</a></li>
-        <li><a href="#">Corporate Governance</a></li>
-        <li><a href="#">Services</a></li>
+        <li><a href="{% url 'history' %}">History</a></li>
+        <li><a href="{% url 'mandate' %}">Mandate</a></li>
+        <li><a href="{% url 'functions' %}">Functions</a></li>
+        <li><a href="{% url 'mission_vision' %}">Mission & Vision</a></li>
+        <li><a href="{% url 'corporate_governance' %}">Corporate Governance</a></li>
+        <li><a href="{% url 'services' %}">Services</a></li>
       </ul>
     </div>
     <div>
@@ -56,7 +56,7 @@
       </h5>
 
       <ul>
-        <li><a href="#">Professionalism</a></li>
+        <li><a href="{% url 'professional' %}">Professionalism</a></li>
         <li><a href="#">Excellence</a></li>
         <li><a href="#">Integrity</a></li>
         <li><a href="#">Sustainability</a></li>
@@ -75,10 +75,10 @@
       </h5>
 
       <ul>
-        <li><a href="#">Principal Consultants</a></li>
-        <li><a href="#">Senior Consultants</a></li>
-        <li><a href="#">Consultants</a></li>
-        <li><a href="#">Support Team</a></li>
+        <li><a href="{% url 'principal_consultants' %}">Principal Consultants</a></li>
+        <li><a href="{% url 'senior_consultants' %}">Senior Consultants</a></li>
+        <li><a href="{% url 'consultants' %}">Consultants</a></li>
+        <li><a href="{% url 'support_team' %}">Support Team</a></li>
       </ul>
     </div>
   </div>
@@ -154,6 +154,5 @@
     </div>
 
   </div>
-
 
 </footer>
