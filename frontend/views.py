@@ -50,7 +50,7 @@ class PracticeView(View):
 
 class SectorMinistryView(View):
     def get(self, request):
-        context = {"title": "Sector Ministr"}
+        context = {"title": "Sector Ministry"}
         return render(request, "frontend/sector_ministry.html", context)
 
 

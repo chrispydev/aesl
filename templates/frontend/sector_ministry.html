@@ -1,94 +1,136 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
 <section class="sector__parallax">
-  <div class="projects__overlay"></div>
+    <div class="projects__overlay"></div>
 </section>
 
 <section class="projects__caption">
-  <div>
-    <h1 class="projects__title">
-      {{ title }}
-    </h1>
-  </div>
+    <div>
+        <h1 class="projects__title">{{ title }}</h1>
+    </div>
 </section>
 
 <!-- Projects__cards -->
 {% include 'partial/card-nav.html' %}
 
-
 <section id="ministy-work" class="sector">
-  <!-- Projects Text -->
-  <article class="grid__span">
-    <section class="sector__text">
-      <p>
-        The Ministry of Works and Housing is a key government agency responsible for the planning, development, and
-        management of infrastructure and housing within the country. With its significant history tied to the country’s
-        development and governance, the Ministry’s evolution reflects Ghana’s changing needs and priorities in
-        infrastructure and housing, positioning it as a key player in the country’s ongoing projects.
-      </p>
-    </section>
+    <!-- Projects Text -->
+    <article class="grid__span">
+        <section class="sector__text">
+            <p>
+                The Ministry of Works and Housing is a key government agency
+                responsible for the planning, development, and management of
+                infrastructure and housing within the country. With its
+                significant history tied to the country’s development and
+                governance, the Ministry’s evolution reflects Ghana’s changing
+                needs and priorities in infrastructure and housing, positioning
+                it as a key player in the country’s ongoing projects.
+            </p>
+        </section>
 
-    <section class="sector__wrapper">
-      <img src="{% static 'img/practice_1.jpg' %}" alt="sector_ministry" class="" />
+        <section class="sector__wrapper">
+            <img
+                src="{% static 'img/works.jpg' %}"
+                alt="sector_ministry"
+                class=""
+            />
 
+            <div class="sector__headline">
+                <p>Practice || Sector Ministry || Overview</p>
+            </div>
 
-      <div class="sector__headline">
-        <p>Practice || Sector Ministry || Overview</p>
-      </div>
+            <div id="sector" class="sector__headline">
+                <h4>sector minister</h4>
+            </div>
 
-      <div  id="sector" class="sector__headline">
-        <h4>sector minister</h4>
-      </div>
+            <div class="sector__minister">
+                <div class="sector__name">
+                    <img
+                        src="{% static 'img/work_and_housing.webp' %}"
+                        alt="sector_ministry"
+                        class=""
+                    />
+                    <p>
+                        <span>Hon. Kenneth Gilbert Adjei</span> <br />
+                        Minister
+                    </p>
+                </div>
+                <p>
+                    Hon. Kenneth Gilbert Adjei is a Ghanaian politician
+                    currently serving as the Minister for Works, Housing and
+                    Water Resources under the administration of President John
+                    Dramani Mahama as of 2026. He was appointed to this role in
+                    February 2025.<br /><br />
+                    Born on September 20, 1978, he hails from Trede in the
+                    Ashanti Region of Ghana. <br /><br />
+                    An alumnus of Opoku Ware School, where he notably served as
+                    the Dining Hall Prefect. <br /><br />
+                    <!--B.S. in Marketing from the Ghana Institute of Management and
+                    Public Administration (GIMPA). Executive MBA in Marketing
+                    from the University of Ghana Business School. M.A. in Peace,
+                    Security and Intelligence Management (2022) from the
+                    University of Professional Studies, Accra (UPSA), where he
+                    was named the Best Graduating Student.-->
+                </p>
+                <!--<p>
+                    The Ministry of Works, Housing and Water Resources is
+                    responsible for the initiation and formulation of
+                    Government’s policies and programmes for the Housing, Works
+                    and Water Resources sub-sectors of the Country.<br /><br />
+                    In line with Sections 11 and 13 of the Civil Service Act,
+                    1993 (PNDC Law 327) and by Executive Instrument (EI) 1 2025,
+                    the Ministry of Works, Housing and Water Resources is
+                    mandated to initiate and formulate policies for the Works,
+                    Housing and Water sector of the economy, as well as
+                    coordinate, monitor and evaluate the implementation of
+                    plans, programmes, and performance of the sector for
+                    national development.
+                </p>-->
+            </div>
 
-      <div class="sector__minister">
-        <div class="sector__name">
-          <img src="{% static 'img/practice_1.jpg' %}" alt="sector_ministry" class="" />
-          <p><span>Hon. Asenso Boakye</span> <br />
-            Minister</p>
+            <div class="sector__headline">
+                <p>Practice || Sector Ministry || Overview</p>
+            </div>
+        </section>
+    </article>
+
+    <aside class="sector__aside">
+        <div class="sector__links-wrapper">
+            <a href="{% url 'practice' %}">Back to Practice</a>
+            <p>Sector Ministry</p>
+            <div class="sector__links">
+                <a href="#ministy-work">Ministry of Works and Housing</a>
+                <a href="#sector">Sector Minister</a>
+            </div>
         </div>
-        <p>The Minister for Works and hosibb bla bla bla.<br /><br />
-          The institutions like State Construction Corporation (SCC),<br /><br />
-        No privates businesses were allowed to handle state/ public works except the PWD.</p>
-      </div>
-
-
-      <div class="sector__headline">
-        <p>Practice || Sector Ministry || Overview</p>
-      </div>
-    </section>
-  </article>
-
-  <aside class="sector__aside">
-    <div class="sector__links-wrapper">
-      <a href="{% url 'practice' %}">Back to Practice</a>
-      <p>Sector Ministry</p>
-      <div class="sector__links">
-        <a href="#ministy-work">Ministry of Works and Housing</a>
-        <a href="#sector">Sector Minister</a>
-      </div>
-    </div>
-    <div class="sector__navigation">
-      <p>Previous</p>
-      <a href="{% url 'mission_vision' %}">AESL Mission, Vision and Values</a>
-      <p>Next</p>
-      <a href="{% url 'corporate_governance' %}">AESL Corporate Governance</a>
-    </div>
-  </aside>
+        <div class="sector__navigation">
+            <p>Previous</p>
+            <a href="{% url 'mission_vision' %}"
+                >AESL Mission, Vision and Values</a
+            >
+            <p>Next</p>
+            <a href="{% url 'corporate_governance' %}"
+                >AESL Corporate Governance</a
+            >
+        </div>
+    </aside>
 </section>
-
 
 <!-- page location Section -->
 <section class="page__location">
-  <div class="page__flex">
-    <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
-    <p>AESL || {{title}}</p>
-  </div>
-  <p>Consulting Architects,<br /> Engineers and Surveyors</p>
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
 </section>
-
 
 {% endblock content %}
