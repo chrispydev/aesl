@@ -90,10 +90,12 @@ class ProjectAward(models.Model):
 class ProjectImage(models.Model):
     PROJECT_PICTURE = "project"
     CONSTRUCTION_PICTURE = "construction"
+    PROJECT_3D_VISUALIZATIONS_PICTURE = "project_3d_visualizations"
 
     IMAGE_TYPE_CHOICES = [
         (PROJECT_PICTURE, "Project Pictures"),
         (CONSTRUCTION_PICTURE, "Construction Pictures"),
+        (PROJECT_3D_VISUALIZATIONS_PICTURE, "Project 3D Visualizations"),
     ]
 
     project = models.ForeignKey(
@@ -101,7 +103,7 @@ class ProjectImage(models.Model):
     )
 
     image = models.ImageField(upload_to="projects/gallery/")
-    image_type = models.CharField(max_length=20, choices=IMAGE_TYPE_CHOICES)
+    image_type = models.CharField(max_length=30, choices=IMAGE_TYPE_CHOICES)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

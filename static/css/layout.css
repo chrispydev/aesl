@@ -1006,7 +1006,7 @@ a:active {
 .projects__detail__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0, 0, 0, 0.55);
 }
 
 .details__content {

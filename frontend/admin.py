@@ -147,8 +147,16 @@ class ProjectAdmin(admin.ModelAdmin):
         if obj.completed_date:
             return obj.completed_date.strftime("%B %Y")
         return format_html(
-            '<span style="color:#8a1f1f;font-weight:500;">Still in Progress</span>'
+            '<span style="color:#8a1f1f;font-weight:500;">{}</span>',
+            "Still in Progress",
         )
+
+    # def formatted_completed_date(self, obj):
+    #     if obj.completed_date:
+    #         return obj.completed_date.strftime("%B %Y")
+    #     return format_html(
+    #         '<span style="color:#8a1f1f;font-weight:500;">Still in Progress</span>'
+    #     )
 
     formatted_completed_date.short_description = "Completed Date"
     formatted_completed_date.admin_order_field = "completed_date"

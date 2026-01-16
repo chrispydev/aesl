@@ -66,7 +66,7 @@
         {% endif %}
       </div>
       <div class="details__card-body">
-        <p class="details__head">Certificate</p> 
+        <p class="details__head">Certificate</p>
         {% if project.certificate %}
           <p class="details__body">{{ project.certificate }}</p>
         {% else %}
@@ -84,8 +84,9 @@
       <p>{{ project.little_text_details }}</p>
     </section>
 
-    
+
     <!-- Project Gallery Details-->
+    {% if project_pictures %}
     <section id="gallery" class="projects__details-gallery">
       <h2>Project Gallery</h2>
       <div class="projects__masonry-gallery">
@@ -98,8 +99,12 @@
         {% endfor %}
       </div>
     </section>
+    {% endif %}
+
+
 
     <!-- Project Construction Details-->
+    {% if construction_pictures %}
     <section id="construction" class="projects__construction-gallery">
       <h2>Project Pictures</h2>
       <div class="projects__masonry-gallery">
@@ -112,6 +117,24 @@
         {% endfor %}
       </div>
     </section>
+    {% endif %}
+
+
+    <!-- Project Construction Details-->
+    {% if project_3d_visualization_picture %}
+    <section id="construction" class="projects__construction-gallery">
+      <h2>Project 3D Visualizations</h2>
+      <div class="projects__masonry-gallery">
+        {% for img in project_3d_visualization_picture %}
+        <div class="projects__image">
+          <img src="{{ img.image.url }}" alt="Project Image">
+        </div>
+        {% empty %}
+        <p>No project pictures available.</p>
+        {% endfor %}
+      </div>
+    </section>
+    {% endif %}
 
 
       <!-- Project detail Data -->

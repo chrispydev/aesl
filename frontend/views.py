@@ -36,6 +36,9 @@ class ProjectDetailView(DetailView):
         context["construction_pictures"] = project.gallery.filter(
             image_type="construction"
         )
+        context["project_3d_visualization_picture"] = project.gallery.filter(
+            image_type="project_3d_visualizations"
+        )
         # current page location
         context["title"] = "Projects"
 
@@ -212,3 +215,9 @@ class PublicationDownloadView(View):
         response["Content-Disposition"] = f'attachment; filename="{filename}"'
 
         return response
+
+
+class CivicCultureView(View):
+    def get(self, request):
+        context = {"title": "Civic Culture"}
+        return render(request, "frontend/civic_culture.html", context)
