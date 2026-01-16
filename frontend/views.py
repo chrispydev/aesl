@@ -221,3 +221,9 @@ class CivicCultureView(View):
     def get(self, request):
         context = {"title": "Civic Culture"}
         return render(request, "frontend/civic_culture.html", context)
+
+
+class EducationView(View):
+    def get(self, request):
+        context = {"title": "Education"}
+        return render(request, "frontend/education.html", context)

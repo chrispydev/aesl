@@ -2,8 +2,10 @@ from django.urls import path
 
 from frontend.views import (
     AssistantProfessionalsView,
+    CivicCultureView,
     ConsultantsView,
     CorporateGovernaceView,
+    EducationView,
     EngineeringView,
     FunctionsView,
     HistoryView,
@@ -33,6 +35,8 @@ from frontend.views import (
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),
     path("projects/", ProjectView.as_view(), name="projects"),
+    path("projects/civic-culture/", CivicCultureView.as_view(), name="civic_culture"),
+    path("projects/education/", EducationView.as_view(), name="education"),
     path("project/<int:pk>/", ProjectDetailView.as_view(), name="project_detail"),
     path("practice/", PracticeView.as_view(), name="practice"),
     path(
