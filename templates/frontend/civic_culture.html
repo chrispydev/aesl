@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="civic__culture-parallax">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">
+            <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"
+                ></path>
+            </svg>
+            Civic and Culture
+        </h1>
+    </div>
+</section>
+
+<!-- Projects__cards -->
+
+{% include 'partial/projects-card.html' %}
+
+<!-- Projects Text -->
+<section class="projects__text">
+    <p>
+        Our Civic and Culture projects focus on creating spaces that bring
+        communities together, fostering creativity, heritage, and engagement.
+        From theatres, museums and cultural centres to civic buildings, we
+        design environments that inspire and serve the public. Our offshore
+        projects include many Ghanaian embassies abroad.Notably AESL is known
+        for the collaboration in the development of the National Theatre and
+        seat of Government of Ghana, the Jubilee House.
+    </p>
+    <hr />
+</section>
+
+<section class="civic__culture-gallery">
+    <img src="{% static 'img/civic_culture/c1.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c2.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c3.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c4.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c5.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c6.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c7.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c8.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c9.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c10.jpg' %}" />
+
+    <img src="{% static 'img/civic_culture/c11.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c12.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c13.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c14.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c15.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c16.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c17.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c18.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c19.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c20.jpg' %}" />
+
+    <img src="{% static 'img/civic_culture/c21.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c22.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c23.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c24.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c25.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c26.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c27.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c28.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c29.jpg' %}" />
+    <img src="{% static 'img/civic_culture/c30.jpg' %}" />
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}
