@@ -756,11 +756,11 @@ a:active {
 /* PARALLAX SECTION */
 .projects__parallax {
     position: relative;
-    height: 40vh;
+    height: 65vh;
     background-image: url("../img/projects.jpeg");
     /* Replace with your image */
     background-attachment: fixed;
-    background-position: center;
+    background-position: center bottom;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;

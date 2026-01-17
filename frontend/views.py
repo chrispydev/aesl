@@ -1,7 +1,7 @@
 import mimetypes
 import os
 
-from django.conf import settings
+# from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import DetailView, View
@@ -227,3 +227,21 @@ class EducationView(View):
     def get(self, request):
         context = {"title": "Education"}
         return render(request, "frontend/education.html", context)
+
+
+class HealthView(View):
+    def get(self, request):
+        context = {"title": "Health"}
+        return render(request, "frontend/health.html", context)
+
+
+class OfficeRetailView(View):
+    def get(self, request):
+        context = {"title": "Office Retail"}
+        return render(request, "frontend/office_retail.html", context)
+
+
+class ResidentialView(View):
+    def get(self, request):
+        context = {"title": "Residential"}
+        return render(request, "frontend/residential.html", context)
