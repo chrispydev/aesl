@@ -245,3 +245,9 @@ class ResidentialView(View):
     def get(self, request):
         context = {"title": "Residential"}
         return render(request, "frontend/residential.html", context)
+
+
+class IndustrialInfrastructureView(View):
+    def get(self, request):
+        context = {"title": "Industrial Infrastructure"}
+        return render(request, "frontend/industrial_infrastructure.html", context)

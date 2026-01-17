@@ -11,6 +11,7 @@ from frontend.views import (
     HealthView,
     HistoryView,
     HomeView,
+    IndustrialInfrastructureView,
     ManagementView,
     ManagingDirectorView,
     MandateView,
@@ -43,6 +44,11 @@ urlpatterns = [
     path("projects/health/", HealthView.as_view(), name="health"),
     path("projects/office-retail/", OfficeRetailView.as_view(), name="office_retail"),
     path("projects/residential/", ResidentialView.as_view(), name="residential"),
+    path(
+        "projects/industrial-infrastructure/",
+        IndustrialInfrastructureView.as_view(),
+        name="industrial_infrastructure",
+    ),
     path("project/<int:pk>/", ProjectDetailView.as_view(), name="project_detail"),
     path("practice/", PracticeView.as_view(), name="practice"),
     path(

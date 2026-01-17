@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="industrial__parallax">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">
+            <svg
+                stroke="currentColor"
+                fill="currentColor"
+                stroke-width="0"
+                viewBox="0 0 16 16"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1zm-7.978-1L7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002-.014.002zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4m3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0M6.936 9.28a6 6 0 0 0-1.23-.247A7 7 0 0 0 5 9c-4 0-5 3-5 4q0 1 1 1h4.216A2.24 2.24 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816M4.92 10A5.5 5.5 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0m3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4"
+                ></path>
+            </svg>
+            Industrial and Infrastructure
+        </h1>
+    </div>
+</section>
+
+<!-- Projects__cards -->
+
+{% include 'partial/projects-card.html' %}
+
+<!-- Projects Text -->
+<section class="projects__text">
+    <p>
+        We deliver robust and efficient industrial facilities and infrastructure
+        that support growth and development. From warehouses and factories to
+        transport hubs, our designs emphasise functionality and durability. We
+        have been engaged in the consultancy of other critical infrastructure
+        including many hydro projects.Our unmatched expertise in many speciality
+        projects was evident in our selection to collaborate with the Ministry
+        of Science, Technology and Innovation (MESTI) to design and supervise
+        the construction of the first Foundry and Tooling Centre in Ghana.
+    </p>
+    <hr />
+</section>
+
+<section class="civic__culture-gallery">
+    <img src="{% static 'img/industrial/1.jpeg' %}" />
+    <img src="{% static 'img/industrial/2.jpeg' %}" />
+    <img src="{% static 'img/industrial/3.jpeg' %}" />
+    <img src="{% static 'img/industrial/4.jpeg' %}" />
+    <img src="{% static 'img/industrial/5.jpeg' %}" />
+    <img src="{% static 'img/industrial/6.jpeg' %}" />
+    <img src="{% static 'img/industrial/7.jpeg' %}" />
+    <img src="{% static 'img/industrial/8.jpeg' %}" />
+    <img src="{% static 'img/industrial/9.jpg' %}" />
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}
