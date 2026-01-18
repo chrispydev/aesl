@@ -11,7 +11,9 @@ from frontend.views import (
     HealthView,
     HistoryView,
     HomeView,
+    HospitalityView,
     IndustrialInfrastructureView,
+    LandScapePlanningView,
     ManagementView,
     ManagingDirectorView,
     MandateView,
@@ -24,6 +26,7 @@ from frontend.views import (
     PrinciplesView,
     ProfessionalView,
     ProjectDetailView,
+    ProjectListView,
     ProjectView,
     PublicationDownloadView,
     PublicationsView,
@@ -32,6 +35,7 @@ from frontend.views import (
     SeniorConsultantsView,
     SeniorProfessionalView,
     ServiceView,
+    SportLesisureView,
     StaffDetailView,
     SupportTeamView,
 )
@@ -46,6 +50,31 @@ urlpatterns = [
     path("projects/residential/", ResidentialView.as_view(), name="residential"),
     path(
         "projects/industrial-infrastructure/",
+        IndustrialInfrastructureView.as_view(),
+        name="industrial_infrastructure",
+    ),
+    path(
+        "projects/hospitality/",
+        HospitalityView.as_view(),
+        name="hospitality",
+    ),
+    path(
+        "projects/sport-leisure/",
+        SportLesisureView.as_view(),
+        name="sport_leisure",
+    ),
+    path(
+        "projects/landscape-planning/",
+        LandScapePlanningView.as_view(),
+        name="landscape_planning",
+    ),
+    path(
+        "projects/projects-list/",
+        ProjectListView.as_view(),
+        name="project_list",
+    ),
+    path(
+        "projects/<str:project_type>/",
         IndustrialInfrastructureView.as_view(),
         name="industrial_infrastructure",
     ),

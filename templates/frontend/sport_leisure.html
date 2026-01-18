@@ -1,0 +1,54 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="sport__leisure-parallax">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">Sports and Leisure</h1>
+    </div>
+</section>
+
+<!-- Projects__cards -->
+
+{% include 'partial/projects-card.html' %}
+
+<!-- Projects Text -->
+<section class="projects__text">
+    <p>
+        Our Sports and Leisure projects provide world-class facilities for
+        recreation, fitness, and entertainment. From stadiums and arenas to
+        parks and gyms, we deliver spaces that encourage activity and
+        enjoyment.Our expertise on sport facilities have been uncommon and have
+        consulted on the Kumasi and Essipong stadia to bring them to
+        satisfactory standards.
+    </p>
+    <hr />
+</section>
+
+<section class="civic__culture-gallery">
+    <img src="{% static 'img/sport_leisure/1.jpg' %}" />
+    <img src="{% static 'img/sport_leisure/2.jpg' %}" />
+    <img src="{% static 'img/sport_leisure/3.jpg' %}" />
+    <img src="{% static 'img/sport_leisure/4.jpg' %}" />
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}

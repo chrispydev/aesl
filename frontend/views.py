@@ -251,3 +251,28 @@ class IndustrialInfrastructureView(View):
     def get(self, request):
         context = {"title": "Industrial Infrastructure"}
         return render(request, "frontend/industrial_infrastructure.html", context)
+
+
+class HospitalityView(View):
+    def get(self, request):
+        context = {"title": "Hospitality"}
+        return render(request, "frontend/hospitality.html", context)
+
+
+class SportLesisureView(View):
+    def get(self, request):
+        context = {"title": "Sport and Leisure"}
+        return render(request, "frontend/sport_leisure.html", context)
+
+
+class LandScapePlanningView(View):
+    def get(self, request):
+        context = {"title": "Landscaping and Planning"}
+        return render(request, "frontend/landscaping_planning.html", context)
+
+
+class ProjectListView(View):
+    def get(self, request):
+        projects = Project.objects.all()
+        context = {"title": "Projects List", "projects": projects}
+        return render(request, "frontend/project_list.html", context)

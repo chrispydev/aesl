@@ -180,6 +180,11 @@
         padding: 0.45rem 1.2rem;
         border: 1px solid var(--secondary-color);
     }
+
+    .civic__culture-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        margin: 0 2rem;
+    }
 }
 
 /* Tablet phones */
@@ -526,5 +531,16 @@
 
     .publication {
         padding: 1rem 0.3rem;
+    }
+
+    /* civic culture */
+    .civic__culture-gallery {
+        grid-template-columns: repeat(2, 1fr);
+        margin: 0 0.2rem;
+    }
+
+    /* Project list*/
+    .projects__list {
+        margin: 0 0.2rem;
     }
 }

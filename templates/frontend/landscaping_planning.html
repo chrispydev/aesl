@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="landscape__planning-parallax">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">Landscapes, Planning and Survey</h1>
+    </div>
+</section>
+
+<!-- Projects__cards -->
+
+{% include 'partial/projects-card.html' %}
+
+<!-- Projects Text -->
+<section class="projects__text">
+    <p>
+        We integrate natural beauty and functionality in our Landscape projects.
+        Our work includes parks, gardens, car parks and outdoor spaces that
+        enhance the environment, promote sustainability, and connect people to
+        nature.Our Planning and Survey services provide strategic frameworks for
+        successful projects. We specialise in master planning, urban design,
+        quantity surveying and valuation, geotechnical and land surveying to
+        ensure thoughtful and efficient development.
+    </p>
+    <hr />
+</section>
+
+<section class="civic__culture-gallery">
+    <img src="{% static 'img/landscape-planning/1.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/2.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/3.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/4.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/5.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/6.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/7.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/8.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/9.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/10.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/11.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/12.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/13.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/14.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/15.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/16.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/17.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/18.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/19.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/20.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/21.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/22.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/23.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/24.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/25.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/26.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/27.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/28.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/29.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/30.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/31.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/32.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/33.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/24.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/35.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/36.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/37.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/38.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/39.jpg' %}" />
+    <img src="{% static 'img/landscape-planning/40.jpg' %}" />
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}

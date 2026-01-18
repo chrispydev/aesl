@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="hospitality__parallax">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">Hospitality</h1>
+    </div>
+</section>
+
+<!-- Projects__cards -->
+
+{% include 'partial/projects-card.html' %}
+
+<!-- Projects Text -->
+<section class="projects__text">
+    <p>
+        Our Hospitality projects create welcoming and luxurious spaces for
+        travellers and guests. From hotels, hostels and resorts to restaurants,
+        we focus on comfort, experience, and memorable design.
+    </p>
+    <hr />
+</section>
+
+<section class="civic__culture-gallery">
+    <img src="{% static 'img/hospitality/1.jpg' %}" />
+    <img src="{% static 'img/hospitality/2.jpg' %}" />
+    <img src="{% static 'img/hospitality/3.jpg' %}" />
+    <img src="{% static 'img/hospitality/4.jpg' %}" />
+    <img src="{% static 'img/hospitality/5.jpeg' %}" />
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}

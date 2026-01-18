@@ -19,14 +19,16 @@
         <a href="{% url 'industrial_infrastructure' %}"
             >Industrial and Infrastructure</a
         >
-        <a href="">Hospitality</a>
-        <a href="#">Sports and Leisure</a>
-        <a href="#">Landscape, Planning and Survey</a>
+        <a href="{% url 'hospitality' %}">Hospitality</a>
+        <a href="{% url 'sport_leisure' %}">Sports and Leisure</a>
+        <a href="{% url 'landscape_planning' %}"
+            >Landscape, Planning and Survey</a
+        >
     </div>
 
     <!-- Services & Others -->
     <div class="projects__card-link">
-        <a href="#">Projects List</a>
+        <a href="{% url 'project_list' %}">Projects List</a>
         <a href="#">Projects Map</a>
         <a href="#">Projects Films</a>
     </div>

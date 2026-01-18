@@ -1,0 +1,77 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="landscape__planning-parallax">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">projects List</h1>
+    </div>
+</section>
+
+<!-- Projects__cards -->
+
+{% include 'partial/projects-card.html' %}
+
+<!-- Projects Text -->
+<section class="projects__text">
+    <p>
+        These are the Projects of The Architectural and Engineering Services
+        Corporation (AESC) as it was then called, was established in 1973 under
+        the National Redemption Council Decree (NRCD) 193 to take over the
+        consultancy functions of the then Public Works Department (PWD).
+    </p>
+    <hr />
+</section>
+
+<section class="projects__list">
+    <table>
+        <thead>
+            <tr>
+                <th>Start Date</th>
+                <th>Category</th>
+                <th>SubCategory</th>
+                <th>Project Name</th>
+                <th>Client Name</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr
+                onclick="window.location='{% url 'project_detail' project.pk %}'"
+                style="cursor: pointer"
+            >
+                <a href="{% url 'project_detail' project.pk %}">
+                    <td>{{ project.start_date }}</td>
+                    <td>{{ project.category }}</td>
+                    <td>{{ project.category.slug }}</td>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.client }}</td>
+                    <td>{{ project.location }}</td>
+                </a>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}
