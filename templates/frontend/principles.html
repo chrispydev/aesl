@@ -1,30 +1,36 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
 <section class="principles__parallax">
-  <div class="projects__overlay"></div>
+    <div class="projects__overlay"></div>
 </section>
 
 <section class="projects__caption">
-  <div>
-    <h1 class="projects__title">
-      <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
-        stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z">
-        </path>
-        <path
-          d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z">
-        </path>
-        <path d="M16 17h4"></path>
-        <path d="M4 13h4"></path>
-      </svg>
-      Principles
-    </h1>
-  </div>
+    <div>
+        <h1 class="projects__title">
+            <svg
+                stroke="currentColor"
+                fill="none"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                height="1em"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <path
+                    d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z"
+                ></path>
+                <path
+                    d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z"
+                ></path>
+                <path d="M16 17h4"></path>
+                <path d="M4 13h4"></path>
+            </svg>
+            Principles
+        </h1>
+    </div>
 </section>
 
 <!-- Projects__cards -->
@@ -32,110 +38,151 @@
 {% include 'partial/principles-card.html' %}
 
 <!-- Projects Text -->
-<section class="projects__text">
-  <p>
-    Our company is committed to excellence, innovation, sustainability, collaboration, and ethical conduct in order to
-    deliver architectural and engineering services. We strive for excellence, innovation, sustainability, collaboration,
-    and ethical conduct.
-  </p>
-  <hr />
+<section id="principles" class="projects__text">
+    <p>
+        Our company is committed to excellence, innovation, sustainability,
+        collaboration, and ethical conduct in order to deliver architectural and
+        engineering services. We strive for excellence, innovation,
+        sustainability, collaboration, and ethical conduct.
+    </p>
+    <hr />
 </section>
 
-<section class="principles">
-  <div class="placholder">
-    <div class="principle principle__red">
-      <h1>Civic</h1>
-      <p>Architectural and Engineering Services Limited (A.E.S.L) collaborates with local governments to address civic
-        needs through safety-focused designs and engineering projects. They ensure structures meet regulatory standards
-        and contribute positively to the public sector. AESL supports urban planning initiatives, promoting sustainable
-        growth and efficient land use. They educate local schools and organizations on architecture and engineering,
-        raising industry awareness through internship programs and National Services.</p>
+<section id="civic" class="principles">
+    <div class="placholder">
+        <div class="principle principle__red">
+            <h1>Civic</h1>
+            <p>
+                Architectural and Engineering Services Limited (A.E.S.L)
+                collaborates with local governments to address civic needs
+                through safety-focused designs and engineering projects. They
+                ensure structures meet regulatory standards and contribute
+                positively to the public sector. AESL supports urban planning
+                initiatives, promoting sustainable growth and efficient land
+                use. They educate local schools and organizations on
+                architecture and engineering, raising industry awareness through
+                internship programs and National Services.
+            </p>
+        </div>
     </div>
-  </div>
-  <div class="principle__card principle__card-red">
-  </div>
+    <div class="principle__card principle__card-red"></div>
 </section>
 
-<section class="principles">
-  <div class="placholder">
-    <div class="principle principle__blue">
-      <h1>PROFESSIONALISM</h1>
-      <p>As a reputable company, Architectural and Engineering Services Limited (A.E.S.L) upholds high industry standards and ethical practices. Our team of skilled professionals is dedicated to continuous learning and innovation, ensuring they stay at the forefront of design and engineering advancements. We prioritize clear communication, transparency, trust, and reliability, delivering quality results and exceeding client expectations in every project.</p>
+<section id="professionalism" class="principles">
+    <div class="placholder">
+        <div class="principle principle__blue">
+            <h1>PROFESSIONALISM</h1>
+            <p>
+                As a reputable company, Architectural and Engineering Services
+                Limited (A.E.S.L) upholds high industry standards and ethical
+                practices. Our team of skilled professionals is dedicated to
+                continuous learning and innovation, ensuring they stay at the
+                forefront of design and engineering advancements. We prioritize
+                clear communication, transparency, trust, and reliability,
+                delivering quality results and exceeding client expectations in
+                every project.
+            </p>
+        </div>
     </div>
-  </div>
-  <div class="principle__card principle__card-blue">
-  </div>
+    <div class="principle__card principle__card-blue"></div>
 </section>
 
-<section class="principles">
-  <div class="placholder">
-    <div class="principle principle__red">
-      <h1>Excellence</h1>
-      <p>Architectural and Engineering Services Limited (AESL) is committed to providing innovative, high-quality design and engineering solutions to clients. They use advanced technologies and best practices to ensure timely and budget-friendly project completion. They continuously seek feedback and incorporate lessons learned to improve processes. Their culture of collaboration and accountability aims to exceed client expectations in every aspect of their work.</p>
+<section id="excellence" class="principles">
+    <div class="placholder">
+        <div class="principle principle__red">
+            <h1>Excellence</h1>
+            <p>
+                Architectural and Engineering Services Limited (AESL) is
+                committed to providing innovative, high-quality design and
+                engineering solutions to clients. They use advanced technologies
+                and best practices to ensure timely and budget-friendly project
+                completion. They continuously seek feedback and incorporate
+                lessons learned to improve processes. Their culture of
+                collaboration and accountability aims to exceed client
+                expectations in every aspect of their work.
+            </p>
+        </div>
     </div>
-  </div>
-  <div class="principle__card principle__card-red">
-  </div>
+    <div class="principle__card principle__card-red"></div>
 </section>
 
-
-<section class="principles">
-  <div class="placholder">
-    <div class="principle principle__blue">
-      <h1>Integrity and Honesty</h1>
-      <p>Architectural and Engineering Services Limited (AESL) upholds integrity, honesty, and transparency in all interactions, fostering trust, credibility, and lasting relationships through accurate information, fair pricing, and reliable timelines.</p>
+<section id="integrity" class="principles">
+    <div class="placholder">
+        <div class="principle principle__blue">
+            <h1>Integrity and Honesty</h1>
+            <p>
+                Architectural and Engineering Services Limited (AESL) upholds
+                integrity, honesty, and transparency in all interactions,
+                fostering trust, credibility, and lasting relationships through
+                accurate information, fair pricing, and reliable timelines.
+            </p>
+        </div>
     </div>
-  </div>
-  <div class="principle__card principle__card-blue">
-  </div>
+    <div class="principle__card principle__card-blue"></div>
 </section>
 
-
-<section class="principles">
-  <div class="placholder">
-    <div class="principle principle__red">
-      <h1>Timeliness And Cost Effectiveness</h1>
-      <p>Architectural and Engineering Services Limited (AESL) prioritizes timeliness through effective project management techniques, offering affordable solutions while maintaining quality. Their staff meticulously organizes and distributes resources to maximize efficiency and reduce waiting times. They complete projects on time and within budget, exceeding client expectations and improving satisfaction levels.</p>
+<section id="timeliness" class="principles">
+    <div class="placholder">
+        <div class="principle principle__red">
+            <h1>Timeliness And Cost Effectiveness</h1>
+            <p>
+                Architectural and Engineering Services Limited (AESL)
+                prioritizes timeliness through effective project management
+                techniques, offering affordable solutions while maintaining
+                quality. Their staff meticulously organizes and distributes
+                resources to maximize efficiency and reduce waiting times. They
+                complete projects on time and within budget, exceeding client
+                expectations and improving satisfaction levels.
+            </p>
+        </div>
     </div>
-  </div>
-  <div class="principle__card principle__card-red">
-  </div>
+    <div class="principle__card principle__card-red"></div>
 </section>
 
-
-<section class="principles">
-  <div class="placholder">
-    <div class="principle principle__blue">
-      <h1>Sustainability</h1>
-      <p>Architectural and Engineering Services Limited (AESL) is dedicated to sustainability in all aspects of their work, prioritizing eco-friendly design principles and minimizing environmental impact. They actively seek innovative solutions for energy efficiency and resource conservation in every project. They collaborate with clients and stakeholders to integrate sustainability into planning and execution stages, aiming to create lasting positive impacts on communities and the environment</p>
+<section id="sustainability" class="principles">
+    <div class="placholder">
+        <div class="principle principle__blue">
+            <h1>Sustainability</h1>
+            <p>
+                Architectural and Engineering Services Limited (AESL) is
+                dedicated to sustainability in all aspects of their work,
+                prioritizing eco-friendly design principles and minimizing
+                environmental impact. They actively seek innovative solutions
+                for energy efficiency and resource conservation in every
+                project. They collaborate with clients and stakeholders to
+                integrate sustainability into planning and execution stages,
+                aiming to create lasting positive impacts on communities and the
+                environment
+            </p>
+        </div>
     </div>
-  </div>
-  <div class="principle__card principle__card-blue">
-  </div>
+    <div class="principle__card principle__card-blue"></div>
 </section>
-
 
 <!-- More Projects Section -->
 <section class="more__projects">
-  <p>AESL || {{title}}</p>
-  <article class="boxes">
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-  </article>
+    <p>AESL || {{title}}</p>
+    <article class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </article>
 </section>
 
 <!-- page location Section -->
 <section class="page__location">
-  <div class="page__flex">
-    <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
-    <p>AESL || {{title}}</p>
-  </div>
-  <p>Consulting Architects,<br /> Engineers and Surveyors</p>
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
 </section>
-
 
 {% endblock content %}
