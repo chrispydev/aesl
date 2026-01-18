@@ -13,7 +13,7 @@ staticfiles/
 *.pyo
 
 # Media files
-media/
+#media/
 
 # Virtual environment
 venv/
