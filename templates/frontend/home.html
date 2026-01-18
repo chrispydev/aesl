@@ -1,137 +1,229 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <!-- Main content -->
 <section class="parallax">
     <div class="overlay"></div>
     <div class="content">
-      <h1>Architectural And Engineering Services Limited</h1>
-      <p>Architectural and Engineering Services Limited (AESL) is a practicing and a multidisciplinary firm that provides comprehensive Architectural and Engineering solutions for public and sector clients in the construction industry.</p>
-      <div class="buttons">
-        <button class="button button__background"><a href="{% url 'practice' %}">Read More</a></button>
-        <button class="button"><a href="{% url 'practice' %}">Contact Us </a></button>
-      </div>
+        <h1>Architectural And Engineering Services Limited</h1>
+        <p>
+            Architectural and Engineering Services Limited (AESL) is a
+            practicing and a multidisciplinary firm that provides comprehensive
+            Architectural and Engineering solutions for public and sector
+            clients in the construction industry.
+        </p>
+        <div class="buttons">
+            <button class="button button__background">
+                <a href="{% url 'practice' %}">Read More</a>
+            </button>
+            <button class="button">
+                <a href="{% url 'practice' %}">Contact Us </a>
+            </button>
+        </div>
     </div>
 </section>
 
 <!-- Info Section -->
-  <section class="info"> 
+<section class="info">
     <div class="info__content">
-      <h5>Architectural and Engineering Services Limited (AESL) is a practicing and a multidisciplinary firm that provides comprehensive Architectural and Engineering solutions for public and sector clients in the construction industry.</h5>
-      <h5>AESL offers a wide range of services combining the fields of Architecture and Engineering to create innovative and sustainable designs that are not only visually appealing but also structurally sound and efficient.</h5>
-      <h5>AESL operates from its head office in the capital of Ghana-Accra, with other offices located in the 16 regions of Ghana.</h5>
+        <h5>
+            Architectural and Engineering Services Limited (AESL) is a
+            practicing and a multidisciplinary firm that provides comprehensive
+            Architectural and Engineering solutions for public and sector
+            clients in the construction industry.
+        </h5>
+        <h5>
+            AESL offers a wide range of services combining the fields of
+            Architecture and Engineering to create innovative and sustainable
+            designs that are not only visually appealing but also structurally
+            sound and efficient.
+        </h5>
+        <h5>
+            AESL operates from its head office in the capital of Ghana-Accra,
+            with other offices located in the 16 regions of Ghana.
+        </h5>
     </div>
     <div class="info__image">
-      <div class="image__content image__background_1">
-      <div class="image__overlay"></div>
-        <h3 class="font__weight">Architecture & Planning</h3>
-        <h3>Architecture</h3>
-        <h3>Land Surveying</h3>
-        <h3>Quantity Surveying</h3>
-        <h3>Valuation</h3>
-      </div>
-      <div class="image__content image__background_2">
-      <div class="image__overlay"></div>
-        <h3 class="font__weight">Engineering</h3>
-        <h3>Civil/Structural</h3>
-        <h3>Geotech</h3>
-        <h3>Installations</h3>
-        <h3>Water </h3>
-      </div>
+        <div class="image__content image__background_1">
+            <div class="image__overlay"></div>
+            <h3 class="font__weight">Architecture & Planning</h3>
+            <h3>Architecture</h3>
+            <h3>Land Surveying</h3>
+            <h3>Quantity Surveying</h3>
+            <h3>Valuation</h3>
+        </div>
+        <div class="image__content image__background_2">
+            <div class="image__overlay"></div>
+            <h3 class="font__weight">Engineering</h3>
+            <h3>Civil/Structural</h3>
+            <h3>Geotech</h3>
+            <h3>Installations</h3>
+            <h3>Water</h3>
+        </div>
     </div>
 </section>
 
 <!-- Trusted Companies Section -->
 <section class="trusted__companies">
-    <img src="{% static 'img/vertered_1.jpg' %}" alt="AESL company under" class="info__building-image">
-    <img src="{% static 'img/vertered_2.jpeg' %}" alt="AESL company under" class="info__building-image">
-    <img src="{% static 'img/vertered_3.jpeg' %}" alt="AESL company under " class="info__building-image">
-    <img src="{% static 'img/vertered_4.jpeg' %}" alt="AESL Building" class="info__building-image">
-    <img src="{% static 'img/vertered_5.jpeg' %}" alt="AESL company under " class="info__building-image">
-    <img src="{% static 'img/vertered_6.jpeg' %}" alt="AESL company under " class="info__building-image">
+    <img
+        src="{% static 'img/vertered_1.jpg' %}"
+        alt="AESL company under"
+        class="info__building-image"
+    />
+    <img
+        src="{% static 'img/vertered_2.jpeg' %}"
+        alt="AESL company under"
+        class="info__building-image"
+    />
+    <img
+        src="{% static 'img/vertered_3.jpeg' %}"
+        alt="AESL company under "
+        class="info__building-image"
+    />
+    <img
+        src="{% static 'img/vertered_4.jpeg' %}"
+        alt="AESL Building"
+        class="info__building-image"
+    />
+    <img
+        src="{% static 'img/vertered_5.jpeg' %}"
+        alt="AESL company under "
+        class="info__building-image"
+    />
+    <img
+        src="{% static 'img/vertered_6.jpeg' %}"
+        alt="AESL company under "
+        class="info__building-image"
+    />
 </section>
 
 <!-- Projects Section -->
 <section class="projects">
-  <div class="projects__overlay-home"></div>
-  <!-- <img src="{% static 'img/project_background.jpg' %}" alt="project background-image"/> -->
-  <div class="projects__header">
-    <h2>Projects</h2>
-    <p>Our impressive portfolio of diverse and notable projects is characterized by innovative and sustainable design solutions that prioritize functionality, aesthetics, and the well-being of occupants. Our projects also cuts across all the tribal cultures and the socioeconomic sectors of the Ghanaian economy.</p>
-  </div>
+    <div class="projects__overlay-home"></div>
+    <!-- <img src="{% static 'img/project_background.jpg' %}" alt="project background-image"/> -->
+    <div class="projects__header">
+        <h2>Projects</h2>
+        <p>
+            Our impressive portfolio of diverse and notable projects is
+            characterized by innovative and sustainable design solutions that
+            prioritize functionality, aesthetics, and the well-being of
+            occupants. Our projects also cuts across all the tribal cultures and
+            the socioeconomic sectors of the Ghanaian economy.
+        </p>
+    </div>
 </section>
 
 <section class="projects__gallery-section">
-  <div class="projects__gallery">
-    <div class="gallery__item gallery__item_1">
-      <img src="{% static 'img/civic_culture.jpg' %}" alt="AESL Project 1"/>
-      <p>Civic and Culture</p>
+    <div class="projects__gallery">
+        <div class="gallery__item gallery__item_1">
+            <img
+                src="{% static 'img/civic_culture.jpg' %}"
+                alt="AESL Project 1"
+            />
+            <a class="project__link" href="{% url 'civic_culture' %}"
+                >Civic and Culture</a
+            >
+        </div>
+        <div class="gallery__item gallery__item_2">
+            <img src="{% static 'img/education.jpg' %}" alt="AESL Project 2" />
+            <a class="project__link" href="{% url 'education' %}">Education</a>
+        </div>
+        <div class="gallery__item gallery__item_3">
+            <img src="{% static 'img/health.jpg' %}" alt="AESL Project 3" />
+            <a class="project__link" href="{% url 'health' %}">Health</a>
+        </div>
+        <div class="gallery__item gallery__item_4">
+            <img
+                src="{% static 'img/office_and_mixed_use.jpg' %}"
+                alt="AESL Project 4"
+            />
+            <a class="project__link" href="{% url 'office_retail' %}"
+                >Office and Mixed Use</a
+            >
+        </div>
+        <div class="gallery__item gallery__item_5">
+            <img
+                src="{% static 'img/industrial_and_infrastructure.jpeg' %}"
+                alt="AESL Project 5"
+            />
+            <a
+                class="project__link"
+                href="{% url 'industrial_infrastructure' %}"
+                >Industrial and Infrastructure</a
+            >
+        </div>
+        <div class="gallery__item gallery__item_6">
+            <div class="gallery__empty">
+                <h4>Lots of projects and still counting</h4>
+                <button class="gallery__button">
+                    <a href="{% url 'projects' %}">AESL Projects</a>
+                </button>
+            </div>
+        </div>
+        <div class="gallery__item gallery__item_7">
+            <img src="{% static 'img/proposal.jpeg' %}" alt="AESL Project 8" />
+            <a class="project__link" href="">Proposal</a>
+        </div>
+        <div class="gallery__item gallery__item_8">
+            <img
+                src="{% static 'img/sports_and_leisure.jpg' %}"
+                alt="AESL Project 8"
+            />
+            <a class="project__link" href="{% url 'sport_leisure' %}"
+                >Sports and Leisure</a
+            >
+        </div>
+        <div class="gallery__item gallery__item_9">
+            <img
+                src="{% static 'img/Proposed Guest House for.jpg' %}"
+                alt="AESL Project 8"
+            />
+            <a class="project__link" href="{% url 'hospitality' %}"
+                >Hospitality</a
+            >
+        </div>
+        <div class="gallery__item gallery__item_10">
+            <img
+                src="{% static 'img/landscape_planning_and_survey.jpg' %}"
+                alt="AESL Project 10"
+            />
+            <a class="project__link" href="{% url 'landscape_planning' %}"
+                >Landscape Planning and Survey</a
+            >
+        </div>
+        <div class="gallery__item gallery__item_11">
+            <img
+                src="{% static 'img/residential.jpg' %}"
+                alt="AESL Project 11"
+            />
+            <a class="project__link" href="{% url 'residential' %}"
+                >Residential</a
+            >
+        </div>
     </div>
-    <div class="gallery__item gallery__item_2">
-      <img src="{% static 'img/education.jpg' %}" alt="AESL Project 2"/>
-            <p>Education</p>
-    </div>
-    <div class="gallery__item gallery__item_3">
-      <img src="{% static 'img/health.jpg' %}" alt="AESL Project 3"/>
-      <p>Health</p>
-    </div>
-    <div class="gallery__item gallery__item_4">
-      <img src="{% static 'img/office_and_mixed_use.jpg' %}" alt="AESL Project 4"/>
-      <p>Office and Mixed Use</p>
-    </div>
-    <div class="gallery__item gallery__item_5">
-      <img src="{% static 'img/industrial_and_infrastructure.jpeg' %}" alt="AESL Project 5"/>
-      <p>Industrial and Infrastructure</p>
-    </div>
-    <div class="gallery__item gallery__item_6">
-      <div class="gallery__empty">
-        <h4>Lots of projects and still counting</h4>
-        <button class="gallery__button"><a href="{% url 'projects' %}">AESL Projects</a></button>
-      </div>
-    </div>
-    <div class="gallery__item gallery__item_7">
-      <img src="{% static 'img/proposal.jpeg' %}" alt="AESL Project 8"/>
-      <p>Proposal</p>
-    </div>
-    <div class="gallery__item gallery__item_8">
-      <img src="{% static 'img/sports_and_leisure.jpg' %}" alt="AESL Project 8"/>
-      <p>Sports and Leisure</p>
-    </div>
-    <div class="gallery__item gallery__item_9">
-      <img src="{% static 'img/Proposed Guest House for.jpg' %}" alt="AESL Project 8"/>
-      <p>Hospitality</p>
-    </div>
-    <div class="gallery__item gallery__item_10">
-      <img src="{% static 'img/landscape_planning_and_survey.jpg' %}" alt="AESL Project 10"/>
-      <p>Landscape Planning and Survey</p>
-    </div>
-    <div class="gallery__item gallery__item_11">
-      <img src="{% static 'img/residential.jpg' %}" alt="AESL Project 11"/>
-      <p>Residential</p>
-    </div>
-  </div>
 </section>
 
 <!-- More Projects Section -->
 <section class="more__projects padding">
-  <p>AESL || Projects</p>
-  <article class="boxes">
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-  </article>
+    <p>AESL || Projects</p>
+    <article class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </article>
 </section>
 
 <!-- page location Section -->
 <section class="page__location">
-  <div class="page__flex">
-    <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large"/>
-    <p>AESL || Homepage</p>
-  </div>
-  <p>Consulting Architects,<br/> Engineers and Surveyors</p>
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || Homepage</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
 </section>
 {% endblock content %}

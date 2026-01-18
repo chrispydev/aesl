@@ -130,9 +130,12 @@
           <section class="dept__heads-wrapper">
             {% for staff in sub.staff.all %}
               <div class="dept__head">
-                {% if staff.image %}
-                <img src="{{ staff.image.url }}" alt="{{ staff.name }}"/>
-                {% endif %}
+                  <div class="dept__head-img" style="background-image: url({{ staff.image.url }});"></div>
+                {% comment %}
+                    {% if staff.image %}
+                    <img src="{{ staff.image.url }}" alt="{{ staff.name }}"/>
+                    {% endif %}
+                {% endcomment %}
                 <div class="dept__head-info">
                   <h4>{{ staff.name }}</h4>
                   {% if staff.grade == 'Regional Dept.' %}
@@ -143,7 +146,7 @@
                   <a href="mailto:basil.akushey@aesl.gov.gh">basil.akushey@aesl.gov.gh</a>
                   <button class="read__more"><a href="{% url 'staff_detail' staff.pk %}">Read More</a></button>
                 </div>
-              </div>
+</div>              </div>
             {% endfor %}
           </section>
         {% endfor %}
