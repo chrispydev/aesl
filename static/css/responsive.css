@@ -169,6 +169,7 @@
 
     .newsletter h4 {
         margin-top: -2rem;
+        padding: 0.1rem 0.5rem;
     }
 
     .newsletter form input {

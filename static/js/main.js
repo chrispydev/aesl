@@ -10,27 +10,6 @@ showSidebar.addEventListener("click", function () {
     toggleDiv.classList.add("toggle__sidebar");
 });
 
-const galleryItems = document.querySelectorAll(".projects__image");
-galleryItems.forEach((item) => {
-    const rowHeight = parseInt(
-        window
-            .getComputedStyle(
-                document.querySelector(".projects__masonry-gallery"),
-            )
-            .getPropertyValue("grid-auto-rows"),
-    );
-    const rowGap = parseInt(
-        window
-            .getComputedStyle(
-                document.querySelector(".projects__masonry-gallery"),
-            )
-            .getPropertyValue("gap"),
-    );
-    const imgHeight = item.querySelector("img").getBoundingClientRect().height;
-    const rowSpan = Math.ceil((imgHeight + rowGap) / (rowHeight + rowGap));
-    item.style.gridRowEnd = `span ${rowSpan}`;
-});
-
 const sideNav = document.querySelector(".sector__aside");
 const footer = document.querySelector(".site__footer");
 const triggerPoint = 600;
