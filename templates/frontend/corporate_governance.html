@@ -44,7 +44,7 @@
             <div class="sector__board-member-text">
                 <h3>Prof. Kwasi Asamoah</h3>
                 <h5>Board Chairman</h5>
-                <p>
+                <p class="truncate__multi-10">
                     In 2019 your company operated in a domestic condition that
                     witnessed a real GPD growthof 6.5% from 6.3% in 2018. This
                     was on the back of subbed inflation rate at the end of the
@@ -67,9 +67,7 @@
                 <div class="sector__board-member-links">
                     <a class="link__button" href="#">Linkedln</a>
                     <a class="link__button" href="#">Twitter</a>
-                    <a class="link__button" href="{% url 'board_chairman' %}"
-                        >Read More</a
-                    >
+                    <a class="link__button" href="">Read More</a>
                 </div>
             </div>
             <img
@@ -88,132 +86,33 @@
 
         <!-- Board Member 1 -->
         <section class="sector__board-wrapper">
+            {% for board_member in board_members %}
             <section class="sector__board-members">
                 <div class="sector__board-members-text">
-                    <h3>Rev. Osei Yaw Stephen</h3>
-                    <h5>Board Member</h5>
-                    <p>
-                        non vitae ducimus molestias dolorum ratione odit cumque
-                        harum inventore fugit dignissimos aliquam alias
-                        perspiciatis maxime reiciendis tenetur debitis magnam
-                    </p>
+                    <h3>{{ board_member.name }}</h3>
+                    <h5>{{ board_member.title }}</h5>
+                    <p>{{ board_member.about }}</p>
                     <div class="sector__board-member-links">
-                        <a class="link__button" href="#">Linkedln</a>
-                        <a class="link__button" href="#">Twitter</a>
-                        <a class="link__button" href="#">Read More</a>
+                        <a
+                            class="link__button"
+                            href="{{ board_member.linkedin_url }}"
+                            >Linkedln</a
+                        >
+                        <a
+                            class="link__button"
+                            href="{{ board_member.twitter_url }}"
+                            >Twitter</a
+                        >
+                        <a
+                            class="link__button"
+                            href="{% url 'board_chairman' board_member.pk %}"
+                            >CV</a
+                        >
                     </div>
                 </div>
-                <img
-                    src="{% static 'img/board-member-01.jpeg' %}"
-                    alt="board Member"
-                />
+                <img src="{{ board_member.image.url }}" alt="board Member" />
             </section>
-
-            <section class="sector__board-members">
-                <img
-                    src="{% static 'img/board-member-02.jpeg' %}"
-                    alt="board Member"
-                />
-                <div class="sector__board-members-text">
-                    <h3>Prof. De- Graft Owusu Manu</h3>
-                    <h5>Board Member</h5>
-                    <p>
-                        non vitae ducimus molestias dolorum ratione odit cumque
-                        harum inventore fugit dignissimos aliquam alias
-                        perspiciatis maxime reiciendis tenetur debitis magnam
-                    </p>
-                    <div class="sector__board-member-links">
-                        <a class="link__button" href="#">Linkedln</a>
-                        <a class="link__button" href="#">Twitter</a>
-                        <a class="link__button" href="#">Read More</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="sector__board-members">
-                <div class="sector__board-members-text">
-                    <h3>Arc. Agyei Marfo Isaac</h3>
-                    <h5>Board Member/MD</h5>
-                    <p>
-                        non vitae ducimus molestias dolorum ratione odit cumque
-                        harum inventore fugit dignissimos aliquam alias
-                        perspiciatis maxime reiciendis tenetur debitis magnam
-                    </p>
-                    <div class="sector__board-member-links">
-                        <a class="link__button" href="#">Linkedln</a>
-                        <a class="link__button" href="#">Twitter</a>
-                        <a class="link__button" href="#">Read More</a>
-                    </div>
-                </div>
-                <img
-                    src="{% static 'img/board-member-03.jpeg' %}"
-                    alt="board Member"
-                />
-            </section>
-
-            <!-- Board Member 2 -->
-            <section class="sector__board-members">
-                <div class="sector__board-members-text">
-                    <h3>Mad. Asamoah Susana</h3>
-                    <h5>Board Member</h5>
-                    <p>
-                        non vitae ducimus molestias dolorum ratione odit cumque
-                        harum inventore fugit dignissimos aliquam alias
-                        perspiciatis maxime reiciendis tenetur debitis magnam
-                    </p>
-                    <div class="sector__board-member-links">
-                        <a class="link__button" href="#">Linkedln</a>
-                        <a class="link__button" href="#">Twitter</a>
-                        <a class="link__button" href="#">Read More</a>
-                    </div>
-                </div>
-                <img
-                    src="{% static 'img/board-member-04.jpg' %}"
-                    alt="board Member"
-                />
-            </section>
-
-            <section class="sector__board-members">
-                <img
-                    src="{% static 'img/board-member-05.jpg' %}"
-                    alt="board Member"
-                />
-                <div class="sector__board-members-text">
-                    <h3>Mr. Basco A. Kante</h3>
-                    <h5>Board Member</h5>
-                    <p>
-                        non vitae ducimus molestias dolorum ratione odit cumque
-                        harum inventore fugit dignissimos aliquam alias
-                        perspiciatis maxime reiciendis tenetur debitis magnam
-                    </p>
-                    <div class="sector__board-member-links">
-                        <a class="link__button" href="#">Linkedln</a>
-                        <a class="link__button" href="#">Twitter</a>
-                        <a class="link__button" href="#">Read More</a>
-                    </div>
-                </div>
-            </section>
-
-            <section class="sector__board-members">
-                <div class="sector__board-members-text">
-                    <h3>Hon. Dakoa Newman (MP)</h3>
-                    <h5>Board Member</h5>
-                    <p>
-                        non vitae ducimus molestias dolorum ratione odit cumque
-                        harum inventore fugit dignissimos aliquam alias
-                        perspiciatis maxime reiciendis tenetur debitis magnam
-                    </p>
-                    <div class="sector__board-member-links">
-                        <a class="link__button" href="#">Linkedln</a>
-                        <a class="link__button" href="#">Twitter</a>
-                        <a class="link__button" href="#">Read More</a>
-                    </div>
-                </div>
-                <img
-                    src="{% static 'img/board-member-06.jpg' %}"
-                    alt="board Member"
-                />
-            </section>
+            {% endfor %}
         </section>
 
         <div class="sector__headline padding">

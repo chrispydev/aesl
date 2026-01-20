@@ -6,7 +6,7 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import DetailView, View
 
-from frontend.models import MainCategory, Project, Publications, Staff
+from frontend.models import BoardMember, MainCategory, Project, Publications, Staff
 
 
 class HomeView(View):
@@ -59,14 +59,15 @@ class SectorMinistryView(View):
 
 class CorporateGovernaceView(View):
     def get(self, request):
-        context = {"title": "Practice"}
+        board_members = BoardMember.objects.all()
+        context = {"title": "Corporate Governance", "board_members": board_members}
         return render(request, "frontend/corporate_governance.html", context)
 
 
-class BoardChairmanView(View):
-    def get(self, request):
-        context = {"title": "Board Chairman"}
-        return render(request, "frontend/board_chairman.html", context)
+class BoardChairmanView(DetailView):
+    model = BoardMember
+    template_name = "frontend/board_chairman.html"
+    context_object_name = "board_member"
 
 
 class ManagementView(View):

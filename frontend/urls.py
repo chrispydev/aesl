@@ -92,7 +92,7 @@ urlpatterns = [
         name="corporate_governance",
     ),
     path(
-        "practice/board-chairman/",
+        "practice/board-chairman/<int:pk>/",
         BoardChairmanView.as_view(),
         name="board_chairman",
     ),

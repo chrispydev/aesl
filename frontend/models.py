@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 
 
@@ -202,3 +203,24 @@ class Publications(models.Model):
     type = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     download = models.FileField(upload_to="publications/", blank=True, null=True)
+
+
+class BoardMember(models.Model):
+    name = models.CharField(max_length=150)
+    image = models.ImageField(upload_to="board_members/", default="default.jpg")
+    position = models.CharField(max_length=255, default="Board Member")
+    about = models.TextField()
+
+    linkedin = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("board_member_detail", args=[self.pk])

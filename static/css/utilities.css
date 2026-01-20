@@ -52,6 +52,24 @@
     text-overflow: ellipsis;
 }
 
+.truncate__multi-10 {
+    display: -webkit-box;
+    /* Use flexbox-like behavior */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    /* Number of lines to show */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: -webkit-line-clamp 0.3s ease;
+}
+
+.truncate__multi-10:hover {
+    -webkit-line-clamp: 100;
+    /* Number of lines to show */
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .civic__culture-gallery {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

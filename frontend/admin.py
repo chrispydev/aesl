@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 
 from .models import (
+    BoardMember,
     ContractorRole,
     MainCategory,
     Person,
@@ -242,3 +243,32 @@ class PublicationsAdmin(admin.ModelAdmin):
     list_display = ("title", "type", "author", "download")
     search_fields = ("title", "type", "author")
     ordering = ("-title",)
+
+
+@admin.register(BoardMember)
+class BoardMemberAdmin(admin.ModelAdmin):
+    list_display = ("name",)
+    search_fields = ("name",)
+
+    fieldsets = (
+        (
+            "Basic Information",
+            {
+                "fields": (
+                    "name",
+                    "position",
+                    "image",
+                    "about",
+                )
+            },
+        ),
+        (
+            "Social Media",
+            {
+                "fields": (
+                    "linkedin",
+                    "twitter",
+                )
+            },
+        ),
+    )
