@@ -88,6 +88,8 @@
 
 .managing__director-image img {
     width: 100%;
+    height: 400px;
+    object-position: top center;
     object-fit: cover;
 }
 
@@ -128,8 +130,9 @@
     margin-bottom: 2rem;
     height: 250px;
     width: 100%;
-    object-fit: contain;
-    background-size: contain;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .dept__head-info {
