@@ -17,6 +17,7 @@ ALLOWED_HOSTS = [
     "209.74.89.39",
     "dogmasterventures.com",
     "www.dogmasterventures.com",
+    "127.0.0.1",
     "localhost",
 ]
 
