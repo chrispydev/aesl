@@ -556,4 +556,10 @@
         grid-template-columns: repeat(1, 1fr);
         grid-gap: 2rem;
     }
+
+    .managing__director-history {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0 0.2rem;
+    }
 }

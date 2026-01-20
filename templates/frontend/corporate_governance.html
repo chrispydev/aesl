@@ -67,7 +67,7 @@
                 <div class="sector__board-member-links">
                     <a class="link__button" href="#">Linkedln</a>
                     <a class="link__button" href="#">Twitter</a>
-                    <a class="link__button" href="{% url 'managing_director' %}"
+                    <a class="link__button" href="{% url 'board_chairman' %}"
                         >Read More</a
                     >
                 </div>
@@ -107,7 +107,7 @@
                         >
                         <a
                             class="link__button"
-                            href="{% url 'board_chairman' board_member.pk %}"
+                            href="{% url 'board_member' board_member.pk %}"
                             >CV</a
                         >
                     </div>

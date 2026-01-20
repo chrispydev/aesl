@@ -50,6 +50,14 @@
     color: var(--primary-color);
 }
 
+.projects__subtitle {
+    margin: 1rem 2rem 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+}
+
 .director__alumni-wrapper {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -86,4 +94,16 @@
 
 .alumni__board-wrapper {
     margin: 0 2rem;
+}
+
+.managing__director-history {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0 2rem;
+    gap: 2rem;
+}
+
+.managing__director-history p {
+    font-size: 0.9rem;
+    line-height: 2;
 }

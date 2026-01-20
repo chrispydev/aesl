@@ -64,9 +64,9 @@ class CorporateGovernaceView(View):
         return render(request, "frontend/corporate_governance.html", context)
 
 
-class BoardChairmanView(DetailView):
+class BoardMemberView(DetailView):
     model = BoardMember
-    template_name = "frontend/board_chairman.html"
+    template_name = "frontend/board_member.html"
     context_object_name = "board_member"
 
 
@@ -87,16 +87,22 @@ class StaffDetailView(DetailView):
     context_object_name = "staff"
 
 
+class BoardChairmanView(View):
+    def get(self, request):
+        context = {"title": "Board Chairman"}
+        return render(request, "frontend/board_chairman.html", context)
+
+
 class ManagingDirectorView(View):
     def get(self, request):
         context = {"title": "Managing Director"}
         return render(request, "frontend/managing_director.html", context)
 
 
-# class ManagingDirectorView(View):
-#     def get(self, request):
-#         context = {"title": "Managing Director"}
-#         return render(request, "frontend/managing_director.html", context)
+class DeputyManagingDirectorView(View):
+    def get(self, request):
+        context = {"title": "Deputy Managing Director"}
+        return render(request, "frontend/deputy_managing_director.html", context)
 
 
 class EngineeringView(View):

@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="corporate__governance">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">{{ board_member.position }}</h1>
+    </div>
+</section>
+
+<div>
+    <h1 class="projects__title-sub">{{ board_member.name }}</h1>
+</div>
+
+<section>
+    <!-- Projects Text -->
+    <section class="director__details">
+        <div class="">
+            {% if board_member.image %}
+            <img
+                src="{{ board_member.image.url }}"
+                alt="{{ board_member.name }}"
+                class="{{ board_member.name }}"
+            />
+            {% endif %}
+        </div>
+        <div class="director__text">
+            <p>" {{ board_member.about }} "</p>
+            <a href="{{ board_member.twitter }}">{{ board_member.twitter }}</a>
+            <a href="{{ board_member.linkedin }}"
+                >{{ board_member.linkedin }}</a
+            >
+            <h4>{{ board_member.name }}</h4>
+            <button class="button">
+                <a href="{% url 'corporate_governance' %}"
+                    >Back to Corporate Governance</a
+                >
+            </button>
+        </div>
+    </section>
+</section>
+
+{% endblock content %}

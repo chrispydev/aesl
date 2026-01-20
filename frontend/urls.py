@@ -1,11 +1,14 @@
 from django.urls import path
 
+from frontend.models import BoardMember
 from frontend.views import (
     AssistantProfessionalsView,
     BoardChairmanView,
+    BoardMemberView,
     CivicCultureView,
     ConsultantsView,
     CorporateGovernaceView,
+    DeputyManagingDirectorView,
     EducationView,
     EngineeringView,
     FunctionsView,
@@ -93,8 +96,8 @@ urlpatterns = [
     ),
     path(
         "practice/board-chairman/<int:pk>/",
-        BoardChairmanView.as_view(),
-        name="board_chairman",
+        BoardMemberView.as_view(),
+        name="board_member",
     ),
     path(
         "practice/management/",
@@ -105,9 +108,19 @@ urlpatterns = [
         "practice/management/<int:pk>/", StaffDetailView.as_view(), name="staff_detail"
     ),
     path(
-        "practice/corporate-governance/managing-director/",
+        "practice/corporate-governance/board-chairman/",
+        BoardChairmanView.as_view(),
+        name="board_chairman",
+    ),
+    path(
+        "practice/management/managing-director/",
         ManagingDirectorView.as_view(),
         name="managing_director",
+    ),
+    path(
+        "practice/management/deputy-managing-director/practice/management/managing-director/",
+        DeputyManagingDirectorView.as_view(),
+        name="deputy_managing_director",
     ),
     path(
         "practice/management/deputy-managing-director/engineering/",
