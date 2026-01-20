@@ -544,4 +544,16 @@
     .projects__list {
         margin: 0 0.2rem;
     }
+
+    /* managing director */
+
+    .alumni__board-wrapper {
+        margin: 0 0.2rem;
+    }
+
+    .alumni__wrapper {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 2rem;
+    }
 }

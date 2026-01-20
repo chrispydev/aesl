@@ -105,7 +105,7 @@ urlpatterns = [
         "practice/management/<int:pk>/", StaffDetailView.as_view(), name="staff_detail"
     ),
     path(
-        "practice/management/managing-director/",
+        "practice/corporate-governance/managing-director/",
         ManagingDirectorView.as_view(),
         name="managing_director",
     ),

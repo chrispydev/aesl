@@ -1,96 +1,119 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
-<section class="managemet__parallax">
-  <div class="projects__overlay"></div>
+<section class="board__chairman">
+    <div class="projects__overlay"></div>
 </section>
 
 <section class="projects__caption">
-  <div>
-    <h1 class="projects__title">Deputy Managing Director</h1>
-  </div>
+    <div>
+        <h1 class="projects__title">Board Chairmans's Title and Name</h1>
+    </div>
 </section>
 
-<div>
-  <h1 class="projects__title-sub">Architecture and Planning</h1>
-</div>
+<section id="ministy-work" class="sector">
+    <!-- Projects Text -->
+    <article class="grid__span">
+        <section class="director__details">
+            <div class="director__CV">
+                <h1>CV</h1>
+            </div>
+            <div class="director__text">
+                <p>
+                    " Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Ullam, error magnam. Impedit tempore earum debitis quae vero
+                    quo. Magnam, facere. Ea, explicabo blanditiis, unde veniam
+                    architecto fuga rem quas odit? "
+                </p>
+            </div>
+        </section>
 
+        <section id="dept-director" class="dept__heads-wrapper">
+            <div class="board__head">
+                <img src="{% static 'img/board-chairman/1.jpg' %}" alt="" />
+            </div>
 
+            <div class="board__head">
+                <img src="{% static 'img/board-chairman/2.jpg' %}" alt="" />
+            </div>
+        </section>
 
-<section id="managing-director" class="sector">
-  <!-- Projects Text -->
-  <article class="grid__span">
+        <section class="more__projects padding">
+            <p>
+                AESL || Practice/Management/Managing Director's Title and Name
+            </p>
+            <article class="boxes">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </article>
+        </section>
 
-    <section class="director__details">
-      <div class="director__CV">
-        <h1>CV</h1>
-      </div>
-      <div class="director__text">
-        <p>" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, error magnam. Impedit tempore earum debitis quae vero quo. Magnam, facere. Ea, explicabo blanditiis, unde veniam architecto fuga rem quas odit? "</p>
-        <h4>- Surv. Gordon Tanga (MD) -</h4>
-      </div>
-    </section>
+        <section class="alumni__board-wrapper">
+            <div>
+                <h1 class="projects__title">Board Chairman Alumni</h1>
+            </div>
+            <section id="dept-director" class="alumni__wrapper">
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/1.jpg' %}" alt="" />
+                    <h3>ARC.-EBENEZER-LARYEA-AKITA</h3>
+                </div>
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/2.jpg' %}" alt="" />
+                    <h3>ARC.ERNEST-BANNING</h3>
+                </div>
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/3.jpg' %}" alt="" />
+                    <h3>ARC.-PROF.-JOHN-OWUSU-ADDO</h3>
+                </div>
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/4.jpg' %}" alt="" />
+                    <h3>HON.-J.H-OWUSU-ACHEAMPONG</h3>
+                </div>
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/5.jpg' %}" alt="" />
+                    <h3>SURV.-STEPHEN-KRAKUE</h3>
+                </div>
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/6.jpg' %}" alt="" />
+                    <h3>ING.ARCH.-PATRICK-NII-ODOI-YEMOFIO</h3>
+                </div>
+            </section>
+        </section>
+    </article>
 
-    <section class="dept__heads-wrapper">
-      <div class="dept__head">
-        <img src="{% static 'img/female.png' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Portrait</h4>
-          <p>Architecture and Planning</p>
-          <p>Arc. Naa Kwarley Quartey</p>
+    <aside class="sector__aside">
+        <div class="sector__links-wrapper">
+            <a href="{% url 'practice' %}">Back to Practice</a>
+            <p>Corporate Governance</p>
+            <div class="sector__links">
+                <a href="#ministy-work">Corporate Governance</a>
+                <a href="#alumni">Board Alumni</a>
+            </div>
         </div>
-      </div>
-
-      <div class="dept__head">
-        <img src="{% static 'img/female.png' %}" alt="Arc. Basil A. Akushey_1"/>
-        <div class="dept__head-info">
-          <h4>Portrait</h4>
-          <p>Arc. Naa Kwarley Quartey</p>
+        <div class="sector__navigation">
+            <p>Previous</p>
+            <a href="{% url 'sector_ministry' %}">AESL sector Ministry</a>
+            <p>Next</p>
+            <a href="{% url 'management' %}">AESL Management</a>
         </div>
-      </div>
-    </section>
-
-    <section class="director__achievement">
-      <p>AESL’s Deputy Managing Director for architecture and planning supports the Managing Director and leads the directorate.</br>The office works with department heads to ensure delivery quality, budgets, and client satisfaction</p>
-      <p>Contact: <a href="mailto:naa.quartey@aesl.gov.gh">naa.quartey@aesl.gov.gh </a><br/>Learn more about our services and teams on the Management page.</p>
-    </section>
-
-    <div class="padding">
-      <p>Deputy Managing Director’s office news and highlights can appear here when available.</p>
-    </div>
-
-    <section class="more__projects padding">
-      <p>AESL || Practice/Management/Managing Director's Title and Name</p>
-      <article class="boxes">
-        <div class="box">
-        </div>
-        <div class="box">
-        </div>
-        <div class="box">
-        </div>
-      </article>
-    </section>
-
-
-  </article>
-
-  <aside class="sector__aside">
-    <div class="sector__links-wrapper">
-      <a href="{% url 'management' %}">Management</a>
-      <div class="sector__links">
-        <p>On this page</p>
-        <a href="#managing-director">Managing Director Summary</a>
-        <a href="#sector">Managing Director</a>
-        <a href="#sector">Deputy Managing Directors</a>
-        <a href="#sector">Heads of Departments</a>
-        <a href="#sector">Regional Consultants</a>
-      </div>
-    </div>
-  </aside>
+    </aside>
 </section>
 
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
 
 {% endblock content %}

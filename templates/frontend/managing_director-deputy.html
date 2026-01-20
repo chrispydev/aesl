@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Main content -->
+<section class="managemet__parallax">
+  <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+  <div>
+    <h1 class="projects__title">Deputy Managing Director</h1>
+  </div>
+</section>
+
+<div>
+  <h1 class="projects__title-sub">Architecture and Planning</h1>
+</div>
+
+
+
+<section id="managing-director" class="sector">
+  <!-- Projects Text -->
+  <article class="grid__span">
+
+    <section class="director__details">
+      <div class="director__CV">
+        <h1>CV</h1>
+      </div>
+      <div class="director__text">
+        <p>" Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam, error magnam. Impedit tempore earum debitis quae vero quo. Magnam, facere. Ea, explicabo blanditiis, unde veniam architecto fuga rem quas odit? "</p>
+        <h4>- Surv. Gordon Tanga (MD) -</h4>
+      </div>
+    </section>
+
+    <section class="dept__heads-wrapper">
+      <div class="dept__head">
+        <img src="{% static 'img/female.png' %}" alt="Arc. Basil A. Akushey_1"/>
+        <div class="dept__head-info">
+          <h4>Portrait</h4>
+          <p>Architecture and Planning</p>
+          <p>Arc. Naa Kwarley Quartey</p>
+        </div>
+      </div>
+
+      <div class="dept__head">
+        <img src="{% static 'img/female.png' %}" alt="Arc. Basil A. Akushey_1"/>
+        <div class="dept__head-info">
+          <h4>Portrait</h4>
+          <p>Arc. Naa Kwarley Quartey</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="director__achievement">
+      <p>AESL’s Deputy Managing Director for architecture and planning supports the Managing Director and leads the directorate.</br>The office works with department heads to ensure delivery quality, budgets, and client satisfaction</p>
+      <p>Contact: <a href="mailto:naa.quartey@aesl.gov.gh">naa.quartey@aesl.gov.gh </a><br/>Learn more about our services and teams on the Management page.</p>
+    </section>
+
+    <div class="padding">
+      <p>Deputy Managing Director’s office news and highlights can appear here when available.</p>
+    </div>
+
+    <section class="more__projects padding">
+      <p>AESL || Practice/Management/Managing Director's Title and Name</p>
+      <article class="boxes">
+        <div class="box">
+        </div>
+        <div class="box">
+        </div>
+        <div class="box">
+        </div>
+      </article>
+    </section>
+
+
+  </article>
+
+  <aside class="sector__aside">
+    <div class="sector__links-wrapper">
+      <a href="{% url 'management' %}">Management</a>
+      <div class="sector__links">
+        <p>On this page</p>
+        <a href="#managing-director">Managing Director Summary</a>
+        <a href="#sector">Managing Director</a>
+        <a href="#sector">Deputy Managing Directors</a>
+        <a href="#sector">Heads of Departments</a>
+        <a href="#sector">Regional Consultants</a>
+      </div>
+    </div>
+  </aside>
+</section>
+
+
+{% endblock content %}
