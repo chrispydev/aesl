@@ -8,6 +8,7 @@ from frontend.views import (
     CivicCultureView,
     ConsultantsView,
     CorporateGovernaceView,
+    DeputyIIManagingDirectorView,
     DeputyManagingDirectorView,
     EducationView,
     EngineeringView,
@@ -121,6 +122,11 @@ urlpatterns = [
         "practice/management/deputy-managing-director/practice/management/managing-director/",
         DeputyManagingDirectorView.as_view(),
         name="deputy_managing_director",
+    ),
+    path(
+        "practice/management/deputy-ii-managing-director/practice/management/managing-director/",
+        DeputyIIManagingDirectorView.as_view(),
+        name="deputy_ii_managing_director",
     ),
     path(
         "practice/management/deputy-managing-director/engineering/",

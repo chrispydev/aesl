@@ -1,0 +1,100 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="board__chairman">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">Deputy Managing Director</h1>
+        <h4 class="projects__subtitle">Engineering</h4>
+    </div>
+</section>
+
+<section id="ministy-work" class="sector">
+    <!-- Projects Text -->
+    <article class="grid__span">
+        <section class="director__details">
+            <div class="director__CV">
+                <h1>CV</h1>
+            </div>
+            <div class="director__text">
+                <p>
+                    " Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Ullam, error magnam. Impedit tempore earum debitis quae vero
+                    quo. Magnam, facere. Ea, explicabo blanditiis, unde veniam
+                    architecto fuga rem quas odit? "
+                </p>
+                <h5>
+                    <i><b>- Ing. Charles Adigvom -</b></i>
+                </h5>
+            </div>
+        </section>
+
+        <section id="dept-director" class="dept__heads-wrapper">
+            <div class="board__head">
+                <img src="{% static 'img/board-chairman/1.jpg' %}" alt="" />
+            </div>
+
+            <div class="board__head">
+                <img src="{% static 'img/board-chairman/2.jpg' %}" alt="" />
+            </div>
+        </section>
+        <section class="managing__director-history">
+            <p>
+                AESL’s Deputy Managing Director for engineering supports the
+                Managing Director and leads the directorate.
+                <br />The office works with department heads to ensure delivery
+                quality, budgets, and client satisfaction.
+            </p>
+            <div>
+                <p>
+                    Contact:
+                    <a href="mailto: charles.adigvom@aesl.gov.gh">
+                        naa.quartey@aesl.gov.gh</a
+                    >
+                </p>
+                <p>
+                    Learn more about our services and teams on the Management
+                    page.
+                </p>
+            </div>
+        </section>
+    </article>
+
+    <aside class="sector__aside">
+        <div class="sector__links-wrapper">
+            <a href="{% url 'practice' %}">Back to Practice</a>
+            <p>Corporate Governance</p>
+            <div class="sector__links">
+                <a href="#ministy-work">Corporate Governance</a>
+                <a href="#alumni">Board Alumni</a>
+            </div>
+        </div>
+        <div class="sector__navigation">
+            <p>Previous</p>
+            <a href="{% url 'sector_ministry' %}">AESL sector Ministry</a>
+            <p>Next</p>
+            <a href="{% url 'management' %}">AESL Management</a>
+        </div>
+    </aside>
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}

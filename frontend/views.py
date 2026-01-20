@@ -105,6 +105,12 @@ class DeputyManagingDirectorView(View):
         return render(request, "frontend/deputy_managing_director.html", context)
 
 
+class DeputyIIManagingDirectorView(View):
+    def get(self, request):
+        context = {"title": "Deputy Managing Director"}
+        return render(request, "frontend/deputy_ii_managing_director.html", context)
+
+
 class EngineeringView(View):
     def get(self, request):
         context = {"title": "Deputy Managing Director - Engineering"}
