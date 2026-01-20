@@ -63,6 +63,12 @@ class CorporateGovernaceView(View):
         return render(request, "frontend/corporate_governance.html", context)
 
 
+class BoardChairmanView(View):
+    def get(self, request):
+        context = {"title": "Board Chairman"}
+        return render(request, "frontend/board_chairman.html", context)
+
+
 class ManagementView(View):
     def get(self, request):
         categories = MainCategory.objects.prefetch_related("sub_categories__staff")

@@ -1,0 +1,112 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Main content -->
+<section class="board__chairman">
+    <div class="projects__overlay"></div>
+</section>
+
+<section class="projects__caption">
+    <div>
+        <h1 class="projects__title">Board Chairmans's Title and Name</h1>
+    </div>
+</section>
+
+<section id="ministy-work" class="sector">
+    <!-- Projects Text -->
+    <article class="grid__span">
+        <section class="director__details">
+            <div class="director__CV">
+                <h1>CV</h1>
+            </div>
+            <div class="director__text">
+                <p>
+                    " Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Ullam, error magnam. Impedit tempore earum debitis quae vero
+                    quo. Magnam, facere. Ea, explicabo blanditiis, unde veniam
+                    architecto fuga rem quas odit? "
+                </p>
+            </div>
+        </section>
+
+        <section id="dept-director" class="dept__heads-wrapper">
+            <div class="board__head">
+                <img src="{% static 'img/board-chairman/1.jpg' %}" alt="" />
+            </div>
+
+            <div class="board__head">
+                <img src="{% static 'img/board-chairman/2.jpg' %}" alt="" />
+            </div>
+        </section>
+
+        <section class="more__projects padding">
+            <p>
+                AESL || Practice/Management/Managing Director's Title and Name
+            </p>
+            <article class="boxes">
+                <div class="box"></div>
+                <div class="box"></div>
+                <div class="box"></div>
+            </article>
+        </section>
+
+        <section class="chairman__info">
+            <div>
+                <h1 class="projects__title">Board Chairman Alumni</h1>
+            </div>
+            <section id="dept-director" class="alumni__wrapper">
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/1.jpg' %}" alt="" />
+                    <h3>ARC.-EBENEZER-LARYEA-AKITA</h3>
+                </div>
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/2.jpg' %}" alt="" />
+                    <h3>ARC.ERNEST-BANNING</h3>
+                </div>
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/3.jpg' %}" alt="" />
+                    <h3>ARC.-PROF.-JOHN-OWUSU-ADDO</h3>
+                </div>
+                <div class="board__head">
+                    <img src="{% static 'img/alumni/4.jpg' %}" alt="" />
+                    <h3>HON.-J.H-OWUSU-ACHEAMPONG</h3>
+                </div>
+            </section>
+        </section>
+    </article>
+
+    <aside class="sector__aside">
+        <div class="sector__links-wrapper">
+            <a href="{% url 'practice' %}">Back to Practice</a>
+            <p>Corporate Governance</p>
+            <div class="sector__links">
+                <a href="#ministy-work">Corporate Governance</a>
+                <a href="#sector">Board Chairman</a>
+                <a href="#sector">Board Members</a>
+            </div>
+        </div>
+        <div class="sector__navigation">
+            <p>Previous</p>
+            <a href="{% url 'sector_ministry' %}">AESL sector Ministry</a>
+            <p>Next</p>
+            <a href="{% url 'management' %}">AESL Management</a>
+        </div>
+    </aside>
+</section>
+
+<!-- page location Section -->
+<section class="page__location">
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="aesl logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{title}}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
+</section>
+
+{% endblock content %}
