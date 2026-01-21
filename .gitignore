@@ -18,7 +18,7 @@ staticfiles/
 # Virtual environment
 venv/
 env/
-*.env
+#*.env
 
 # Development and deployment files
 *.log
@@ -35,7 +35,7 @@ env/
 # *.db.sqlite3
 #*.env
 #*.env.*
-*.envrc
+#*.envrc
 
 # IDE-specific files
 .vscode/
