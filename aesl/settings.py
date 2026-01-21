@@ -1,5 +1,7 @@
 from pathlib import Path
 
+from decouple import Csv, config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,10 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-yc2txb=b!u6_h68y3a9du9lj@#6r*72_fm1dw7p^=)hoqzyfo1"
+SECRET_KEY = config("SECRET_KEY")
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = [
     "209.74.89.39",
@@ -125,4 +128,9 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATICFILES_STORAGE = (
+    "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    if not DEBUG
+    else "django.contrib.staticfiles.storage.StaticFilesStorage"
+)
