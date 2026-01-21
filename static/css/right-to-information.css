@@ -1,0 +1,38 @@
+.right__to-information {
+  margin: 1rem 2rem;
+  color: var(--primary-color);
+}
+
+.right__to-information h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.right__to-information h2 {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-left: 3rem;
+  text-transform: uppercase;
+}
+
+.right__to-information p {
+  line-height: 1.8rem;
+  letter-spacing: 0.09rem;
+}
+
+
+ol[type="a"] li {
+  line-height: 1.8rem;
+  letter-spacing: 0.09rem;
+}
+
+ol[type="a"] li ul {
+  margin-left: 20px;
+  list-style-type: disc;
+}
+
+ul {
+  margin-left: 20px;
+  list-style-type: disc;
+}

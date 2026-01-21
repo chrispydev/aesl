@@ -37,6 +37,7 @@ from frontend.views import (
     PublicationTypeView,
     PublicationsView,
     ResidentialView,
+    RightToInformationView,
     SectorMinistryView,
     SeniorConsultantsView,
     SeniorProfessionalView,
@@ -223,5 +224,10 @@ urlpatterns = [
         "/people/publications/<str:pub_type>/",
         PublicationTypeView.as_view(),
         name="publications_by_type",
+    ),
+    path(
+        "/people/publications/right-to-information",
+        RightToInformationView.as_view(),
+        name="right_to_information",
     ),
 ]

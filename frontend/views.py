@@ -324,3 +324,9 @@ class PublicationTypeView(View):
         context = {"publications": publications, "type": display_type, "slug": pub_type}
 
         return render(request, "frontend/publications_by_type.html", context)
+
+
+class RightToInformationView(View):
+    def get(self, request):
+        context = {"title": "Publication"}
+        return render(request, "frontend/right_to_information.html", context)

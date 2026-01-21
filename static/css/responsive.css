@@ -568,4 +568,11 @@
     gap: 1rem;
     margin: 0.5rem 0.2rem;
   }
+
+  /* right to information */
+
+  .right__to-information h2 {
+    margin-left: 1rem;
+    text-transform: uppercase;
+  }
 }
