@@ -34,6 +34,7 @@ from frontend.views import (
     ProjectListView,
     ProjectView,
     PublicationDownloadView,
+    PublicationTypeView,
     PublicationsView,
     ResidentialView,
     SectorMinistryView,
@@ -217,5 +218,10 @@ urlpatterns = [
         "publication/download/<int:pk>/",
         PublicationDownloadView.as_view(),
         name="download_publication",
+    ),
+    path(
+        "/people/publications/<str:pub_type>/",
+        PublicationTypeView.as_view(),
+        name="publications_by_type",
     ),
 ]

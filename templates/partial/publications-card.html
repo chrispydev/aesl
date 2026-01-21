@@ -6,15 +6,16 @@
     </div>
 
     <!-- About / Institutional -->
-    <div class="projects__card">
-        <a href="{% url 'history' %}">Technical Reports</a>
-        <a href="{% url 'history' %}">Financial Reports</a>
-        <a href="{% url 'functions' %}">Articles</a>
-    </div>
+  <div class="projects__card">
+      <a href="{% url 'publications_by_type' 'technical-reports-2021' %}">Technical Reports</a>
+      <a href="{% url 'publications_by_type' 'financial-reports-2022' %}">Financial Reports</a>
+      <a href="{% url 'publications_by_type' 'articles-2024' %}">Articles</a>
+  </div>
 
-    <!-- Governance & Management -->
-    <div class="projects__card">
-        <a href="{% url 'sector_ministry' %}">White Papers</a>
-        <a href="{% url 'management' %}">Reviews</a>
-    </div>
+  <!-- Governance & Management -->
+  <div class="projects__card">
+      <a href="{% url 'publications_by_type' 'white-papers-2024' %}">White Papers</a>
+      <a href="{% url 'publications_by_type' 'reviews-2025' %}">Reviews</a>
+      <a href="">Right to Information</a>
+  </div>
 </section>

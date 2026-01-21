@@ -207,41 +207,6 @@ class NationalServiceView(View):
         return render(request, "frontend/national_service.html", context)
 
 
-class PublicationsView(View):
-    def get(self, request):
-        publications = Publications.objects.all()
-        context = {"title": "Publication", "publications": publications}
-        return render(request, "frontend/publications.html", context)
-
-
-class PublicationDownloadView(View):
-    def get(self, request, pk):
-        publication = get_object_or_404(Publications, pk=pk)
-
-        if not publication.download:
-            raise Http404("File not found")
-
-        file_path = publication.download.path
-
-        if not os.path.exists(file_path):
-            raise Http404("File not found")
-
-        # Get the mime type
-        mime_type, _ = mimetypes.guess_type(file_path)
-        if mime_type is None:
-            mime_type = "application/octet-stream"
-
-        # Open and read the file
-        with open(file_path, "rb") as file:
-            response = HttpResponse(file.read(), content_type=mime_type)
-
-        # Set the filename for download
-        filename = os.path.basename(file_path)
-        response["Content-Disposition"] = f'attachment; filename="{filename}"'
-
-        return response
-
-
 class CivicCultureView(View):
     def get(self, request):
         context = {"title": "Civic Culture"}
@@ -301,3 +266,61 @@ class ProjectListView(View):
         projects = Project.objects.all()
         context = {"title": "Projects List", "projects": projects}
         return render(request, "frontend/project_list.html", context)
+
+
+class PublicationsView(View):
+    def get(self, request):
+        publications = Publications.objects.all()
+        context = {"title": "Publication", "publications": publications}
+        return render(request, "frontend/publications.html", context)
+
+
+class PublicationDownloadView(View):
+    def get(self, request, pk):
+        publication = get_object_or_404(Publications, pk=pk)
+
+        if not publication.download:
+            raise Http404("File not found")
+
+        file_path = publication.download.path
+
+        if not os.path.exists(file_path):
+            raise Http404("File not found")
+
+        # Get the mime type
+        mime_type, _ = mimetypes.guess_type(file_path)
+        if mime_type is None:
+            mime_type = "application/octet-stream"
+
+        # Open and read the file
+        with open(file_path, "rb") as file:
+            response = HttpResponse(file.read(), content_type=mime_type)
+
+        # Set the filename for download
+        filename = os.path.basename(file_path)
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+
+        return response
+
+
+class PublicationTypeView(View):
+    PUBLICATION_TYPES = {
+        "technical-reports-2021": "Technical Reports • 2021",
+        "financial-reports-2022": "Financial Reports • 2022",
+        "articles-2024": "Articles • 2024",
+        "white-papers-2024": "White Papers • 2024",
+        "reviews-2025": "Reviews • 2025",
+    }
+
+    def get(self, request, pub_type):
+        display_type = self.PUBLICATION_TYPES.get(pub_type)
+
+        # If the type doesn't exist, you can optionally show empty or 404
+        if not display_type:
+            publications = Publications.objects.none()
+        else:
+            publications = Publications.objects.filter(type=display_type)
+
+        context = {"publications": publications, "type": display_type, "slug": pub_type}
+
+        return render(request, "frontend/publications_by_type.html", context)
