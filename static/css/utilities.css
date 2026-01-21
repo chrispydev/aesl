@@ -1,83 +1,84 @@
 /* components.css */
 /* button */
 .button {
-    background-color: transparent;
-    color: var(--secondary-color);
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--secondary-color);
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+  background-color: transparent;
+  color: var(--secondary-color);
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .button__background {
-    background-color: var(--secondary-color);
-    color: white;
+  background-color: var(--secondary-color);
+  color: white;
 }
 
 .button__color {
-    color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
 }
 
 .button:hover {
-    background-color: var(--secondary-color-light);
-    color: white;
+  background-color: var(--secondary-color-light);
+  color: white;
 }
 
 .button a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 .button a:hover {
-    text-decoration: none;
-    color: white;
+  text-decoration: none;
+  color: white;
 }
 
 .flex-col {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    flex-direction: column;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
 }
 
 .truncate__multi {
-    display: -webkit-box;
-    /* Use flexbox-like behavior */
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 5;
-    /* Number of lines to show */
-    overflow: hidden;
-    text-overflow: ellipsis;
+  display: -webkit-box;
+  /* Use flexbox-like behavior */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  /* Number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .truncate__multi-10 {
-    display: -webkit-box;
-    /* Use flexbox-like behavior */
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 10;
-    /* Number of lines to show */
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: -webkit-line-clamp 0.3s ease;
+  display: -webkit-box;
+  /* Use flexbox-like behavior */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 10;
+  /* Number of lines to show */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: -webkit-line-clamp 0.3s ease;
 }
 
-.truncate__multi-10:hover {
-    -webkit-line-clamp: 100;
-    /* Number of lines to show */
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+/* .truncate__multi-10:hover { */
+/*     -webkit-line-clamp: 100; */
+/*     /* Number of lines to show */
+*/
+/*     overflow: hidden; */
+/*     text-overflow: ellipsis; */
+/* } */
 
 .civic__culture-gallery {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1rem;
-    margin: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
+  margin: 0 2rem;
 }
 
 .civic__culture-gallery img {
-    width: 400px;
-    height: 250px;
+  width: 400px;
+  height: 250px;
 }

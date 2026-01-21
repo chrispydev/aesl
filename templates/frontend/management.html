@@ -36,12 +36,12 @@
 
     <!-- Director Divs -->
     <section class="director__wrapper">
-      <div class="director__div col__span">
+      <div class="director__div ">
         <div class="director__info">
           <h5>Surv. Gordon Tanga</h5>
           <p>Managing Director</p>
         </div>
-        <img src="{% static 'img/md-01.jpg' %}" alt="Managing Director"/>
+        <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
       </div>
 
       <div class="director__div">
@@ -49,7 +49,7 @@
           <h5>Managing Director<br/> at official<br/> engagement</h5>
           <p>Event highlight</p>
         </div>
-        <img src="{% static 'img/md-01.jpg' %}" alt="Managing Director"/>
+        <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
       </div>
 
       <div class="director__div">
@@ -65,7 +65,7 @@
           <h5>Managing<br/> Director<br/> engagement</h5>
           <p>Event highlight</p>
         </div>
-        <img src="{% static 'img/md-01.jpg' %}" alt="Managing Director"/>
+        <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
       </div>
     </section>
 
@@ -90,27 +90,28 @@
       <h4>Deputy Managing Directors</h4>
     </div>
 
-    <section class="managing__director-image">
-      <img src="{% static 'img/Arc. Naa Kwarley Quartey (DMD_Arch).jpg' %}" alt="Deputy Managing Director"/>
+    <section class="managing__director-wrapper">
+        <img class="managing__image" src="{% static 'img/Arc. Naa Kwarley Quartey (DMD_Arch).jpg' %}" alt="Deputy Managing Director"/>
+
+      <div class="managing__director">
+        <h3>Arc. Naa Kwarley Quartey</h3>
+        <h5>Architecture and Planning</h5>
+        <a href="mailto:naa.quartey@aesl.gov.gh">naa.quartey@aesl.gov.gh</a>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos veritatis ipsa repudiandae nisi, fugit nulla corporis reprehenderit dolores .</p>
+        <button class="button"><a href="{% url 'deputy_managing_director' %}">Read More</a></button>
+      </div>
     </section>
 
-    <section class="managing__director">
-      <h3>Arc. Naa Kwarley Quartey</h3>
-      <h5>Architecture and Planning</h5>
-      <a href="mailto:naa.quartey@aesl.gov.gh">naa.quartey@aesl.gov.gh</a>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos veritatis ipsa repudiandae nisi, fugit nulla corporis reprehenderit dolores dolorum vel, mollitia excepturi laborum aperiam voluptates perferendis esse quo voluptate rem.</p>
-      <button class="button"><a href="{% url 'deputy_managing_director' %}">Read More</a></button>
-    </section>
 
-    <section class="managing__director-image">
-      <img src="{% static 'img/male.jpg' %}" alt="Deputy Managing Director"/>
-    </section>
+    <section class="managing__director-wrapper">
+      <div class="managing__director">
+        <h3>Ing. Charles Adigvom <br/>(Engineering)</h3>
+        <a href="mailto:charles.adigvom@aesl.gov.gh">charles.adigvom@aesl.gov.gh</a>
+        <p>Just testing it Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos veritatis ipsa repudiandae nisi</p>
+        <button class="button"><a href="{% url 'deputy_ii_managing_director' %}">Read More</a></button>
+      </div>
 
-    <section class="managing__director">
-      <h3>Ing. Charles Adigvom <br/>(Engineering)</h3>
-      <a href="mailto:charles.adigvom@aesl.gov.gh">charles.adigvom@aesl.gov.gh</a>
-      <p>Just testing it Lorem ipsum dolor sit amet consectetur adipisicing elit. Eos veritatis ipsa repudiandae nisi, fugit nulla corporis reprehenderit dolores dolorum vel, mollitia excepturi laborum aperiam voluptates perferendis esse quo voluptate rem.</p>
-      <button class="button"><a href="{% url 'deputy_ii_managing_director' %}">Read More</a></button>
+        <img class='managing__image' src="{% static 'img/male.jpg' %}" alt="Deputy Managing Director"/>
     </section>
 
     {% for main in categories %}
