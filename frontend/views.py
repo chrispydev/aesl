@@ -6,7 +6,14 @@ from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import DetailView, View
 
-from frontend.models import BoardMember, MainCategory, Project, Publications, Staff
+from frontend.models import (
+    BoardMember,
+    MainCategory,
+    People,
+    Project,
+    Publications,
+    Staff,
+)
 
 
 class HomeView(View):
@@ -179,13 +186,18 @@ class ConsultantsView(View):
 
 class SeniorProfessionalView(View):
     def get(self, request):
-        context = {"title": "People"}
+        senior_professionals = People.objects.all()
+        context = {"title": "People", "senior_professionals": senior_professionals}
         return render(request, "frontend/senior_professional.html", context)
 
 
 class AssistantProfessionalsView(View):
     def get(self, request):
-        context = {"title": "People"}
+        assistant_professionals = People.objects.all()
+        context = {
+            "title": "People",
+            "assistant_professionals": assistant_professionals,
+        }
         return render(request, "frontend/assistant_professional.html", context)
 
 
@@ -197,7 +209,11 @@ class ProfessionalView(View):
 
 class SupportTeamView(View):
     def get(self, request):
-        context = {"title": "People"}
+        support_teams = People.objects.all()
+        context = {
+            "title": "People",
+            "support_teams": support_teams,
+        }
         return render(request, "frontend/support_team.html", context)
 
 

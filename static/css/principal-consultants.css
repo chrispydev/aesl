@@ -27,7 +27,8 @@
 
 .consultants img {
   height: 300px;
-  width: auto;
+  width: 100%;
+  /* width: auto; */
   object-fit: contain;
 }
 

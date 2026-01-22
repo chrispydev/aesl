@@ -236,9 +236,9 @@ class Staff(models.Model, ImageOptimizeMixin):
 # ==============================
 # PEOPLE
 # ==============================
-class Person(models.Model, ImageOptimizeMixin):
+class People(models.Model, ImageOptimizeMixin):
     name = models.CharField(max_length=255)
-    profile_picture = models.ImageField(upload_to="profiles/", blank=True, null=True)
+    profile_picture = models.ImageField(upload_to="people/", blank=True, null=True)
     profession = models.CharField(max_length=255)
     department = models.CharField(max_length=255, default="tech")
 

@@ -5,7 +5,7 @@ from .models import (
     BoardMember,
     ContractorRole,
     MainCategory,
-    Person,
+    People,
     Project,
     ProjectAward,
     ProjectCategory,
@@ -232,8 +232,8 @@ class StaffAdmin(admin.ModelAdmin):
     search_fields = ("name", "email", "grade")
 
 
-@admin.register(Person)
-class PersonAdmin(admin.ModelAdmin):
+@admin.register(People)
+class PeopleAdmin(admin.ModelAdmin):
     list_display = ("name", "profession")
     search_fields = ("name", "profession")
 
