@@ -115,8 +115,9 @@
   }
 
 
-  .parallax {
-    background-image: url("../img/paralax_home.jpg");
+  .parallax,
+  .projects,
+  .projects__parallax {
     background-attachment: scroll;
   }
 
