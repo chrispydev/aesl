@@ -115,11 +115,18 @@
   }
 
 
-  .parallax,
-  .projects,
-  .projects__parallax {
-    background-attachment: scroll;
+  /* .parallax, */
+  /* .projects, */
+  /* .projects__parallax { */
+  /*   background-attachment: scroll; */
+  /* } */
+
+  /* projects */
+
+  .projects__showcases {
+    grid-template-columns: repeat(2, 1fr);
   }
+
 
 
   /* info section*/
@@ -599,12 +606,41 @@
     }
 
 
+
+    /* projects */
+    .projects__showcases {
+      grid-template-columns: repeat(1, 1fr);
+    }
+
+
     /* mission vision */
     .mission,
     .vision,
-    .values {
+    .values,
+    .civic__culture-parallax,
+    .education__parallax,
+    .health__parallax,
+    .office__retail-parallax,
+    .residential__parallax,
+    .industrial__parallax,
+    .hospitality__parallax,
+    .sport__leisure-parallax,
+    .landscape__planning-parallax,
+    .principles__parallax,
+    .practice__wrapper,
+    .history__parallax,
+    .mandate__parallax,
+    .functions__parallax,
+    .mission__parallax,
+    .sector__parallax,
+    .sector__parallax,
+    .mandate__parallax,
+    .service__parallax,
+    .people__parallax,
+    .principal__parallax {
       grid-template-columns: repeat(1, 1fr);
       padding: 0.5rem 0.2rem;
     }
 
   }
+}
