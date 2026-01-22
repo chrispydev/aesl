@@ -186,6 +186,12 @@
     grid-template-columns: repeat(3, 1fr);
     margin: 0 2rem;
   }
+
+
+  /* corporate governance */
+  .corporate__governance {
+    margin-top: 4rem;
+  }
 }
 
 /* Tablet phones */
@@ -575,4 +581,14 @@
     margin-left: 1rem;
     text-transform: uppercase;
   }
+
+
+  /* mission vision */
+  .mission,
+  .vision,
+  .values {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 0.5rem 0.2rem;
+  }
+
 }
