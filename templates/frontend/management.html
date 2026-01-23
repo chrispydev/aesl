@@ -30,12 +30,12 @@
       </p>
     </section>
 
-    <div id="sector" class="sector__headline padding">
+    <div id="management" class="sector__headline padding">
       <h4>Managing Director</h4>
     </div>
 
     <!-- Director Divs -->
-    <section class="director__wrapper">
+    <section id="management" class="director__wrapper">
       <div class="director__div ">
         <div class="director__info">
           <h5>Surv. Gordon Tanga</h5>
@@ -86,7 +86,7 @@
       <p>The conditions of service for our staff are improved to ensure a motivated staff. We want to maintain AESL‘s leadership in the industry and ensure that it a place where people aspire to be to help build places of enduring values.</p>
     </section>
 
-    <div id="sector" class="sector__headline padding">
+    <div id="director" class="sector__headline padding">
       <h4>Deputy Managing Directors</h4>
     </div>
 
@@ -115,7 +115,7 @@
     </section>
 
     {% for main in categories %}
-      <section>
+      <section id='hods'>
         <div id="sector" class="sector__headline padding">
           <h4>{{ main.name }}</h4>
         </div>
@@ -161,11 +161,13 @@
       <a href="{% url 'practice' %}">Back to Practice</a>
       <p>Management</p>
       <div class="sector__links">
-        <a href="#ministy-work">Management</a>
-        <a href="#sector">Managing Director</a>
-        <a href="#sector">Deputy Managing Directors</a>
-        <a href="#sector">Heads of Departments</a>
-        <a href="#sector">Regional Consultants</a>
+        <a href="#management">Management</a>
+        <a href="#director">Managing Director</a>
+        <a href="#dept-director">Deputy Managing Directors</a>
+        <a href="#hods">Heads of Departments</a>
+        {% comment %}
+        <a href="#consultants">Regional Consultants</a>
+        {% endcomment %}
       </div>
     </div>
     <div class="sector__navigation">
