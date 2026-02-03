@@ -240,7 +240,7 @@ class PeopleAdmin(admin.ModelAdmin):
 
 @admin.register(Publications)
 class PublicationsAdmin(admin.ModelAdmin):
-    list_display = ("title", "type", "author", "download")
+    list_display = ("title", "type", "author", "download", "publication_image")
     search_fields = ("title", "type", "author")
     ordering = ("-title",)
 

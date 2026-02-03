@@ -260,11 +260,19 @@ class People(models.Model, ImageOptimizeMixin):
 # ==============================
 # PUBLICATIONS
 # ==============================
-class Publications(models.Model):
+class Publications(models.Model, ImageOptimizeMixin):
     title = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
     download = models.FileField(upload_to="publications/", blank=True, null=True)
+    publication_image = models.ImageField(
+        upload_to="publications/images/", blank=True, null=True
+    )
+
+    def save(self, *args, **kwargs):
+        if self.publication_image:
+            self.optimize_image(self.publication_image)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

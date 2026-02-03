@@ -33,11 +33,13 @@
 <section class="publications">
     {% for publication in publications %}
     <div class="publication">
+      {% if publication.publication_image %}
         <img
-            src="{% static 'img/publications.jpg' %}"
+            src="{{ publication.publication_image.url }}"
             alt="Publications"
             class=""
         />
+        {% endif %}
         <h2>{{ publication.author }}</h2>
         <p>{{ publication.type }}</p>
         <h4>{{ publication.title }}</h4>
