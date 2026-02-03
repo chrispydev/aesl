@@ -608,6 +608,8 @@ a:active {
     grid-template-columns: repeat(1, 1fr);
     gap: 3rem;
     margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer__content {
@@ -615,6 +617,9 @@ a:active {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
     text-align: center;
 }
 
@@ -712,6 +717,7 @@ a:active {
     font-size: 1.3rem;
     font-weight: 900;
     text-transform: uppercase;
+    height: 100%;
 }
 
 .newsletter h4 {
