@@ -156,6 +156,58 @@ class ProjectImage(models.Model, ImageOptimizeMixin):
         return f"{self.project.title} - {self.image_type}"
 
 
+class ProjectGalleryImage(models.Model):
+    image = models.ImageField(
+        upload_to="projects-gallery/",
+        verbose_name="Gallery Image",
+        help_text="Upload the main image for the gallery",
+        max_length=350,
+    )
+
+    category = models.CharField(
+        max_length=100,
+        verbose_name="Category",
+        help_text="e.g. Education, Sport and Leisure, Culture, etc.",
+        blank=True,
+        db_index=True,  # helps with filtering/sorting by category
+    )
+
+    alt_text = models.CharField(
+        max_length=500,
+        verbose_name="Image Alt Text",
+        help_text="Descriptive text for accessibility and SEO (screen readers)",
+        blank=True,
+        unique=True,
+    )
+
+    # Optional useful fields (you can remove if not needed)
+    uploaded_at = models.DateTimeField(auto_now_add=True, verbose_name="Upload Date")
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name="Visible",
+        help_text="Uncheck to hide this image without deleting it",
+    )
+
+    class Meta:
+        verbose_name = "Project Gallery Image"
+        verbose_name_plural = "Project Gallery Images"
+        ordering = ["-uploaded_at"]  # newest first
+        indexes = [
+            models.Index(fields=["category"]),
+        ]
+
+    def __str__(self):
+        # Nice display in admin and shell
+        name = self.alt_text or self.category or "Untitled Image"
+        return f"{name} ({self.uploaded_at.strftime('%Y-%m-%d')})"
+
+    # Optional: better delete behavior (clean up file)
+    def delete(self, *args, **kwargs):
+        if self.image:
+            self.image.delete(save=False)  # delete file from storage
+        super().delete(*args, **kwargs)
+
+
 # ==============================
 # CONTRACTORS
 # ==============================

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "frontend",
     # third-party apps
     "django_browser_reload",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [

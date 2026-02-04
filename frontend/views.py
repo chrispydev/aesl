@@ -11,6 +11,7 @@ from frontend.models import (
     MainCategory,
     People,
     Project,
+    ProjectGalleryImage,
     Publications,
     Staff,
 )
@@ -231,7 +232,15 @@ class CivicCultureView(View):
 
 class EducationView(View):
     def get(self, request):
-        context = {"title": "Education"}
+        education_images = ProjectGalleryImage.objects.filter(
+            category__iexact="education",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+
+        context = {
+            "title": "Education",
+            "education_images": education_images,  # better name than just "education"
+        }
         return render(request, "frontend/education.html", context)
 
 

@@ -10,6 +10,7 @@ from .models import (
     ProjectAward,
     ProjectCategory,
     ProjectContractor,
+    ProjectGalleryImage,
     ProjectImage,
     ProjectLeader,
     ProjectTeamMember,
@@ -272,3 +273,83 @@ class BoardMemberAdmin(admin.ModelAdmin):
             },
         ),
     )
+
+
+@admin.register(ProjectGalleryImage)
+class ProjectGalleryImageAdmin(admin.ModelAdmin):
+    list_display = [
+        "thumbnail",
+        "alt_text_short",
+        "category",
+        "uploaded_at",
+        "is_active",
+    ]
+
+    list_display_links = ["alt_text_short"]
+
+    list_filter = [
+        "category",
+        "is_active",
+        "uploaded_at",
+    ]
+
+    search_fields = [
+        "alt_text",
+        "category",
+    ]
+
+    readonly_fields = ["thumbnail_preview", "uploaded_at"]
+
+    fieldsets = (
+        (
+            "Image",
+            {
+                "fields": ("image", "thumbnail_preview"),
+                "classes": ("wide",),
+            },
+        ),
+        (
+            "Metadata",
+            {
+                "fields": ("alt_text", "category", "is_active"),
+            },
+        ),
+        (
+            "System Info",
+            {
+                "fields": ("uploaded_at",),
+                "classes": ("collapse",),
+            },
+        ),
+    )
+
+    # Show small thumbnail in list view
+    def thumbnail(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="max-height: 60px; border-radius: 4px;">',
+                obj.image.url,
+            )
+        return "-"
+
+    thumbnail.short_description = "Preview"
+
+    # Larger preview in change form
+    def thumbnail_preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{}" style="max-height: 300px; max-width: 100%; border: 1px solid #ddd; border-radius: 6px;">',
+                obj.image.url,
+            )
+        return "No image uploaded yet"
+
+    thumbnail_preview.short_description = "Image Preview"
+
+    # Shortened alt text for list view
+    def alt_text_short(self, obj):
+        return obj.alt_text[:60] + "..." if len(obj.alt_text) > 60 else obj.alt_text
+
+    alt_text_short.short_description = "Alt Text"
+
+    # Make list view nicer
+    list_per_page = 20

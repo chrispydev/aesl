@@ -29,16 +29,23 @@
 </section>
 
 <section class="civic__culture-gallery">
-    <img src="{% static 'img/education/e1.jpg' %}" />
-    <img src="{% static 'img/education/e2.jpg' %}" />
-    <img src="{% static 'img/education/e3.jpg' %}" />
-    <img src="{% static 'img/education/e4.jpg' %}" />
-    <img src="{% static 'img/education/e5.jpg' %}" />
-    <img src="{% static 'img/education/e6.jpg' %}" />
-    <img src="{% static 'img/education/e7.jpg' %}" />
-    <img src="{% static 'img/education/8.jpeg' %}" />
-    <img src="{% static 'img/education/9.jpeg' %}" />
-    <img src="{% static 'img/education/10.jpeg' %}" />
+    {% if education_images %} {% for image in education_images %}
+    <figure class="culture-card">
+        <img
+            src="{{ image.image.url }}"
+            alt="{{ image.alt_text|default:'Education related project image' }}"
+            loading="lazy"
+        />
+        <figcaption>
+            {{ image.alt_text|default:image.category|capfirst }}
+        </figcaption>
+    </figure>
+    {% endfor %} {% else %}
+    <div class="no-content">
+        <p>No images available in the Education category at the moment.</p>
+        <p>Check back later or explore other categories.</p>
+    </div>
+    {% endif %}
 </section>
 
 <!-- page location Section -->
