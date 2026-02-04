@@ -246,7 +246,12 @@ class EducationView(View):
 
 class HealthView(View):
     def get(self, request):
-        context = {"title": "Health"}
+        health_images = ProjectGalleryImage.objects.filter(
+            category__iexact="health",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+
+        context = {"title": "Health", "health_images": health_images}
         return render(request, "frontend/health.html", context)
 
 

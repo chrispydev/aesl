@@ -28,32 +28,23 @@
 </section>
 
 <section class="civic__culture-gallery">
+    {% if health_images %} {% for image in health_images %}
     <figure class="culture-card">
         <img
-            src="{% static 'img/health/Proposed District Hospitals.jpg' %}"
-            alt=""
-        />
-        <figcaption>Proposed District Hospitals</figcaption>
-    </figure>
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/health/2-Storey Emergency Centre and Doctor’s Flat Block at Agona Swedru.jpg' %}"
-            alt=""
+            src="{{ image.image.url }}"
+            alt="{{ image.alt_text|default:'Health related project image' }}"
+            loading="lazy"
         />
         <figcaption>
-            2-Storey Emergency Centre and Doctor’s Flat Block at Agona Swedru
+            {{ image.alt_text|default:image.category|capfirst }}
         </figcaption>
     </figure>
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/health/Out-Patient Deportment, Cocoa Clinic, Essam-Bebiso, Brong Ahafo Region.jpg' %}"
-            alt=""
-        />
-        <figcaption>
-            Out-Patient Deportment, Cocoa Clinic, Essam-Bebiso, Brong Ahafo
-            Region
-        </figcaption>
-    </figure>
+    {% endfor %} {% else %}
+    <div class="no-content">
+        <p>No images available in the Education category at the moment.</p>
+        <p>Check back later or explore other categories.</p>
+    </div>
+    {% endif %}
 </section>
 
 <!-- page location Section -->
