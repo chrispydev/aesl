@@ -248,8 +248,15 @@ class PublicationsAdmin(admin.ModelAdmin):
 
 @admin.register(BoardMember)
 class BoardMemberAdmin(admin.ModelAdmin):
-    list_display = ("name",)
-    search_fields = ("name",)
+    list_display = (
+        "thumbnail_preview",  # ← new: shows small image thumbnail
+        "name",
+        "position",
+    )
+    list_display_links = ("name",)  # make name clickable to edit
+    search_fields = ("name", "position", "about")
+
+    list_per_page = 20  # optional: more items per page
 
     fieldsets = (
         (
@@ -259,6 +266,7 @@ class BoardMemberAdmin(admin.ModelAdmin):
                     "name",
                     "position",
                     "image",
+                    "thumbnail_large",  # ← new: large preview in edit form
                     "about",
                 )
             },
@@ -273,6 +281,34 @@ class BoardMemberAdmin(admin.ModelAdmin):
             },
         ),
     )
+
+    readonly_fields = ("thumbnail_large",)  # ← make preview read-only
+
+    # === Small thumbnail in list view ===
+    def thumbnail_preview(self, obj):
+        if obj.image and obj.image.url:
+            return format_html(
+                '<img src="{}" style="max-height: 60px; border-radius: 6px; object-fit: cover;">',
+                obj.image.url,
+            )
+        return format_html(
+            '<span style="color: #999; font-style: italic;">No image</span>'
+        )
+
+    thumbnail_preview.short_description = "Photo"
+
+    # === Larger preview in change/edit form ===
+    def thumbnail_large(self, obj):
+        if obj.image and obj.image.url:
+            return format_html(
+                '<img src="{}" style="max-height: 300px; max-width: 100%; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">',
+                obj.image.url,
+            )
+        return format_html(
+            '<p style="color: #666; font-style: italic;">No photo uploaded yet</p>'
+        )
+
+    thumbnail_large.short_description = "Photo Preview"
 
 
 @admin.register(ProjectGalleryImage)
