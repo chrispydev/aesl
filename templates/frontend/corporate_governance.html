@@ -40,48 +40,56 @@
             <h4>Board Chairman</h4>
         </div>
 
-        <section class="padding sector__board-member">
-            <div class="sector__board-member-text">
-                <h3>Kasser Ambrose Tee</h3>
-                {% comment %}
-                <h3>Prof. Kwasi Asamoah</h3>
-                {% endcomment %}
-                <h5>Board Chairman</h5>
-                <p class="truncate__multi-10">
-                    In 2019 your company operated in a domestic condition that
-                    witnessed a real GPD growthof 6.5% from 6.3% in 2018. This
-                    was on the back of subbed inflation rate at the end of the
-                    year at 9.6% from the 9.4% during the year end 2018. This
-                    was a reflection of the tight monetary policy measures
-                    implemented during that year. A budget deflicit of 4.8%of
-                    GDP amounting to GH¢ 3.69 billion was recorded in 2019 (as
-                    revenue amounted to GH¢ 58.9 billion against an expenditure
-                    of GH¢ 41.6 billion in 2018). There was a deterioration in
-                    the trade balance with an overall balance of payments
-                    deficit on cash basis of GH¢15.7 billion representing 4.5%
-                    of GDP 2019. The Cedi eventually depreciated by 12.9% in
-                    2019. Anxiety about the upcoming 2020 election led to a
-                    general “wait and see” attitude on the part of investors and
-                    businessmen, both local and foreign. The Election was viewed
-                    as a success by the International Community because it did
-                    not result in violence and civil strife. This was the
-                    economic environment in which your Company operated in 2019.
-                </p>
-                <div class="sector__board-member-links">
-                    <a class="link__button" href="#">Linkedln</a>
-                    <a class="link__button" href="#">Twitter</a>
-                    <a class="link__button" href="{% url 'board_chairman' %}"
-                        >Read More</a
-                    >
+        <section class="board-card">
+            <!-- Left: Text Content -->
+            <div class="card-text">
+                <h2 class="board-name">Kasser Ambrose Tee</h2>
+                <p class="board-title">Board Chairman</p>
+
+                <div class="board-description">
+                    <p class="truncate__multi">
+                        In 2019 your company operated in a domestic condition
+                        that witnessed a real GDP growth of 6.5% from 6.3% in
+                        2018. This was on the back of subdued inflation rate at
+                        the end of the year at 9.6% from the 9.4% during the
+                        year end 2018. This was a reflection of the tight
+                        monetary policy measures implemented during that year. A
+                        budget deficit of 4.8% of GDP amounting to GH¢ 3.69
+                        billion was recorded in 2019 (as revenue amounted to GH¢
+                        58.9 billion against an expenditure of GH¢ 41.6 billion
+                        in 2018). There was a deterioration in the trade balance
+                        with an overall balance of payments deficit on cash
+                        basis of GH¢15.7 billion representing 4.5% of GDP 2019.
+                        The Cedi eventually depreciated by 12.9% in 2019.
+                        Anxiety about the upcoming 2020 election led to a
+                        general “wait and see” attitude on the part of investors
+                        and businessmen, both local and foreign. The Election
+                        was viewed as a success by the International Community
+                        because it did not result in violence and civil strife.
+                        This was the economic environment in which your Company
+                        operated in 2019.
+                    </p>
+
+                    <!-- Buttons -->
+                    <div class="card-buttons">
+                        <a href="#" class="btn">LinkedIn</a>
+                        <a href="#" class="btn">Twitter</a>
+                        <a href="{% url 'board_chairman' %}" class="btn"
+                            >Read More</a
+                        >
+                    </div>
                 </div>
             </div>
-            <img
-                src="{% static 'img/board-chairman.jpg' %}"
-                loading="lazy"
-                alt="board Chairman"
-            />
-        </section>
 
+            <!-- Right: Photo -->
+            <div class="card-photo">
+                <img
+                    src="{% static 'img/board-chairman.jpg'%}"
+                    alt="Kasser Ambrose Tee"
+                    loading="lazy"
+                />
+            </div>
+        </section>
         <div class="sector__headline padding">
             <p>Practice || Corporate Governance || Board Chairman</p>
         </div>
@@ -93,31 +101,62 @@
         <!-- Board Member 1 -->
         <section id="members" class="sector__board-wrapper">
             {% for board_member in board_members %}
-            <section class="sector__board-members">
-                <div class="sector__board-members-text">
-                    <h3>{{ board_member.name }}</h3>
-                    <h5>{{ board_member.title }}</h5>
-                    <p>{{ board_member.about }}</p>
-                    <div class="sector__board-member-links">
+            <div class="board-member-card">
+                <div class="board-member-header">
+                    <div class="board-member-photo">
+                        <img
+                            src="{{ board_member.image.url }}"
+                            alt="{{ board_member.name }}"
+                            loading="lazy"
+                        />
+                    </div>
+                    <h3 class="board-member-name">{{ board_member.name }}</h3>
+                    <p class="board-member-title">
+                        {{ board_member.position }}
+                    </p>
+                </div>
+
+                {% comment %}
+                <div class="board-member-body">
+                    <p class="board-member-about">
+                        {{ board_member.about|truncatewords:35|safe }}
+                    </p>
+                </div>
+                {% endcomment %}
+
+                <div class="board-member-footer">
+                    <div class="board-member-links">
+                        {% comment %} {% if board_member.linkedin %}
                         <a
-                            class="link__button"
-                            href="{{ board_member.linkedin_url }}"
-                            >Linkedln</a
+                            href="{{ board_member.linkedin }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-btn"
                         >
+                            LinkedIn
+                        </a>
+                        {% endif %} {% if board_member.twitter %}
                         <a
-                            class="link__button"
-                            href="{{ board_member.twitter_url }}"
-                            >Twitter</a
+                            href="{{ board_member.twitter }}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="link-btn"
                         >
+                            Twitter
+                        </a>
+                        {% endif %} {% endcomment %}
+
                         <a
-                            class="link__button"
                             href="{% url 'board_member' board_member.pk %}"
-                            >CV</a
+                            class="link-btn"
                         >
+                            CV
+                        </a>
                     </div>
                 </div>
-                <img src="{{ board_member.image.url }}" alt="board Member" />
-            </section>
+            </div>
+            {% empty %}
+            <p>No board members listed at the moment.</p>
             {% endfor %}
         </section>
 
@@ -162,3 +201,7 @@
 </section>
 
 {% endblock content %}
+
+<!--class="link__button"
+href="{% url 'board_member' board_member.pk %}"
+>CV</a-->

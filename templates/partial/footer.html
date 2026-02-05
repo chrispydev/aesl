@@ -13,12 +13,15 @@
         Projects
       </h5>
       <ul>
-        <li><a href="#">Civic & Culture</a></li>
-        <li><a href="#">Education</a></li>
-        <li><a href="#">Health</a></li>
-        <li><a href="#">Office Retail & Mixed-Use</a></li>
-        <li><a href="#">Residential</a></li>
-        <li><a href="#">Industrial & Infrastructure</a></li>
+        <li><a href="{% url 'civic_culture' %}">Civic and Culture</a></li>
+        <li><a href="{% url 'education' %}">Education</a></li>
+        <li><a href="{% url 'health' %}">Health</a></li>
+        <li><a href="{% url 'office_retail' %}">Office Retail and Mixed-Use</a>
+         </li>
+        <li><a href="{% url 'residential' %}">Residential</a></li>
+        <li><a href="{% url 'industrial_infrastructure' %}"
+                    >Industrial and Infrastructure</a
+                ></li>
       </ul>
     </div>
     <div>

@@ -320,7 +320,9 @@ class BoardMemberAdmin(admin.ModelAdmin):
         "thumbnail_preview",  # ← new: shows small image thumbnail
         "name",
         "position",
+        "joined_at",
     )
+    list_editable = ("joined_at",)
     list_display_links = ("name",)  # make name clickable to edit
     search_fields = ("name", "position", "about")
 

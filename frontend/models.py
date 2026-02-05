@@ -338,14 +338,20 @@ class BoardMember(models.Model, ImageOptimizeMixin):
     image = models.ImageField(upload_to="board_members/", default="default.jpg")
     position = models.CharField(max_length=255, default="Board Member")
     about = models.TextField()
-
     linkedin = models.URLField(blank=True, null=True)
     twitter = models.URLField(blank=True, null=True)
 
-    created_at = models.DateTimeField(auto_now_add=True)
+    # Changed: no auto_now_add, editable date field
+    joined_at = models.DateTimeField(
+        verbose_name="Joined Date",
+        help_text="Date this board member joined (used for ordering)",
+        blank=True,  # allow empty if you don't know yet
+        null=True,
+        db_index=True,  # faster sorting
+    )
 
     class Meta:
-        ordering = ["-created_at"]  # newest first by default
+        ordering = ["-joined_at", "name"]  # newest joined first, then name
         verbose_name = "Board Member"
         verbose_name_plural = "Board Members"
 
