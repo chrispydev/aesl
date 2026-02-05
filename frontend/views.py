@@ -334,24 +334,17 @@ class PublicationDownloadView(View):
 
 
 class PublicationTypeView(View):
-    PUBLICATION_TYPES = {
-        "technical-reports-2021": "Technical Reports • 2021",
-        "financial-reports-2022": "Financial Reports • 2022",
-        "articles-2024": "Articles • 2024",
-        "white-papers-2024": "White Papers • 2024",
-        "reviews-2025": "Reviews • 2025",
-    }
-
     def get(self, request, pub_type):
-        display_type = self.PUBLICATION_TYPES.get(pub_type)
-
         # If the type doesn't exist, you can optionally show empty or 404
-        if not display_type:
-            publications = Publications.objects.none()
-        else:
-            publications = Publications.objects.filter(type=display_type)
+        publications = Publications.objects.filter(
+            type__icontains=pub_type.split("-", 1)[0]
+        )
 
-        context = {"publications": publications, "type": display_type, "slug": pub_type}
+        context = {
+            "publications": publications,
+            "type": pub_type.rsplit("-", 1)[0].strip(),
+            "slug": pub_type,
+        }
 
         return render(request, "frontend/publications_by_type.html", context)
 

@@ -211,7 +211,7 @@ urlpatterns = [
         name="service_personnel",
     ),
     path(
-        "people/publications/",
+        "publications/",
         PublicationsView.as_view(),
         name="publications",
     ),

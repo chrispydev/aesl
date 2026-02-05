@@ -1,17 +1,15 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
 <section class="publication__parallax">
-  <div class="projects__overlay"></div>
+    <div class="projects__overlay"></div>
 </section>
 
 <section class="projects__caption">
-  <div>
-    <h1 class="projects__title">{{ type }}</h1> {# display_type from view #}
-  </div>
+    <div>
+        <h1 class="projects__title">{{ type }}</h1>
+        {# display_type from view #}
+    </div>
 </section>
 
 <!-- publications cards -->
@@ -19,90 +17,109 @@
 
 <!-- Projects Text -->
 <section class="projects__text">
-  {% if slug == 'technical-reports-2021' %}
-  <p>
-    The core operations of AESL depend on technical precision and excellence. The technical reports in this section
-    present detailed documentation of our methodologies and project designs and engineering analyses and implementation
-    strategies across different disciplines.
+    {% if slug == 'technical-reports-2021' %}
+    <p>
+        The core operations of AESL depend on technical precision and
+        excellence. The technical reports in this section present detailed
+        documentation of our methodologies and project designs and engineering
+        analyses and implementation strategies across different disciplines. Our
+        commitment to quality, innovation, regulatory compliance, and industry
+        best practices is demonstrated through these reports. Our technical
+        reports demonstrate how we create dependable, sustainable,
+        high-performance solutions to fulfill the intricate requirements of our
+        clients and stakeholders.
+    </p>
 
-    Our commitment to quality, innovation, regulatory compliance, and industry best practices is demonstrated through
-    these reports.
+    {% elif slug == 'financial-reports-2022' %}
+    <p>
+        AESL maintains absolute dedication to the highest standards of
+        transparency, accountability, and financial integrity. This section
+        enables users to access our audited financial statements, annual
+        financial reports, and associated disclosures. The reports present
+        detailed information about our financial results, resource utilization,
+        and long-term business sustainability. We share this information to
+        build stakeholder trust and show our dedication to responsible growth
+        and sound corporate governance practices.
+    </p>
 
-    Our technical reports demonstrate how we create dependable, sustainable, high-performance solutions to fulfill the
-    intricate requirements of our clients and stakeholders. </p>
-
-  {% elif slug == 'financial-reports-2022' %}
-  <p>AESL maintains absolute dedication to the highest standards of transparency, accountability, and financial
-      integrity. This section enables users to access our audited financial statements, annual financial reports, and
-      associated disclosures. The reports present detailed information about our financial results, resource
-      utilization, and long-term business sustainability. We share this information to build stakeholder trust and show
-      our dedication to responsible growth and sound corporate governance practices.<p/>
+    <p />
 
     {% elif slug == 'articles-2024' %}
-  <p>
-    AESL articles demonstrate our dedication to knowledge advancement through various topics about architecture,
-    engineering, sustainability, innovation, and project delivery, contributing to built environment sector discussions.
+    <p>
+        AESL articles demonstrate our dedication to knowledge advancement
+        through various topics about architecture, engineering, sustainability,
+        innovation, and project delivery, contributing to built environment
+        sector discussions. Our content invites all readers—including clients,
+        industry professionals, and students—to discover information and
+        inspiration that represents the core values of our practice.
+    </p>
 
-    Our content invites all readers—including clients, industry professionals, and students—to discover information and
-    inspiration that represents the core values of our practice. </p>
+    {% elif slug == 'white-papers-2024' %}
+    <p>
+        AESL White Papers provide comprehensive assessments, strategic analysis,
+        and solutions for issues facing architecture, engineering, and
+        infrastructure development. At Architectural and Engineering Services
+        Limited, we are committed to thought leadership and knowledge sharing
+        that supports informed decision-making, policy development, and industry
+        advancement.
+    </p>
 
-  {% elif slug == 'white-papers-2024' %}
-  <p>
-    AESL White Papers provide comprehensive assessments, strategic analysis, and solutions for issues facing
-    architecture, engineering, and infrastructure development.
+    {% elif slug == 'reviews-2025' %}
+    <p>
+        At Architectural and Engineering Services Limited, we focus on client
+        satisfaction above all. The feedback from our clients and partners is
+        featured regarding their engagements with us across several projects and
+        industries. These reviews capture the essence of effectiveness and
+        professionalism while showcasing our determination to deliver results
+        that not only meet but frequently surpass expectations. We are proud of
+        the confidence our clients have in us, and their experiences validate
+        the trustworthiness, integrity, and influence of our efforts.
+    </p>
 
-    At Architectural and Engineering Services Limited, we are committed to thought leadership and knowledge sharing that
-    supports informed decision-making, policy development, and industry advancement. </p>
+    {% else %}
+    <p>
+        Explore our curated collection of publications reflecting AESL’s
+        commitment to excellence, innovation, and knowledge sharing.
+    </p>
+    {% endif %}
 
-  {% elif slug == 'reviews-2025' %}
-  <p>
-    At Architectural and Engineering Services Limited, we focus on client satisfaction above all. The feedback from our
-    clients and partners is featured regarding their engagements with us across several projects and industries.
-
-    These reviews capture the essence of effectiveness and professionalism while showcasing our determination to deliver
-    results that not only meet but frequently surpass expectations.
-
-    We are proud of the confidence our clients have in us, and their experiences validate the trustworthiness,
-    integrity, and influence of our efforts.
-  </p>
-
-  {% else %}
-  <p>
-    Explore our curated collection of publications reflecting AESL’s commitment to excellence, innovation, and
-    knowledge sharing.
-  </p>
-  {% endif %}
-
-  <hr />
+    <hr />
 </section>
 
 <!-- Publications List -->
 <section class="publications">
-  {% for publication in publications %}
-  <div class="publication">
-    <img src="{% static 'img/publications.jpg' %}" alt="Publications" />
-    <h2>{{ publication.author }}</h2>
-    <p>{{ publication.type }}</p>
-    <h4>{{ publication.title }}</h4>
-    <a href="{% url 'download_publication' publication.id %}" class="download__button">
-      <i class="fas fa-download"></i>Download
-    </a>
-  </div>
-  {% empty %}
-  <p>No publications available for this category.</p>
-  {% endfor %}
+    {% for publication in publications %}
+    <div class="publication">
+        <img src="{{ publication.publication_image.url }}" alt="Publications" />
+        <h2>{{ publication.author }}</h2>
+        <p>{{ publication.type }}</p>
+        <h4>{{ publication.title }}</h4>
+        <a
+            href="{% url 'download_publication' publication.id %}"
+            class="download__button"
+        >
+            <i class="fas fa-download"></i>Download
+        </a>
+    </div>
+    {% empty %}
+    <p>No publications available for this category.</p>
+    {% endfor %}
 </section>
 
 <!-- Page Location Section -->
 <section class="page__location">
-  <div class="page__flex">
-    <img src="{% static 'img/aesl_logo.png' %}" alt="AESL logo" class="info__building-image-large" />
-    <p>AESL || {{ type }}</p>
-  </div>
-  <p>
-    Consulting Architects,<br />
-    Engineers and Surveyors
-  </p>
+    <div class="page__flex">
+        <img
+            src="{% static 'img/aesl_logo.png' %}"
+            alt="AESL logo"
+            class="info__building-image-large"
+        />
+        <p>AESL || {{ type }}</p>
+    </div>
+    <p>
+        Consulting Architects,<br />
+        Engineers and Surveyors
+    </p>
 </section>
 
 {% endblock content %}
