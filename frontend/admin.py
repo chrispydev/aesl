@@ -48,12 +48,6 @@ class StaffInline(admin.TabularInline):
     fields = ("name", "image", "grade", "region", "email", "description")
 
 
-class PublicationsInline(admin.TabularInline):
-    model = Publications
-    extra = 1
-    fields = ("title", "type", "author", "download")
-
-
 # ==================================================
 # PROJECT ADMIN
 # ==================================================
@@ -239,11 +233,85 @@ class PeopleAdmin(admin.ModelAdmin):
     search_fields = ("name", "profession")
 
 
+class PublicationsInline(admin.TabularInline):
+    model = Publications
+    extra = 1
+    fields = ("title", "type", "author", "download", "publication_image_preview")
+
+    # Optional: small preview in inline too
+    readonly_fields = ("publication_image_preview",)
+
+    def publication_image_preview(self, obj):
+        if obj.publication_image:
+            return format_html(
+                '<img src="{}" style="max-height: 60px; border-radius: 4px; object-fit: cover;">',
+                obj.publication_image.url,
+            )
+        return "No image"
+
+    publication_image_preview.short_description = "Preview"
+
+
 @admin.register(Publications)
 class PublicationsAdmin(admin.ModelAdmin):
-    list_display = ("title", "type", "author", "download", "publication_image")
+    list_display = (
+        "thumbnail_preview",  # ← small thumbnail column
+        "title",
+        "type",
+        "author",
+        "download",
+    )
+    list_display_links = ("title",)  # make title clickable
     search_fields = ("title", "type", "author")
     ordering = ("-title",)
+    list_per_page = 20
+
+    readonly_fields = ("large_preview",)  # large image preview in form
+
+    fieldsets = (
+        (
+            "Publication Info",
+            {
+                "fields": (
+                    "title",
+                    "type",
+                    "author",
+                    "download",
+                ),
+            },
+        ),
+        (
+            "Image",
+            {
+                "fields": (
+                    "publication_image",
+                    "large_preview",
+                ),
+            },
+        ),
+    )
+
+    # Small thumbnail in list view
+    def thumbnail_preview(self, obj):
+        if obj.publication_image:
+            return format_html(
+                '<img src="{}" style="max-height: 60px; border-radius: 6px; object-fit: cover;">',
+                obj.publication_image.url,
+            )
+        return format_html('<span style="color: #999;">No image</span>')
+
+    thumbnail_preview.short_description = "Image"
+
+    # Larger preview in change form
+    def large_preview(self, obj):
+        if obj.publication_image:
+            return format_html(
+                '<img src="{}" style="max-height: 300px; max-width: 100%; border-radius: 8px; border: 1px solid #ddd;">',
+                obj.publication_image.url,
+            )
+        return format_html('<p style="color: #666;">No image uploaded</p>')
+
+    large_preview.short_description = "Image Preview"
 
 
 @admin.register(BoardMember)
