@@ -345,7 +345,9 @@ class BoardMember(models.Model, ImageOptimizeMixin):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["-created_at"]  # newest first by default
+        verbose_name = "Board Member"
+        verbose_name_plural = "Board Members"
 
     def save(self, *args, **kwargs):
         if self.image:

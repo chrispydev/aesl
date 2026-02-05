@@ -67,7 +67,7 @@ class SectorMinistryView(View):
 
 class CorporateGovernaceView(View):
     def get(self, request):
-        board_members = BoardMember.objects.all()
+        board_members = BoardMember.objects.order_by("-created_at")
         context = {"title": "Corporate Governance", "board_members": board_members}
         return render(request, "frontend/corporate_governance.html", context)
 

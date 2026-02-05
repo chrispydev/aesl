@@ -93,16 +93,19 @@
     width: 100%;
     height: 220px;
     object-fit: cover;
+    object-position: center;
+    background: #f8f9fa;
     display: block;
 }
 
 /* === Figcaption – single line + ellipsis by default === */
 .culture-card figcaption {
-    padding: 1rem 1.2rem;
-    font-size: 0.95rem;
-    color: #fff;
+    padding: 0.4rem 0.5rem;
+    /*padding: 1rem 1.2rem;*/
+    font-size: 0.8rem;
+    color: var(--primary-color);
     text-align: center;
-    background: var(--primary-color);
+    /*background: var(--primary-color);*/
     border-top: 1px solid rgba(255, 255, 255, 0.15);
 
     /* Single-line ellipsis */
@@ -124,10 +127,10 @@
     overflow: visible;
     text-overflow: clip;
     max-height: 12rem; /* adjust higher if you have very long captions */
-    background: var(
+    /*background: var(
         --primary-color-hover,
         #0056b3
-    ); /* optional: darker/lighter hover variant */
+    ); */
 }
 
 /* Optional: if you want a subtle fade-in effect for longer text */
