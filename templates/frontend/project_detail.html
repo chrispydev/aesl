@@ -53,7 +53,7 @@
       {% if project.completed_date %}
         {{ project.completed_date|date:"F Y" }}
       {% else %}
-        <span class="details__body">Still in Progress</span>
+        <span class="details__body">Work in Progress</span>
       {% endif %}
     </div>
   </div>
@@ -268,11 +268,13 @@
 
 
   <aside class="wrapper_2">
-    <a href="#top">Back to Project</a>
+    <a href="{% url 'projects' %}">Back to Project</a>
     <div class="wrapper__links">
       <a href="#overview">Project Overview</a>
       <a href="#gallery">Project Gallery</a>
+      {% comment %}
       <a href="#concept">Project Concept</a>
+      {% endcomment %}
       <a href="#design">Project Design</a>
       <a href="#construction">Project Construction</a>
       <a href="#data">Project Data</a>
