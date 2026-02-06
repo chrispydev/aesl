@@ -1,23 +1,28 @@
 {% load static %}
 <!-- Projects__cards -->
 <section class="projects__cards">
-  <!-- Practice -->
-  <div class="projects__card">
-    <a href="{% url 'publications' %}">All Publications</a>
-  </div>
+    <!-- Practice -->
+    <div class="projects__card">
+        <a href="{% url 'publications' %}">All Publications</a>
+    </div>
 
-  <!-- About / Institutional -->
-  <div class="projects__card">
-    <a href="#applications">Application</a>
-    <a href="#manual">Manual</a>
-    <a href="#secretariat">Secretariat</a>
-    <a href="#newsletter">AESL Newsletter</a>
-    <a href="#publications">Publications</a>
-  </div>
+    <!-- About / Institutional -->
+    <div class="projects__card">
+        <a href="#applications">Application</a>
+        <a href="#manual">Manual</a>
+        <a href="#secretariat">Secretariat</a>
+        <a href="#newsletter">AESL Newsletter</a>
+        <a href="#publications">Publications</a>
+    </div>
 
-  <!-- Governance & Management -->
-  <div class="projects__card">
-    <a href="">Right to Information</a>
-    <a style="color:yellow" href="{% static 'img/rpi.pdf' %}" download>Download RTI Form</a>
-  </div>
+    <!-- Governance & Management -->
+    <div class="projects__card">
+        <a href="">Right to Information</a>
+        <a
+            style="color: yellow"
+            href="{% static 'img/rti-form.pdf' %}"
+            download="RTI_Form.pdf"
+            >Download RTI Form</a
+        >
+    </div>
 </section>
