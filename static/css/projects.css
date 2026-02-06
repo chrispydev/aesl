@@ -140,10 +140,11 @@
     border-radius: 0.4rem;
     color: var(--secondary-color);
     margin-bottom: 0.4rem;
+    min-height: 120px;
 }
 
 .projects__showcase-title h4 {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-bottom: 1rem;
 }
 
@@ -153,6 +154,8 @@
 
 .projects__client {
     color: #fff;
+    height: 73px;
+    width: 100%;
     margin-bottom: 1rem;
 }
 
@@ -162,7 +165,7 @@
 }
 
 .projects__client h5 {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-weight: 500;
 }
 
@@ -203,7 +206,7 @@
 .project__category p:first-of-type {
     background-color: #fff;
     color: var(--primary-color);
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     border-radius: 0.2rem;
     font-weight: 500;
     padding: 0.3rem;

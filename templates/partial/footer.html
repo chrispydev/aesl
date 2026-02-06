@@ -128,11 +128,13 @@
         <img src="{% static 'img/ghip.jpg' %}" class="grid__4" alt="footer image grid"/>
       </div>
       <div class="footer__image-container">
-          <div class="image__grid">
-            <img src="{% static 'img/footer_icon.jpg' %}" alt="aesl_logo" />
+          <div class="">
+            <img class="image__size" src="{% static 'img/footer_icon.jpg' %}" alt="aesl_logo" />
+            {% comment %}
             <div class="grid__2">
                 <h4>Ministry of Works and Housing </h4>
             </div>
+            {% endcomment %}
           </div>
       </div>
     </div>
