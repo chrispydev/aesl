@@ -111,92 +111,96 @@
     </div>
 </section>
 
-<section class="projects__gallery-section">
-    <div class="projects__gallery">
-        <div class="gallery__item gallery__item_1">
-            <img
-                src="{% static 'img/civic_culture.jpg' %}"
-                alt="AESL Project 1"
-            />
-            <a class="project__link" href="{% url 'civic_culture' %}"
-                >Civic and Culture</a
-            >
+<section class="projects-categories">
+    <div class="container">
+        <h2 class="section-title">Our Project Categories</h2>
+        <p class="section-subtitle">Explore our diverse portfolio across various sectors</p>
+
+        <div class="categories-grid">
+          <a href="{% url 'civic_culture' %}" class="category-card">
+                <div class="category-image">
+                    <img src="{% static 'img/civic_culture.jpg' %}" alt="Civic and Culture">
+                </div>
+                <div class="category-overlay">
+                    <h3>Civic and Culture</h3>
+                </div>
+            </a>
+
+            <a href="{% url 'education' %}" class="category-card">
+                <div class="category-image">
+                    <img src="{% static 'img/education.jpg' %}" alt="Education">
+                </div>
+                <div class="category-overlay">
+                    <h3>Education</h3>
+                </div>
+            </a>
+
+            <a href="{% url 'health' %}" class="category-card">
+                <div class="category-image">
+                    <img src="{% static 'img/health.jpg' %}" alt="Health">
+                </div>
+                <div class="category-overlay">
+                    <h3>Health</h3>
+                </div>
+            </a>
+
+            <a href="{% url 'office_retail' %}" class="category-card">
+                <div class="category-image">
+                    <img src="{% static 'img/office_and_mixed_use.jpg' %}" alt="Office and Mixed Use">
+                </div>
+                <div class="category-overlay">
+                    <h3>Office and Mixed Use</h3>
+                </div>
+            </a>
+
+
+            <a href="{% url 'industrial_infrastructure' %}" class="category-card"> <div class="category-image">
+                    <img src="{% static 'img/industrial_and_infrastructure.jpeg' %}" alt="office and mixed use">
+                </div>
+                <div class="category-overlay">
+                    <h3>Industrial and Infrastructure</h3>
+                </div>
+            </a>
+
+            <a href="{% url 'sport_leisure' %}" class="category-card"> <div class="category-image">
+                    <img src="{% static 'img/sports_and_leisure.jpg' %}" alt="office and mixed use">
+                </div>
+                <div class="category-overlay">
+                    <h3>Sports and Leisure</h3>
+                </div>
+            </a>
+
+            <a href="{% url 'hospitality' %}" class="category-card"> <div class="category-image">
+                    <img src="{% static 'img/Proposed Guest House for.jpg' %}" alt="office and mixed use">
+                </div>
+                <div class="category-overlay">
+                    <h3>Sports and Leisure</h3>
+                </div>
+            </a>
+
+            <a href="{% url 'residential' %}" class="category-card"> <div class="category-image">
+                    <img src="{% static 'img/residential.jpg' %}" alt="office and mixed use">
+                </div>
+                <div class="category-overlay">
+                    <h3>Residential</h3>
+                </div>
+            </a>
+
         </div>
-        <div class="gallery__item gallery__item_2">
-            <img src="{% static 'img/education.jpg' %}" alt="AESL Project 2" />
-            <a class="project__link" href="{% url 'education' %}">Education</a>
-        </div>
-        <div class="gallery__item gallery__item_3">
-            <img src="{% static 'img/health.jpg' %}" alt="AESL Project 3" />
-            <a class="project__link" href="{% url 'health' %}">Health</a>
-        </div>
-        <div class="gallery__item gallery__item_4">
-            <img
-                src="{% static 'img/office_and_mixed_use.jpg' %}"
-                alt="AESL Project 4"
-            />
-            <a class="project__link" href="{% url 'office_retail' %}"
-                >Office and Mixed Use</a
-            >
-        </div>
-        <div class="gallery__item gallery__item_5">
-            <img
-                src="{% static 'img/industrial_and_infrastructure.jpeg' %}"
-                alt="AESL Project 5"
-            />
-            <a
-                class="project__link"
-                href="{% url 'industrial_infrastructure' %}"
-                >Industrial and Infrastructure</a
-            >
-        </div>
-        <div class="gallery__item gallery__item_6">
-            <div class="gallery__empty">
-                <h4>Lots of projects and still counting</h4>
-                <button class="gallery__button">
-                    <a href="{% url 'projects' %}">AESL Projects</a>
-                </button>
+
+        <div class="stats-banner">
+            <div class="stats-item">
+                <span class="stats-number" data-target="150">+</span>
+                <span class="stats-label">Projects Completed</span>
             </div>
-        </div>
-        <div class="gallery__item gallery__item_7">
-            <img src="{% static 'img/proposal.jpeg' %}" alt="AESL Project 8" />
-            <a class="project__link" href="">Proposal</a>
-        </div>
-        <div class="gallery__item gallery__item_8">
-            <img
-                src="{% static 'img/sports_and_leisure.jpg' %}"
-                alt="AESL Project 8"
-            />
-            <a class="project__link" href="{% url 'sport_leisure' %}"
-                >Sports and Leisure</a
-            >
-        </div>
-        <div class="gallery__item gallery__item_9">
-            <img
-                src="{% static 'img/Proposed Guest House for.jpg' %}"
-                alt="AESL Project 8"
-            />
-            <a class="project__link" href="{% url 'hospitality' %}"
-                >Hospitality</a
-            >
-        </div>
-        <div class="gallery__item gallery__item_10">
-            <img
-                src="{% static 'img/landscape_planning_and_survey.jpg' %}"
-                alt="AESL Project 10"
-            />
-            <a class="project__link" href="{% url 'landscape_planning' %}"
-                >Landscape Planning and Survey</a
-            >
-        </div>
-        <div class="gallery__item gallery__item_11">
-            <img
-                src="{% static 'img/residential.jpg' %}"
-                alt="AESL Project 11"
-            />
-            <a class="project__link" href="{% url 'residential' %}"
-                >Residential</a
-            >
+            <div class="stats-item">
+                <span class="stats-number" data-target="100">+</span>
+                <span class="stats-label">Happy Clients</span>
+            </div>
+            <div class="stats-item">
+                <span class="stats-number" data-target="50">+</span>
+                <span class="stats-label">Years of Excellence</span>
+            </div>
         </div>
     </div>
 </section>
