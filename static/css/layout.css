@@ -851,6 +851,12 @@ a:active {
   background: linear-gradient(to top, rgba(45, 79, 123, 0.85) 0%, rgba(45, 79, 123, 0.3) 100%);
 }
 
+
+.category-card:hover h3 {
+  color: var(--secondary-color);
+  text-shadow: 0 4px 12px rgba(45, 79, 123, 0.8);
+}
+
 .category-overlay h3 {
   font-size: 1.6rem;
   margin: 0;

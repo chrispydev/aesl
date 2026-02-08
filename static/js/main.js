@@ -46,7 +46,6 @@ observer.observe(footer);
 document.addEventListener('DOMContentLoaded', () => {
   const counters = document.querySelectorAll('.stats-number');
 
-  // Optional: log to confirm elements are found
   console.log('Found counters:', counters.length);
 
   const observer = new IntersectionObserver((entries) => {
@@ -56,12 +55,15 @@ document.addEventListener('DOMContentLoaded', () => {
           const updateCount = () => {
             const target = +counter.getAttribute('data-target');
             let count = +counter.innerText.replace('+', ''); // remove + if present
-            const increment = target / 150; // adjust speed (smaller = faster)
+
+            // SLOWER SETTINGS:
+            const increment = target / 300;   // ← larger number = slower
+            const delay = 25;                 // ← larger number = slower (ms)
 
             if (count < target) {
               count += increment;
               counter.innerText = Math.ceil(count) + (target > 10 ? '+' : '');
-              setTimeout(updateCount, 12); // slightly slower for smoothness
+              setTimeout(updateCount, delay);
             } else {
               counter.innerText = target + (target > 10 ? '+' : '');
             }
@@ -69,20 +71,17 @@ document.addEventListener('DOMContentLoaded', () => {
           updateCount();
         });
 
-        // Stop observing once animation is done
         observer.unobserve(entry.target);
       }
     });
   }, {
-    threshold: 0.3,         // start animation when 30% visible
-    rootMargin: '0px'       // optional: adjust if needed
+    threshold: 0.3
   });
 
-  // Observe the banner itself (or any parent that contains it)
   const statsBanner = document.querySelector('.stats-banner');
   if (statsBanner) {
     observer.observe(statsBanner);
   } else {
-    console.warn('Stats banner element not found');
+    console.warn('Stats banner not found');
   }
 });
