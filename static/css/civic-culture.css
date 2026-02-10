@@ -1,10 +1,9 @@
 .civic__culture-parallax {
     position: relative;
     height: 65vh;
-    background-image: url("../img/civic_culture.jpg");
+    background-image: url("../img/civic_culture.png");
     /* Replace with your image */
-    background-attachment: fixed;
-    background-position: center;
+    background-position: 30% 33%;
     background-size: cover;
     background-repeat: no-repeat;
     display: flex;

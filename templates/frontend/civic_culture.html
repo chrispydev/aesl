@@ -30,80 +30,25 @@
 </section>
 
 <section class="civic__culture-gallery">
+    {% if civic_culture_images %} {% for image in civic_culture_images %}
     <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/1.jpg' %}" alt="" />
+        <img
+            src="{{ image.image.url }}"
+            alt="{{ image.alt_text|default:'Education related project image' }}"
+            loading="lazy"
+        />
+        <figcaption>
+            {{ image.alt_text|default:image.category|capfirst }}
+        </figcaption>
     </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/2.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/4.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c5.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/6.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/7.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c9.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c10.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c15.jpg' %}" alt="" />
-    </figure>
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c16.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c19.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c20.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/25.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c25.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/25.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/27.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c26.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c29.jpg' %}" alt="" />
-    </figure>
-
-    <figure class="culture-card">
-        <img src="{% static 'img/civic_culture/c30.jpg' %}" alt="" />
-    </figure>
+    {% endfor %} {% else %}
+    <div class="no-content">
+        <p>
+            No images available in the Civic and Culture category at the moment.
+        </p>
+        <p>Check back later or explore other categories.</p>
+    </div>
+    {% endif %}
 </section>
 
 <!-- page location Section -->

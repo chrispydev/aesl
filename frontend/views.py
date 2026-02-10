@@ -226,7 +226,14 @@ class NationalServiceView(View):
 
 class CivicCultureView(View):
     def get(self, request):
-        context = {"title": "Civic Culture"}
+        civic_culture_images = ProjectGalleryImage.objects.filter(
+            category__iexact="civic",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+        context = {
+            "title": "Civic and Culture",
+            "civic_culture_images": civic_culture_images,
+        }
         return render(request, "frontend/civic_culture.html", context)
 
 
