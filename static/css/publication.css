@@ -12,6 +12,17 @@
     align-items: center;
 }
 
+.publication__parallax-type {
+    position: relative;
+    height: 75vh;
+    background-position: 30% 33%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .publications {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
