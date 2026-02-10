@@ -289,6 +289,10 @@
         flex-direction: column;
     }
 
+    .practice__card img {
+        height: 300px;
+    }
+
     .sector__text {
         padding: 1rem 0.5rem;
     }

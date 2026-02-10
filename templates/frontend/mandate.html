@@ -1,67 +1,62 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
 <section class="mandate__parallax">
-  <div class="projects__overlay"></div>
+    <div class="projects__overlay"></div>
 </section>
 
 <section class="projects__caption">
-  <div>
-    <h1 class="projects__title">
-      Mandate
-    </h1>
-  </div>
+    <div>
+        <h1 class="projects__title">Mandate</h1>
+    </div>
 </section>
 
 <!-- Projects__cards -->
 {% include 'partial/card-nav.html' %}
 
-
 <section id="overview" class="sector">
-  <!-- Projects Text -->
-  <article class="grid__span">
-    <section class="sector__text">
-      <p> Our company provides comprehensive architectural and engineering services to clients, including
-        conceptualizing, designing, and managing projects with high-quality, innovative, and sustainable solutions.</p>
-      <p>The company strives to create functional, aesthetically pleasing and environmentally responsible designs that
-        enhance the built environment and contribute positively.</p>
-    </section>
+    <!-- Projects Text -->
+    <article class="grid__span">
+        <section class="sector__text">
+            <p>
+                Our company provides comprehensive architectural and engineering
+                services to clients, including conceptualizing, designing, and
+                managing projects with high-quality, innovative, and sustainable
+                solutions.
+            </p>
+            <p>
+                The company strives to create functional, aesthetically pleasing
+                and environmentally responsible designs that enhance the built
+                environment and contribute positively.
+            </p>
+        </section>
+    </article>
 
-  </article>
-
-  <aside class="sector__aside">
-    <div class="sector__links-wrapper">
-      <a href="{% url 'practice' %}">Back to Practice</a>
-      <p>History</p>
-      <div class="sector__links">
-        <a href="#overview">AESL Mandate</a>
-      </div>
-    </div>
-    <div class="sector__navigation">
-      <p>Previous</p>
-      <a href="{% url 'corporate_governance' %}">AESL Corporate Governance</a>
-      <p>Next</p>
-      <a href="{% url 'services' %}">AESL Services</a>
-    </div>
-  </aside>
+    <aside class="sector__aside">
+        <div class="sector__links-wrapper">
+            <a href="{% url 'practice' %}">Back to Practice</a>
+            <p>History</p>
+            <div class="sector__links">
+                <a href="#overview">AESL Mandate</a>
+            </div>
+        </div>
+        <div class="sector__navigation">
+            <p>Previous</p>
+            <a href="{% url 'history' %}">AESL History</a>
+            <p>Next</p>
+            <a href="{% url 'functions' %}">AESL Functions</a>
+        </div>
+    </aside>
 </section>
-
 
 <!-- More Projects Section -->
 <section class="more__projects padding">
-  <p>AESL || {{ title }}</p>
-  <article class="boxes">
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-    <div class="box">
-    </div>
-  </article>
+    <p>AESL || {{ title }}</p>
+    <article class="boxes">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </article>
 </section>
-
 
 {% endblock content %}
