@@ -29,125 +29,25 @@
 </section>
 
 <section class="civic__culture-gallery">
+    {% if office_retail_images %} {% for image in office_retail_images %}
     <figure class="culture-card">
         <img
-            src="{% static 'img/office-retail/o2.jpg' %}"
-            alt="Office retail project"
+            src="{{ image.image.url }}"
+            alt="{{ image.alt_text|default:'Office and Retail related project image' }}"
             loading="lazy"
         />
+        <figcaption>
+            {{ image.alt_text|default:image.category|capfirst }}
+        </figcaption>
     </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o3.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o4.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o5.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o7.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o8.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o10.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o12.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o13.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o16.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o17.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o18.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o19.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o20.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/office-retail/o25.jpg' %}"
-            alt="Office retail project"
-            loading="lazy"
-        />
-    </figure>
+    {% endfor %} {% else %}
+    <div class="no-content">
+        <p>
+            No images available in the Office and Retail category at the moment.
+        </p>
+        <p>Check back later or explore other categories.</p>
+    </div>
+    {% endif %}
 </section>
 
 <!-- page location Section -->

@@ -264,7 +264,14 @@ class HealthView(View):
 
 class OfficeRetailView(View):
     def get(self, request):
-        context = {"title": "Office Retail"}
+        office_retail_images = ProjectGalleryImage.objects.filter(
+            category__iexact="office",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+        context = {
+            "title": "Office Retail",
+            "office_retail_images": office_retail_images,
+        }
         return render(request, "frontend/office_retail.html", context)
 
 
