@@ -89,11 +89,11 @@
     {% if project_pictures %}
     <section id="gallery" class="projects__details-gallery">
       <h2>Project Gallery</h2>
-      <div class="projects__masonry-gallery">
+      <div class="civic__culture-gallery">
         {% for img in project_pictures %}
-        <div class="projects__image">
+        <figure class="culture-card">
           <img src="{{ img.image.url }}" alt="Project Image">
-        </div>
+        </figure>
         {% empty %}
         <p>No project pictures available.</p>
         {% endfor %}
@@ -106,12 +106,12 @@
     <!-- Project Construction Details-->
     {% if construction_pictures %}
     <section id="construction" class="projects__construction-gallery">
-      <h2>Project Pictures</h2>
-      <div class="projects__masonry-gallery">
+      <h2>Construction Pictures</h2>
+      <div class="civic__culture-gallery">
         {% for img in construction_pictures %}
-        <div class="projects__image">
+        <figure class="culture-card">
           <img src="{{ img.image.url }}" alt="Project Image">
-        </div>
+        </figure>
         {% empty %}
         <p>No project pictures available.</p>
         {% endfor %}
@@ -124,11 +124,11 @@
     {% if project_3d_visualization_picture %}
     <section id="construction" class="projects__construction-gallery">
       <h2>Project 3D Visualizations</h2>
-      <div class="projects__masonry-gallery">
+      <div class="civic__culture-gallery">
         {% for img in project_3d_visualization_picture %}
-        <div class="projects__image">
+        <figure class="culture-card">
           <img src="{{ img.image.url }}" alt="Project Image">
-        </div>
+        </figure>
         {% empty %}
         <p>No project pictures available.</p>
         {% endfor %}
