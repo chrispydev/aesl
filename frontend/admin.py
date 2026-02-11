@@ -218,13 +218,14 @@ class SubCategoryAdmin(admin.ModelAdmin):
 class StaffAdmin(admin.ModelAdmin):
     list_display = (
         "name",
-        "grade",
+        "position",
+        "profession",
         "email",
         "sub_category",
     )
 
-    list_filter = ("sub_category", "grade")
-    search_fields = ("name", "email", "grade")
+    list_filter = ("sub_category", "position")
+    search_fields = ("name", "email", "position", "profession")
 
 
 @admin.register(People)

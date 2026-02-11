@@ -1,5 +1,6 @@
 import os
 from io import BytesIO
+from unicodedata import category
 
 from django.core.files.base import ContentFile
 from django.db import models
@@ -271,8 +272,9 @@ class Staff(models.Model, ImageOptimizeMixin):
     )
     name = models.CharField(max_length=150)
     image = models.ImageField(upload_to="staff_images/", blank=True, null=True)
-    grade = models.CharField(max_length=100)
+    position = models.CharField(max_length=100)
     region = models.CharField(max_length=100, default="Not a Regional Head")
+    profession = models.CharField(max_length=100, default="Surveying")
     email = models.EmailField()
     description = models.TextField(blank=True)
 
@@ -291,12 +293,11 @@ class Staff(models.Model, ImageOptimizeMixin):
 class People(models.Model, ImageOptimizeMixin):
     name = models.CharField(max_length=255)
     profile_picture = models.ImageField(upload_to="people/", blank=True, null=True)
-    profession = models.CharField(max_length=255)
-    department = models.CharField(max_length=255, default="tech")
-
-    facebook = models.URLField(blank=True, null=True)
-    twitter = models.URLField(blank=True, null=True)
-    linkedin = models.URLField(blank=True, null=True)
+    position = models.CharField(max_length=100, default="position", blank=True)
+    category = models.CharField(max_length=100, default="category")
+    department = models.CharField(max_length=100, blank=True)
+    region = models.CharField(max_length=100, blank=True)
+    profession = models.CharField(max_length=100, default="Surveying")
 
     created_at = models.DateTimeField(auto_now_add=True)
 

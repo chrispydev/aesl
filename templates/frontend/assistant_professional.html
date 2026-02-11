@@ -33,25 +33,31 @@
         </section>
 
         <section class="senior__consultants">
-            {% for assistant_professional in assistant_professionals %} 
+            {% for assistant_professional in assistant_professionals %}
             {% if assistant_professional.profession == 'Assistant Professional' %}
-            <div class="consultants">
-                <img
-                    src="{{ assistant_professional.profile_picture.url }}"
-                    alt="random"
-                />
-                <div class="consultants__details">
-                  <h4>{{ assistant_professional.name}}</h4>
-                  <h5>~ {{ assistant_professional.department }} ~</h5>
-                    <p>{{ assistant_professional.profession }}</p>
-                </div>
-                <div class="consultants__media">
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-linkedin"></i>
+            <div class="board-member-card">
+                <div class="board-member-header">
+                    <div class="board-member-photo">
+                        <img
+                            src="{{ assistant_professional.profile_picture.url }}"
+                            alt="{{ assistant_professional.name }}"
+                            loading="lazy"
+                        />
+                    </div>
+                    <h3 class="board-member-name">{{ assistant_professional.name }}</h3>
+                    <p class="board-member-title">
+                        {{ assistant_professional.profession }}
+                    </p>
+                    <p class="board-member-title">
+                        {{ assistant_professional.position }}
+                    </p>
+                    <p class="board-member-title">
+                        {{ assistant_professional.region }}
+                    </p>
                 </div>
             </div>
-            {% endif %} {% endfor %}
+            {% endif %}
+            {% endfor %}
         </section>
     </article>
 

@@ -35,6 +35,33 @@
       </p>
     </section>
 
+
+    <section class="senior__consultants">
+        {% for professional in professionals %}
+        <div class="board-member-card">
+            <div class="board-member-header">
+                <div class="board-member-photo">
+                    <img
+                        src="{{ professional.profile_picture.url }}"
+                        alt="{{ professional.name }}"
+                        loading="lazy"
+                    />
+                </div>
+                <h3 class="board-member-name">{{ professional.name }}</h3>
+                <p class="board-member-title">
+                    {{ professional.profession }}
+                </p>
+                <p class="board-member-title">
+                    {{ professional.position }}
+                </p>
+                <p class="board-member-title">
+                    {{ professional.region }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+
   </article>
 
   <aside class="sector__aside">

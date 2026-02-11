@@ -181,7 +181,9 @@ class SeniorConsultantsView(View):
 
 class ConsultantsView(View):
     def get(self, request):
-        context = {"title": "People"}
+        people = People.objects.all()
+        consultants = people.filter(category__iexact="consultants")
+        context = {"title": "People", "consultants": consultants}
         return render(request, "frontend/consultants.html", context)
 
 
@@ -204,13 +206,19 @@ class AssistantProfessionalsView(View):
 
 class ProfessionalView(View):
     def get(self, request):
-        context = {"title": "People"}
+        people = People.objects.all()
+        professionals = people.filter(category__iexact="professional")
+        context = {
+            "title": "People",
+            "professionals": professionals,
+        }
         return render(request, "frontend/professional.html", context)
 
 
 class SupportTeamView(View):
     def get(self, request):
-        support_teams = People.objects.all()
+        people = People.objects.all()
+        support_teams = people.filter(category__iexact="support")
         context = {
             "title": "People",
             "support_teams": support_teams,

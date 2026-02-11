@@ -27,28 +27,31 @@
             </p>
         </section>
 
-        <section class="senior__consultants">
-            {% for support_team in support_teams %}
-              {% if support_team.profession == 'Support team' %}
-              <div class="consultants">
-                  <img
-                      src="{{ support_team.profile_picture.url }}"
-                      alt="random"
-                  />
-                  <div class="consultants__details">
-                      <h4>{{ support_team.name}}</h4>
-                      <h5>~ {{ support_team.department }} ~</h5>
-                      <p>{{ support_team.profession }}</p>
-                  </div>
-                  <div class="consultants__media">
-                      <i class="fa-brands fa-twitter"></i>
-                      <i class="fa-brands fa-facebook"></i>
-                      <i class="fa-brands fa-linkedin"></i>
-                  </div>
-              </div>
-              {% endif %}
-            {% endfor %}
-        </section>
+    <section class="senior__consultants">
+        {% for support_team in support_teams %}
+        <div class="board-member-card">
+            <div class="board-member-header">
+                <div class="board-member-photo">
+                    <img
+                        src="{{ support_team.profile_picture.url }}"
+                        alt="{{ support_team.name }}"
+                        loading="lazy"
+                    />
+                </div>
+                <h3 class="board-member-name">{{ support_team.name }}</h3>
+                <p class="board-member-title">
+                    {{ support_team.profession }}
+                </p>
+                <p class="board-member-title">
+                    {{ support_team.position }}
+                </p>
+                <p class="board-member-title">
+                    {{ support_team.region }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
     </article>
 
     <aside class="sector__aside">
