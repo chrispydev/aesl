@@ -5,6 +5,7 @@ from frontend.views import (
     AssistantProfessionalsView,
     BoardChairmanView,
     BoardMemberView,
+    CategoryNewsListView,
     CivicCultureView,
     ConsultantsView,
     CorporateGovernaceView,
@@ -24,7 +25,8 @@ from frontend.views import (
     MandateView,
     MissionVisionView,
     NationalServiceView,
-    NewsView,
+    NewsDetailView,
+    NewsListView,
     OfficeRetailView,
     PeopleView,
     PracticeView,
@@ -211,7 +213,6 @@ urlpatterns = [
         NationalServiceView.as_view(),
         name="service_personnel",
     ),
-    path("news/", NewsView.as_view(), name="news"),
     path(
         "publications/",
         PublicationsView.as_view(),
@@ -231,5 +232,20 @@ urlpatterns = [
         "people/publications/right-to-information",
         RightToInformationView.as_view(),
         name="right_to_information",
+    ),
+    path(
+        "news/",
+        NewsListView.as_view(),
+        name="news_list",
+    ),
+    path(
+        "news/<int:pk>/",
+        NewsDetailView.as_view(),
+        name="news_detail",
+    ),
+    path(
+        "categories/",
+        CategoryNewsListView.as_view(),
+        name="categories",
     ),
 ]

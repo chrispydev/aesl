@@ -3,8 +3,12 @@ from django.utils.html import format_html
 
 from .models import (
     BoardMember,
+    Category,
     ContractorRole,
+    ExternalAuthor,
     MainCategory,
+    NewsArticle,
+    NewsImage,
     People,
     Project,
     ProjectAward,
@@ -460,3 +464,197 @@ class ProjectGalleryImageAdmin(admin.ModelAdmin):
 
     # Make list view nicer
     list_per_page = 20
+
+
+class NewsImageInline(admin.TabularInline):
+    """
+    Inline for managing multiple images attached to a news article.
+    """
+
+    model = NewsImage
+    extra = 1
+    fields = ("image", "caption", "order")
+    readonly_fields = ("preview",)
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{url}" style="max-height: 100px; border-radius: 4px;" />',
+                url=obj.image.url,
+            )
+        return "-"
+
+    preview.short_description = "Preview"
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    """
+    Admin interface for news categories.
+    """
+
+    list_display = ("name", "slug", "article_count", "is_active", "created_at")
+    list_filter = ("is_active",)
+    search_fields = ("name", "description")
+    prepopulated_fields = {"slug": ("name",)}
+    ordering = ("name",)
+
+    fieldsets = (
+        (None, {"fields": ("name", "slug", "description", "is_active")}),
+        (("Timestamps"), {"fields": ("created_at",), "classes": ("collapse",)}),
+    )
+    readonly_fields = ("created_at",)
+
+    def article_count(self, obj):
+        return obj.articles.count()
+
+    article_count.short_description = "Articles"
+
+
+@admin.register(NewsArticle)
+class NewsArticleAdmin(admin.ModelAdmin):
+    """
+    Professional admin interface for news articles.
+    """
+
+    list_display = (
+        "title",
+        "category_link",
+        "is_published",
+        "publish_date",
+        "author",
+        "is_featured",
+        "views_count",
+    )
+    list_filter = (
+        "is_published",
+        "is_featured",
+        "category",
+        "publish_date",
+        "author",
+    )
+    list_editable = ("is_published", "is_featured")
+    search_fields = ("title", "excerpt", "content", "tags")
+    date_hierarchy = "publish_date"
+    prepopulated_fields = {"slug": ("title",)}
+    readonly_fields = ("created_at", "updated_at", "views_count")
+    inlines = [NewsImageInline]
+
+    fieldsets = (
+        (
+            ("Basic Information"),
+            {
+                "fields": (
+                    "title",
+                    "slug",
+                    "category",
+                    "author",
+                    "featured_image",
+                )
+            },
+        ),
+        (
+            ("Content"),
+            {
+                "fields": (
+                    "excerpt",
+                    "content",
+                    "tags",
+                )
+            },
+        ),
+        (
+            ("Publishing"),
+            {
+                "fields": (
+                    "is_published",
+                    "publish_date",
+                    "is_featured",
+                )
+            },
+        ),
+        (
+            ("SEO"),
+            {
+                "fields": (
+                    "meta_title",
+                    "meta_description",
+                ),
+                "classes": ("collapse",),
+            },
+        ),
+        (
+            ("Statistics"),
+            {
+                "fields": ("views_count", "created_at", "updated_at"),
+                "classes": ("collapse",),
+            },
+        ),
+    )
+
+    def category_link(self, obj):
+        if obj.category:
+            url = f"/admin/news/category/{obj.category.id}/change/"
+            return format_html('<a href="{}">{}</a>', url, obj.category.name)
+        return "-"
+
+    category_link.short_description = "Category"
+
+    # Optional: custom actions
+    actions = ["make_published", "make_unpublished"]
+
+    @admin.action(description=("Mark selected articles as published"))
+    def make_published(self, request, queryset):
+        queryset.update(is_published=True)
+
+    @admin.action(description=("Mark selected articles as draft (unpublished)"))
+    def make_unpublished(self, request, queryset):
+        queryset.update(is_published=False)
+
+
+@admin.register(NewsImage)
+class NewsImageAdmin(admin.ModelAdmin):
+    """
+    Standalone admin for news gallery images (optional).
+    """
+
+    list_display = ("article_title", "preview", "caption", "order")
+    list_filter = ("article__category",)
+    search_fields = ("article__title", "caption")
+    readonly_fields = ("preview",)
+
+    def article_title(self, obj):
+        return obj.article.title
+
+    article_title.short_description = "Article"
+
+    def preview(self, obj):
+        if obj.image:
+            return format_html(
+                '<img src="{url}" style="max-height: 80px; border-radius: 4px;" />',
+                url=obj.image.url,
+            )
+        return "-"
+
+    preview.short_description = "Preview"
+
+
+@admin.register(ExternalAuthor)
+class ExternalAuthorAdmin(admin.ModelAdmin):
+    """
+    Admin for external authors (if used).
+    """
+
+    list_display = ("name", "title", "preview_photo")
+    search_fields = ("name", "title", "bio")
+    readonly_fields = ("preview_photo",)
+
+    def preview_photo(self, obj):
+        if obj.photo:
+            return format_html(
+                '<img src="{url}" style="max-height: 60px; border-radius: 50%;" />',
+                url=obj.photo.url,
+            )
+        return "-"
+
+    preview_photo.short_description = "Photo"

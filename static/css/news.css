@@ -1,7 +1,7 @@
 .news__parallax {
   position: relative;
   height: 65vh;
-  background-image: url("../img/publications.jpg");
+  background-image: url("../img/news/news.jpg");
   /* Replace with your image */
   background-attachment: fixed;
   background-position: bottom;
@@ -10,4 +10,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.news__content {
+  color: white;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.news__content h1 {
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+.news__heading {
+  margin: 1rem 2rem;
+}
+
+.news__heading h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.horizontal__bar {
+  width: 100px;
+  height: 5px;
+  background-color: var(--secondary-color);
 }

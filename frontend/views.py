@@ -4,11 +4,15 @@ import os
 # from django.conf import settings
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, render
+from django.utils import timezone
 from django.views.generic import DetailView, View
+from django.views.generic.list import ListView
 
 from frontend.models import (
     BoardMember,
+    Category,
     MainCategory,
+    NewsArticle,
     People,
     Project,
     ProjectGalleryImage,
@@ -320,12 +324,6 @@ class ProjectListView(View):
         return render(request, "frontend/project_list.html", context)
 
 
-class NewsView(View):
-    def get(self, request):
-        context = {"title": "News"}
-        return render(request, "frontend/news.html", context)
-
-
 class PublicationsView(View):
     def get(self, request):
         publications = Publications.objects.all()
@@ -381,3 +379,114 @@ class RightToInformationView(View):
     def get(self, request):
         context = {"title": "Publication"}
         return render(request, "frontend/right_to_information.html", context)
+
+
+class NewsListView(ListView):
+    """
+    Displays a paginated list of published news articles
+    """
+
+    model = NewsArticle
+    template_name = "news/news_list.html"
+    context_object_name = "articles"
+    paginate_by = 10  # articles per page - adjust as needed
+
+    def get_queryset(self):
+        # Only show published articles, ordered by publish date (newest first)
+        return (
+            NewsArticle.objects.filter(
+                is_published=True, publish_date__lte=timezone.now()
+            )
+            .select_related("category", "author")
+            .order_by("-publish_date")
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Add featured articles (optional)
+        context["featured_articles"] = NewsArticle.objects.filter(
+            is_published=True, is_featured=True, publish_date__lte=timezone.now()
+        ).order_by("-publish_date")[:3]
+
+        # Add all active categories for sidebar/filter
+        context["categories"] = Category.objects.filter(is_active=True)
+
+        return context
+
+
+class NewsDetailView(DetailView):
+    """
+    Displays a single news article
+    """
+
+    model = NewsArticle
+    template_name = "news/news_detail.html"
+    context_object_name = "article"
+    slug_field = "slug"
+    slug_url_kwarg = "slug"
+
+    def get_queryset(self):
+        # Only allow access to published articles
+        return NewsArticle.objects.filter(
+            is_published=True, publish_date__lte=timezone.now()
+        ).select_related("category", "author")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Increment views count (simple version)
+        self.object.views_count += 1
+        self.object.save(update_fields=["views_count"])
+
+        # Related articles (same category, exclude current)
+        context["related_articles"] = (
+            NewsArticle.objects.filter(
+                category=self.object.category,
+                is_published=True,
+                publish_date__lte=timezone.now(),
+            )
+            .exclude(id=self.object.id)
+            .order_by("-publish_date")[:4]
+        )
+
+        # Gallery images
+        context["gallery_images"] = self.object.images.all().order_by("order")
+
+        # All categories for sidebar
+        context["categories"] = Category.objects.filter(is_active=True)
+
+        return context
+
+
+class CategoryNewsListView(ListView):
+    """
+    Displays news articles filtered by category
+    """
+
+    model = NewsArticle
+    template_name = "news/news_list.html"  # reuse the same template
+    context_object_name = "articles"
+    paginate_by = 10
+
+    def get_queryset(self):
+        self.category = get_object_or_404(
+            Category, slug=self.kwargs.get("slug"), is_active=True
+        )
+
+        return (
+            NewsArticle.objects.filter(
+                category=self.category,
+                is_published=True,
+                publish_date__lte=timezone.now(),
+            )
+            .select_related("category", "author")
+            .order_by("-publish_date")
+        )
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["current_category"] = self.category
+        context["categories"] = Category.objects.filter(is_active=True)
+        context["page_title"] = f"{self.category.name} - News"
+        return context

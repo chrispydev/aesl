@@ -2,13 +2,35 @@
 
 <section class="news__parallax">
   <div class="projects__overlay"></div>
-</section>
-
-
-<section class="projects__caption">
-  <div>
-    <h1 class="projects__title">publications</h1>
+  <div class="news__content">
+    <h1>News from AESL</h1>
+    <p>Stay updated with the latest news and updates from Architectural and Engineering Services Limited (AESL). Explore
+      our recent projects, industry insights, and company announcements to stay informed about our contributions to the
+      architectural and engineering landscape.</p>
   </div>
 </section>
+
+<section class="news__heading">
+  <div>
+    <h1>Latest News</h1>
+    <div class="horizontal__bar" />
+  </div>
+
+  <div>
+    {% for news in news_list %}
+    <div class="news__card">
+      {% if news.news_image %}
+      <img src="{{ news.news_image.url }}" alt="News Image" class="news__image" />
+      {% endif %}
+      <h2>{{ news.title }}</h2>
+      <p>{{ news.description }}</p>
+      <a href="{% url 'news_detail' news.id %}" class="read__more__button">Read More</a> link to the news detail page
+      with the news id as a parameter to fetch the specific news details.</a>
+    </div>
+    {% endfor %}
+
+</section>
+
+
 
 {% endblock content %}

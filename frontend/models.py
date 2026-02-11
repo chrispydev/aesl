@@ -1,6 +1,8 @@
 import os
 from io import BytesIO
 from unicodedata import category
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 from django.core.files.base import ContentFile
 from django.db import models
@@ -366,3 +368,135 @@ class BoardMember(models.Model, ImageOptimizeMixin):
 
     def get_absolute_url(self):
         return reverse("board_member_detail", args=[self.pk])
+
+
+class Category(models.Model):
+    """News categories (e.g. Projects, Company Updates, Industry News, Sustainability)"""
+
+    name = models.CharField(max_length=100, unique=True)
+    slug = models.SlugField(max_length=120, unique=True, blank=True)
+    description = models.TextField(blank=True)
+    is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = "Categories"
+        ordering = ["name"]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+
+class NewsArticle(models.Model):
+    """Main news / article model"""
+
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=300, unique=True, blank=True)
+
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="articles",
+    )
+
+    featured_image = models.ImageField(
+        upload_to="news/images/%Y/%m/%d/", blank=True, null=True
+    )
+
+    excerpt = models.TextField(
+        max_length=300, help_text="Short summary (displayed in lists/cards)"
+    )
+
+    content = models.TextField()  # main article body
+
+    author = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="news_articles",
+    )
+
+    # Publishing control
+    is_published = models.BooleanField(default=False)
+    publish_date = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    # SEO & sharing
+    meta_title = models.CharField(max_length=200, blank=True)
+    meta_description = models.CharField(max_length=320, blank=True)
+
+    # Optional fields
+    tags = models.CharField(
+        max_length=300, blank=True, help_text="Comma separated tags"
+    )
+    is_featured = models.BooleanField(
+        default=False, help_text="Show in featured/highlight section"
+    )
+    views_count = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ["-publish_date"]
+        indexes = [
+            models.Index(fields=["-publish_date"]),
+            models.Index(fields=["is_published", "publish_date"]),
+            models.Index(fields=["slug"]),
+        ]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+        # Auto-fill meta if empty
+        if not self.meta_title:
+            self.meta_title = self.title
+        if not self.meta_description:
+            self.meta_description = self.excerpt[:320]
+
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    @property
+    def display_date(self):
+        return self.publish_date.strftime("%d %b %Y")
+
+
+class NewsImage(models.Model):
+    """Multiple images inside one article (gallery)"""
+
+    article = models.ForeignKey(
+        NewsArticle, on_delete=models.CASCADE, related_name="images"
+    )
+    image = models.ImageField(upload_to="news/gallery/%Y/%m/%d/")
+    caption = models.CharField(max_length=255, blank=True)
+    order = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return f"Image for {self.article.title}"
+
+
+class ExternalAuthor(models.Model):
+    """If you want news written by external people (not site users)"""
+
+    name = models.CharField(max_length=150)
+    title = models.CharField(
+        max_length=100, blank=True
+    )  # e.g. Senior Architect, Partner
+    photo = models.ImageField(upload_to="news/authors/", blank=True, null=True)
+    bio = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.name
