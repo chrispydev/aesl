@@ -24,6 +24,7 @@ from frontend.views import (
     MandateView,
     MissionVisionView,
     NationalServiceView,
+    NewsView,
     OfficeRetailView,
     PeopleView,
     PracticeView,
@@ -210,6 +211,7 @@ urlpatterns = [
         NationalServiceView.as_view(),
         name="service_personnel",
     ),
+    path("news/", NewsView.as_view(), name="news"),
     path(
         "publications/",
         PublicationsView.as_view(),

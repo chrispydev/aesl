@@ -320,6 +320,12 @@ class ProjectListView(View):
         return render(request, "frontend/project_list.html", context)
 
 
+class NewsView(View):
+    def get(self, request):
+        context = {"title": "News"}
+        return render(request, "frontend/news.html", context)
+
+
 class PublicationsView(View):
     def get(self, request):
         publications = Publications.objects.all()

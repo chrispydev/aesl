@@ -44,7 +44,7 @@
      <a class="{% if request.resolver_match.url_name == 'practice' %}active__link{% endif %}" href="{% url 'practice' %}"><i class="fas fa-city"></i> Practice</a>
      <a class="{% if request.resolver_match.url_name == 'principles' %}active__link{% endif %}" href="{% url 'principles' %}"><i class="fas fa-drafting-compass"></i> Principles</a>
     <a class="{% if request.resolver_match.url_name == 'people' %}active__link{% endif %}" href="{% url 'people' %}"><i class="fas fa-users"></i> People</a>
-    <a href="#"><i class="fas fa-newspaper"></i> News</a>
+    <a class="{% if request.resolver_match.url_name == 'news' %}active__link{% endif %}" href="{% url 'news' %}"><i class="fas fa-newspaper"></i> News</a>
     <a class="{% if request.resolver_match.url_name == 'publications' %}active__link{% endif %}" href="{% url 'publications' %}"><i class="fas fa-book-open"></i> Publications</a>
     </nav>
     <hr class="horizontal__line"/>
