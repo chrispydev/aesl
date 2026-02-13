@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="news-section news-detail">
+  <article>
+    {% if article.featured_image %}
+    <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" class="featured-image">
+    {% endif %}
+
+    <h1>{{ article.title }}</h1>
+
+
+    <div class="news-content">
+      {{ article.content|linebreaks }}
+    </div>
+
+    {% if gallery_images %}
+    <h3>Gallery</h3>
+    <div class="gallery">
+      {% for img in gallery_images %}
+      <figure>
+        <img src="{{ img.image.url }}" alt="{{ img.caption|default:'Image' }}">
+        {% if img.caption %}
+        <figcaption>{{ img.caption }}</figcaption>
+        {% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if related_articles %}
+    <h3>Related Articles</h3>
+    <div class="news-list">
+      {% for related in related_articles %}
+      <div class="news-card">
+        {% if related.featured_image %}
+        <img src="{{ related.featured_image.url }}" alt="{{ related.title }}">
+        {% endif %}
+        <div class="news-card-content">
+          <h2><a href="{{ related.get_absolute_url }}">{{ related.title }}</a></h2>
+          <p class="news-excerpt">{{ related.excerpt }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </article>
+</div>
+{% endblock %}

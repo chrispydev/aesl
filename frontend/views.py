@@ -1,5 +1,6 @@
 import mimetypes
 import os
+import json
 
 # from django.conf import settings
 from django.http import Http404, HttpResponse
@@ -18,12 +19,30 @@ from frontend.models import (
     ProjectGalleryImage,
     Publications,
     Staff,
+    Branch,
 )
 
 
 class HomeView(View):
     def get(self, request):
-        context = {"title": "HomePage"}
+        # Fetch all branches for the map
+        branches = Branch.objects.all().values(
+            "name", "address", "latitude", "longitude", "phone", "email"
+        )
+
+        # Convert to JSON-safe list for JavaScript
+        branches_json = json.dumps(list(branches))
+
+        # Default center (e.g. Accra) and zoom – will be overridden by fitBounds if branches exist
+        default_center = [5.6037, -0.1870]  # Accra coordinates
+        default_zoom = 8
+
+        context = {
+            "title": "HomePage",
+            "branches_json": branches_json,
+            "default_center": default_center,
+            "default_zoom": default_zoom,
+        }
         return render(request, "frontend/home.html", context)
 
 
@@ -387,7 +406,7 @@ class NewsListView(ListView):
     """
 
     model = NewsArticle
-    template_name = "news/news_list.html"
+    template_name = "frontend/news.html"
     context_object_name = "articles"
     paginate_by = 10  # articles per page - adjust as needed
 
@@ -421,7 +440,7 @@ class NewsDetailView(DetailView):
     """
 
     model = NewsArticle
-    template_name = "news/news_detail.html"
+    template_name = "frontend/news_detail.html"
     context_object_name = "article"
     slug_field = "slug"
     slug_url_kwarg = "slug"
@@ -465,7 +484,7 @@ class CategoryNewsListView(ListView):
     """
 
     model = NewsArticle
-    template_name = "news/news_list.html"  # reuse the same template
+    template_name = "news_list.html"  # reuse the same template
     context_object_name = "articles"
     paginate_by = 10
 

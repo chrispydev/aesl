@@ -215,6 +215,89 @@
     </article>
 </section>
 
+
+<!-- Projects Section -->
+<section class="projects__location">
+    <div class="projects__overlay-home"></div>
+    <!-- <img src="{% static 'img/project_background.jpg' %}" alt="project background-image"/> -->
+    <div class="projects__header">
+        <h2>Offces</h2>
+        <p>
+        Our offices are strategically located in primes, with our head Office in the Accra central and other offices in the 16 regions of Ghana. They reflect our commitment to creating functional and aesthetically pleasing environment for clients and employees.
+        </p>
+    </div>
+</section>
+
+<section>
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Our Branches Across the Country</h1>
+    <p class="text-center text-muted mb-4">Click on markers for branch details.</p>
+    
+    <!-- Map Container -->
+    <div id="branch-map" style="height: 600px; width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+</div>
+
+<!-- Leaflet CSS & JS (CDN) -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // Map data from Django context
+    const branches = {{ branches_json|safe }};
+    const defaultCenter = {{ default_center|safe }};
+    const defaultZoom = {{ default_zoom|safe }};
+
+    // Initialize map
+    const map = L.map('branch-map').setView(defaultCenter, defaultZoom);
+
+    // Add OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Custom icon for branches (optional - use default pin if not needed)
+    const branchIcon = L.icon({
+        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        iconSize: [25, 41],
+        iconAnchor: [12, 41],
+        popupAnchor: [1, -34],
+        shadowSize: [41, 41]
+    });
+
+    // Add markers for each branch
+    branches.forEach(branch => {
+        const marker = L.marker([branch.latitude, branch.longitude], {icon: branchIcon}).addTo(map);
+        
+        const popupContent = `
+            <div style="min-width: 200px;">
+                <h5 style="margin: 0 0 10px;">${branch.name}</h5>
+                <p style="margin: 0 0 10px;"><strong>Address:</strong><br>${branch.address}</p>
+                ${branch.phone ? `<p style="margin: 0 0 10px;"><strong>Phone:</strong> ${branch.phone}</p>` : ''}
+                ${branch.email ? `<p style="margin: 0 0 10px;"><strong>Email:</strong> ${branch.email}</p>` : ''}
+                <hr style="margin: 10px 0;">
+                <small>View on <a href="https://www.openstreetmap.org/?mlat=${branch.latitude}&mlon=${branch.longitude}#map=18/${branch.latitude}/${branch.longitude}" target="_blank">OpenStreetMap</a></small>
+            </div>
+        `;
+        
+        marker.bindPopup(popupContent);
+    });
+
+    // Optional: Fit map to show all markers
+    if (branches.length > 0) {
+        const group = new L.featureGroup(branches.map(b => L.marker([b.latitude, b.longitude])));
+        map.fitBounds(group.getBounds().pad(0.1));  // Add 10% padding
+    }
+</script>
+
+<style>
+    /* Optional: Custom map container styling */
+    #branch-map {
+        border: 1px solid #ddd;
+    }
+</style>
+</section>
+
 <!-- page location Section -->
 <section class="page__location">
     <div class="page__flex">

@@ -500,3 +500,19 @@ class ExternalAuthor(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Branch(models.Model):
+    name = models.CharField(max_length=200)
+    address = models.TextField()
+    latitude = models.FloatField()  # e.g., 5.6037 for Accra
+    longitude = models.FloatField()  # e.g., -0.1870 for Accra
+    phone = models.CharField(max_length=20, blank=True)
+    email = models.EmailField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Branches"

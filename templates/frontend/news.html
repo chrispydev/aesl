@@ -15,20 +15,57 @@
     <h1>Latest News</h1>
     <div class="horizontal__bar" />
   </div>
+</section>
 
-  <div>
-    {% for news in news_list %}
-    <div class="news__card">
-      {% if news.news_image %}
-      <img src="{{ news.news_image.url }}" alt="News Image" class="news__image" />
-      {% endif %}
-      <h2>{{ news.title }}</h2>
-      <p>{{ news.description }}</p>
-      <a href="{% url 'news_detail' news.id %}" class="read__more__button">Read More</a> link to the news detail page
-      with the news id as a parameter to fetch the specific news details.</a>
+<section class="news__wrapper">
+    {% if featured_articles %}
+      <div class="featured-articles">
+        <h2 class="featured-title">Featured Articles</h2>
+        <div class="news-list">
+          {% for article in featured_articles %}
+            <div class="news-card">
+              {% if article.featured_image %}
+                <img src="{{ article.featured_image.url }}" alt="{{ article.title }}">
+              {% endif %}
+              <div class="news-card-content">
+                <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
+                <p class="news-excerpt">{{ article.excerpt }}</p>
+                <div class="news-meta">
+                  <span>{{ article.publish_date|date:"d M Y" }}</span>
+                  {% if article.category %}
+                    <span>• {{ article.category.name }}</span>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="news-list">
+      {% for article in articles %}
+        <div class="news-card">
+          {% if article.featured_image %}
+            <img src="{{ article.featured_image.url }}" alt="{{ article.title }}">
+          {% endif %}
+          <div class="news-card-content">
+            <h2><a href="{% url 'news_detail' article.pk %}">{{ article.title }}</a></h2>
+            <p class="news-excerpt">{{ article.excerpt }}</p>
+            <div class="news-meta">
+              <span>{{ article.publish_date|date:"d M Y" }}</span>
+              {% if article.category %}
+                <span>• {{ article.category.name }}</span>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p>No news articles available at the moment.</p>
+      {% endfor %}
     </div>
-    {% endfor %}
 
+  </div>
 </section>
 
 

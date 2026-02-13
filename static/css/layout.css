@@ -345,6 +345,19 @@ a:active {
   background-repeat: no-repeat;
 }
 
+.projects__location {
+  position: relative;
+  height: 55vh;
+  width: 100%;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  background-image: url(../img/projects.jpg);
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .projects__header {
   display: flex;
   justify-content: start;
