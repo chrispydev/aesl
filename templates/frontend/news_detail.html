@@ -20,9 +20,6 @@
       {% for img in gallery_images %}
       <figure>
         <img src="{{ img.image.url }}" alt="{{ img.caption|default:'Image' }}">
-        {% if img.caption %}
-        <figcaption>{{ img.caption }}</figcaption>
-        {% endif %}
       </figure>
       {% endfor %}
     </div>
@@ -37,7 +34,7 @@
         <img src="{{ related.featured_image.url }}" alt="{{ related.title }}">
         {% endif %}
         <div class="news-card-content">
-          <h2><a href="{{ related.get_absolute_url }}">{{ related.title }}</a></h2>
+          <h2><a href="{% url 'news_detail' related.pk %}">{{ related.title }}</a></h2>
           <p class="news-excerpt">{{ related.excerpt }}</p>
         </div>
       </div>
