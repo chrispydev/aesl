@@ -229,73 +229,123 @@
 </section>
 
 <section>
-<div class="container mt-4">
-    <h1 class="text-center mb-4">Our Branches Across the Country</h1>
-    <p class="text-center text-muted mb-4">Click on markers for branch details.</p>
-    
-    <!-- Map Container -->
-    <div id="branch-map" style="height: 600px; width: 100%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+<div class="container my-5">
+    <h1 class="text-center mb-4">Our Branches Across Ghana</h1>
+    <p class="text-center text-muted mb-5">
+        Click any marker on the map to view full branch details on the right.
+    </p>
+
+    <div class="row">
+        <!-- Left: Map (wider column) -->
+        <div class="col-lg-7 mb-4 mb-lg-0">
+            <div id="branch-map" style="height: 550px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);"></div>
+        </div>
+
+        <!-- Right: Details Panel -->
+        <div class="col-lg-5">
+            <div class="card shadow-sm border-0 h-100">
+                <div style="background-color:#2d4f7b;" class="card-header text-white">
+                    <h5 class="mb-0">Branch Details</h5>
+                </div>
+                <div class="card-body" id="branch-details">
+                    <!-- Default placeholder -->
+                    <div class="text-center text-muted py-5">
+                        <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
+                        <p class="lead">Select a branch by clicking its marker on the map.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Leaflet CSS & JS (CDN) -->
+<!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+<!-- Font Awesome (for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
 <script>
-    // Map data from Django context
     const branches = {{ branches_json|safe }};
-    const defaultCenter = {{ default_center|safe }};
-    const defaultZoom = {{ default_zoom|safe }};
 
-    // Initialize map
-    const map = L.map('branch-map').setView(defaultCenter, defaultZoom);
+    // Ghana strict bounds – cuts off almost all of Togo
+    const ghanaStrictBounds = L.latLngBounds(
+        [3.74, -3.25],     // South-West
+        [11.17, 0.99]      // North-East (tight to avoid Togo)
+    );
 
-    // Add OpenStreetMap tiles
+    // Map with scroll wheel zoom DISABLED
+    const map = L.map('branch-map', {
+        scrollWheelZoom: false,       // No wheel zoom – page scrolls normally
+        doubleClickZoom: false,
+        touchZoom: false,
+        boxZoom: false,
+        tap: false,
+        maxBounds: ghanaStrictBounds,
+        maxBoundsViscosity: 1.0,      // Hard boundary – cannot drag outside
+        minZoom: 6.48,
+        maxZoom: 18,
+    });
+
+    // Start fitted exactly to Ghana
+    map.fitBounds(ghanaStrictBounds);
+
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    // Custom icon for branches (optional - use default pin if not needed)
     const branchIcon = L.icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
         popupAnchor: [1, -34],
         shadowSize: [41, 41]
     });
 
-    // Add markers for each branch
-    branches.forEach(branch => {
-        const marker = L.marker([branch.latitude, branch.longitude], {icon: branchIcon}).addTo(map);
-        
-        const popupContent = `
-            <div style="min-width: 200px;">
-                <h5 style="margin: 0 0 10px;">${branch.name}</h5>
-                <p style="margin: 0 0 10px;"><strong>Address:</strong><br>${branch.address}</p>
-                ${branch.phone ? `<p style="margin: 0 0 10px;"><strong>Phone:</strong> ${branch.phone}</p>` : ''}
-                ${branch.email ? `<p style="margin: 0 0 10px;"><strong>Email:</strong> ${branch.email}</p>` : ''}
-                <hr style="margin: 10px 0;">
-                <small>View on <a href="https://www.openstreetmap.org/?mlat=${branch.latitude}&mlon=${branch.longitude}#map=18/${branch.latitude}/${branch.longitude}" target="_blank">OpenStreetMap</a></small>
-            </div>
-        `;
-        
-        marker.bindPopup(popupContent);
+    const markers = [];
+    const markerMap = {}; // for future list clicks if needed
+
+    branches.forEach((branch, index) => {
+        if (branch.latitude && branch.longitude) {
+            const latLng = [branch.latitude, branch.longitude];
+            if (ghanaStrictBounds.contains(latLng)) {
+                const marker = L.marker(latLng, {icon: branchIcon}).addTo(map);
+                markerMap[index] = marker;
+
+                // Click marker → update right panel
+                marker.on('click', function () {
+                    updateBranchDetails(branch);
+                });
+
+                markers.push(marker);
+            }
+        }
     });
 
-    // Optional: Fit map to show all markers
-    if (branches.length > 0) {
-        const group = new L.featureGroup(branches.map(b => L.marker([b.latitude, b.longitude])));
-        map.fitBounds(group.getBounds().pad(0.1));  // Add 10% padding
+    // Fit logic – always at least Ghana
+    if (markers.length > 0) {
+        const markerGroup = L.featureGroup(markers);
+        const combined = ghanaStrictBounds.extend(markerGroup.getBounds());
+        map.fitBounds(combined.pad(0.08));
+    }
+
+    // Update details panel
+    function updateBranchDetails(branch) {
+        const detailsDiv = document.getElementById('branch-details');
+        detailsDiv.innerHTML = `
+            <h5 class="card-title mb-3" style="color: #2d4f7b;">${branch.name}</h5>
+            <p class="mb-2"><strong>Address:</strong><br>${branch.address}</p>
+            ${branch.phone ? `<p class="mb-2"><strong>Phone:</strong> ${branch.phone}</p>` : ''}
+            ${branch.email ? `<p class="mb-2"><strong>Email:</strong> <a href="mailto:${branch.email}">${branch.email}</a></p>` : ''}
+            <hr>
+            <small class="text-muted">
+                Coordinates: ${parseFloat(branch.latitude).toFixed(5)}, ${parseFloat(branch.longitude).toFixed(5)}
+            </small>
+        `;
     }
 </script>
-
-<style>
-    /* Optional: Custom map container styling */
-    #branch-map {
-        border: 1px solid #ddd;
-    }
-</style>
 </section>
 
 <!-- page location Section -->
