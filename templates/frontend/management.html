@@ -144,7 +144,7 @@
                   {% else %}
                   <p>{{ staff.grade }}</p>
                   {% endif %}
-                  <a href="mailto:basil.akushey@aesl.gov.gh">basil.akushey@aesl.gov.gh</a>
+                  <a href="mailto:{{staff.email}}">{{staff.email}}</a>
                   <button class="read__more"><a href="{% url 'staff_detail' staff.pk %}">Read More</a></button>
                 </div>
 </div>              </div>

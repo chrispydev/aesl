@@ -666,53 +666,33 @@ class BranchAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "address_short",
-        "location_link",
         "phone",
         "email",
+        "latitude_display",
+        "longitude_display",
         "created_at",
     )
     list_filter = ("created_at",)
     search_fields = ("name", "address", "phone", "email")
-    readonly_fields = (
-        "created_at",
-        "map_preview",
-    )  # ← this is allowed for custom methods
+    readonly_fields = ("created_at",)
     list_per_page = 20
 
     fieldsets = (
         (
-            ("Branch Information"),
+            None,
             {
                 "fields": (
                     "name",
                     "address",
                     "phone",
                     "email",
+                    "latitude",
+                    "longitude",
                 )
             },
         ),
         (
-            ("Geolocation"),
-            {
-                "fields": (
-                    "latitude",
-                    "longitude",
-                ),
-                "description": (
-                    "Enter latitude and longitude in decimal degrees (e.g. Accra ≈ 5.6037, -0.1870)"
-                ),
-            },
-        ),
-        (
-            ("Map Preview"),
-            {
-                "fields": ("map_preview",),
-                "classes": ("collapse",),  # collapsed by default
-                "description": ("Live preview of the location on OpenStreetMap"),
-            },
-        ),
-        (
-            ("Metadata"),
+            "Metadata",
             {
                 "fields": ("created_at",),
                 "classes": ("collapse",),
@@ -720,48 +700,21 @@ class BranchAdmin(admin.ModelAdmin):
         ),
     )
 
-    # Custom display methods (no underscores in names to avoid confusion)
-    @admin.display(description=("Short Address"))
+    # Very simple display methods — no HTML, no formatting, no crash risk
+    @admin.display(description="Address")
     def address_short(self, obj):
+        if not obj.address:
+            return "—"
         return obj.address[:60] + "..." if len(obj.address) > 60 else obj.address
 
-    @admin.display(description=("Coordinates"))
-    def location_link(self, obj):
-        if obj.latitude is not None and obj.longitude is not None:
-            url = f"https://www.openstreetmap.org/?mlat={obj.latitude}&mlon={obj.longitude}#map=15/{obj.latitude}/{obj.longitude}"
-            # Format numbers manually (no :.5f inside format_html)
-            lat_str = f"{float(obj.latitude):.5f}"
-            lon_str = f"{float(obj.longitude):.5f}"
-            return format_html(
-                '<a href="{}" target="_blank" rel="noopener">{}, {}</a>',
-                url,
-                lat_str,
-                lon_str,
-            )
-        return "—"
+    @admin.display(description="Latitude")
+    def latitude_display(self, obj):
+        if obj.latitude is None:
+            return "—"
+        return str(obj.latitude)
 
-    @admin.display(description=("Map Preview"))
-    def map_preview(self, obj):
-        if obj.latitude is None or obj.longitude is None:
-            return "No coordinates provided — save the branch first to see preview"
-
-        embed_url = (
-            f"https://www.openstreetmap.org/export/embed.html?"
-            f"bbox={obj.longitude - 0.03},{obj.latitude - 0.03},"
-            f"{obj.longitude + 0.03},{obj.latitude + 0.03}&"
-            f"layer=mapnik&marker={obj.latitude},{obj.longitude}"
-        )
-
-        return format_html(
-            '<iframe width="100%" height="350" frameborder="0" scrolling="no" '
-            f'marginheight="0" marginwidth="0" src="{embed_url}"></iframe>'
-            "<br><small>"
-            f'<a href="https://www.openstreetmap.org/?mlat={obj.latitude}&mlon={obj.longitude}#map=16/{obj.latitude}/{obj.longitude}" '
-            'target="_blank" rel="noopener">View larger map on OpenStreetMap →</a></small>'
-        )
-
-    def get_form(self, request, obj=None, **kwargs):
-        form = super().get_form(request, obj, **kwargs)
-        form.base_fields["latitude"].help_text = "Example for Accra: 5.6037"
-        form.base_fields["longitude"].help_text = "Example for Accra: -0.1870"
-        return form
+    @admin.display(description="Longitude")
+    def longitude_display(self, obj):
+        if obj.longitude is None:
+            return "—"
+        return str(obj.longitude)

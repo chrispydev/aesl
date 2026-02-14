@@ -50,3 +50,6 @@ pipenv.lock
 
 # node_modules
 node_modules/
+
+# invoice
+invoice.md

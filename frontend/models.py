@@ -505,8 +505,14 @@ class ExternalAuthor(models.Model):
 class Branch(models.Model):
     name = models.CharField(max_length=200)
     address = models.TextField()
-    latitude = models.FloatField()  # e.g., 5.6037 for Accra
-    longitude = models.FloatField()  # e.g., -0.1870 for Accra
+    latitude = models.FloatField(
+        null=True,  # ← allow database NULL
+        blank=True,  # ← allow blank in forms/admin
+        help_text="e.g., 5.6037 for Accra",
+    )
+    longitude = models.FloatField(
+        null=True, blank=True, help_text="e.g., -0.1870 for Accra"
+    )
     phone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
