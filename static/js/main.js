@@ -1,87 +1,124 @@
-const toggleDiv = document.querySelector(".mobile__menuoverlay");
-const closeBtn = document.querySelector(".closebtn");
-const showSidebar = document.querySelector(".mobile__menubtn");
+document.addEventListener("DOMContentLoaded", () => {
 
-closeBtn.addEventListener("click", function () {
-  toggleDiv.classList.remove("toggle__sidebar");
-});
+  /* =========================
+     MOBILE MENU TOGGLE
+  ========================== */
 
-showSidebar.addEventListener("click", function () {
-  toggleDiv.classList.add("toggle__sidebar");
-});
+  const toggleDiv = document.querySelector(".mobile__menuoverlay");
+  const closeBtn = document.querySelector(".closebtn");
+  const showSidebar = document.querySelector(".mobile__menubtn");
 
-const sideNav = document.querySelector(".sector__aside");
-const footer = document.querySelector(".site__footer");
-const triggerPoint = 600;
-
-let footerVisible = false;
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY >= triggerPoint && !footerVisible) {
-    sideNav.classList.add("active");
-  } else {
-    sideNav.classList.remove("active");
+  if (toggleDiv && closeBtn) {
+    closeBtn.addEventListener("click", () => {
+      toggleDiv.classList.remove("toggle__sidebar");
+    });
   }
-});
 
-// Observe footer
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      footerVisible = entry.isIntersecting;
+  if (toggleDiv && showSidebar) {
+    showSidebar.addEventListener("click", () => {
+      toggleDiv.classList.add("toggle__sidebar");
+    });
+  }
 
-      if (footerVisible) {
+
+  /* =========================
+     SIDENAV SCROLL BEHAVIOR
+  ========================== */
+
+  const sideNav = document.querySelector(".sector__aside");
+  const footer = document.querySelector(".site__footer");
+  const triggerPoint = 600;
+
+  let footerVisible = false;
+
+  if (sideNav) {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY >= triggerPoint && !footerVisible) {
+        sideNav.classList.add("active");
+      } else {
         sideNav.classList.remove("active");
       }
     });
-  },
-  {
-    root: null,
-    threshold: 0.1,
-  },
-);
+  }
 
-observer.observe(footer);
 
-document.addEventListener('DOMContentLoaded', () => {
-  const counters = document.querySelectorAll('.stats-number');
+  /* =========================
+     FOOTER INTERSECTION OBSERVER
+  ========================== */
 
-  console.log('Found counters:', counters.length);
+  if (sideNav && footer) {
+    const footerObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          footerVisible = entry.isIntersecting;
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        counters.forEach(counter => {
-          const updateCount = () => {
-            const target = +counter.getAttribute('data-target');
-            let count = +counter.innerText.replace('+', ''); // remove + if present
-
-            // SLOWER SETTINGS:
-            const increment = target / 300;   // ← larger number = slower
-            const delay = 25;                 // ← larger number = slower (ms)
-
-            if (count < target) {
-              count += increment;
-              counter.innerText = Math.ceil(count) + (target > 10 ? '+' : '');
-              setTimeout(updateCount, delay);
-            } else {
-              counter.innerText = target + (target > 10 ? '+' : '');
-            }
-          };
-          updateCount();
+          if (footerVisible) {
+            sideNav.classList.remove("active");
+          }
         });
-
-        observer.unobserve(entry.target);
+      },
+      {
+        root: null,
+        threshold: 0.1,
       }
-    });
-  }, {
-    threshold: 0.3
-  });
+    );
 
-  const statsBanner = document.querySelector('.stats-banner');
-  if (statsBanner) {
-    observer.observe(statsBanner);
-  } else {
-    console.warn('Stats banner not found');
+    footerObserver.observe(footer);
+  }
+
+
+  /* =========================
+     STATS COUNTER ANIMATION
+  ========================== */
+
+  const counters = document.querySelectorAll(".stats-number");
+  const statsBanner = document.querySelector(".stats-banner");
+
+  if (counters.length > 0 && statsBanner) {
+
+    const formatNumber = (num) => {
+      if (num >= 1000) {
+        return Math.floor(num / 1000) + "k+";
+      }
+      return num + "+";
+    };
+    const statsObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+
+          counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute("data-target")) || 0;
+            let count = 0;
+
+            const duration = 2000;
+            const frameRate = 16;
+            const totalSteps = duration / frameRate;
+            const increment = target / totalSteps;
+
+            const updateCount = () => {
+              count += increment;
+
+              if (count < target) {
+                counter.innerText = formatNumber(Math.floor(count));
+                requestAnimationFrame(updateCount);
+              } else {
+                counter.innerText = formatNumber(target);
+              }
+            };
+
+            updateCount();
+          });
+
+          observer.unobserve(entry.target);
+        }
+
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    statsObserver.observe(statsBanner);
   }
 });
+
