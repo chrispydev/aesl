@@ -172,6 +172,12 @@
         max-width: 90%;
     }
 
+    /* Footer */
+    .footer__bottom {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+
     .newsletter h4 {
         margin-top: -2rem;
         padding: 0.1rem 0.5rem;
@@ -638,6 +644,10 @@
     }
 
     /* Footer */
+    .footer__bottom {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 3rem;
+    }
 
     .footer__content {
         max-width: 90%;
