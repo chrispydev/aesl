@@ -14,7 +14,7 @@
 
  .people__wrapper {
    display: grid;
-   grid-template-columns: repeat(3, 1fr);
+   grid-template-columns: repeat(1, 1fr);
    gap: 1rem;
    padding: 1rem 2rem;
  }
@@ -36,7 +36,7 @@
 
  .people__img {
    display: grid;
-   grid-template-columns: repeat(1, 1fr);
+   grid-template-columns: repeat(3, 1fr);
    gap: 1rem;
  }
 
