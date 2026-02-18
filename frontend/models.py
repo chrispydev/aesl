@@ -1,12 +1,12 @@
 import os
 from io import BytesIO
 from unicodedata import category
-from django.contrib.auth.models import User
-from django.utils import timezone
 
+from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
 from django.db import models
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.text import slugify
 from PIL import Image
 
@@ -105,10 +105,29 @@ class Project(models.Model, ImageOptimizeMixin):
 
     created_at = models.DateTimeField(auto_now_add=True)
 
+    slug = models.SlugField(
+        max_length=250,
+        # unique=True,
+        blank=True,
+        help_text="Auto-generated from title for clean URLs",
+    )
+
+    # Update save method (add this if not already present)
     def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+            # Optional: make unique if duplicate titles exist
+            base_slug = self.slug
+            counter = 1
+            while Project.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
+                self.slug = f"{base_slug}-{counter}"
+                counter += 1
         if self.picture:
             self.optimize_image(self.picture)
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("project_detail", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.title
@@ -165,6 +184,31 @@ class ProjectGalleryImage(models.Model):
         verbose_name="Gallery Image",
         help_text="Upload the main image for the gallery",
         max_length=350,
+    )
+
+    related_project = models.ForeignKey(
+        Project,
+        on_delete=models.SET_NULL,  # or CASCADE — your choice
+        null=True,
+        blank=True,
+        related_name="featured_gallery_images",
+        verbose_name="Linked Project (optional)",
+        help_text="If this image belongs to one of your projects, link it here. Clicking the image will go to that project page.",
+    )
+
+    image_type = models.CharField(
+        max_length=30,
+        verbose_name="Image Type",
+        help_text="main project image",
+        default="Main",
+        blank=True,
+    )
+
+    image_type_link = models.URLField(
+        max_length=350,
+        verbose_name="Image Type Link",
+        help_text="Link to the image type",
+        blank=True,
     )
 
     category = models.CharField(

@@ -88,7 +88,7 @@ urlpatterns = [
         IndustrialInfrastructureView.as_view(),
         name="industrial_infrastructure",
     ),
-    path("project/<int:pk>/", ProjectDetailView.as_view(), name="project_detail"),
+    path("project/<slug:slug>/", ProjectDetailView.as_view(), name="project_detail"),
     path("practice/", PracticeView.as_view(), name="practice"),
     path(
         "practice/sector-ministry/",

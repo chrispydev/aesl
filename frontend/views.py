@@ -1,6 +1,6 @@
+import json
 import mimetypes
 import os
-import json
 
 # from django.conf import settings
 from django.http import Http404, HttpResponse
@@ -11,6 +11,7 @@ from django.views.generic.list import ListView
 
 from frontend.models import (
     BoardMember,
+    Branch,
     Category,
     MainCategory,
     NewsArticle,
@@ -19,7 +20,6 @@ from frontend.models import (
     ProjectGalleryImage,
     Publications,
     Staff,
-    Branch,
 )
 
 
@@ -57,6 +57,9 @@ class ProjectDetailView(DetailView):
     model = Project
     template_name = "frontend/project_detail.html"
     context_object_name = "project"  # Default is 'object', but we can use 'project'
+
+    slug_field = "slug"  # ← add this
+    slug_url_kwarg = "slug"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -314,7 +317,14 @@ class ResidentialView(View):
 
 class IndustrialInfrastructureView(View):
     def get(self, request):
-        context = {"title": "Industrial Infrastructure"}
+        industrial_images = ProjectGalleryImage.objects.filter(
+            category__iexact="industrial",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+        context = {
+            "title": "Industrial Infrastructure",
+            "industrial_images": industrial_images,
+        }
         return render(request, "frontend/industrial_infrastructure.html", context)
 
 

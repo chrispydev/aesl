@@ -24,11 +24,10 @@ from .models import (
     SubCategory,
 )
 
+
 # ==================================================
 # INLINE MODELS
 # ==================================================
-
-
 class ProjectImageInline(admin.TabularInline):
     model = ProjectImage
     extra = 1
@@ -54,48 +53,50 @@ class StaffInline(admin.TabularInline):
 
 
 # ==================================================
-# PROJECT ADMIN
+# PROJECT ADMIN – UPDATED WITH SLUG SUPPORT
 # ==================================================
-
-
 @admin.register(Project)
 class ProjectAdmin(admin.ModelAdmin):
     list_display = (
         "title",
+        "slug",  # ← added: shows slug in list view
         "client",
         "location",
         "category",
         "formatted_start_date",
         "formatted_completed_date",
     )
-
     list_filter = ("category",)
     search_fields = (
         "title",
+        "slug",  # ← added: allow searching by slug
         "client",
         "location",
         "project_coordinator",
         "project_leaders__full_name",
         "other_team_members__full_name",
     )
-
     filter_horizontal = (
         "project_leaders",
         "other_team_members",
     )
-
     inlines = [
         ProjectImageInline,
         ProjectAwardInline,
         ProjectContractorInline,
     ]
 
+    # Auto-populate slug from title (very useful when creating projects)
+    prepopulated_fields = {"slug": ("title",)}
+
+    # Show slug in the form
     fieldsets = (
         (
             "Basic Information",
             {
                 "fields": (
                     "title",
+                    "slug",  # ← added here
                     "client",
                     "location",
                     "category",
@@ -152,22 +153,13 @@ class ProjectAdmin(admin.ModelAdmin):
             "Still in Progress",
         )
 
-    # def formatted_completed_date(self, obj):
-    #     if obj.completed_date:
-    #         return obj.completed_date.strftime("%B %Y")
-    #     return format_html(
-    #         '<span style="color:#8a1f1f;font-weight:500;">Still in Progress</span>'
-    #     )
-
     formatted_completed_date.short_description = "Completed Date"
     formatted_completed_date.admin_order_field = "completed_date"
 
 
 # ==================================================
-# SUPPORTING ADMINS
+# SUPPORTING ADMINS (unchanged except where noted)
 # ==================================================
-
-
 @admin.register(ProjectAward)
 class ProjectAwardAdmin(admin.ModelAdmin):
     list_display = ("year", "award_name", "awarded_by", "project")
@@ -215,7 +207,6 @@ class SubCategoryAdmin(admin.ModelAdmin):
     list_display = ("name", "main_category")
     list_filter = ("main_category",)
     search_fields = ("name",)
-
     inlines = [StaffInline]
 
 
@@ -228,7 +219,6 @@ class StaffAdmin(admin.ModelAdmin):
         "email",
         "sub_category",
     )
-
     list_filter = ("sub_category", "position")
     search_fields = ("name", "email", "position", "profession")
 
@@ -243,8 +233,6 @@ class PublicationsInline(admin.TabularInline):
     model = Publications
     extra = 1
     fields = ("title", "type", "author", "download", "publication_image_preview")
-
-    # Optional: small preview in inline too
     readonly_fields = ("publication_image_preview",)
 
     def publication_image_preview(self, obj):
@@ -261,18 +249,17 @@ class PublicationsInline(admin.TabularInline):
 @admin.register(Publications)
 class PublicationsAdmin(admin.ModelAdmin):
     list_display = (
-        "thumbnail_preview",  # ← small thumbnail column
+        "thumbnail_preview",
         "title",
         "type",
         "author",
         "download",
     )
-    list_display_links = ("title",)  # make title clickable
+    list_display_links = ("title",)
     search_fields = ("title", "type", "author")
     ordering = ("-title",)
     list_per_page = 20
-
-    readonly_fields = ("large_preview",)  # large image preview in form
+    readonly_fields = ("large_preview",)
 
     fieldsets = (
         (
@@ -297,7 +284,6 @@ class PublicationsAdmin(admin.ModelAdmin):
         ),
     )
 
-    # Small thumbnail in list view
     def thumbnail_preview(self, obj):
         if obj.publication_image:
             return format_html(
@@ -308,7 +294,6 @@ class PublicationsAdmin(admin.ModelAdmin):
 
     thumbnail_preview.short_description = "Image"
 
-    # Larger preview in change form
     def large_preview(self, obj):
         if obj.publication_image:
             return format_html(
@@ -323,16 +308,15 @@ class PublicationsAdmin(admin.ModelAdmin):
 @admin.register(BoardMember)
 class BoardMemberAdmin(admin.ModelAdmin):
     list_display = (
-        "thumbnail_preview",  # ← new: shows small image thumbnail
+        "thumbnail_preview",
         "name",
         "position",
         "joined_at",
     )
     list_editable = ("joined_at",)
-    list_display_links = ("name",)  # make name clickable to edit
+    list_display_links = ("name",)
     search_fields = ("name", "position", "about")
-
-    list_per_page = 20  # optional: more items per page
+    list_per_page = 20
 
     fieldsets = (
         (
@@ -342,7 +326,7 @@ class BoardMemberAdmin(admin.ModelAdmin):
                     "name",
                     "position",
                     "image",
-                    "thumbnail_large",  # ← new: large preview in edit form
+                    "thumbnail_large",
                     "about",
                 )
             },
@@ -358,9 +342,8 @@ class BoardMemberAdmin(admin.ModelAdmin):
         ),
     )
 
-    readonly_fields = ("thumbnail_large",)  # ← make preview read-only
+    readonly_fields = ("thumbnail_large",)
 
-    # === Small thumbnail in list view ===
     def thumbnail_preview(self, obj):
         if obj.image and obj.image.url:
             return format_html(
@@ -373,7 +356,6 @@ class BoardMemberAdmin(admin.ModelAdmin):
 
     thumbnail_preview.short_description = "Photo"
 
-    # === Larger preview in change/edit form ===
     def thumbnail_large(self, obj):
         if obj.image and obj.image.url:
             return format_html(
@@ -393,25 +375,21 @@ class ProjectGalleryImageAdmin(admin.ModelAdmin):
         "thumbnail",
         "alt_text_short",
         "category",
+        "related_project",
         "uploaded_at",
         "is_active",
     ]
-
     list_display_links = ["alt_text_short"]
-
     list_filter = [
         "category",
         "is_active",
         "uploaded_at",
     ]
-
     search_fields = [
         "alt_text",
         "category",
     ]
-
     readonly_fields = ["thumbnail_preview", "uploaded_at"]
-
     fieldsets = (
         (
             "Image",
@@ -423,7 +401,14 @@ class ProjectGalleryImageAdmin(admin.ModelAdmin):
         (
             "Metadata",
             {
-                "fields": ("alt_text", "category", "is_active"),
+                "fields": (
+                    "alt_text",
+                    "category",
+                    "is_active",
+                    "image_type",
+                    "image_type_link",
+                    "related_project",
+                ),
             },
         ),
         (
@@ -435,7 +420,6 @@ class ProjectGalleryImageAdmin(admin.ModelAdmin):
         ),
     )
 
-    # Show small thumbnail in list view
     def thumbnail(self, obj):
         if obj.image:
             return format_html(
@@ -446,7 +430,6 @@ class ProjectGalleryImageAdmin(admin.ModelAdmin):
 
     thumbnail.short_description = "Preview"
 
-    # Larger preview in change form
     def thumbnail_preview(self, obj):
         if obj.image:
             return format_html(
@@ -457,21 +440,15 @@ class ProjectGalleryImageAdmin(admin.ModelAdmin):
 
     thumbnail_preview.short_description = "Image Preview"
 
-    # Shortened alt text for list view
     def alt_text_short(self, obj):
         return obj.alt_text[:60] + "..." if len(obj.alt_text) > 60 else obj.alt_text
 
     alt_text_short.short_description = "Alt Text"
 
-    # Make list view nicer
     list_per_page = 20
 
 
 class NewsImageInline(admin.TabularInline):
-    """
-    Inline for managing multiple images attached to a news article.
-    """
-
     model = NewsImage
     extra = 1
     fields = ("image", "caption", "order")
@@ -490,10 +467,6 @@ class NewsImageInline(admin.TabularInline):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    """
-    Admin interface for news categories.
-    """
-
     list_display = ("name", "slug", "article_count", "is_active", "created_at")
     list_filter = ("is_active",)
     search_fields = ("name", "description")
@@ -514,10 +487,6 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(NewsArticle)
 class NewsArticleAdmin(admin.ModelAdmin):
-    """
-    Professional admin interface for news articles.
-    """
-
     list_display = (
         "title",
         "category_link",
@@ -601,24 +570,19 @@ class NewsArticleAdmin(admin.ModelAdmin):
 
     category_link.short_description = "Category"
 
-    # Optional: custom actions
     actions = ["make_published", "make_unpublished"]
 
-    @admin.action(description=("Mark selected articles as published"))
+    @admin.action(description="Mark selected articles as published")
     def make_published(self, request, queryset):
         queryset.update(is_published=True)
 
-    @admin.action(description=("Mark selected articles as draft (unpublished)"))
+    @admin.action(description="Mark selected articles as draft (unpublished)")
     def make_unpublished(self, request, queryset):
         queryset.update(is_published=False)
 
 
 @admin.register(NewsImage)
 class NewsImageAdmin(admin.ModelAdmin):
-    """
-    Standalone admin for news gallery images (optional).
-    """
-
     list_display = ("article_title", "preview", "caption", "order")
     list_filter = ("article__category",)
     search_fields = ("article__title", "caption")
@@ -642,10 +606,6 @@ class NewsImageAdmin(admin.ModelAdmin):
 
 @admin.register(ExternalAuthor)
 class ExternalAuthorAdmin(admin.ModelAdmin):
-    """
-    Admin for external authors (if used).
-    """
-
     list_display = ("name", "title", "preview_photo")
     search_fields = ("name", "title", "bio")
     readonly_fields = ("preview_photo",)
@@ -700,7 +660,6 @@ class BranchAdmin(admin.ModelAdmin):
         ),
     )
 
-    # Very simple display methods — no HTML, no formatting, no crash risk
     @admin.display(description="Address")
     def address_short(self, obj):
         if not obj.address:

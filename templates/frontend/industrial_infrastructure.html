@@ -1,5 +1,7 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
 
+{% block content %}
 <!-- Main content -->
 <section class="industrial__parallax">
     <div class="projects__overlay"></div>
@@ -12,7 +14,6 @@
 </section>
 
 <!-- Projects__cards -->
-
 {% include 'partial/projects-card.html' %}
 
 <!-- Projects Text -->
@@ -22,7 +23,7 @@
         that support growth and development. From warehouses and factories to
         transport hubs, our designs emphasise functionality and durability. We
         have been engaged in the consultancy of other critical infrastructure
-        including many hydro projects.Our unmatched expertise in many speciality
+        including many hydro projects. Our unmatched expertise in many speciality
         projects was evident in our selection to collaborate with the Ministry
         of Science, Technology and Innovation (MESTI) to design and supervise
         the construction of the first Foundry and Tooling Centre in Ghana.
@@ -31,33 +32,42 @@
 </section>
 
 <section class="civic__culture-gallery">
+    {% if industrial_images %}
+        {% for image in industrial_images %}
+            <figure class="culture-card">
+                {% if image.related_project and image.related_project.slug %}
+                    <a href="{{ image.related_project.get_absolute_url }}" class="gallery-link">
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.alt_text|default:image.related_project.title|add:' project image' }}"
+                            loading="lazy"
+                        />
+                    </a>
+                {% else %}
+                    <img
+                        src="{{ image.image.url }}"
+                        alt="{{ image.alt_text|default:'industrial infrastructure related project image' }}"
+                        loading="lazy"
+                    />
+                {% endif %}
 
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/industrial/6.jpeg' %}"
-            alt="Industrial project 6"
-            loading="lazy"
-        />
-        <figcaption>Foundry and Tooling Centre</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/industrial/7.jpeg' %}"
-            alt="Industrial project 7"
-            loading="lazy"
-        />
-        <figcaption>Foundry and Tooling Centre  - Interrior</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/industrial/8.jpeg' %}"
-            alt="Industrial project 8"
-            loading="lazy"
-        />
-        <figcaption>Foundry and Tooling Centre  - Closed Up View</figcaption>
-    </figure>
+                <figcaption>
+                    {% if image.related_project and image.related_project.slug %}
+                        <a href="{{ image.related_project.get_absolute_url }}" class="project-title-link">
+                            {{ image.related_project.title }}
+                        </a>
+                    {% else %}
+                        {{ image.alt_text|default:image.category|capfirst }}
+                    {% endif %}
+                </figcaption>
+            </figure>
+        {% endfor %}
+    {% else %}
+        <div class="no-content">
+            <p>No images available in the industrial infrastructure category at the moment.</p>
+            <p>Check back later or explore other categories.</p>
+        </div>
+    {% endif %}
 </section>
 
 <!-- page location Section -->
@@ -68,7 +78,7 @@
             alt="aesl logo"
             class="info__building-image-large"
         />
-        <p>AESL || {{title}}</p>
+        <p>AESL || {{ title }}</p>
     </div>
     <p>
         Consulting Architects,<br />
