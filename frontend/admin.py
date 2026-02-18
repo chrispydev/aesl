@@ -405,8 +405,6 @@ class ProjectGalleryImageAdmin(admin.ModelAdmin):
                     "alt_text",
                     "category",
                     "is_active",
-                    "image_type",
-                    "image_type_link",
                     "related_project",
                 ),
             },

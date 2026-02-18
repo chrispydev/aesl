@@ -30,140 +30,42 @@
 </section>
 
 <section class="civic__culture-gallery">
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/1.jpg' %}"
-            alt="Residential project 1"
-            loading="lazy"
-        />
-    </figure>
+    {% if residential_images %}
+        {% for image in residential_images %}
+            <figure class="culture-card">
+                {% if image.related_project and image.related_project.slug %}
+                    <a href="{{ image.related_project.get_absolute_url }}" class="gallery-link">
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.alt_text|default:image.related_project.title|add:' project image' }}"
+                            loading="lazy"
+                        />
+                    </a>
+                {% else %}
+                    <img
+                        src="{{ image.image.url }}"
+                        alt="{{ image.alt_text|default:'industrial infrastructure related project image' }}"
+                        loading="lazy"
+                    />
+                {% endif %}
 
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/3.jpg' %}"
-            alt="Residential project 2"
-            loading="lazy"
-        />
-        <figcaption>Appiatse Redevelopment Scheme</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/3.jpg' %}"
-            alt="Residential project 3"
-            loading="lazy"
-        />
-    </figure>
-
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/8.jpg' %}"
-            alt="Residential project 8"
-            loading="lazy"
-        />
-        <figcaption>EOCO Banganlow</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/9.jpg' %}"
-            alt="Residential project 9"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/15.jpg' %}"
-            alt="Residential project 15"
-            loading="lazy"
-        />
-        <figcaption>Proposed Housing Unit for NDA, side view</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/16.jpg' %}"
-            alt="Residential project 16"
-            loading="lazy"
-        />
-        <figcaption>Proposed Housing Unit for NDA, Aerial view</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/18.jpg' %}"
-            alt="Residential project 18"
-            loading="lazy"
-        />
-        <figcaption>Proposed Housing Unit for NDA, Front view</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/19.jpg' %}"
-            alt="Residential project 19"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/20.jpg' %}"
-            alt="Residential project 20"
-            loading="lazy"
-        />
-        <figcaption>
-          Proposed - 3 Bedroom for Director, MDA
-        </figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/21.jpg' %}"
-            alt="Residential project 21"
-            loading="lazy"
-        />
-        <figcaption>
-          Proposed Housing
-        </figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/22.jpg' %}"
-            alt="Residential project 22"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/28.jpeg' %}"
-            alt="Residential project 28"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/29.jpeg' %}"
-            alt="Residential project 29"
-            loading="lazy"
-        />
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/residential/30.jpg' %}"
-            alt="Residential project 30"
-            loading="lazy"
-        />
-        <figcaption>
-          Saglemi Housing
-        </figcaption>
-    </figure>
+                <figcaption>
+                    {% if image.related_project and image.related_project.slug %}
+                        <a href="{{ image.related_project.get_absolute_url }}" class="project-title-link">
+                            {{ image.related_project.title }}
+                        </a>
+                    {% else %}
+                        {{ image.alt_text }}
+                    {% endif %}
+                </figcaption>
+            </figure>
+        {% endfor %}
+    {% else %}
+        <div class="no-content">
+            <p>No images available in the residential category at the moment.</p>
+            <p>Check back later or explore other categories.</p>
+        </div>
+    {% endif %}
 </section>
 
 <!-- page location Section -->

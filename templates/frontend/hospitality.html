@@ -26,24 +26,42 @@
 </section>
 
 <section class="civic__culture-gallery">
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/hospitality/2.jpg' %}"
-            alt="Hospitality project 2"
-            loading="lazy"
-        />
-        <figcaption>Proposed Guest Building For NDA</figcaption>
-    </figure>
+    {% if hospitality_images %}
+        {% for image in hospitality_images %}
+            <figure class="culture-card">
+                {% if image.related_project and image.related_project.slug %}
+                    <a href="{{ image.related_project.get_absolute_url }}" class="gallery-link">
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.alt_text|default:image.related_project.title|add:' project image' }}"
+                            loading="lazy"
+                        />
+                    </a>
+                {% else %}
+                    <img
+                        src="{{ image.image.url }}"
+                        alt="{{ image.alt_text|default:'industrial infrastructure related project image' }}"
+                        loading="lazy"
+                    />
+                {% endif %}
 
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/hospitality/4.jpg' %}"
-            alt="Hospitality project 3"
-            loading="lazy"
-        />
-        <figcaption>Proposed Building For NDA</figcaption>
-    </figure>
-
+                <figcaption>
+                    {% if image.related_project and image.related_project.slug %}
+                        <a href="{{ image.related_project.get_absolute_url }}" class="project-title-link">
+                            {{ image.related_project.title }}
+                        </a>
+                    {% else %}
+                        {{ image.alt_text|default:image.category|capfirst }}
+                    {% endif %}
+                </figcaption>
+            </figure>
+        {% endfor %}
+    {% else %}
+        <div class="no-content">
+            <p>No images available in the industrial infrastructure category at the moment.</p>
+            <p>Check back later or explore other categories.</p>
+        </div>
+    {% endif %}
 </section>
 
 <!-- page location Section -->

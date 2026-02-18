@@ -81,7 +81,7 @@ class Project(models.Model, ImageOptimizeMixin):
     location = models.CharField(max_length=300, default="Accra")
 
     picture = models.ImageField(
-        upload_to="projects/main_pictures/", blank=True, null=True
+        upload_to="projects/main_pictures/", blank=True, null=True, max_length=200
     )
 
     little_text_details = models.TextField()
@@ -196,21 +196,6 @@ class ProjectGalleryImage(models.Model):
         help_text="If this image belongs to one of your projects, link it here. Clicking the image will go to that project page.",
     )
 
-    image_type = models.CharField(
-        max_length=30,
-        verbose_name="Image Type",
-        help_text="main project image",
-        default="Main",
-        blank=True,
-    )
-
-    image_type_link = models.URLField(
-        max_length=350,
-        verbose_name="Image Type Link",
-        help_text="Link to the image type",
-        blank=True,
-    )
-
     category = models.CharField(
         max_length=100,
         verbose_name="Category",
@@ -224,7 +209,7 @@ class ProjectGalleryImage(models.Model):
         verbose_name="Image Alt Text",
         help_text="Descriptive text for accessibility and SEO (screen readers)",
         blank=True,
-        unique=True,
+        # unique=True,
     )
 
     # Optional useful fields (you can remove if not needed)

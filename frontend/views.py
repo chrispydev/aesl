@@ -311,7 +311,11 @@ class OfficeRetailView(View):
 
 class ResidentialView(View):
     def get(self, request):
-        context = {"title": "Residential"}
+        residential_images = ProjectGalleryImage.objects.filter(
+            category__iexact="residential",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+        context = {"title": "Residential", "residential_images": residential_images}
         return render(request, "frontend/residential.html", context)
 
 
@@ -330,7 +334,11 @@ class IndustrialInfrastructureView(View):
 
 class HospitalityView(View):
     def get(self, request):
-        context = {"title": "Hospitality"}
+        hospitality_images = ProjectGalleryImage.objects.filter(
+            category__iexact="hospitality",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+        context = {"title": "Hospitality", "hospitality_images": hospitality_images}
         return render(request, "frontend/hospitality.html", context)
 
 
