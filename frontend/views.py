@@ -344,13 +344,21 @@ class HospitalityView(View):
 
 class SportLesisureView(View):
     def get(self, request):
-        context = {"title": "Sport and Leisure"}
+        sports_images = ProjectGalleryImage.objects.filter(
+            category__iexact="sports",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+        context = {"title": "Sport and Leisure", "sport_images": sports_images}
         return render(request, "frontend/sport_leisure.html", context)
 
 
 class LandScapePlanningView(View):
     def get(self, request):
-        context = {"title": "Landscaping and Planning"}
+        land_images = ProjectGalleryImage.objects.filter(
+            category__iexact="land",
+            is_active=True,  # optional but recommended
+        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+        context = {"title": "Landscaping and Planning", "land_images": land_images}
         return render(request, "frontend/landscaping_planning.html", context)
 
 

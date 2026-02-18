@@ -30,80 +30,42 @@
 </section>
 
 <section class="civic__culture-gallery">
+    {% if land_images %}
+        {% for image in land_images %}
+            <figure class="culture-card">
+                {% if image.related_project and image.related_project.slug %}
+                    <a href="{{ image.related_project.get_absolute_url }}" class="gallery-link">
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.alt_text|default:image.related_project.title|add:' project image' }}"
+                            loading="lazy"
+                        />
+                    </a>
+                {% else %}
+                    <img
+                        src="{{ image.image.url }}"
+                        alt="{{ image.alt_text|default:'industrial infrastructure related project image' }}"
+                        loading="lazy"
+                    />
+                {% endif %}
 
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/2.jpg' %}"
-            alt="Landscape planning project 9"
-            loading="lazy"
-        />
-        <figcaption>Geotechnician on Site</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/9.jpg' %}"
-            alt="Landscape planning project 9"
-            loading="lazy"
-        />
-        <figcaption>Appiatse  Redevelopment(FormWork)</figcaption>
-    </figure>
-
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/12.jpg' %}"
-            alt="Landscape planning project 12"
-            loading="lazy"
-        />
-        <figcaption>Closed Up on Constration site</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/13.jpg' %}"
-            alt="Landscape planning project 13"
-            loading="lazy"
-        />
-        <figcaption>Appiatse Building and Street View</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/23.jpg' %}"
-            alt="Landscape planning project 23"
-            loading="lazy"
-        />
-        <figcaption>Works on Site</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/26.jpg' %}"
-            alt="Landscape planning project 26"
-            loading="lazy"
-        />
-        <figcaption>Appiatse  Redevelopment Scheme(Ariel View showing Site and Main Road)</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/34.jpg' %}"
-            alt="Landscape planning project 32"
-            loading="lazy"
-        />
-        <figcaption>Project Architect on Site With Team Membres</figcaption>
-    </figure>
-
-    <figure class="culture-card">
-        <img
-            src="{% static 'img/landscape-planning/36.jpg' %}"
-            alt="Landscape planning project 36"
-            loading="lazy"
-        />
-        <figcaption> Completed Appiatse Building</figcaption>
-    </figure>
-
+                <figcaption>
+                    {% if image.related_project and image.related_project.slug %}
+                        <a href="{{ image.related_project.get_absolute_url }}" class="project-title-link">
+                            {{ image.related_project.title }}
+                        </a>
+                    {% else %}
+                        {{ image.alt_text|default:image.category|capfirst }}
+                    {% endif %}
+                </figcaption>
+            </figure>
+        {% endfor %}
+    {% else %}
+        <div class="no-content">
+            <p>No images available in the industrial infrastructure category at the moment.</p>
+            <p>Check back later or explore other categories.</p>
+        </div>
+    {% endif %}
 </section>
 
 <!-- page location Section -->

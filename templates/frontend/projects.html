@@ -61,7 +61,7 @@
         <p class="projects__into truncate__multi">
             {{project.little_text_details}}
         </p>
-        <a class="read__more" href="{% url 'project_detail' project.pk %}"
+        <a class="read__more" href="{% url 'project_detail' project.slug %}"
             >Read More...</a
         >
         <div class="project__category">
