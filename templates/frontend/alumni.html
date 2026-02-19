@@ -1,8 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
-<section class="board__chairman">
-    <div class="projects__overlay"></div>
+<section class="alumni__wrapper" style="background-image: url('{{ alumni.project_image.url|default:'/static/img/default-bg.jpg' }}');">    <div class="projects__overlay"></div>
 </section>
 
 <section class="projects__caption">

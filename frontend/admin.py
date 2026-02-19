@@ -692,14 +692,7 @@ class Alumni(admin.ModelAdmin):
     fieldsets = (
         (
             "Basic Information",
-            {
-                "fields": (
-                    "name",
-                    "image",
-                    "thumbnail_large",
-                    "about",
-                )
-            },
+            {"fields": ("name", "image", "thumbnail_large", "about", "project_image")},
         ),
     )
 

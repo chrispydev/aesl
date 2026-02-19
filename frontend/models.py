@@ -557,26 +557,40 @@ class Branch(models.Model):
 
 class Alumni(models.Model, ImageOptimizeMixin):
     name = models.CharField(max_length=150)
-    image = models.ImageField(upload_to="board_members/", default="default.jpg")
+    image = models.ImageField(
+        upload_to="board_members/", default="default.jpg", verbose_name="Profile Photo"
+    )
+    project_image = models.ImageField(
+        upload_to="alumni_projects/",
+        blank=True,
+        null=True,
+        verbose_name="Project Image",
+    )
     about = models.TextField()
 
     # Changed: no auto_now_add, editable date field
     joined_at = models.DateTimeField(
         verbose_name="Joined Date",
-        help_text="Date this board member joined (used for ordering)",
+        help_text="Date this alumni joined (used for ordering)",
         blank=True,  # allow empty if you don't know yet
         null=True,
         db_index=True,  # faster sorting
     )
 
     class Meta:
-        ordering = ["-joined_at", "name"]  # newest joined first, then name
+        ordering = ["-joined_at", "name"]  # newest first, then name
         verbose_name = "Alumni"
-        verbose_name_plural = "Alumnis"
+        verbose_name_plural = "Alumni"  # corrected spelling (no 's' at the end)
 
     def save(self, *args, **kwargs):
+        # Optimize profile photo if present
         if self.image:
             self.optimize_image(self.image)
+
+        # Optimize project image if present
+        if self.project_image:
+            self.optimize_image(self.project_image)
+
         super().save(*args, **kwargs)
 
     def __str__(self):
