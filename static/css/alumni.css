@@ -1,0 +1,16 @@
+.alumn__wrapper {
+  margin: 1rem 2rem;
+}
+
+.alumni__name {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.alumni__about {
+  line-height: 1.6;
+  font-size: 1.1rem;
+  color: var(--primary-color);
+}

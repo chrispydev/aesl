@@ -53,14 +53,35 @@
             <div>
                 <h1 class="projects__title">Board Chairman Alumni</h1>
             </div>
-            <section id="dept-director" class="alumni__wrapper">
-              {% for image in alumni %}
-                <div class="board__head">
-                  <img src="{{ image.image.url }}" alt="" />
-                  <h3>{{ image.name }}</h3>
+        <section id="members" class="sector__board-wrapper">
+            {% for image in alumni %}
+            <div class="board-member-card">
+                <div class="board-member-header">
+                    <div class="board-member-photo">
+                        <img
+                            src="{{ image.image.url }}"
+                            alt="{{ image.name }}"
+                            loading="lazy"
+                        />
+                    </div>
+                    <h3 class="board-member-name">{{ image.name }}</h3>
                 </div>
-                {% endfor %}
-            </section>
+
+                <div class="board-member-footer">
+                    <div class="board-member-links">
+                        <a
+                            href="{% url 'alumni_detail' image.pk %}"
+                            class="link-btn"
+                        >
+                            Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No alumni members listed at the moment.</p>
+            {% endfor %}
+        </section>
         </section>
     </article>
 
