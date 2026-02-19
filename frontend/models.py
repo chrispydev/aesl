@@ -558,13 +558,20 @@ class Branch(models.Model):
 class Alumni(models.Model, ImageOptimizeMixin):
     name = models.CharField(max_length=150)
     image = models.ImageField(
-        upload_to="board_members/", default="default.jpg", verbose_name="Profile Photo"
+        upload_to="board_members/",
+        default="default.jpg",
+        verbose_name="Profile Photo",
+        max_length=300,
     )
     project_image = models.ImageField(
         upload_to="alumni_projects/",
         blank=True,
         null=True,
         verbose_name="Project Image",
+        max_length=300,
+    )
+    project_name = models.CharField(
+        max_length=255, blank=True, verbose_name="Project Name"
     )
     about = models.TextField()
 

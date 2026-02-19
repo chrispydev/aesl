@@ -23,6 +23,15 @@
   margin-bottom: 0.5rem;
 }
 
+.alumni__project-name {
+  background-color: var(--secondary-color);
+  color: #fff;
+  position: absolute;
+  bottom: -10px;
+  left: 20px;
+  padding: 0.5rem 1rem;
+}
+
 .alumni__about {
   line-height: 1.6;
   font-size: 1.1rem;
