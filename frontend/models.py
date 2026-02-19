@@ -367,7 +367,9 @@ class Publications(models.Model, ImageOptimizeMixin):
 # ==============================
 class BoardMember(models.Model, ImageOptimizeMixin):
     name = models.CharField(max_length=150)
-    image = models.ImageField(upload_to="board_members/", default="default.jpg")
+    image = models.ImageField(
+        upload_to="board_members/", default="default.jpg", max_length=300
+    )
     position = models.CharField(max_length=255, default="Board Member")
     about = models.TextField()
     linkedin = models.URLField(blank=True, null=True)
