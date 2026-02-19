@@ -22,6 +22,7 @@ from .models import (
     Publications,
     Staff,
     SubCategory,
+    Alumni,
 )
 
 
@@ -675,3 +676,55 @@ class BranchAdmin(admin.ModelAdmin):
         if obj.longitude is None:
             return "—"
         return str(obj.longitude)
+
+
+@admin.register(Alumni)
+class Alumni(admin.ModelAdmin):
+    list_display = (
+        "thumbnail_preview",
+        "name",
+        "joined_at",
+    )
+    list_editable = ("joined_at",)
+    list_display_links = ("name",)
+    search_fields = ("name", "about")
+
+    fieldsets = (
+        (
+            "Basic Information",
+            {
+                "fields": (
+                    "name",
+                    "image",
+                    "thumbnail_large",
+                    "about",
+                )
+            },
+        ),
+    )
+
+    readonly_fields = ("thumbnail_large",)
+
+    def thumbnail_preview(self, obj):
+        if obj.image and obj.image.url:
+            return format_html(
+                '<img src="{}" style="max-height: 60px; border-radius: 6px; object-fit: cover;">',
+                obj.image.url,
+            )
+        return format_html(
+            '<span style="color: #999; font-style: italic;">No image</span>'
+        )
+
+    thumbnail_preview.short_description = "Photo"
+
+    def thumbnail_large(self, obj):
+        if obj.image and obj.image.url:
+            return format_html(
+                '<img src="{}" style="max-height: 300px; max-width: 100%; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">',
+                obj.image.url,
+            )
+        return format_html(
+            '<p style="color: #666; font-style: italic;">No photo uploaded yet</p>'
+        )
+
+    thumbnail_large.short_description = "Photo Preview"

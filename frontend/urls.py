@@ -48,6 +48,7 @@ from frontend.views import (
     SportLesisureView,
     StaffDetailView,
     SupportTeamView,
+    AlumniDetailView,
 )
 
 urlpatterns = [
@@ -100,6 +101,7 @@ urlpatterns = [
         CorporateGovernaceView.as_view(),
         name="corporate_governance",
     ),
+    path("practice/<int:pk>", AlumniDetailView.as_view(), name="alumni_detail"),
     path(
         "practice/board-chairman/<int:pk>/",
         BoardMemberView.as_view(),

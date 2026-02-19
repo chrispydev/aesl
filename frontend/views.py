@@ -20,6 +20,7 @@ from frontend.models import (
     ProjectGalleryImage,
     Publications,
     Staff,
+    Alumni,
 )
 
 
@@ -123,8 +124,15 @@ class StaffDetailView(DetailView):
 
 class BoardChairmanView(View):
     def get(self, request):
-        context = {"title": "Board Chairman"}
+        alumni = Alumni.objects.all()
+        context = {"title": "Board Chairman", "alumni": alumni}
         return render(request, "frontend/board_chairman.html", context)
+
+
+class AlumniDetailView(DetailView):
+    model = Alumni
+    template_name = "frontend/alumni.html"
+    context_object_name = "alumni"
 
 
 class ManagingDirectorView(View):

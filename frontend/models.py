@@ -551,3 +551,34 @@ class Branch(models.Model):
 
     class Meta:
         verbose_name_plural = "Branches"
+
+
+class Alumni(models.Model, ImageOptimizeMixin):
+    name = models.CharField(max_length=150)
+    image = models.ImageField(upload_to="board_members/", default="default.jpg")
+    about = models.TextField()
+
+    # Changed: no auto_now_add, editable date field
+    joined_at = models.DateTimeField(
+        verbose_name="Joined Date",
+        help_text="Date this board member joined (used for ordering)",
+        blank=True,  # allow empty if you don't know yet
+        null=True,
+        db_index=True,  # faster sorting
+    )
+
+    class Meta:
+        ordering = ["-joined_at", "name"]  # newest joined first, then name
+        verbose_name = "Alumni"
+        verbose_name_plural = "Alumnis"
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.optimize_image(self.image)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("alumni_detail", args=[self.pk])

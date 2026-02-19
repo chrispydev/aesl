@@ -54,30 +54,12 @@
                 <h1 class="projects__title">Board Chairman Alumni</h1>
             </div>
             <section id="dept-director" class="alumni__wrapper">
+              {% for image in alumni %}
                 <div class="board__head">
-                    <img src="{% static 'img/alumni/1.jpg' %}" alt="" />
-                    <h3>ARC.-EBENEZER-LARYEA-AKITA</h3>
+                  <img src="{{ image.image.url }}" alt="" />
+                  <h3>{{ image.name }}</h3>
                 </div>
-                <div class="board__head">
-                    <img src="{% static 'img/alumni/2.jpg' %}" alt="" />
-                    <h3>ARC.ERNEST-BANNING</h3>
-                </div>
-                <div class="board__head">
-                    <img src="{% static 'img/alumni/3.jpg' %}" alt="" />
-                    <h3>ARC.-PROF.-JOHN-OWUSU-ADDO</h3>
-                </div>
-                <div class="board__head">
-                    <img src="{% static 'img/alumni/4.jpg' %}" alt="" />
-                    <h3>HON.-J.H-OWUSU-ACHEAMPONG</h3>
-                </div>
-                <div class="board__head">
-                    <img src="{% static 'img/alumni/5.jpg' %}" alt="" />
-                    <h3>SURV.-STEPHEN-KRAKUE</h3>
-                </div>
-                <div class="board__head">
-                    <img src="{% static 'img/alumni/6.jpg' %}" alt="" />
-                    <h3>ING.ARCH.-PATRICK-NII-ODOI-YEMOFIO</h3>
-                </div>
+                {% endfor %}
             </section>
         </section>
     </article>
