@@ -1,46 +1,46 @@
 .board__chairman {
-    position: relative;
-    height: 65vh;
-    background-image: url("../img/management-1.jpeg");
-    /* Replace with your image */
-    background-attachment: fixed;
-    background-position: bottom;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  height: 65vh;
+  background-image: url("../img/management-1.jpg");
+  /* Replace with your image */
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .chairman__info {
-    margin: 0 2rem;
+  margin: 0 2rem;
 }
 
 .chairman__info-content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
 }
 
 .board__head {
-    margin-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 
 .board__head img {
-    box-shadow: 3px 3px 4px 0 rgba(0, 0, 0, 0.2);
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  box-shadow: 3px 3px 4px 0 rgba(0, 0, 0, 0.2);
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .board__head h3 {
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .alumni__wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem;
 }
