@@ -28,7 +28,7 @@ class HomeView(View):
     def get(self, request):
         # Fetch all branches for the map
         branches = Branch.objects.all().values(
-            "name", "address", "latitude", "longitude", "phone", "email"
+            "name", "address", "latitude", "longitude", "phone", "telephone", "email"
         )
 
         # Convert to JSON-safe list for JavaScript

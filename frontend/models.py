@@ -545,6 +545,7 @@ class Branch(models.Model):
         null=True, blank=True, help_text="e.g., -0.1870 for Accra"
     )
     phone = models.CharField(max_length=20, blank=True)
+    telephone = models.CharField(max_length=20, blank=True)
     email = models.EmailField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

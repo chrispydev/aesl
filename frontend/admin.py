@@ -647,6 +647,7 @@ class BranchAdmin(admin.ModelAdmin):
                     "email",
                     "latitude",
                     "longitude",
+                    "telephone",
                 )
             },
         ),
