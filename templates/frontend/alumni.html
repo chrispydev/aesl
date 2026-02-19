@@ -2,13 +2,38 @@
 
 <!-- Main content -->
 <section class="board__chairman">
-  <div class="projects__overlay"></div>
+    <div class="projects__overlay"></div>
 </section>
 
-<div class="alumn__wrapper">
-  <h1 class="alumni__name">{{ alumni.name }}</h1>
-  <p class="alumni__about">{{alumni.about}}</p>
-</div>
+<section class="projects__caption">
+    <div>
+    <h1 class="projects__title-sub">{{ alumni.name }}</h1>
+    </div>
+</section>
 
+
+<section>
+    <!-- Projects Text -->
+    <section class="director__details">
+        <div class="">
+            {% if alumni.image %}
+            <img
+                src="{{ alumni.image.url }}"
+                alt="{{ alumni.name }}"
+                class="{{ alumni.name }}"
+            />
+            {% endif %}
+        </div>
+        <div class="director__text">
+            <p>~ {{ alumni.about }} ~</p>
+            <h4>{{ board_member.name }}</h4>
+            <button class="button">
+                <a href="{% url 'board_chairman' %}"
+                    >Back to Board Chairman</a
+                >
+            </button>
+        </div>
+    </section>
+</section>
 
 {% endblock content %}
