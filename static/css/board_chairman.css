@@ -1,7 +1,7 @@
 .board__chairman {
   position: relative;
-  height: 65vh;
-  background-image: url("../img/management-1.jpg");
+  height: 75vh;
+  background-image: url("../img/md_picture.jpg");
   /* Replace with your image */
   background-attachment: fixed;
   background-position: bottom;

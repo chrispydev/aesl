@@ -116,6 +116,14 @@ class ManagementView(View):
         return render(request, "frontend/management.html", context)
 
 
+class ManagementDetailView(View):
+    def get(self, request):
+        context = {
+            "title": "Managing Director",
+        }
+        return render(request, "frontend/director.html", context)
+
+
 class StaffDetailView(DetailView):
     model = Staff
     template_name = "frontend/staff_detail.html"

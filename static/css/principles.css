@@ -1,68 +1,68 @@
 .principles__parallax {
-    position: relative;
-    height: 40vh;
-    background-image: url("../img/principles.png");
-    /* Replace with your image */
-    background-attachment: fixed;
-    background-position: bottom;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  height: 60vh;
+  background-image: url("../img/principles.png");
+  /* Replace with your image */
+  background-attachment: fixed;
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .principles {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
-    margin: 2rem 2rem;
-    z-index: 100;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 2rem 2rem;
+  z-index: 100;
 }
 
 .placholder {
-    grid-column: span 3;
-    background-image: url("../img/principles.png");
-    color: #fff;
-    width: 100%;
-    height: 100%;
+  grid-column: span 3;
+  background-image: url("../img/principles.png");
+  color: #fff;
+  width: 100%;
+  height: 100%;
 }
 
 .principle {
-    margin: 1rem;
-    border-radius: 0.5rem;
-    padding: 1rem;
-    z-index: 100;
+  margin: 1rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  z-index: 100;
 }
 
 .principle__blue {
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
 .principle__red {
-    background-color: #006d77;
+  background-color: #006d77;
 }
 
 .principle h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    text-transform: uppercase;
+  font-size: 3rem;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .principle p {
-    line-height: 1.8rem;
+  line-height: 1.8rem;
 }
 
 .principle__card {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 /*vps server tricker*/
 .principle__card-red {
-    border: 1rem solid #006d77;
+  border: 1rem solid #006d77;
 }
 
 .principle__card-blue {
-    border: 1rem solid var(--primary-color);
+  border: 1rem solid var(--primary-color);
 }

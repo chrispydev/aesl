@@ -583,6 +583,13 @@
     grid-gap: 2rem;
   }
 
+
+  .alumni__project-name {
+    bottom: 2rem;
+    right: 1px;
+    padding: 0.5rem 1rem;
+  }
+
   .managing__director-history {
     display: grid;
     grid-template-columns: repeat(1, 1fr);

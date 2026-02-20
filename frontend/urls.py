@@ -20,6 +20,7 @@ from frontend.views import (
     HospitalityView,
     IndustrialInfrastructureView,
     LandScapePlanningView,
+    ManagementDetailView,
     ManagementView,
     ManagingDirectorView,
     MandateView,
@@ -124,6 +125,11 @@ urlpatterns = [
         "practice/management/managing-director/",
         ManagingDirectorView.as_view(),
         name="managing_director",
+    ),
+    path(
+        "practice/management/director/",
+        ManagementDetailView.as_view(),
+        name="director",
     ),
     path(
         "practice/management/deputy-managing-director/practice/management/managing-director/",

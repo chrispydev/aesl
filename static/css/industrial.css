@@ -1,13 +1,31 @@
 .industrial__parallax {
-    position: relative;
-    height: 65vh;
-    background-image: url("../img/industrial.jpeg");
-    /* Replace with your image */
-    background-attachment: fixed;
-    background-position: center bottom;
-    background-size: cover;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  position: relative;
+  height: 65vh;
+  background-image: url("../img/industrial.jpeg");
+  /* Replace with your image */
+  background-attachment: fixed;
+  background-position: center bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.industrial__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #A020F0;
+}
+
+
+.industrial__title {
+  font-size: 3rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  gap: 1rem;
+  justify-content: start;
+  align-items: center;
 }

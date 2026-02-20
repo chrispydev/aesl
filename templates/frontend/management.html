@@ -34,6 +34,7 @@
       <h4>Managing Director</h4>
     </div>
 
+    {% comment %}
     <!-- Director Divs -->
     <section id="management" class="director__wrapper">
       <div class="director__div ">
@@ -68,6 +69,7 @@
         <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
       </div>
     </section>
+    
 
     <section class="managing__director">
       <h3>Surv. Gordon Tanga (MD)</h3>
@@ -84,6 +86,36 @@
       <p>Nevertheless, number of initiatives were undertaken including the Company’s strategic decision to adopt building information modelling (BIM) for project delivery. This is not only to improve staff skills but also to ensure quality service delivery to our clients.</p>
       <p>Our major projects for the year including provision of administrative blocks and staff accommodation for the Six New Regions, the Foundry and numerical Tooling Centre, and the Renovation of Jubilee House and the national sports stadia have all been handled with great client satisfaction and continues to be landmark for the company.</p>
       <p>The conditions of service for our staff are improved to ensure a motivated staff. We want to maintain AESL‘s leadership in the industry and ensure that it a place where people aspire to be to help build places of enduring values.</p>
+    </section>
+    {% endcomment %}
+
+    <section class="board-card">
+        <!-- Left: Text Content -->
+        <div class="card-text">
+            <h2 class="board-name">Surv. Gordon Tanga (MD)</h2>
+
+            <div class="board-description">
+                <p class="truncate__multi-10 ">
+                  The achievement so far was against numerous odds and challenges that the construction industry encountered during the recent years.
+                  The weak growth in the global economy which significantly affected the Ghanaian economy, resulted in the Government of Ghana reducing expenditures, particularly in construction works throughout the country.
+                  Nevertheless, number of initiatives were undertaken including the Company’s strategic decision to adopt building information modelling (BIM) for project delivery. This is not only to improve staff skills but also to ensure quality service delivery to our clients.
+                  Our major projects for the year including provision of administrative blocks and staff accommodation for the Six New Regions, the Foundry and numerical Tooling Centre, and the Renovation of Jubilee House and the national sports stadia have all been handled with great client satisfaction and continues to be landmark for the company.
+                  The conditions of service for our staff are improved to ensure a motivated staff. We want to maintain AESL‘s leadership in the industry and ensure that it a place where people aspire to be to help build places of enduring values.
+      </p>
+
+                <!-- Buttons -->
+                <div class="card-buttons">
+                    <a href="{% url 'director' %}" class="btn"
+                        >Read More</a
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Photo -->
+        <div class="card-photo">
+        <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
+        </div>
     </section>
 
     <div id="director" class="sector__headline padding">
