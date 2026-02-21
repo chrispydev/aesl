@@ -191,7 +191,7 @@ a:active {
 /* Parallax Carousel Container */
 .parallax-carousel {
   position: relative;
-  height: 70vh;
+  height: 80vh;
   overflow: hidden;
 }
 
