@@ -120,5 +120,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     statsObserver.observe(statsBanner);
   }
+
+
+  // =========================
+  // SWIPER JS INITIALIZATION
+  const swiper = new Swiper('.swiper', {
+    loop: true,
+    autoplay: {
+      delay: 5000, // 5 seconds per slide
+      disableOnInteraction: false,
+    },
+    effect: 'fade', // smooth fade transition
+    fadeEffect: {
+      crossFade: true
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+  });
+
 });
 

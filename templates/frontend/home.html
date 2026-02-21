@@ -1,24 +1,69 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <!-- Main content -->
-<section class="parallax">
-    <div class="overlay"></div>
-    <div class="content">
-        <h1>Architectural And Engineering Services Limited</h1>
-        <p>
-            Architectural and Engineering Services Limited (AESL) is a
-            practicing and a multidisciplinary firm that provides comprehensive
-            Architectural and Engineering solutions for public and sector
-            clients in the construction industry.
-        </p>
-        <div class="buttons">
-            <button class="button button__background">
+<section class="parallax-carousel">
+    <!-- Swiper container -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide" style="background-image: url('{% static 'img/carousel/carousel-1.jpeg' %}');">
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Architectural, Engineering and Surveying Services Limited</h1>
+            <p>
+              Architectural, Engineering and Surveying Services Limited (AESL) is a practicing and multidisciplinary firm that provides comprehensive architectural, engineering and surveying solutions for public and private sector clients in the construction industry.
+            </p>
+            <div class="buttons">
+              <button class="button button__background">
                 <a href="{% url 'practice' %}">Read More</a>
-            </button>
-            <button class="button">
-                <a href="{% url 'practice' %}">Contact Us </a>
-            </button>
+              </button>
+              <button class="button">
+                <a href="{% url 'practice' %}">Contact Us</a>
+              </button>
+            </div>
+          </div>
         </div>
+
+        <div class="swiper-slide" style="background-image: url('{% static 'img/carousel/carousel-2.jpg' %}');">
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Architectural, Engineering and Surveying Services Limited</h1>
+            <p>
+              Architectural, Engineering and Surveying Services Limited (AESL) is a practicing and multidisciplinary firm that provides comprehensive architectural, engineering and surveying solutions for public and private sector clients in the construction industry.
+            </p>
+            <div class="buttons">
+              <button class="button button__background">
+                <a href="{% url 'practice' %}">Read More</a>
+              </button>
+              <button class="button">
+                <a href="{% url 'practice' %}">Contact Us</a>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide" style="background-image: url('{% static 'img/carousel/carousel-3.webp' %}');">
+          <div class="overlay"></div>
+          <div class="content">
+            <h1>Architectural, Engineering and Surveying Services Limited</h1>
+            <p>
+              Architectural, Engineering and Surveying Services Limited (AESL) is a practicing and multidisciplinary firm that provides comprehensive architectural, engineering and surveying solutions for public and private sector clients in the construction industry.
+            </p>
+            <div class="buttons">
+              <button class="button button__background">
+                <a href="{% url 'practice' %}">Read More</a>
+              </button>
+              <button class="button">
+                <a href="{% url 'practice' %}">Contact Us</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional pagination dots -->
+      <div class="swiper-pagination"></div>
+
     </div>
+
 </section>
 
 <!-- Info Section -->

@@ -188,22 +188,27 @@ a:active {
 }
 
 /* home layout*/
-/* Parallax container */
-.parallax {
+/* Parallax Carousel Container */
+.parallax-carousel {
   position: relative;
-  height: 90vh;
-  background-image: url("../img/paralax_home.jpg");
-  /* Replace with your image */
-  background-attachment: fixed;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 70vh;
+  overflow: hidden;
 }
 
-/* Dark overlay */
+/* Swiper full size */
+.parallax-carousel .swiper {
+  width: 100%;
+  height: 100%;
+}
+
+/* Each slide fills the container */
+.parallax-carousel .swiper-slide {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay (dark layer) */
 .overlay {
   position: absolute;
   top: 0;
@@ -211,29 +216,46 @@ a:active {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
-  /* Slight darken */
+  z-index: 1;
 }
 
-/* Text content */
-.parallax .content {
-  position: relative;
+/* Content on top */
+.content {
+  position: absolute;
+  bottom: 2rem;
   color: white;
+  text-align: center;
   padding: 1rem;
-  z-index: 2;
+  margin: 0 auto;
+  z-index: 99999;
 }
 
-.parallax .content h1 {
+.content h1 {
   font-size: 3rem;
-  margin: 0;
+  margin: 0 0 1rem;
 }
 
-.parallax .content p {
+.content p {
   font-size: 1.1rem;
-  margin-top: 10px;
+  margin-bottom: 2rem;
 }
 
-.buttons>* {
-  margin-right: 1rem;
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+/* Optional: pagination style */
+.swiper-pagination-bullet {
+  background: white;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background: #fff;
+  opacity: 1;
 }
 
 .info {
@@ -242,6 +264,8 @@ a:active {
   grid-template-columns: repeat(3, 1fr);
   padding: 2rem;
 }
+
+
 
 /* Dark overlay */
 .image__overlay {
