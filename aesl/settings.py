@@ -22,6 +22,7 @@ ALLOWED_HOSTS = [
     "www.dogmasterventures.com",
     "127.0.0.1",
     "localhost",
+    ".vercel.app",
 ]
 
 
