@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# Exit on error
 set -e
 
-# Install dependencies (Vercel already does pip install -r requirements.txt, but we ensure)
+echo "Installing dependencies..."
+pip install --upgrade pip
 pip install -r requirements.txt
 
-# Collect static files
-python manage.py collectstatic --noinput
+echo "Collecting static files..."
+python manage.py collectstatic --noinput --clear
+
+echo "Build complete!"
