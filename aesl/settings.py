@@ -10,14 +10,7 @@ SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    ".vercel.app",  # ← Covers all preview & production Vercel domains
-    "209.74.89.39",  # If still needed for direct IP access
-    "dogmasterventures.com",
-    "www.dogmasterventures.com",
-]
+ALLOWED_HOSTS = ["aesl.onrender.com"]
 
 # Application definition
 INSTALLED_APPS = [
