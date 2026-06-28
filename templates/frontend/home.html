@@ -356,8 +356,8 @@
     // Start fitted exactly to Ghana
     map.fitBounds(ghanaStrictBounds);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; OpenStreetMap contributors & CARTO'
     }).addTo(map);
 
     const markers = [];
@@ -369,8 +369,7 @@
             if (ghanaStrictBounds.contains(latLng)) {
 
                 // Use RED marker for Head Office / Accra, blue for others
-                const icon = (branch.name.toLowerCase().includes("head office") || 
-                              branch.name.toLowerCase().includes("accra")) 
+                const icon = (branch.name.toLowerCase().includes("head office")) 
                               ? branchIconRed : branchIconBlue;
 
                 const marker = L.marker(latLng, {icon: icon}).addTo(map);
