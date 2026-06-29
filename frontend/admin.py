@@ -62,6 +62,8 @@ class ProjectAdmin(admin.ModelAdmin):
         "title",
         "slug",  # ← added: shows slug in list view
         "client",
+        "longitude",
+        "latitude",
         "location",
         "category",
         "formatted_start_date",
@@ -98,6 +100,9 @@ class ProjectAdmin(admin.ModelAdmin):
                 "fields": (
                     "title",
                     "slug",  # ← added here
+
+                    "latitude",
+                    "longitude",
                     "client",
                     "location",
                     "category",
@@ -233,7 +238,12 @@ class PeopleAdmin(admin.ModelAdmin):
 class PublicationsInline(admin.TabularInline):
     model = Publications
     extra = 1
-    fields = ("title", "type", "author", "download", "publication_image_preview")
+    fields = (
+        "title",
+        "type",
+        "author",
+        "download",
+        "publication_image_preview")
     readonly_fields = ("publication_image_preview",)
 
     def publication_image_preview(self, obj):
@@ -440,7 +450,8 @@ class ProjectGalleryImageAdmin(admin.ModelAdmin):
     thumbnail_preview.short_description = "Image Preview"
 
     def alt_text_short(self, obj):
-        return obj.alt_text[:60] + "..." if len(obj.alt_text) > 60 else obj.alt_text
+        return obj.alt_text[:60] + \
+            "..." if len(obj.alt_text) > 60 else obj.alt_text
 
     alt_text_short.short_description = "Alt Text"
 
@@ -473,9 +484,12 @@ class CategoryAdmin(admin.ModelAdmin):
     ordering = ("name",)
 
     fieldsets = (
-        (None, {"fields": ("name", "slug", "description", "is_active")}),
-        (("Timestamps"), {"fields": ("created_at",), "classes": ("collapse",)}),
-    )
+        (None, {
+            "fields": (
+                "name", "slug", "description", "is_active")}), (("Timestamps"), {
+                    "fields": (
+                        "created_at",), "classes": (
+                        "collapse",)}), )
     readonly_fields = ("created_at",)
 
     def article_count(self, obj):
@@ -664,7 +678,8 @@ class BranchAdmin(admin.ModelAdmin):
     def address_short(self, obj):
         if not obj.address:
             return "—"
-        return obj.address[:60] + "..." if len(obj.address) > 60 else obj.address
+        return obj.address[:60] + \
+            "..." if len(obj.address) > 60 else obj.address
 
     @admin.display(description="Latitude")
     def latitude_display(self, obj):

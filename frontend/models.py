@@ -33,7 +33,11 @@ class ImageOptimizeMixin:
         buffer = BytesIO()
 
         if ext in [".jpg", ".jpeg"]:
-            img.save(buffer, format="JPEG", quality=self.IMAGE_QUALITY, optimize=True)
+            img.save(
+                buffer,
+                format="JPEG",
+                quality=self.IMAGE_QUALITY,
+                optimize=True)
         elif ext == ".png":
             img.save(buffer, format="PNG", optimize=True)
         elif ext == ".webp":
@@ -42,7 +46,11 @@ class ImageOptimizeMixin:
             img.save(buffer)
 
         buffer.seek(0)
-        image_field.save(image_field.name, ContentFile(buffer.read()), save=False)
+        image_field.save(
+            image_field.name,
+            ContentFile(
+                buffer.read()),
+            save=False)
 
 
 # ==============================
@@ -81,13 +89,25 @@ class Project(models.Model, ImageOptimizeMixin):
     location = models.CharField(max_length=300, default="Accra")
 
     picture = models.ImageField(
-        upload_to="projects/main_pictures/", blank=True, null=True, max_length=200
+        upload_to="projects/main_pictures/",
+        blank=True,
+        null=True,
+        max_length=300)
+
+    latitude = models.FloatField(
+        null=True,  # ← allow database NULL
+        blank=True,  # ← allow blank in forms/admin
+        help_text="e.g., 5.6037 for Accra",
+    )
+    longitude = models.FloatField(
+        null=True, blank=True, help_text="e.g., -0.1870 for Accra"
     )
 
     little_text_details = models.TextField()
     project_coordinator = models.CharField(max_length=150)
 
-    project_leaders = models.ManyToManyField(ProjectLeader, related_name="projects")
+    project_leaders = models.ManyToManyField(
+        ProjectLeader, related_name="projects")
     other_team_members = models.ManyToManyField(
         ProjectTeamMember, related_name="projects", blank=True
     )
@@ -100,8 +120,10 @@ class Project(models.Model, ImageOptimizeMixin):
     certificate = models.CharField(max_length=300, blank=True)
 
     category = models.ForeignKey(
-        ProjectCategory, on_delete=models.SET_NULL, null=True, related_name="projects"
-    )
+        ProjectCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="projects")
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -119,7 +141,9 @@ class Project(models.Model, ImageOptimizeMixin):
             # Optional: make unique if duplicate titles exist
             base_slug = self.slug
             counter = 1
-            while Project.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
+            while Project.objects.filter(
+                    slug=self.slug).exclude(
+                    pk=self.pk).exists():
                 self.slug = f"{base_slug}-{counter}"
                 counter += 1
         if self.picture:
@@ -213,7 +237,8 @@ class ProjectGalleryImage(models.Model):
     )
 
     # Optional useful fields (you can remove if not needed)
-    uploaded_at = models.DateTimeField(auto_now_add=True, verbose_name="Upload Date")
+    uploaded_at = models.DateTimeField(
+        auto_now_add=True, verbose_name="Upload Date")
     is_active = models.BooleanField(
         default=True,
         verbose_name="Visible",
@@ -259,8 +284,9 @@ class ProjectContractor(models.Model):
         Project, on_delete=models.CASCADE, related_name="contractors"
     )
     role = models.ForeignKey(
-        ContractorRole, on_delete=models.PROTECT, related_name="project_contractors"
-    )
+        ContractorRole,
+        on_delete=models.PROTECT,
+        related_name="project_contractors")
     company_name = models.CharField(max_length=200)
 
     class Meta:
@@ -323,7 +349,8 @@ class Staff(models.Model, ImageOptimizeMixin):
 # ==============================
 class People(models.Model, ImageOptimizeMixin):
     name = models.CharField(max_length=255)
-    profile_picture = models.ImageField(upload_to="people/", blank=True, null=True)
+    profile_picture = models.ImageField(
+        upload_to="people/", blank=True, null=True)
     position = models.CharField(max_length=100, default="position", blank=True)
     category = models.CharField(max_length=100, default="category")
     department = models.CharField(max_length=100, blank=True)
@@ -348,7 +375,10 @@ class Publications(models.Model, ImageOptimizeMixin):
     title = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    download = models.FileField(upload_to="publications/", blank=True, null=True)
+    download = models.FileField(
+        upload_to="publications/",
+        blank=True,
+        null=True)
     publication_image = models.ImageField(
         upload_to="publications/images/", blank=True, null=True
     )
@@ -588,7 +618,8 @@ class Alumni(models.Model, ImageOptimizeMixin):
     class Meta:
         ordering = ["-joined_at", "name"]  # newest first, then name
         verbose_name = "Alumni"
-        verbose_name_plural = "Alumni"  # corrected spelling (no 's' at the end)
+        # corrected spelling (no 's' at the end)
+        verbose_name_plural = "Alumni"
 
     def save(self, *args, **kwargs):
         # Optimize profile photo if present

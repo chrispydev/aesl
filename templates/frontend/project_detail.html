@@ -255,6 +255,98 @@
     </div>
   </section>
 
+<section>
+  <div class="container my-5">
+      <h1 class="mb-4 font-black">Project Location</h1>
+
+          <div class="mb-4 mb-lg-0">
+              <div id="branch-map" style="height: 550px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);"></div>
+          </div>
+  </div>
+</section>
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Font Awesome (for icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+      // Current project
+      const project = {
+          title: "{{ project.title|escapejs }}",
+          location: "{{ project.location|escapejs }}",
+          latitude: {{ project.latitude|default:"null" }},
+          longitude: {{ project.longitude|default:"null" }}
+      };
+
+
+      // Ghana bounds
+      const ghanaStrictBounds = L.latLngBounds(
+          [4.74, -3.25],
+          [11.17, 0.99]
+      );
+
+      // Red marker
+      const projectIcon = L.icon({
+          iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+          iconSize: [25, 41],
+          iconAnchor: [12, 41],
+          popupAnchor: [1, -34],
+          shadowSize: [41, 41]
+      });
+
+      // Create map
+      const map = L.map('branch-map', {
+          scrollWheelZoom: false,
+          maxBounds: ghanaStrictBounds,
+          maxBoundsViscosity: 1.0,
+          minZoom: 6,
+          maxZoom: 18
+      });
+
+      // Tile layer
+      L.tileLayer(
+          'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+          {
+              attribution: '&copy; OpenStreetMap &copy; CARTO',
+              maxZoom: 20
+          }
+      ).addTo(map);
+
+      // Add project marker
+      if (project.latitude !== null && project.longitude !== null) {
+
+          const marker = L.marker(
+              [project.latitude, project.longitude],
+              { icon: projectIcon }
+          ).addTo(map);
+
+          marker.bindPopup(`
+              <strong>${project.title}</strong><br>
+              ${project.location}<br><br>
+              <strong>Latitude:</strong> ${project.latitude}<br>
+              <strong>Longitude:</strong> ${project.longitude}
+          `).openPopup();
+
+          // Zoom to project
+          map.setView([project.latitude, project.longitude], 15);
+
+      } else {
+
+          // No coordinates
+          map.fitBounds(ghanaStrictBounds);
+
+          L.popup()
+              .setLatLng([7.9465, -1.0232])
+              .setContent("No coordinates have been set for this project.")
+              .openOn(map);
+      }
+  </script>
+
+
   <!-- page location Section -->
   <section class="page__location">
     <div class="page__flex">
