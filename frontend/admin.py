@@ -18,12 +18,65 @@ from .models import (
     ProjectGalleryImage,
     ProjectImage,
     ProjectLeader,
+    ProjectLocation,
     ProjectTeamMember,
     Publications,
     Staff,
     SubCategory,
     Alumni,
 )
+
+
+# ==================================================
+# PROJECT ADMIN LOCATION  ==================================================
+class ProjectLocationInline(admin.TabularInline):
+    model = ProjectLocation
+    extra = 1
+
+
+@admin.register(ProjectLocation)
+class ProjectLocationAdmin(admin.ModelAdmin):
+    list_display = (
+        "project",
+        "region",
+        "latitude_display",
+        "longitude_display",
+        "created_at",
+    )
+
+    list_filter = ("project",)
+    search_fields = ("project__title",)
+
+    fieldsets = (
+        (
+            "Project Info",
+            {
+                "fields": (
+                    "project",
+                    "region",
+                    "latitude",
+                    "longitude",
+                )
+            },
+        ),
+        (
+            "Metadata",
+            {
+                "fields": ("created_at",),
+                "classes": ("collapse",),
+            },
+        ),
+    )
+
+    readonly_fields = ("created_at",)
+
+    @admin.display(description="Latitude")
+    def latitude_display(self, obj):
+        return obj.latitude if obj.latitude is not None else "—"
+
+    @admin.display(description="Longitude")
+    def longitude_display(self, obj):
+        return obj.longitude if obj.longitude is not None else "—"
 
 
 # ==================================================
@@ -62,8 +115,6 @@ class ProjectAdmin(admin.ModelAdmin):
         "title",
         "slug",  # ← added: shows slug in list view
         "client",
-        "longitude",
-        "latitude",
         "location",
         "category",
         "formatted_start_date",
@@ -87,6 +138,7 @@ class ProjectAdmin(admin.ModelAdmin):
         ProjectImageInline,
         ProjectAwardInline,
         ProjectContractorInline,
+        ProjectLocationInline,
     ]
 
     # Auto-populate slug from title (very useful when creating projects)
@@ -100,9 +152,6 @@ class ProjectAdmin(admin.ModelAdmin):
                 "fields": (
                     "title",
                     "slug",  # ← added here
-
-                    "latitude",
-                    "longitude",
                     "client",
                     "location",
                     "category",

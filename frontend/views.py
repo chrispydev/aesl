@@ -27,14 +27,14 @@ from frontend.models import (
 class HomeView(View):
     def get(self, request):
         # Fetch all branches for the map
-        branches = Branch.objects.all().values(
-            "name", "address", "latitude", "longitude", "phone", "telephone", "email"
-        )
+        branches = Branch.objects.all().values("name", "address", "latitude",
+                                               "longitude", "phone", "telephone", "email")
 
         # Convert to JSON-safe list for JavaScript
         branches_json = json.dumps(list(branches))
 
-        # Default center (e.g. Accra) and zoom – will be overridden by fitBounds if branches exist
+        # Default center (e.g. Accra) and zoom – will be overridden by
+        # fitBounds if branches exist
         default_center = [5.6037, -0.1870]  # Accra coordinates
         default_zoom = 8
 
@@ -57,24 +57,43 @@ class ProjectView(View):
 class ProjectDetailView(DetailView):
     model = Project
     template_name = "frontend/project_detail.html"
-    context_object_name = "project"  # Default is 'object', but we can use 'project'
-
-    slug_field = "slug"  # ← add this
+    context_object_name = "project"
+    slug_field = "slug"
     slug_url_kwarg = "slug"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         project = self.get_object()
 
-        # Separate gallery images
-        context["project_pictures"] = project.gallery.filter(image_type="project")
+        # =========================
+        # GALLERY
+        # =========================
+        context["project_pictures"] = project.gallery.filter(
+            image_type="project")
         context["construction_pictures"] = project.gallery.filter(
-            image_type="construction"
-        )
+            image_type="construction")
         context["project_3d_visualization_picture"] = project.gallery.filter(
             image_type="project_3d_visualizations"
         )
-        # current page location
+
+        # =========================
+        # PROJECT LOCATIONS
+        # =========================
+        locations = project.locations.all()
+
+        context["project_locations"] = locations
+
+        # JSON for Leaflet
+        context["project_locations_json"] = json.dumps([
+            {
+                "lat": loc.latitude,
+                "lng": loc.longitude,
+                "created_at": loc.created_at.strftime("%Y-%m-%d"),
+            }
+            for loc in locations
+            if loc.latitude is not None and loc.longitude is not None
+        ])
+
         context["title"] = "Projects"
 
         return context
@@ -95,7 +114,9 @@ class SectorMinistryView(View):
 class CorporateGovernaceView(View):
     def get(self, request):
         board_members = BoardMember.objects.order_by("-joined_at")
-        context = {"title": "Corporate Governance", "board_members": board_members}
+        context = {
+            "title": "Corporate Governance",
+            "board_members": board_members}
         return render(request, "frontend/corporate_governance.html", context)
 
 
@@ -107,7 +128,8 @@ class BoardMemberView(DetailView):
 
 class ManagementView(View):
     def get(self, request):
-        categories = MainCategory.objects.prefetch_related("sub_categories__staff")
+        categories = MainCategory.objects.prefetch_related(
+            "sub_categories__staff")
 
         context = {
             "title": "Management",
@@ -152,13 +174,19 @@ class ManagingDirectorView(View):
 class DeputyManagingDirectorView(View):
     def get(self, request):
         context = {"title": "Deputy Managing Director"}
-        return render(request, "frontend/deputy_managing_director.html", context)
+        return render(
+            request,
+            "frontend/deputy_managing_director.html",
+            context)
 
 
 class DeputyIIManagingDirectorView(View):
     def get(self, request):
         context = {"title": "Deputy Managing Director"}
-        return render(request, "frontend/deputy_ii_managing_director.html", context)
+        return render(
+            request,
+            "frontend/deputy_ii_managing_director.html",
+            context)
 
 
 class EngineeringView(View):
@@ -232,7 +260,9 @@ class ConsultantsView(View):
 class SeniorProfessionalView(View):
     def get(self, request):
         senior_professionals = People.objects.all()
-        context = {"title": "People", "senior_professionals": senior_professionals}
+        context = {
+            "title": "People",
+            "senior_professionals": senior_professionals}
         return render(request, "frontend/senior_professional.html", context)
 
 
@@ -279,7 +309,8 @@ class CivicCultureView(View):
         civic_culture_images = ProjectGalleryImage.objects.filter(
             category__iexact="civic",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
         context = {
             "title": "Civic and Culture",
             "civic_culture_images": civic_culture_images,
@@ -292,7 +323,8 @@ class EducationView(View):
         education_images = ProjectGalleryImage.objects.filter(
             category__iexact="education",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
 
         context = {
             "title": "Education",
@@ -306,7 +338,8 @@ class HealthView(View):
         health_images = ProjectGalleryImage.objects.filter(
             category__iexact="health",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
 
         context = {"title": "Health", "health_images": health_images}
         return render(request, "frontend/health.html", context)
@@ -317,7 +350,8 @@ class OfficeRetailView(View):
         office_retail_images = ProjectGalleryImage.objects.filter(
             category__iexact="office",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
         context = {
             "title": "Office Retail",
             "office_retail_images": office_retail_images,
@@ -330,8 +364,11 @@ class ResidentialView(View):
         residential_images = ProjectGalleryImage.objects.filter(
             category__iexact="residential",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
-        context = {"title": "Residential", "residential_images": residential_images}
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
+        context = {
+            "title": "Residential",
+            "residential_images": residential_images}
         return render(request, "frontend/residential.html", context)
 
 
@@ -340,12 +377,16 @@ class IndustrialInfrastructureView(View):
         industrial_images = ProjectGalleryImage.objects.filter(
             category__iexact="industrial",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
         context = {
             "title": "Industrial Infrastructure",
             "industrial_images": industrial_images,
         }
-        return render(request, "frontend/industrial_infrastructure.html", context)
+        return render(
+            request,
+            "frontend/industrial_infrastructure.html",
+            context)
 
 
 class HospitalityView(View):
@@ -353,8 +394,11 @@ class HospitalityView(View):
         hospitality_images = ProjectGalleryImage.objects.filter(
             category__iexact="hospitality",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
-        context = {"title": "Hospitality", "hospitality_images": hospitality_images}
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
+        context = {
+            "title": "Hospitality",
+            "hospitality_images": hospitality_images}
         return render(request, "frontend/hospitality.html", context)
 
 
@@ -363,7 +407,8 @@ class SportLesisureView(View):
         sports_images = ProjectGalleryImage.objects.filter(
             category__iexact="sports",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
         context = {"title": "Sport and Leisure", "sport_images": sports_images}
         return render(request, "frontend/sport_leisure.html", context)
 
@@ -373,8 +418,11 @@ class LandScapePlanningView(View):
         land_images = ProjectGalleryImage.objects.filter(
             category__iexact="land",
             is_active=True,  # optional but recommended
-        ).order_by("-uploaded_at")  # newest first, or change ordering as you like
-        context = {"title": "Landscaping and Planning", "land_images": land_images}
+            # newest first, or change ordering as you like
+        ).order_by("-uploaded_at")
+        context = {
+            "title": "Landscaping and Planning",
+            "land_images": land_images}
         return render(request, "frontend/landscaping_planning.html", context)
 
 

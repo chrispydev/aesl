@@ -94,15 +94,6 @@ class Project(models.Model, ImageOptimizeMixin):
         null=True,
         max_length=300)
 
-    latitude = models.FloatField(
-        null=True,  # ← allow database NULL
-        blank=True,  # ← allow blank in forms/admin
-        help_text="e.g., 5.6037 for Accra",
-    )
-    longitude = models.FloatField(
-        null=True, blank=True, help_text="e.g., -0.1870 for Accra"
-    )
-
     little_text_details = models.TextField()
     project_coordinator = models.CharField(max_length=150)
 
@@ -155,6 +146,37 @@ class Project(models.Model, ImageOptimizeMixin):
 
     def __str__(self):
         return self.title
+
+
+class ProjectLocation(models.Model):
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        related_name="locations",
+        null=True,
+        blank=True
+    )
+
+    region = models.CharField(max_length=200, null=True, blank=True)
+
+    latitude = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="e.g., 5.6037 for Accra",
+    )
+    longitude = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="e.g., -0.1870 for Accra"
+    )
+
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.project.title} ({self.latitude}, {self.longitude})"
+
+    class Meta:
+        verbose_name_plural = "Project Locations"
 
 
 class ProjectAward(models.Model):

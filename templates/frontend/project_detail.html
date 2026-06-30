@@ -273,77 +273,75 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <script>
-      // Current project
-      const project = {
-          title: "{{ project.title|escapejs }}",
-          location: "{{ project.location|escapejs }}",
-          latitude: {{ project.latitude|default:"null" }},
-          longitude: {{ project.longitude|default:"null" }}
-      };
+const projectLocations = {{ project_locations_json|safe }};
 
+// Ghana bounds
+const ghanaStrictBounds = L.latLngBounds(
+    [4.74, -3.25],
+    [11.17, 0.99]
+);
 
-      // Ghana bounds
-      const ghanaStrictBounds = L.latLngBounds(
-          [4.74, -3.25],
-          [11.17, 0.99]
-      );
+// Map
+const map = L.map('branch-map', {
+    scrollWheelZoom: false,
+    maxBounds: ghanaStrictBounds,
+    maxBoundsViscosity: 1.0,
+    minZoom: 6,
+    maxZoom: 18
+});
 
-      // Red marker
-      const projectIcon = L.icon({
-          iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-          shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-          iconSize: [25, 41],
-          iconAnchor: [12, 41],
-          popupAnchor: [1, -34],
-          shadowSize: [41, 41]
-      });
+L.tileLayer(
+    'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
+    {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        maxZoom: 20
+    }
+).addTo(map);
 
-      // Create map
-      const map = L.map('branch-map', {
-          scrollWheelZoom: false,
-          maxBounds: ghanaStrictBounds,
-          maxBoundsViscosity: 1.0,
-          minZoom: 6,
-          maxZoom: 18
-      });
+// Red icon
+const projectIcon = L.icon({
+    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+});
 
-      // Tile layer
-      L.tileLayer(
-          'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-          {
-              attribution: '&copy; OpenStreetMap &copy; CARTO',
-              maxZoom: 20
-          }
-      ).addTo(map);
+// Add all project locations
+if (projectLocations.length > 0) {
 
-      // Add project marker
-      if (project.latitude !== null && project.longitude !== null) {
+    const bounds = [];
 
-          const marker = L.marker(
-              [project.latitude, project.longitude],
-              { icon: projectIcon }
-          ).addTo(map);
+    projectLocations.forEach(loc => {
+        if (loc.lat && loc.lng) {
 
-          marker.bindPopup(`
-              <strong>${project.title}</strong><br>
-              ${project.location}<br><br>
-              <strong>Latitude:</strong> ${project.latitude}<br>
-              <strong>Longitude:</strong> ${project.longitude}
-          `).openPopup();
+            const marker = L.marker([loc.lat, loc.lng], {
+                icon: projectIcon
+            }).addTo(map);
 
-          // Zoom to project
-          map.setView([project.latitude, project.longitude], 15);
+            marker.bindPopup(`
+                <strong>${loc.created_at}</strong><br>
+                Latitude: ${loc.lat}<br>
+                Longitude: ${loc.lng}
+            `);
 
-      } else {
+            bounds.push([loc.lat, loc.lng]);
+        }
+    });
 
-          // No coordinates
-          map.fitBounds(ghanaStrictBounds);
+    if (bounds.length > 0) {
+        map.fitBounds(bounds);
+    }
 
-          L.popup()
-              .setLatLng([7.9465, -1.0232])
-              .setContent("No coordinates have been set for this project.")
-              .openOn(map);
-      }
+} else {
+    map.fitBounds(ghanaStrictBounds);
+
+    L.popup()
+        .setLatLng([7.9465, -1.0232])
+        .setContent("No project locations available.")
+        .openOn(map);
+}
   </script>
 
 
