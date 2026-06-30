@@ -27,11 +27,13 @@
         <div class="director__text">
             <p>~ {{ alumni.about }} ~</p>
             <h4>{{ board_member.name }}</h4>
-            <button class="button">
-                <a href="{% url 'board_chairman' %}"
-                    >Back to Board Chairman</a
+
+            <a href="{% url 'board_chairman' %}">
+              <button class="button">
+                    Back to Board Chairman
+              </button>
+            </a
                 >
-            </button>
         </div>
     </section>
 </section>
