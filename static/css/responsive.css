@@ -204,7 +204,7 @@
   }
 }
 
-/* Tablet phones */
+/* mobile phones */
 @media (max-width: 480px) {
   .mobile__menuoverlay {
     width: 80%;
@@ -495,6 +495,7 @@
   /*services*/
 
   .service__cards {
+    display: grid;
     grid-template-columns: repeat(1, 1fr);
     gap: 1rem;
   }
