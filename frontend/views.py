@@ -22,6 +22,12 @@ from frontend.models import (
     Staff,
     Alumni,
 )
+from django.db.models import Q
+from django.urls import reverse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+from frontend.models import People, Project, ProjectGalleryImage
 
 
 class HomeView(View):
@@ -239,20 +245,27 @@ class PeopleView(View):
 
 class PrincipalConsultantsView(View):
     def get(self, request):
-        context = {"title": "People"}
+        people = People.objects.all()
+        principal_consultants = people.filter(
+            rank__iexact="principal_consultants")
+        context = {
+            "title": "People",
+            "principal_consultants": principal_consultants}
         return render(request, "frontend/principal__consultants.html", context)
 
 
 class SeniorConsultantsView(View):
     def get(self, request):
-        context = {"title": "People"}
+        people = People.objects.all()
+        senior_consultants = people.filter(rank__iexact="senior_consultants")
+        context = {"title": "People", "senior_consultants": senior_consultants}
         return render(request, "frontend/senior_consultants.html", context)
 
 
 class ConsultantsView(View):
     def get(self, request):
         people = People.objects.all()
-        consultants = people.filter(category__iexact="consultants")
+        consultants = people.filter(rank__iexact="consultant")
         context = {"title": "People", "consultants": consultants}
         return render(request, "frontend/consultants.html", context)
 
@@ -268,7 +281,9 @@ class SeniorProfessionalView(View):
 
 class AssistantProfessionalsView(View):
     def get(self, request):
-        assistant_professionals = People.objects.all()
+        people = People.objects.all()
+        assistant_professionals = people.filter(
+            rank__iexact="assistant_professionals")
         context = {
             "title": "People",
             "assistant_professionals": assistant_professionals,
@@ -279,7 +294,7 @@ class AssistantProfessionalsView(View):
 class ProfessionalView(View):
     def get(self, request):
         people = People.objects.all()
-        professionals = people.filter(category__iexact="professional")
+        professionals = people.filter(rank__iexact="professional")
         context = {
             "title": "People",
             "professionals": professionals,
@@ -290,7 +305,7 @@ class ProfessionalView(View):
 class SupportTeamView(View):
     def get(self, request):
         people = People.objects.all()
-        support_teams = people.filter(category__iexact="support")
+        support_teams = people.filter(rank__iexact="support_team")
         context = {
             "title": "People",
             "support_teams": support_teams,
@@ -454,16 +469,20 @@ class PublicationDownloadView(View):
 
         # Get the mime type
         mime_type, _ = mimetypes.guess_type(file_path)
+
         if mime_type is None:
             mime_type = "application/octet-stream"
 
         # Open and read the file
         with open(file_path, "rb") as file:
-            response = HttpResponse(file.read(), content_type=mime_type)
+            response = HttpResponse(
+                file.read(),
+                content_type=mime_type
+            )
 
-        # Set the filename for download
+        # Open file in browser instead of downloading
         filename = os.path.basename(file_path)
-        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+        response["Content-Disposition"] = f'inline; filename="{filename}"'
 
         return response
 
@@ -492,34 +511,57 @@ class RightToInformationView(View):
 
 class NewsListView(ListView):
     """
-    Displays a paginated list of published news articles
+    Displays the latest featured article followed by
+    all other published articles.
     """
 
     model = NewsArticle
     template_name = "frontend/news.html"
     context_object_name = "articles"
-    paginate_by = 10  # articles per page - adjust as needed
+    paginate_by = 9
 
     def get_queryset(self):
-        # Only show published articles, ordered by publish date (newest first)
-        return (
+        queryset = (
             NewsArticle.objects.filter(
-                is_published=True, publish_date__lte=timezone.now()
+                is_published=True,
+                publish_date__lte=timezone.now(),
             )
             .select_related("category", "author")
             .order_by("-publish_date")
         )
 
+        # Remove the featured article from the normal list
+        if hasattr(self, "featured_article") and self.featured_article:
+            queryset = queryset.exclude(pk=self.featured_article.pk)
+
+        return queryset
+
     def get_context_data(self, **kwargs):
+
+        # Get the latest featured article first
+        self.featured_article = (
+            NewsArticle.objects.filter(
+                is_published=True,
+                is_featured=True,
+                publish_date__lte=timezone.now(),
+            )
+            .select_related("category", "author")
+            .order_by("-publish_date")
+            .first()
+        )
+
+        # Now let ListView build the context
         context = super().get_context_data(**kwargs)
 
-        # Add featured articles (optional)
-        context["featured_articles"] = NewsArticle.objects.filter(
-            is_published=True, is_featured=True, publish_date__lte=timezone.now()
-        ).order_by("-publish_date")[:3]
+        context["title"] = "News"
 
-        # Add all active categories for sidebar/filter
-        context["categories"] = Category.objects.filter(is_active=True)
+        # Featured article (single object)
+        context["featured_article"] = self.featured_article
+
+        # Categories
+        context["categories"] = Category.objects.filter(
+            is_active=True
+        ).order_by("name")
 
         return context
 
@@ -532,40 +574,92 @@ class NewsDetailView(DetailView):
     model = NewsArticle
     template_name = "frontend/news_detail.html"
     context_object_name = "article"
+
     slug_field = "slug"
     slug_url_kwarg = "slug"
 
     def get_queryset(self):
-        # Only allow access to published articles
         return NewsArticle.objects.filter(
-            is_published=True, publish_date__lte=timezone.now()
-        ).select_related("category", "author")
+            is_published=True,
+            publish_date__lte=timezone.now()
+        ).select_related(
+            "category",
+            "author"
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Increment views count (simple version)
-        self.object.views_count += 1
-        self.object.save(update_fields=["views_count"])
+        article = self.object
 
-        # Related articles (same category, exclude current)
+        # Page title
+        context["title"] = article.title
+
+        # Increase views
+        article.views_count += 1
+        article.save(update_fields=["views_count"])
+
+        # Related articles
         context["related_articles"] = (
             NewsArticle.objects.filter(
-                category=self.object.category,
+                category=article.category,
                 is_published=True,
-                publish_date__lte=timezone.now(),
+                publish_date__lte=timezone.now()
             )
-            .exclude(id=self.object.id)
-            .order_by("-publish_date")[:4]
+            .exclude(id=article.id)
+            .select_related("category")
+            .order_by("-publish_date")[:3]
         )
 
         # Gallery images
-        context["gallery_images"] = self.object.images.all().order_by("order")
-
-        # All categories for sidebar
-        context["categories"] = Category.objects.filter(is_active=True)
+        context["gallery_images"] = article.images.all()
 
         return context
+
+
+# class NewsDetailView(DetailView):
+#     """
+#     Displays a single news article
+#     """
+#
+#     model = NewsArticle
+#     template_name = "frontend/news_detail.html"
+#     context_object_name = "article"
+#     slug_field = "slug"
+#     slug_url_kwarg = "slug"
+#
+#     def get_queryset(self):
+#         # Only allow access to published articles
+#         return NewsArticle.objects.filter(
+#             is_published=True, publish_date__lte=timezone.now()
+#         ).select_related("category", "author")
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#
+#         # Increment views count (simple version)
+#         self.object.views_count += 1
+#         self.object.save(update_fields=["views_count"])
+#
+#         # Related articles (same category, exclude current)
+#         context["related_articles"] = (
+#             NewsArticle.objects.filter(
+#                 category=self.object.category,
+#                 is_published=True,
+#                 publish_date__lte=timezone.now(),
+#             )
+#             .exclude(id=self.object.id)
+#             .order_by("-publish_date")[:4]
+#         )
+#
+#         # Gallery images
+#         context["gallery_images"] = self.object.images.all().order_by("order")
+#
+#         # All categories for sidebar
+#         context["categories"] = Category.objects.filter(is_active=True)
+#
+#         return context
+#
 
 
 class CategoryNewsListView(ListView):
@@ -599,3 +693,213 @@ class CategoryNewsListView(ListView):
         context["categories"] = Category.objects.filter(is_active=True)
         context["page_title"] = f"{self.category.name} - News"
         return context
+
+
+class NavbarSearchAPIView(APIView):
+
+    def get(self, request):
+
+        query = request.GET.get("q", "").strip()
+
+        results = []
+
+        if not query:
+            return Response({
+                "results": []
+            })
+
+        # ==================================
+        # PEOPLE SEARCH
+        # ==================================
+
+        people = People.objects.filter(
+            Q(name__icontains=query) |
+            Q(position__icontains=query) |
+            Q(rank__icontains=query)
+        )[:5]
+
+        rank_urls = {
+
+            "principal_consultants":
+                "principal_consultants",
+
+            "senior_consultants":
+                "senior_consultants",
+
+            "consultant":
+                "consultants",
+
+            "professional":
+                "professional",
+
+            "assistant_professionals":
+                "assistant_professionals",
+
+            "senior_professionals":
+                "senior_professional",
+
+            "support_team":
+                "support_team",
+        }
+
+        for person in people:
+
+            rank_key = person.rank.lower().replace(" ", "_")
+
+            url_name = rank_urls.get(
+                rank_key,
+                "people"
+            )
+
+            results.append({
+
+                "type": "person",
+
+                "name": person.name,
+
+                "subtitle": person.rank.replace(
+                    "_",
+                    " "
+                ).title(),
+
+                "url": reverse(url_name)
+
+            })
+
+        # ==================================
+        # PROJECT TITLE SEARCH
+        # ==================================
+
+        projects = Project.objects.filter(
+            Q(title__icontains=query)
+        )[:5]
+
+        for project in projects:
+
+            results.append({
+
+                "type": "project",
+
+                "name": project.title,
+
+                "subtitle": (
+                    project.category.name
+                    if project.category
+                    else "Project"
+                ),
+
+                "url": reverse(
+                    "project_detail",
+                    kwargs={
+                        "slug": project.slug
+                    }
+                )
+
+            })
+
+        # ==================================
+        # PROJECT CATEGORY SEARCH
+        # FROM ProjectGalleryImage
+        # ==================================
+
+        gallery_categories = ProjectGalleryImage.objects.filter(
+            Q(alt_text__icontains=query) |
+            Q(category__icontains=query)
+        ).values(
+            "alt_text",
+            "category"
+        ).distinct()[:10]
+
+        category_urls = {
+
+            "education":
+                "education",
+
+            "health":
+                "health",
+
+            "office":
+                "office_retail",
+
+            "office retail":
+                "office_retail",
+
+            "residential":
+                "residential",
+
+            "industrial":
+                "industrial_infrastructure",
+
+            "industrial infrastructure":
+                "industrial_infrastructure",
+
+            "hospitality":
+                "hospitality",
+
+            "sport":
+                "sport_leisure",
+
+            "sport and leisure":
+                "sport_leisure",
+
+            "sports":
+                "sport_leisure",
+
+            "landscape":
+                "landscape_planning",
+
+            "landscape planning":
+                "landscape_planning",
+
+            "civic":
+                "civic_culture",
+
+            "civic culture":
+                "civic_culture",
+        }
+
+        added_categories = set()
+
+        for item in gallery_categories:
+
+            # Use category first
+            # because that is your actual project classification
+
+            category_name = item["category"]
+
+            # fallback to alt_text if category is empty
+
+            if not category_name:
+                category_name = item["alt_text"]
+
+            if not category_name:
+                continue
+
+            clean_name = category_name.lower().strip()
+
+            if clean_name in added_categories:
+                continue
+
+            added_categories.add(clean_name)
+
+            url_name = category_urls.get(clean_name)
+
+            if url_name:
+
+                results.append({
+
+                    "type": "project_category",
+
+                    "name": category_name,
+
+                    "subtitle": "Project Category",
+
+                    "url": reverse(url_name)
+
+                })
+
+        return Response({
+
+            "results": results
+
+        })

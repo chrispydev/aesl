@@ -1,6 +1,5 @@
 import os
 from io import BytesIO
-from unicodedata import category
 
 from django.contrib.auth.models import User
 from django.core.files.base import ContentFile
@@ -9,48 +8,92 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 from PIL import Image
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 # ==============================
 # IMAGE OPTIMIZATION MIXIN
 # ==============================
 class ImageOptimizeMixin:
+
     IMAGE_MAX_SIZE = (1200, 1200)
     IMAGE_QUALITY = 85
 
     def optimize_image(self, image_field):
+
         if not image_field:
             return
 
-        img = Image.open(image_field)
+        try:
 
-        if img.mode in ("RGBA", "P"):
-            img = img.convert("RGB")
+            # Skip if no file
+            if not image_field.name:
+                return
 
-        img.thumbnail(self.IMAGE_MAX_SIZE, Image.LANCZOS)
+            img = Image.open(image_field)
 
-        ext = os.path.splitext(image_field.name)[1].lower()
-        buffer = BytesIO()
+            # Convert images with transparency to RGB
+            if img.mode in ("RGBA", "P"):
+                img = img.convert("RGB")
 
-        if ext in [".jpg", ".jpeg"]:
-            img.save(
-                buffer,
-                format="JPEG",
-                quality=self.IMAGE_QUALITY,
-                optimize=True)
-        elif ext == ".png":
-            img.save(buffer, format="PNG", optimize=True)
-        elif ext == ".webp":
-            img.save(buffer, format="WEBP", quality=self.IMAGE_QUALITY)
-        else:
-            img.save(buffer)
+            # Resize while keeping aspect ratio
+            img.thumbnail(
+                self.IMAGE_MAX_SIZE,
+                Image.LANCZOS
+            )
 
-        buffer.seek(0)
-        image_field.save(
-            image_field.name,
-            ContentFile(
-                buffer.read()),
-            save=False)
+            buffer = BytesIO()
+
+            ext = os.path.splitext(
+                image_field.name
+            )[1].lower()
+
+            if ext in [".jpg", ".jpeg"]:
+
+                img.save(
+                    buffer,
+                    format="JPEG",
+                    quality=self.IMAGE_QUALITY,
+                    optimize=True
+                )
+
+            elif ext == ".png":
+
+                img.save(
+                    buffer,
+                    format="PNG",
+                    optimize=True
+                )
+
+            elif ext == ".webp":
+
+                img.save(
+                    buffer,
+                    format="WEBP",
+                    quality=self.IMAGE_QUALITY
+                )
+
+            else:
+
+                # Fallback for unsupported image formats
+                img.save(
+                    buffer,
+                    format="JPEG",
+                    quality=self.IMAGE_QUALITY,
+                    optimize=True
+                )
+
+            buffer.seek(0)
+
+            image_field.file = ContentFile(
+                buffer.read()
+            )
+
+        except Exception as e:
+
+            print(
+                f"Image optimization skipped: {e}"
+            )
 
 
 # ==============================
@@ -83,7 +126,7 @@ class ProjectTeamMember(models.Model):
         return self.full_name
 
 
-class Project(models.Model, ImageOptimizeMixin):
+class Project(ImageOptimizeMixin, models.Model):
     title = models.CharField(max_length=200)
     client = models.CharField(max_length=200)
     location = models.CharField(max_length=300, default="Accra")
@@ -173,7 +216,8 @@ class ProjectLocation(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return f"{self.project.title} ({self.latitude}, {self.longitude})"
+        project_name = self.project.title if self.project else "No Project"
+        return f"{project_name} ({self.latitude}, {self.longitude})"
 
     class Meta:
         verbose_name_plural = "Project Locations"
@@ -197,7 +241,7 @@ class ProjectAward(models.Model):
         return f"{self.year} - {self.award_name}"
 
 
-class ProjectImage(models.Model, ImageOptimizeMixin):
+class ProjectImage(ImageOptimizeMixin, models.Model):
     PROJECT_PICTURE = "project"
     CONSTRUCTION_PICTURE = "construction"
     PROJECT_3D_VISUALIZATIONS_PICTURE = "project_3d_visualizations"
@@ -224,7 +268,7 @@ class ProjectImage(models.Model, ImageOptimizeMixin):
         return f"{self.project.title} - {self.image_type}"
 
 
-class ProjectGalleryImage(models.Model):
+class ProjectGalleryImage(ImageOptimizeMixin, models.Model):
     image = models.ImageField(
         upload_to="projects-gallery/",
         verbose_name="Gallery Image",
@@ -274,6 +318,12 @@ class ProjectGalleryImage(models.Model):
         indexes = [
             models.Index(fields=["category"]),
         ]
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.optimize_image(self.image)
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         # Nice display in admin and shell
@@ -345,7 +395,7 @@ class SubCategory(models.Model):
         return f"{self.main_category} - {self.name}"
 
 
-class Staff(models.Model, ImageOptimizeMixin):
+class Staff(ImageOptimizeMixin, models.Model):
     sub_category = models.ForeignKey(
         SubCategory, on_delete=models.CASCADE, related_name="staff"
     )
@@ -360,6 +410,7 @@ class Staff(models.Model, ImageOptimizeMixin):
     def save(self, *args, **kwargs):
         if self.image:
             self.optimize_image(self.image)
+
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -369,12 +420,13 @@ class Staff(models.Model, ImageOptimizeMixin):
 # ==============================
 # PEOPLE
 # ==============================
-class People(models.Model, ImageOptimizeMixin):
+class People(ImageOptimizeMixin, models.Model):
     name = models.CharField(max_length=255)
     profile_picture = models.ImageField(
         upload_to="people/", blank=True, null=True)
     position = models.CharField(max_length=100, default="position", blank=True)
-    category = models.CharField(max_length=100, default="category")
+    # rank = models.CharField(max_length=100, default="rank", blank=True)
+    rank = models.CharField(max_length=100, default="category")
     department = models.CharField(max_length=100, blank=True)
     region = models.CharField(max_length=100, blank=True)
     profession = models.CharField(max_length=100, default="Surveying")
@@ -384,6 +436,7 @@ class People(models.Model, ImageOptimizeMixin):
     def save(self, *args, **kwargs):
         if self.profile_picture:
             self.optimize_image(self.profile_picture)
+
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -393,7 +446,7 @@ class People(models.Model, ImageOptimizeMixin):
 # ==============================
 # PUBLICATIONS
 # ==============================
-class Publications(models.Model, ImageOptimizeMixin):
+class Publications(ImageOptimizeMixin, models.Model):
     title = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
@@ -417,7 +470,7 @@ class Publications(models.Model, ImageOptimizeMixin):
 # ==============================
 # BOARD MEMBERS
 # ==============================
-class BoardMember(models.Model, ImageOptimizeMixin):
+class BoardMember(ImageOptimizeMixin, models.Model):
     name = models.CharField(max_length=150)
     image = models.ImageField(
         upload_to="board_members/", default="default.jpg", max_length=300
@@ -475,7 +528,7 @@ class Category(models.Model):
         return self.name
 
 
-class NewsArticle(models.Model):
+class NewsArticle(ImageOptimizeMixin, models.Model):
     """Main news / article model"""
 
     title = models.CharField(max_length=255)
@@ -497,7 +550,10 @@ class NewsArticle(models.Model):
         max_length=300, help_text="Short summary (displayed in lists/cards)"
     )
 
-    content = models.TextField()  # main article body
+    content = CKEditor5Field(
+        "Content",
+        config_name="extends",
+    )
 
     author = models.ForeignKey(
         User,
@@ -517,6 +573,14 @@ class NewsArticle(models.Model):
     meta_title = models.CharField(max_length=200, blank=True)
     meta_description = models.CharField(max_length=320, blank=True)
 
+    # External source
+    source_url = models.URLField(
+        max_length=500,
+        blank=True,
+        null=True,
+        help_text="Original source link for external news articles"
+    )
+
     # Optional fields
     tags = models.CharField(
         max_length=300, blank=True, help_text="Comma separated tags"
@@ -535,16 +599,49 @@ class NewsArticle(models.Model):
         ]
 
     def save(self, *args, **kwargs):
+
         if not self.slug:
-            self.slug = slugify(self.title)
+
+            base_slug = slugify(self.title)
+
+            slug = base_slug
+
+            counter = 1
+
+            while NewsArticle.objects.filter(
+                slug=slug
+            ).exclude(pk=self.pk).exists():
+
+                slug = f"{base_slug}-{counter}"
+
+                counter += 1
+
+            self.slug = slug
 
         # Auto-fill meta if empty
+
         if not self.meta_title:
             self.meta_title = self.title
+
         if not self.meta_description:
             self.meta_description = self.excerpt[:320]
 
+        if self.featured_image:
+            self.optimize_image(
+                self.featured_image
+            )
+
         super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+
+        if self.source_url:
+            return self.source_url
+
+        return reverse(
+            "news_detail",
+            kwargs={"slug": self.slug}
+        )
 
     def __str__(self):
         return self.title
@@ -554,7 +651,7 @@ class NewsArticle(models.Model):
         return self.publish_date.strftime("%d %b %Y")
 
 
-class NewsImage(models.Model):
+class NewsImage(ImageOptimizeMixin, models.Model):
     """Multiple images inside one article (gallery)"""
 
     article = models.ForeignKey(
@@ -569,6 +666,12 @@ class NewsImage(models.Model):
 
     def __str__(self):
         return f"Image for {self.article.title}"
+
+    def save(self, *args, **kwargs):
+        if self.image:
+            self.optimize_image(self.image)
+
+        super().save(*args, **kwargs)
 
 
 class ExternalAuthor(models.Model):
@@ -608,7 +711,7 @@ class Branch(models.Model):
         verbose_name_plural = "Branches"
 
 
-class Alumni(models.Model, ImageOptimizeMixin):
+class Alumni(ImageOptimizeMixin, models.Model):
     name = models.CharField(max_length=150)
     image = models.ImageField(
         upload_to="board_members/",

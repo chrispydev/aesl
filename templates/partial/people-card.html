@@ -1,28 +1,101 @@
-<!-- Projects__cards -->
 <section class="projects__cards">
 
-  <!-- Practice -->
-  <div class="projects__card">
-    <a href="{% url 'people' %}">People</a>
-  </div>
 
-  <!-- About / Institutional -->
-  <div class="projects__card">
-    <a href="{% url 'principal_consultants' %}">Principal Consultants</a>
-    <a href="{% url 'senior_consultants' %}">Senior Consultants</a>
-    <a href="{% url 'consultants' %}">Consultants</a>
-  </div>
+{% if has_people %}
+<div class="projects__card">
 
-  <!-- Governance & Management -->
-  <div class="projects__card">
-    <a href="{% url 'senior_professional' %}">Senior Professionals</a>
-    <a href="{% url 'professional' %}">Professionals</a>
-    <a href="{% url 'assistant_professionals' %}">Assistant Professionals</a>
-  </div>
+    <a href="{% url 'people' %}">
+        People
+    </a>
 
-  <div class="projects__card">
-    <a href="{% url 'support_team' %}">Support Team</a>
-    <a href="{% url 'service_personnel' %}">Service Personnel</a>
-  </div>
+</div>
+{% endif %}
+
+
+
+{% if has_principal_consultants or has_senior_consultants or has_consultants %}
+<div class="projects__card">
+
+    {% if has_principal_consultants %}
+    <a href="{% url 'principal_consultants' %}">
+        Principal Consultants
+    </a>
+    {% endif %}
+
+
+    {% if has_senior_consultants %}
+    <a href="{% url 'senior_consultants' %}">
+        Senior Consultants
+    </a>
+    {% endif %}
+
+
+    {% if has_consultants %}
+    <a href="{% url 'consultants' %}">
+        Consultants
+    </a>
+    {% endif %}
+
+</div>
+{% endif %}
+
+
+
+
+
+{% if has_senior_professionals or has_professionals or has_assistant_professionals %}
+<div class="projects__card">
+
+
+    {% if has_senior_professionals %}
+    <a href="{% url 'senior_professional' %}">
+        Senior Professionals
+    </a>
+    {% endif %}
+
+
+    {% if has_professionals %}
+    <a href="{% url 'professional' %}">
+        Professionals
+    </a>
+    {% endif %}
+
+
+    {% if has_assistant_professionals %}
+    <a href="{% url 'assistant_professionals' %}">
+        Assistant Professionals
+    </a>
+    {% endif %}
+
+
+</div>
+{% endif %}
+
+
+
+
+
+{% if has_support_team or has_service_personnel %}
+<div class="projects__card">
+
+
+    {% if has_support_team %}
+    <a href="{% url 'support_team' %}">
+        Support Team
+    </a>
+    {% endif %}
+
+
+    {% if has_service_personnel %}
+    <a href="{% url 'service_personnel' %}">
+        Service Personnel
+    </a>
+    {% endif %}
+
+
+</div>
+{% endif %}
+
+
 
 </section>

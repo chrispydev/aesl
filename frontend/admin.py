@@ -347,22 +347,20 @@ class PublicationsAdmin(admin.ModelAdmin):
     def thumbnail_preview(self, obj):
         if obj.publication_image:
             return format_html(
-                '<img src="{}" style="max-height: 60px; border-radius: 6px; object-fit: cover;">',
+                '<img src="{}" style="max-height:60px;border-radius:6px;object-fit:cover;">',
                 obj.publication_image.url,
             )
-        return format_html('<span style="color: #999;">No image</span>')
+        return "No image"
 
     thumbnail_preview.short_description = "Image"
 
     def large_preview(self, obj):
         if obj.publication_image:
             return format_html(
-                '<img src="{}" style="max-height: 300px; max-width: 100%; border-radius: 8px; border: 1px solid #ddd;">',
+                '<img src="{}" style="max-height:300px;max-width:100%;border-radius:8px;border:1px solid #ddd;">',
                 obj.publication_image.url,
             )
-        return format_html('<p style="color: #666;">No image uploaded</p>')
-
-    large_preview.short_description = "Image Preview"
+        return "No image uploaded"
 
 
 @admin.register(BoardMember)
@@ -554,6 +552,7 @@ class NewsArticleAdmin(admin.ModelAdmin):
         "category_link",
         "is_published",
         "publish_date",
+        "source_url",
         "author",
         "is_featured",
         "views_count",
@@ -580,6 +579,7 @@ class NewsArticleAdmin(admin.ModelAdmin):
                     "title",
                     "slug",
                     "category",
+                    "source_url",
                     "author",
                     "featured_image",
                 )

@@ -4,31 +4,43 @@
 }
 
 .right__to-information h1 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
-  text-transform: uppercase;
+  text-transform: capitalize;
+  /* text-transform: uppercase; */
 }
 
 .right__to-information h2 {
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   font-weight: bold;
   margin-left: 3rem;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
+  text-transform: capitalize;
 }
 
 .right__to-information p {
-  line-height: 1.8rem;
-  letter-spacing: 0.09rem;
+  line-height: 1.6;
+  color: var(--primary-color);
+  text-align: left;
+  font-weight: 300;
+  font-size: 1.25rem;
 }
 
 
-ol[type="a"] li {
-  line-height: 1.8rem;
-  letter-spacing: 0.09rem;
+ol[type="a"] li,
+ol li {
+  line-height: 1.6;
+  color: var(--primary-color);
+  text-align: left;
+  font-weight: 300;
+  font-size: 1.25rem;
 }
 
 ol[type="a"] li ul {
-  margin-left: 20px;
+  line-height: 1.6;
+  text-align: left;
+  font-weight: 300;
+  font-size: 1.25rem;
   list-style-type: disc;
 }
 

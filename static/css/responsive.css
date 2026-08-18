@@ -54,7 +54,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    transition: all 0.4ms cubic-bezier(0.68, -0.55, 0.265, 1.55) u;
+    transition: all 0.4ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .toggle__sidebar {
@@ -83,6 +83,11 @@
     margin-top: 2rem;
   }
 
+
+  .parallax-carousel {
+    height: 64vh;
+  }
+
   .details__wrapper {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -105,10 +110,24 @@
     grid-template-columns: repeat(1, 1fr) !important;
     margin: 0.4rem 0.2rem;
   }
+
+  .image__content h3:not(:first-of-type) {
+    margin-bottom: 1px;
+    font-size: 1rem;
+  }
 }
 
 /* Tablet phones */
 @media (max-width: 768px) {
+
+  .parallax-carousel {
+    height: 70vh;
+  }
+
+  .content h1 {
+    font-size: 2rem;
+  }
+
   .mobile__menuoverlay {
     width: 50%;
     z-index: 1000;
@@ -211,12 +230,17 @@
     z-index: 1000;
   }
 
-  .parallax .content h1 {
-    font-size: 2rem;
+  .content {
+    bottom: 1rem;
+    padding: 1rem 0rem;
+  }
+
+  .content h1 {
+    font-size: 1.7rem;
   }
 
   .parallax .content p {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
   }
 
   .button {
@@ -274,6 +298,11 @@
     letter-spacing: 0rem;
     line-height: 1.5rem;
     font-size: 1.1rem;
+  }
+
+
+  .page__location {
+    padding: 0.5rem 0.7rem;
   }
 
   .page__location p {

@@ -12,6 +12,15 @@
   align-items: center;
 }
 
+.mission__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #17A589;
+}
+
+.mission__caption h1 {
+  color: white;
+}
+
 .mission,
 .vision,
 .values {

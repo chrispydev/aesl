@@ -47,9 +47,8 @@
             <h5>{{ project.location }}</h5>
         </div>
         <div class="projects__client flex-col">
-            <h4>Client:</h4>
+            <h5>Client: {{ project.client }}</h5>
             <div class="horizontal__rule"></div>
-            <h5>{{ project.client }}</h5>
         </div>
         <img src="{{project.picture.url }}" />
         <p class="projects__into truncate__multi">

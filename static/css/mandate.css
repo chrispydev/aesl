@@ -11,3 +11,13 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.madate__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #17A589;
+}
+
+.madate__caption h1 {
+  color: white;
+}

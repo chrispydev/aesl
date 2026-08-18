@@ -27,12 +27,14 @@
 .projects__caption {
   padding: 0.4rem 0.8rem;
   background-color: var(--secondary-color);
+  /* background-color: #BDC3C7; */
 }
+
 
 .projects__title {
   font-size: 3rem;
-  text-transform: uppercase;
-  font-weight: 700;
+  text-transform: capitalize;
+  font-weight: 600;
   color: var(--primary-color);
   display: flex;
   gap: 1rem;
@@ -130,11 +132,11 @@
 }
 
 .projects__text p {
-  line-height: 1.4;
+  line-height: 1.6;
   color: var(--primary-color);
-  letter-spacing: 2px;
-  text-align: justify;
-  font-size: 1.5rem;
+  text-align: left !important;
+  font-weight: 300;
+  font-size: 1.4rem;
 }
 
 .projects__showcases {
@@ -166,11 +168,13 @@
 
 .projects__showcase-title h4 {
   font-size: 1.2rem;
+  font-weight: 400;
   margin-bottom: 1rem;
 }
 
 .projects__showcase-title h5 {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-weight: 300;
 }
 
 .projects__client {
@@ -182,13 +186,18 @@
 
 .projects__client h4 {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 400;
+  text-decoration: underline;
+  text-decoration-style: var(--secondary-color);
 }
 
 .projects__client h5 {
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 300;
+  line-height: 1.5;
 }
+
+
 
 .horizontal__rule {
   width: 100%;
@@ -222,6 +231,7 @@
 
 .project__category p {
   margin-bottom: 0rem;
+  margin-right: 0.3rem;
 }
 
 .project__category p:first-of-type {
@@ -310,7 +320,7 @@
 }
 
 .details__head {
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: -0.1rem;
 }
 
@@ -320,6 +330,8 @@
 
 .details__body {
   font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.5rem;
 }
 
 .details__wrapper {
@@ -379,16 +391,17 @@
 .projects__details-gallery h2,
 .projects__construction-gallery h2,
 .projects__detail-data h2 {
-  font-size: 3rem;
-  text-transform: uppercase;
+  font-size: 2.4rem;
+  text-transform: capitalize;
+  /* text-transform: uppercase; */
   color: var(--primary-color);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .project__details-text p {
   letter-spacing: 0.1rem;
   line-height: 1.7rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--primary-color);
 }
 

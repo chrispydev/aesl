@@ -247,7 +247,7 @@ urlpatterns = [
         name="news_list",
     ),
     path(
-        "news/<int:pk>/",
+        "news/<slug:slug>/",
         NewsDetailView.as_view(),
         name="news_detail",
     ),

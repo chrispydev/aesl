@@ -9,6 +9,7 @@
   box-sizing: border-box;
 }
 
+
 :root {
   --primary-color: #2d4f7b;
   /* --secondary-color: #ff0; */
@@ -26,10 +27,23 @@ html {
 }
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-family) !important;
   line-height: 1.6;
+  font-weight: 300;
   color: #1a1a1a;
   background-color: #f9f9f9;
+}
+
+body,
+button,
+input,
+textarea,
+select,
+.btn,
+.navbar,
+.nav-link,
+.dropdown-item {
+  font-family: "Ubuntu", sans-serif;
 }
 
 

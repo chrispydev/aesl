@@ -1,46 +1,202 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ article.meta_title|default:article.title }} | AESL
+{% endblock title %}
+
+{% block meta %}
+<meta name="description" content="{{ article.meta_description|default:article.excerpt }}">
+<meta property="og:title" content="{{ article.title }}">
+<meta property="og:description" content="{{ article.excerpt }}">
+{% if article.featured_image %}
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ article.featured_image.url }}">
+{% endif %}
+<meta property="og:type" content="article">
+{% endblock meta %}
 
 {% block content %}
-<div class="news-section news-detail">
-  <article>
-    {% if article.featured_image %}
-    <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" class="featured-image">
-    {% endif %}
+<section class="news__wrapper">
 
-    <h1>{{ article.title }}</h1>
+    <a href="{% url 'news_list' %}" class="back-link">
+        Back to News
+    </a>
 
+    <article class="article-container">
 
-    <div class="news-content">
-      {{ article.content|linebreaks }}
-    </div>
+        <div class="article-hero">
+            {% if article.featured_image %}
+            <img src="{{ article.featured_image.url }}" alt="{{ article.title }}" loading="lazy">
+            {% else %}
+            <img src="{% static 'img/default-news.jpg' %}" alt="AESL News">
+            {% endif %}
 
-    {% if gallery_images %}
-    <h3>Gallery</h3>
-    <div class="gallery">
-      {% for img in gallery_images %}
-      <figure>
-        <img src="{{ img.image.url }}" alt="{{ img.caption|default:'Image' }}">
-      </figure>
-      {% endfor %}
-    </div>
-    {% endif %}
-
-    {% if related_articles %}
-    <h3>Related Articles</h3>
-    <div class="news-list">
-      {% for related in related_articles %}
-      <div class="news-card">
-        {% if related.featured_image %}
-        <img src="{{ related.featured_image.url }}" alt="{{ related.title }}">
-        {% endif %}
-        <div class="news-card-content">
-          <h2><a href="{% url 'news_detail' related.pk %}">{{ related.title }}</a></h2>
-          <p class="news-excerpt">{{ related.excerpt }}</p>
+            {% if article.category %}
+            <span class="article-badge">{{ article.category.name }}</span>
+            {% endif %}
         </div>
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
-  </article>
-</div>
-{% endblock %}
+
+        <div class="article-content">
+
+            <header class="article-header">
+
+                <div class="article-meta">
+                    <span class="article-date">
+                        {{ article.publish_date|date:"F d, Y" }}
+                    </span>
+
+                    <span class="article-read-time">
+                        {{ article.views_count }} views
+                    </span>
+                </div>
+
+                <h1 class="article-title">{{ article.title }}</h1>
+
+            </header>
+            <div class="article-body">
+
+                {% if article.excerpt %}
+                <p class="lead">{{ article.excerpt }}</p>
+                {% endif %}
+
+                <div class="ckeditor-content">
+                    {{ article.content|safe }}
+                </div>
+
+                {% if gallery_images %}
+                <div class="article-gallery">
+
+                    {% for image in gallery_images %}
+                    <figure>
+
+                        <img src="{{ image.image.url }}"
+                             alt="{{ image.caption|default:article.title }}"
+                             loading="lazy">
+
+                        {% if image.caption %}
+                        <figcaption>{{ image.caption }}</figcaption>
+                        {% endif %}
+
+                    </figure>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+            </div>
+
+
+            {% if article.tags %}
+            <div class="article-tags">
+
+                {% for tag in article.tags.split %}
+                <span class="tag">{{ tag }}</span>
+                {% endfor %}
+
+            </div>
+            {% endif %}
+
+
+            <div class="article-share">
+
+                <span class="share-label">
+                    Share this article:
+                </span>
+
+                <div class="share-buttons">
+
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+                       target="_blank"
+                       class="share-btn facebook">
+                        f
+                    </a>
+
+                    <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}&text={{ article.title|urlencode }}"
+                       target="_blank"
+                       class="share-btn twitter">
+                        𝕏
+                    </a>
+
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}"
+                       target="_blank"
+                       class="share-btn linkedin">
+                        in
+                    </a>
+
+                    <a href="https://wa.me/?text={{ article.title|urlencode }}%20{{ request.build_absolute_uri }}"
+                       target="_blank"
+                       class="share-btn whatsapp">
+                        ☎
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </article>
+
+
+    <section class="related-articles">
+
+        <h2 class="related-title">
+            Related Articles
+        </h2>
+
+
+        <div class="related-grid">
+
+            {% for related in related_articles %}
+
+            <a href="{{ related.get_absolute_url }}" class="related-card">
+
+                <div class="related-card-image">
+
+                    {% if related.featured_image %}
+
+                    <img src="{{ related.featured_image.url }}"
+                         alt="{{ related.title }}">
+
+                    {% else %}
+
+                    <img src="{% static 'img/default-news.jpg' %}"
+                         alt="{{ related.title }}">
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="related-card-content">
+
+                    {% if related.category %}
+                    <span class="related-card-category">
+                        {{ related.category.name }}
+                    </span>
+                    {% endif %}
+
+
+                    <h3 class="related-card-title">
+                        {{ related.title }}
+                    </h3>
+
+                </div>
+
+            </a>
+
+            {% empty %}
+
+            <p>
+                No related articles available.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</section>
+
+{% endblock content %}

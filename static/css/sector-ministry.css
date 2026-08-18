@@ -27,9 +27,8 @@
 .sector__text p {
   line-height: 1.5;
   color: var(--primary-color);
-  letter-spacing: 1px;
-  text-align: justify;
-  font-size: 1.4rem;
+  text-align: left;
+  font-size: 1.3rem;
 }
 
 .grid__span {
@@ -44,6 +43,15 @@
   justify-content: space-between;
   border-left: 2px solid var(--primary-color);
   padding-left: 0.5rem;
+}
+
+.sector__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #17A589;
+}
+
+.sector__caption h1 {
+  color: white;
 }
 
 .active {
@@ -75,7 +83,7 @@
 .sector__links-wrapper {
   font-size: 0.9rem;
   margin: 2rem 0;
-  font-weight: 600;
+  font-weight: 300;
   color: #555;
 }
 
@@ -87,7 +95,7 @@
 
 .sector__links p {
   color: var(--primary-color);
-  font-weight: 700;
+  font-weight: 300;
   text-decoration: underline;
 }
 

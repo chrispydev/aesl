@@ -29,6 +29,7 @@ A robust and scalable Django-based web application featuring a secure admin dash
 ---
 
 ## 📂 Project Structure
+
 ```
 .
 ├── aesl/
@@ -69,37 +70,45 @@ A robust and scalable Django-based web application featuring a secure admin dash
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the Repository
+
 ```bash
-git clone https://github.com/chrispydev/aesl.git
+git clone https://github.com/aesl-adaka/aesl.git
 cd aesl
 ```
 
 ### 2️⃣ Create a Virtual Environment
+
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
 ### 3️⃣ Install Dependencies
+
 ```bash
 pip install -r requirements.txt
 ```
 
 ### 4️⃣ Apply Database Migrations
+
 ```bash
 python manage.py migrate
 ```
 
 ### 5️⃣ Run the Development Server
+
 ```bash
 python manage.py runserver
 ```
 
 ### 6️⃣ Access the Application
+
 Open your web browser and navigate to `http://localhost:8000` to access the application.
 
 ### 7️⃣ Customize Your Application
+
 Edit the `settings.py` file to configure your application's settings, such as database connection details, email settings, and more.
 
 ### 8️⃣ Deploy Your Application
+
 Follow the deployment instructions provided in the documentation to deploy your application to a production environment.

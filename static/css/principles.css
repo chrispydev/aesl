@@ -35,6 +35,16 @@
   z-index: 100;
 }
 
+.principle__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #006d77;
+}
+
+
+.principle__caption h1 {
+  color: white;
+}
+
 .principle__blue {
   background-color: var(--primary-color);
 }

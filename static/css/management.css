@@ -12,6 +12,16 @@
   align-items: center;
 }
 
+
+.management__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #17A589;
+}
+
+.management__caption h1 {
+  color: white;
+}
+
 .director__wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

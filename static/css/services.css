@@ -12,6 +12,16 @@
   align-items: center;
 }
 
+.service__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #17A589;
+}
+
+
+.service__caption h1 {
+  color: white;
+}
+
 .explore {
   border: 1px solid var(--secondary-color);
   border-radius: 0.4rem;

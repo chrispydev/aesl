@@ -1,73 +1,239 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
 
-<section class="news__parallax">
-  <div class="projects__overlay"></div>
-  <div class="news__content">
-    <h1>News from AESL</h1>
-    <p>Stay updated with the latest news and updates from Architectural and Engineering Services Limited (AESL). Explore
-      our recent projects, industry insights, and company announcements to stay informed about our contributions to the
-      architectural and engineering landscape.</p>
-  </div>
-</section>
-
-<section class="news__heading">
-  <div>
-    <h1>Latest News</h1>
-    <div class="horizontal__bar" />
-  </div>
-</section>
+{% block content %}
 
 <section class="news__wrapper">
-    {% if featured_articles %}
-      <div class="featured-articles">
-        <h2 class="featured-title">Featured Articles</h2>
-        <div class="news-list">
-          {% for article in featured_articles %}
-            <div class="news-card">
-              {% if article.featured_image %}
-                <img src="{{ article.featured_image.url }}" alt="{{ article.title }}">
-              {% endif %}
-              <div class="news-card-content">
-                <h2><a href="{{ article.get_absolute_url }}">{{ article.title }}</a></h2>
-                <p class="news-excerpt">{{ article.excerpt }}</p>
-                <div class="news-meta">
-                  <span>{{ article.publish_date|date:"d M Y" }}</span>
-                  {% if article.category %}
-                    <span>• {{ article.category.name }}</span>
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
 
-    <div class="news-list">
-      {% for article in articles %}
-        <div class="news-card">
-          {% if article.featured_image %}
-            <img src="{{ article.featured_image.url }}" alt="{{ article.title }}">
-          {% endif %}
-          <div class="news-card-content">
-            <h2><a href="{% url 'news_detail' article.pk %}">{{ article.title }}</a></h2>
-            <p class="news-excerpt">{{ article.excerpt }}</p>
-            <div class="news-meta">
-              <span>{{ article.publish_date|date:"d M Y" }}</span>
-              {% if article.category %}
-                <span>• {{ article.category.name }}</span>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      {% empty %}
-        <p>No news articles available at the moment.</p>
-      {% endfor %}
+    <div class="page-header">
+        <h1 class="page-title">News From AESL</h1>
+        <p class="page-subtitle">
+            Stay updated with the latest news and updates from
+            Architectural and Engineering Services Limited (AESL).
+        </p>
     </div>
 
-  </div>
+    <div class="news-grid">
+
+        <!-- =========================
+             FEATURED ARTICLE
+        ========================== -->
+        {% if featured_article %}
+        <div class="news-card featured">
+
+            <div class="news-card-image">
+
+                {% if featured_article.featured_image %}
+                    <img src="{{ featured_article.featured_image.url }}"
+                         alt="{{ featured_article.title }}">
+                {% else %}
+                    <img src="{% static 'img/default-news.jpg' %}"
+                         alt="{{ featured_article.title }}">
+                {% endif %}
+
+                <span class="news-badge">
+                    Featured
+                </span>
+
+            </div>
+
+            <div class="news-card-content">
+
+                <div class="news-card-date">
+                    {{ featured_article.publish_date|date:"F d, Y" }}
+                </div>
+
+                <h3 class="news-card-title">
+                  {% if article.source_url %}
+                      <a href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">
+                    {{ featured_article.title }}
+                      </a>
+                  {% else %}
+                      <a href="{{ article.get_absolute_url }}">
+                    {{ featured_article.title }}
+                      </a>
+                  {% endif %}
+                </h3>
+
+                <p class="news-card-excerpt">
+                    {{ featured_article.excerpt|truncatewords:35 }}
+                </p>
+
+                <div class="news-card-footer">
+
+                      {% comment %}
+                    <div class="news-card-author">
+
+                        <div class="author-avatar">
+                            {{ featured_article.author.first_name|slice:":1" }}{{ featured_article.author.last_name|slice:":1" }}
+                        </div>
+
+                        <span class="author-name">
+                            {{ featured_article.author.get_full_name|default:featured_article.author.username }}
+                        </span>
+
+                    </div>
+                    {% endcomment %}
+
+
+                  {% if article.source_url %}
+                      <a class="news-card-link" href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">
+                          Read Article →
+                      </a>
+                  {% else %}
+                      <a class="news-card-link" href="{{ article.get_absolute_url }}">
+                        Read Full Story →
+                      </a>
+                  {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+        {% endif %}
+
+        <!-- =========================
+             REGULAR ARTICLES
+        ========================== -->
+
+        {% for article in articles %}
+
+        <div class="news-card">
+
+            <div class="news-card-image">
+
+                {% if article.featured_image %}
+                    <img src="{{ article.featured_image.url }}"
+                         alt="{{ article.title }}">
+                {% else %}
+                    <img src="{% static 'img/default-news.jpg' %}"
+                         alt="{{ article.title }}">
+                {% endif %}
+
+                {% if article.category %}
+                    <span class="news-badge">
+                        {{ article.category.name }}
+                    </span>
+                {% endif %}
+
+            </div>
+
+            <div class="news-card-content">
+
+                <div class="news-card-date">
+                    {{ article.publish_date|date:"F d, Y" }}
+                </div>
+
+                <h3 class="news-card-title">
+                  {% if article.source_url %}
+                      <a href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">
+                    {{ article.title }}
+                      </a>
+                  {% else %}
+                      <a href="{{ article.get_absolute_url }}">
+                    {{ article.title }}
+                      </a>
+                  {% endif %}
+                </h3>
+
+                <p class="news-card-excerpt">
+                    {{ article.excerpt|truncatewords:18 }}
+                </p>
+
+                <div class="news-card-footer">
+
+                    <div class="news-card-author">
+
+                      {% comment %}
+                        <div class="author-avatar">
+                            {{ article.author.first_name|slice:":1" }}{{ article.author.last_name|slice:":1" }}
+                        </div>
+
+                        <span class="author-name">
+                            {{ article.author.get_full_name|default:article.author.username }}
+                        </span>
+                      {% endcomment %}
+
+                    </div>
+                  {% if article.source_url %}
+                      <a class="news-card-link" href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">
+                          Read Article →
+                      </a>
+                  {% else %}
+                      <a class="news-card-link" href="{{ article.get_absolute_url }}">
+                          Read More →
+                      </a>
+                  {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="news-card no-news">
+
+            <div class="news-card-content">
+
+                <h3 class="news-card-title">
+                    No News Available
+                </h3>
+
+                <p class="news-card-excerpt">
+                    There are currently no published news articles.
+                    Please check back later for updates.
+                </p>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <!-- =========================
+         PAGINATION
+    ========================== -->
+
+    {% if is_paginated %}
+    <div class="pagination">
+
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-btn">
+                ← Previous
+            </a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+
+            {% if page_obj.number == num %}
+
+                <span class="pagination-btn active-page">
+                    {{ num }}
+                </span>
+
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+
+                <a href="?page={{ num }}" class="pagination-btn">
+                    {{ num }}
+                </a>
+
+            {% endif %}
+
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination-btn">
+                Next →
+            </a>
+        {% endif %}
+
+    </div>
+    {% endif %}
+
 </section>
-
-
 
 {% endblock content %}

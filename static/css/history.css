@@ -23,3 +23,13 @@
   object-fit: contain;
   box-shadow: 6px 6px 8px 0 rgba(0, 0, 0, 0.2);
 }
+
+.history__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #17A589;
+}
+
+
+.history__caption h1 {
+  color: white
+}

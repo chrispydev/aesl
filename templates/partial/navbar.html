@@ -29,11 +29,21 @@
   {% comment %}
   navbar links section
   {% endcomment %}
-  <div class="nav__links">
-  <input type="search" id="nav-toggle" placeholder="Search for People and Projects" class="search__input" />
-    <button class="search__btn">
+  <div class="search__container">
+    <div class="search__input-container">
+      <input
+      id="nav-search"
+      class="search__input"
+      placeholder="Search People and Projects"
+      type="search"
+      />
+      <button class="search__btn">
       <i class="fa fa-search"></i>
-    </button>
+      </button>
+    </div>
+
+    <div id="search-results" class="search__results-container"></div>
+
   </div>
 
    <nav class="nav__menu">
@@ -50,7 +60,7 @@
       <div class="social__icons">
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.linkedin.com/company/aesl-ghana/" target="_blank"><i class="fab fa-linkedin"></i></a>
         <a href="#"><i class="fab fa-youtube"></i></a>
       </div>
       <div class="legal">
@@ -79,6 +89,7 @@
   </div>
 </nav>
 
+
 <!-- Mobile menu overlay -->
 <div  class="mobile__menuoverlay">
     <button id="closebtn" class="closebtn">&times;</button>
@@ -101,12 +112,30 @@
       </div>
   </a>
 
+
+  <div class="search__container">
+    <div class="search__input-container">
+      <input
+      id="nav-search"
+      class="search__input"
+      placeholder="Search People and Projects"
+      type="search"
+      />
+      <button class="search__btn">
+      <i class="fa fa-search"></i>
+      </button>
+    </div>
+
+    <div id="search-result" class="search__results-container"></div>
+
+  </div>
+
      <nav class="nav__menu">
          <a class="{% if request.resolver_match.url_name == 'projects' %}active__link{% endif %}" href="{% url 'projects' %}"><i class="fas fa-building"></i> Projects</a>
          <a class="{% if request.resolver_match.url_name == 'practice' %}active__link{% endif %}" href="{% url 'practice' %}"><i class="fas fa-city"></i> Practice</a>
          <a class="{% if request.resolver_match.url_name == 'principles' %}active__link{% endif %}" href="{% url 'principles' %}"><i class="fas fa-drafting-compass"></i> Principles</a>
         <a class="{% if request.resolver_match.url_name == 'people' %}active__link{% endif %}" href="{% url 'people' %}"><i class="fas fa-users"></i> People</a>
-        <a href="#"><i class="fas fa-newspaper"></i> News</a>
+    <a class="{% if request.resolver_match.url_name == 'news' %}active__link{% endif %}" href="{% url 'news_list' %}"><i class="fas fa-newspaper"></i> News</a>
         <a class="{% if request.resolver_match.url_name == 'publications' %}active__link{% endif %}" href="{% url 'publications' %}"><i class="fas fa-book-open"></i> Publications</a>
     </nav>
     <hr class="horizontal__line"/>
@@ -115,7 +144,7 @@
       <div class="social__icons">
         <a href="#"><i class="fab fa-facebook"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.linkedin.com/company/aesl-ghana/" target="_blank"><i class="fab fa-linkedin"></i></a>
         <a href="#"><i class="fab fa-youtube"></i></a>
       </div>
       <div class="legal">

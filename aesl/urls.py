@@ -6,9 +6,16 @@ from django.urls import include, path
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("frontend.urls")),
+    path(
+        "api/",
+        include("frontend.api_urls")
+    ),
+    path("ckeditor5/", include("django_ckeditor_5.urls")),
     path("__reload__/", include("django_browser_reload.urls")),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

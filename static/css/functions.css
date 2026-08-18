@@ -29,3 +29,12 @@
   grid-column: span 3;
   color: var(--primary-color);
 }
+
+.functions__caption {
+  padding: 0.4rem 0.8rem;
+  background-color: #17A589;
+}
+
+.functions__caption h1 {
+  color: white;
+}

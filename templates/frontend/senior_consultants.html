@@ -8,7 +8,7 @@
   <div class="projects__overlay"></div>
 </section>
 
-<section class="projects__caption">
+<section class="people__caption">
   <div>
     <h1 class="projects__title">
       Senior Consultants
@@ -30,6 +30,32 @@
         trends, and prioritize quality and sustainability, ensuring designs meet regulatory standards and environmental
         considerations.
       </p>
+    </section>
+
+    <section class="senior__consultants">
+        {% for principal_consultant in principal_consultants %}
+        <div class="board-member-card">
+            <div class="board-member-header">
+                <div class="board-member-photo">
+                    <img
+                        src="{{ principal_consultant.profile_picture.url }}"
+                        alt="{{ principal_consultant.name }}"
+                        loading="lazy"
+                    />
+                </div>
+                <h3 class="board-member-name">{{ principal_consultant.name }}</h3>
+                <p class="board-member-title">
+                    {{ principal_consultant.profession }}
+                </p>
+                <p class="board-member-title">
+                    {{ principal_consultant.position }}
+                </p>
+                <p class="board-member-title">
+                    {{ principal_consultant.region }}
+                </p>
+            </div>
+        </div>
+        {% endfor %}
     </section>
 
 
