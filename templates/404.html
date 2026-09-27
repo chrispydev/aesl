@@ -1,11 +1,189 @@
-<style>
-  h1 {
-    text-align: center;
-  }
-</style>
-
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>This is page does not exist</h1>
+
+<style>
+    .error-page {
+        min-height: 75vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px 24px;
+        background:
+            linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+            url("{% static 'img/404-1.jpg' %}") center/cover no-repeat;
+                position: relative;
+                overflow: hidden;
+            }
+
+    .error-page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(
+                135deg,
+                rgba(255, 255, 255, 0.04) 25%,
+                transparent 25%
+            );
+        background-size: 40px 40px;
+        pointer-events: none;
+    }
+
+    .error-content {
+        position: relative;
+        z-index: 2;
+        max-width: 760px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .error-number {
+        font-size: clamp(100px, 20vw, 220px);
+        line-height: 0.8;
+        font-weight: 800;
+        letter-spacing: -10px;
+        margin: 0;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.75);
+        text-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .error-line {
+        width: 70px;
+        height: 4px;
+        margin: 35px auto 25px;
+        background: #c9a227;
+    }
+
+    .error-content h1 {
+        margin: 0 0 18px;
+        font-size: clamp(28px, 5vw, 48px);
+        font-weight: 600;
+        letter-spacing: -1px;
+    }
+
+    .error-content p {
+        max-width: 580px;
+        margin: 0 auto 35px;
+        font-size: 17px;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.82);
+    }
+
+    .error-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .error-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 160px;
+        padding: 14px 24px;
+        border-radius: 2px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+    }
+
+    .error-btn-primary {
+        background: #c9a227;
+        color: #111;
+    }
+
+    .error-btn-primary:hover {
+        background: #e0ba38;
+        transform: translateY(-2px);
+    }
+
+    .error-btn-secondary {
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: #fff;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .error-btn-secondary:hover {
+        background: #fff;
+        color: #111;
+        transform: translateY(-2px);
+    }
+
+    .architectural-grid {
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 100px;
+        opacity: 0.12;
+        background-image:
+            linear-gradient(90deg, #fff 1px, transparent 1px),
+            linear-gradient(#fff 1px, transparent 1px);
+        background-size: 50px 50px;
+        transform: perspective(300px) rotateX(55deg);
+        transform-origin: bottom;
+    }
+
+    @media (max-width: 600px) {
+        .error-page {
+            min-height: 80vh;
+            padding: 60px 20px;
+        }
+
+        .error-number {
+            letter-spacing: -5px;
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.75);
+        }
+
+        .error-content p {
+            font-size: 15px;
+        }
+
+        .error-actions {
+            flex-direction: column;
+        }
+
+        .error-btn {
+            width: 100%;
+            max-width: 280px;
+        }
+    }
+</style>
+
+<section class="error-page">
+
+    <div class="architectural-grid"></div>
+
+    <div class="error-content">
+
+        <div class="error-number">404</div>
+
+        <div class="error-line"></div>
+
+        <h1>Page Not Found</h1>
+
+        <p>
+        The page you are looking for could not be found.
+          Please check the address or return to our homepage to continue exploring our work.
+        </p>
+
+        <div class="error-actions">
+            <a href="{% url 'home' %}" class="error-btn error-btn-primary">
+                Back to Home
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

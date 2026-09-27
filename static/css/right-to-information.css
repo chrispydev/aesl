@@ -48,3 +48,11 @@ ul {
   margin-left: 20px;
   list-style-type: disc;
 }
+
+.donwload-link {
+  color: white;
+}
+
+.donwload-link:hover {
+  color: #17a589
+}

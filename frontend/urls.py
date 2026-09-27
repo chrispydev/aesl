@@ -237,7 +237,7 @@ urlpatterns = [
         name="publications_by_type",
     ),
     path(
-        "people/publications/right-to-information",
+        "publications/right-to-information",
         RightToInformationView.as_view(),
         name="right_to_information",
     ),

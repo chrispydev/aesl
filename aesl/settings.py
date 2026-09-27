@@ -21,7 +21,8 @@ ALLOWED_HOSTS = [
     "localhost",
     "162.0.211.66",
     "aesl.com.gh",
-    "www.aesl.com.gh"
+    "www.aesl.com.gh",
+    "images.katalma.com",
 ]
 
 # Application definition
@@ -34,13 +35,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Your apps
     "frontend",
+    "media_handle",
     # Third-party
     "django_browser_reload",
     "rest_framework",
-    'django_ckeditor_5',
+    "django_ckeditor_5",
     # "ckeditor",
     # "ckeditor_uploader",
     "django_cleanup.apps.CleanupConfig",
+    "corsheaders",
 ]
 
 # ==========================
@@ -63,6 +66,7 @@ if DEBUG:
     INSTALLED_APPS.insert(0, "whitenoise.runserver_nostatic")
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",  # Must be near the top
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -72,6 +76,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "https://katalma.vercel.app",
 ]
 
 ROOT_URLCONF = "aesl.urls"
@@ -101,7 +110,7 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
+        },
     }
 }
 
@@ -116,13 +125,13 @@ if DEBUG:
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'aesl_db',
-            'USER': 'aesl_user',
-            'PASSWORD': 'christian@seer.com',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "aesl_db",
+            "USER": "aesl_user",
+            "PASSWORD": "christian@seer.com",
+            "HOST": "127.0.0.1",
+            "PORT": "5432",
         }
     }
 
@@ -193,7 +202,7 @@ CKEDITOR_5_CONFIGS = {
             "selectAll",
             "|",
             "undo",
-            "redo"
+            "redo",
         ],
         "height": "500px",
     },
@@ -239,7 +248,6 @@ CKEDITOR_5_CONFIGS = {
                 },
             ]
         },
-
         "image": {
             "toolbar": [
                 "imageTextAlternative",
@@ -249,7 +257,6 @@ CKEDITOR_5_CONFIGS = {
                 "imageStyle:side",
             ]
         },
-
         "height": 600,
     },
 }
@@ -258,6 +265,4 @@ CKEDITOR_5_CONFIGS = {
 SECURE_SSL_REDIRECT = not DEBUG  # Only in production
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
-SECURE_PROXY_SSL_HEADER = (
-    "HTTP_X_FORWARDED_PROTO",
-    "https")  # Recommended for Vercel
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")  # Recommended for Vercel
