@@ -20,7 +20,7 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
-    default="127.0.0.1,localhost,162.0.211.66,aesl.com.gh,www.aesl.com.gh,images.katalma.com",
+    default="127.0.0.1,aesl.onrender.com,localhost,162.0.211.66,aesl.com.gh,www.aesl.com.gh,images.katalma.com",
     cast=Csv(),
 )
 
