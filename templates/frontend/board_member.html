@@ -11,36 +11,28 @@
     </div>
 </section>
 
-<div>
-    <h1 class="projects__title-sub">{{ board_member.name }}</h1>
-</div>
-
-<section>
-    <!-- Projects Text -->
-    <section class="director__details">
-        <div class="">
-            {% if board_member.image %}
-            <img
-                src="{{ board_member.image.url }}"
-                alt="{{ board_member.name }}"
-                class="{{ board_member.name }}"
-            />
+<section class="director__details">
+    <div class="director__CV">
+        {% if board_member.image %}
+        <img
+            src="{{ board_member.image.url }}"
+            alt="{{ board_member.name }}"
+        />
+        {% endif %}
+    </div>
+    <div class="director__text">
+        <h4>{{ board_member.name }}</h4>
+        <p>{{ board_member.about }}</p>
+        <div class="board-member-links">
+            {% if board_member.linkedin %}
+            <a href="{{ board_member.linkedin }}" target="_blank" rel="noopener noreferrer" class="link-btn">LinkedIn</a>
             {% endif %}
+            {% if board_member.twitter %}
+            <a href="{{ board_member.twitter }}" target="_blank" rel="noopener noreferrer" class="link-btn">Twitter</a>
+            {% endif %}
+            <a href="{% url 'corporate_governance' %}" class="link-btn">Back to Corporate Governance</a>
         </div>
-        <div class="director__text">
-            <p>" {{ board_member.about }} "</p>
-            <a href="{{ board_member.twitter }}">{{ board_member.twitter }}</a>
-            <a href="{{ board_member.linkedin }}"
-                >{{ board_member.linkedin }}</a
-            >
-            <h4>{{ board_member.name }}</h4>
-            <button class="button">
-                <a href="{% url 'corporate_governance' %}"
-                    >Back to Corporate Governance</a
-                >
-            </button>
-        </div>
-    </section>
+    </div>
 </section>
 
 {% endblock content %}

@@ -44,12 +44,12 @@
                 </div>
 
                 <h3 class="news-card-title">
-                  {% if article.source_url %}
-                      <a href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">
+                  {% if featured_article.source_url %}
+                      <a href="{{ featured_article.source_url }}" target="_blank" rel="noopener noreferrer">
                     {{ featured_article.title }}
                       </a>
                   {% else %}
-                      <a href="{{ article.get_absolute_url }}">
+                      <a href="{{ featured_article.get_absolute_url }}">
                     {{ featured_article.title }}
                       </a>
                   {% endif %}
@@ -76,12 +76,12 @@
                     {% endcomment %}
 
 
-                  {% if article.source_url %}
-                      <a class="news-card-link" href="{{ article.source_url }}" target="_blank" rel="noopener noreferrer">
+                  {% if featured_article.source_url %}
+                      <a class="news-card-link" href="{{ featured_article.source_url }}" target="_blank" rel="noopener noreferrer">
                           Read Article →
                       </a>
                   {% else %}
-                      <a class="news-card-link" href="{{ article.get_absolute_url }}">
+                      <a class="news-card-link" href="{{ featured_article.get_absolute_url }}">
                         Read Full Story →
                       </a>
                   {% endif %}

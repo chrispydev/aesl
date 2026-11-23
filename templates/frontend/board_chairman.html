@@ -1,142 +1,142 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
-<section class="board__chairman">
+  <section class="board__chairman">
     <div class="projects__overlay"></div>
-</section>
+  </section>
 
-<section class="projects__caption">
+  <section class="projects__caption">
     <div>
-        <h1 class="projects__title">ING. Kasser Ambrose Tee</h1>
+      <h1 class="projects__title">ING. Kasser Ambrose Tee</h1>
     </div>
-</section>
+  </section>
 
-<section id="ministy-work" class="sector">
+  <section id="ministy-work" class="sector">
     <!-- Projects Text -->
     <article class="grid__span">
-        <section class="director__details">
-            <div class="director__CV">
-                <img
-                    src="{% static 'img/board-chairman.jpg'%}"
-                    alt="Kasser Ambrose Tee"
-                    loading="lazy"
-                />
-            </div>
-            <div class="director__text">
-                <p>
-                In 2019 your company operated in a domestic condition
-                  that witnessed a real GDP growth of 6.5% from 6.3% in
-                  2018. This was on the back of subdued inflation rate at
-                  the end of the year at 9.6% from the 9.4% during the
-                  year end 2018. This was a reflection of the tight
-                  monetary policy measures implemented during that year. A
-                  budget deficit of 4.8% of GDP amounting to GH¢ 3.69
-                  billion was recorded in 2019 (as revenue amounted to GH¢
-                  58.9 billion against an expenditure of GH¢ 41.6 billion
-                  in 2018). There was a deterioration in the trade balance
-                  with an overall balance of payments deficit on cash
-                  basis of GH¢15.7 billion representing 4.5% of GDP 2019.
-                  The Cedi eventually depreciated by 12.9% in 2019.
-                  Anxiety about the upcoming 2020 election led to a
-                  general “wait and see” attitude on the part of investors
-                  and businessmen, both local and foreign. The Election
-                  was viewed as a success by the International Community
-                  because it did not result in violence and civil strife.
-                  This was the economic environment in which your Company
-                  operated in 2019.
-                </p>
-            </div>
-        </section>
+      <section class="director__details chairman-profile">
+        <div class="director__CV">
+          <img
+            src="{% static 'img/board-chairman.jpg'%}"
+            alt="Kasser Ambrose Tee"
+            loading="lazy"
+          />
+        </div>
+        <div class="director__text">
+          <p>
+            In 2019 your company operated in a domestic condition
+            that witnessed a real GDP growth of 6.5% from 6.3% in
+            2018. This was on the back of subdued inflation rate at
+            the end of the year at 9.6% from the 9.4% during the
+            year end 2018. This was a reflection of the tight
+            monetary policy measures implemented during that year. A
+            budget deficit of 4.8% of GDP amounting to GH¢ 3.69
+            billion was recorded in 2019 (as revenue amounted to GH¢
+            58.9 billion against an expenditure of GH¢ 41.6 billion
+            in 2018). There was a deterioration in the trade balance
+            with an overall balance of payments deficit on cash
+            basis of GH¢15.7 billion representing 4.5% of GDP 2019.
+            The Cedi eventually depreciated by 12.9% in 2019.
+            Anxiety about the upcoming 2020 election led to a
+            general “wait and see” attitude on the part of investors
+            and businessmen, both local and foreign. The Election
+            was viewed as a success by the International Community
+            because it did not result in violence and civil strife.
+            This was the economic environment in which your Company
+            operated in 2019.
+          </p>
+        </div>
+      </section>
 
-        <section id="dept-director" class="dept__heads-wrapper">
-            <div class="board__head">
-                <img src="{% static 'img/board-chairman/1.jpg' %}" alt="" />
-            </div>
+      <section id="dept-director" class="dept__heads-wrapper chairman-gallery">
+        <div class="board__head">
+          <img src="{% static 'img/board-chairman/1.jpg' %}" alt="" />
+        </div>
 
-            <div class="board__head">
-                <img src="{% static 'img/board-chairman/2.jpg' %}" alt="" />
-            </div>
-        </section>
+        <div class="board__head">
+          <img src="{% static 'img/board-chairman/2.jpg' %}" alt="" />
+        </div>
+      </section>
 
-        <section class="more__projects padding">
-            <p>
-                AESL || Practice/Management/Managing Director's Title and Name
-            </p>
-            <article class="boxes">
-                <div class="box"></div>
-                <div class="box"></div>
-                <div class="box"></div>
-            </article>
-        </section>
+      <section class="more__projects padding">
+        <p>
+          AESL || Practice/Management/Managing Director's Title and Name
+        </p>
+        <article class="boxes">
+          <div class="box"></div>
+          <div class="box"></div>
+          <div class="box"></div>
+        </article>
+      </section>
 
-        <section class="alumni__board-wrapper">
-            <div>
-                <h1 class="projects__title">Board Chairman Alumni</h1>
-            </div>
+      <section class="alumni__board-wrapper">
+        <div>
+          <h1 class="projects__title">Board Chairman Alumni</h1>
+        </div>
         <section id="members" class="sector__board-wrapper">
-            {% for image in alumni %}
+          {% for image in alumni %}
             <div class="board-member-card">
-                <div class="board-member-header">
-                    <div class="board-member-photo">
-                        <img
-                            src="{{ image.image.url }}"
-                            alt="{{ image.name }}"
-                            loading="lazy"
-                        />
-                    </div>
-                    <h3 class="board-member-name">{{ image.name }}</h3>
+              <div class="board-member-header">
+                <div class="board-member-photo">
+                  <img
+                    src="{{ image.image.url }}"
+                    alt="{{ image.name }}"
+                    loading="lazy"
+                  />
                 </div>
+                <h3 class="board-member-name">{{ image.name }}</h3>
+              </div>
 
-                <div class="board-member-footer">
-                    <div class="board-member-links">
-                        <a
-                            href="{% url 'alumni_detail' image.pk %}"
-                            class="link-btn"
-                        >
-                            Profile
-                        </a>
-                    </div>
+              <div class="board-member-footer">
+                <div class="board-member-links">
+                  <a
+                    href="{% url 'alumni_detail' image.pk %}"
+                    class="link-btn"
+                  >
+                    Profile
+                  </a>
                 </div>
+              </div>
             </div>
-            {% empty %}
+          {% empty %}
             <p>No alumni members listed at the moment.</p>
-            {% endfor %}
+          {% endfor %}
         </section>
-        </section>
+      </section>
     </article>
 
     <aside class="sector__aside">
-        <div class="sector__links-wrapper">
-            <a href="{% url 'practice' %}">Back to Practice</a>
-            <p>Corporate Governance</p>
-            <div class="sector__links">
-                <a href="#ministy-work">Corporate Governance</a>
-                <a href="#alumni">Board Alumni</a>
-            </div>
+      <div class="sector__links-wrapper">
+        <a href="{% url 'practice' %}">Back to Practice</a>
+        <p>Corporate Governance</p>
+        <div class="sector__links">
+          <a href="#ministy-work">Corporate Governance</a>
+          <a href="#alumni">Board Alumni</a>
         </div>
-        <div class="sector__navigation">
-            <p>Previous</p>
-            <a href="{% url 'sector_ministry' %}">AESL sector Ministry</a>
-            <p>Next</p>
-            <a href="{% url 'management' %}">AESL Management</a>
-        </div>
+      </div>
+      <div class="sector__navigation">
+        <p>Previous</p>
+        <a href="{% url 'sector_ministry' %}">AESL sector Ministry</a>
+        <p>Next</p>
+        <a href="{% url 'management' %}">AESL Management</a>
+      </div>
     </aside>
-</section>
+  </section>
 
 <!-- page location Section -->
-<section class="page__location">
+  <section class="page__location">
     <div class="page__flex">
-        <img
-            src="{% static 'img/aesl_logo.png' %}"
-            alt="aesl logo"
-            class="info__building-image-large"
-        />
-        <p>AESL || {{title}}</p>
+      <img
+        src="{% static 'img/aesl_logo.png' %}"
+        alt="aesl logo"
+        class="info__building-image-large"
+      />
+      <p>AESL || {{title}}</p>
     </div>
     <p>
-        Consulting Architects,<br />
-        Engineers and Surveyors
+      Consulting Architects,<br />
+      Engineers and Surveyors
     </p>
-</section>
+  </section>
 
 {% endblock content %}

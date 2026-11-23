@@ -1,0 +1,25 @@
+{% load i18n %}
+<button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="{% translate 'Toggle navigation' %}">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+</button>
+<nav class="sticky" id="nav-sidebar" aria-label="{% translate 'Sidebar' %}">
+  <div class="sidebar-head">
+    <span class="sidebar-head__label">{% translate 'Workspace' %}</span>
+    <a class="sidebar-head__home" href="{% url 'admin:index' %}">{% translate 'Overview' %}</a>
+  </div>
+
+  <div class="nav-search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <input type="search" id="nav-filter" placeholder="{% translate 'Filter modules…' %}" aria-label="{% translate 'Filter navigation items' %}" autocomplete="off">
+  </div>
+
+  <div class="sidebar-scroll">
+    {% include 'admin/app_list.html' with app_list=available_apps show_changelinks=False %}
+  </div>
+
+  <div class="sidebar-foot">
+    <span class="pulse-dot"></span>
+    <span>AESL CMS <strong>v2.0</strong></span>
+  </div>
+</nav>
+<div class="sidebar-overlay" hidden></div>

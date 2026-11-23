@@ -50,6 +50,7 @@ from frontend.views import (
     StaffDetailView,
     SupportTeamView,
     AlumniDetailView,
+    newsletter_subscribe,
 )
 
 urlpatterns = [
@@ -255,5 +256,10 @@ urlpatterns = [
         "categories/",
         CategoryNewsListView.as_view(),
         name="categories",
+    ),
+    path(
+        "newsletter/subscribe/",
+        newsletter_subscribe,
+        name="newsletter_subscribe",
     ),
 ]

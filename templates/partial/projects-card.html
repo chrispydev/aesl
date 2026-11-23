@@ -1,35 +1,14 @@
-<!-- Projects__cards -->
-<section class="projects__cards">
-    <!-- Practice -->
-    <div class="projects__card">
-        <a href="{% url 'projects' %}">Projects</a>
-    </div>
-
-    <!-- About / Institutional -->
-    <div class="projects__card">
-        <a  class="civic__highlight" href="{% url 'civic_culture' %}">Civic and Culture</a>
-        <a href="{% url 'education' %}">Education</a>
-        <a class="civic__highlight" href="{% url 'health' %}">Health</a>
-        <a class="civic__highlight" href="{% url 'office_retail' %}">Office Retail and Mixed-Use</a>
-        <a class="residential__highlight" href="{% url 'residential' %}">Residential</a>
-    </div>
-
-    <!-- Governance & Management -->
-    <div class="projects__card">
-        <a class="industrial__highlight" href="{% url 'industrial_infrastructure' %}"
-            >Industrial and Infrastructure</a
-        >
-        <a href="{% url 'hospitality' %}">Hospitality</a>
-        <a class="sport__leisure-highlight" href="{% url 'sport_leisure' %}">Sports and Leisure</a>
-        <a href="{% url 'landscape_planning' %}"
-            >Landscape, Planning and Survey</a
-        >
-    </div>
-
-    <!-- Services & Others -->
-    <div class="projects__card-link">
-        <a href="{% url 'project_list' %}">Projects List</a>
-        <a href="#">Projects Map</a>
-        <a href="#">Projects Films</a>
-    </div>
-</section>
+<!-- Projects sub-navigation -->
+<nav class="projects__cards" aria-label="Project categories">
+  <a href="{% url 'projects' %}" class="{% if request.resolver_match.url_name == 'projects' %}active__link{% endif %}">All Projects</a>
+  <a href="{% url 'civic_culture' %}" class="project-cat--civic {% if request.resolver_match.url_name == 'civic_culture' %}active__link{% endif %}">Civic &amp; Culture</a>
+  <a href="{% url 'education' %}" class="project-cat--education {% if request.resolver_match.url_name == 'education' %}active__link{% endif %}">Education</a>
+  <a href="{% url 'health' %}" class="project-cat--health {% if request.resolver_match.url_name == 'health' %}active__link{% endif %}">Health</a>
+  <a href="{% url 'office_retail' %}" class="project-cat--office {% if request.resolver_match.url_name == 'office_retail' %}active__link{% endif %}">Office, Retail &amp; Mixed Use</a>
+  <a href="{% url 'residential' %}" class="project-cat--residential {% if request.resolver_match.url_name == 'residential' %}active__link{% endif %}">Residential</a>
+  <a href="{% url 'industrial_infrastructure' %}" class="project-cat--industrial {% if request.resolver_match.url_name == 'industrial_infrastructure' %}active__link{% endif %}">Industrial &amp; Infrastructure</a>
+  <a href="{% url 'hospitality' %}" class="project-cat--hospitality {% if request.resolver_match.url_name == 'hospitality' %}active__link{% endif %}">Hospitality</a>
+  <a href="{% url 'sport_leisure' %}" class="project-cat--sport {% if request.resolver_match.url_name == 'sport_leisure' %}active__link{% endif %}">Sports &amp; Leisure</a>
+  <a href="{% url 'landscape_planning' %}" class="project-cat--landscape {% if request.resolver_match.url_name == 'landscape_planning' %}active__link{% endif %}">Landscaping &amp; Planning</a>
+  <a href="{% url 'project_list' %}" class="{% if request.resolver_match.url_name == 'project_list' %}active__link{% endif %}">Projects List</a>
+</nav>

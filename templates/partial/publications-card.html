@@ -1,21 +1,10 @@
-<!-- Projects__cards -->
-<section class="projects__cards">
-    <!-- Practice -->
-    <div class="projects__card">
-        <a href="{% url 'publications' %}">All Publications</a>
-    </div>
-
-    <!-- About / Institutional -->
-  <div class="projects__card">
-      <a href="{% url 'publications_by_type' 'technical-reports-2021' %}">Technical Reports</a>
-      <a href="{% url 'publications_by_type' 'financial-reports-2022' %}">Financial Reports</a>
-      <a href="{% url 'publications_by_type' 'articles-2024' %}">Articles</a>
-  </div>
-
-  <!-- Governance & Management -->
-  <div class="projects__card">
-      <a href="{% url 'publications_by_type' 'white-papers-2024' %}">White Papers</a>
-      <a href="{% url 'publications_by_type' 'reviews-2025' %}">Reviews</a>
-      <a href="{% url 'right_to_information' %}">Right to Information</a>
-  </div>
-</section>
+<!-- Publications sub-navigation -->
+<nav class="projects__cards" aria-label="Publication categories">
+  <a href="{% url 'publications' %}" class="{% if request.resolver_match.url_name == 'publications' %}active__link{% endif %}">All Publications</a>
+  <a href="{% url 'publications_by_type' 'technical-reports-2021' %}">Technical Reports</a>
+  <a href="{% url 'publications_by_type' 'financial-reports-2022' %}">Financial Reports</a>
+  <a href="{% url 'publications_by_type' 'articles-2024' %}">Articles</a>
+  <a href="{% url 'publications_by_type' 'white-papers-2024' %}">White Papers</a>
+  <a href="{% url 'publications_by_type' 'reviews-2025' %}">Reviews</a>
+  <a href="{% url 'right_to_information' %}" class="{% if request.resolver_match.url_name == 'right_to_information' %}active__link{% endif %}">Right to Information</a>
+</nav>

@@ -1,0 +1,93 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static %}
+
+{% block title %}{% translate 'Sign in' %} | {{ site_title|default:_('AESL Control Center') }}{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login aesl-login{% endblock %}
+
+{% block usertools %}{% endblock %}
+{% block nav-global %}{% endblock %}
+{% block nav-sidebar %}{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+{% block content_title %}{% endblock %}
+
+{% block content %}
+  <div class="login-shell">
+    <aside class="login-brand" aria-hidden="true">
+      <div class="login-brand__glow"></div>
+      <div class="login-brand__grid"></div>
+      <div class="login-brand__content">
+        <div class="login-brand__logo">
+          <img src="{% static 'img/logo/android-chrome-192x192.png' %}" alt="AESL logo" width="44" height="44">
+          <span>AESL</span>
+        </div>
+        <h2>Building ideas.<br><span>Managing impact.</span></h2>
+        <p>The internal workspace for projects, people and publications across every AESL practice.</p>
+        <div class="login-brand__stats">
+          <div><strong>20+</strong><span>Years of practice</span></div>
+          <div><strong>5</strong><span>Regional offices</span></div>
+          <div><strong>24/7</strong><span>Content access</span></div>
+        </div>
+      </div>
+      <div class="login-brand__foot">Architectural &amp; Engineering Services Ltd.</div>
+    </aside>
+
+    <main class="login-panel">
+      <div class="login-card">
+        <div class="login-card__head">
+          <span class="login-eyebrow"><span class="pulse-dot"></span> Secure access</span>
+          <h1>{% translate 'Welcome back' %}</h1>
+          <p>Sign in to continue to the control center.</p>
+        </div>
+
+        {% if form.errors and not form.non_field_errors %}
+          <p class="errornote">
+            {% blocktranslate count counter=form.errors.items|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktranslate %}
+          </p>
+        {% endif %}
+        {% for error in form.non_field_errors %}
+          <p class="errornote">{{ error }}</p>
+        {% endfor %}
+        {% if user.is_authenticated %}
+          <p class="errornote">
+            {% blocktranslate trimmed %}You are authenticated as {{ username }}, but are not authorized to access this page. Would you like to login to a different account?{% endblocktranslate %}
+          </p>
+        {% endif %}
+
+        <form action="{{ app_path }}" method="post" id="login-form" class="login-form" novalidate>
+          {% csrf_token %}
+          <div class="field">
+            <label for="{{ form.username.id_for_label }}">{% translate 'Username' %}</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.7-8 6v2h16v-2c0-3.3-3.6-6-8-6Z" fill="currentColor"/></svg>
+              {{ form.username }}
+            </div>
+            {{ form.username.errors }}
+          </div>
+          <div class="field">
+            <label for="{{ form.password.id_for_label }}">{% translate 'Password' %}</label>
+            <div class="input-wrap">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 7V7a3 3 0 1 1 6 0v2H9Z" fill="currentColor"/></svg>
+              {{ form.password }}
+            </div>
+            {{ form.password.errors }}
+          </div>
+          <input type="hidden" name="next" value="{{ next }}">
+
+          {% url 'admin_password_reset' as password_reset_url %}
+          {% if password_reset_url %}
+            <a class="forgot-link" href="{{ password_reset_url }}">{% translate 'Forgotten your login credentials?' %}</a>
+          {% endif %}
+
+          <button type="submit" class="login-submit">
+            {% translate 'Log in' %}
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </form>
+
+        <p class="login-help">Need access? Contact your AESL system administrator.</p>
+      </div>
+      <div class="login-panel__foot">&copy; {% now "Y" %} AESL &middot; Internal use only</div>
+    </main>
+  </div>
+{% endblock %}

@@ -1,5 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  // Newsletter subscription
+  const newsletterForms = document.querySelectorAll("[data-newsletter-form]");
+  newsletterForms.forEach((form) => {
+    const messageEl = form.querySelector(".footer__newsletter-message");
+    const button = form.querySelector('button[type="submit"]');
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (messageEl) {
+        messageEl.textContent = "Subscribing...";
+        messageEl.classList.remove("is-error", "is-success");
+      }
+      if (button) button.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": form.querySelector("[name=csrfmiddlewaretoken]")?.value || "",
+          },
+          body: new FormData(form),
+        });
+        const data = await res.json().catch(() => ({}));
+        const ok = res.ok && data.ok;
+        if (messageEl) {
+          messageEl.textContent = data.message || (ok ? "Subscribed." : "Subscription failed.");
+          messageEl.classList.toggle("is-success", !!ok);
+          messageEl.classList.toggle("is-error", !ok);
+        }
+        if (ok) form.reset();
+      } catch {
+        if (messageEl) {
+          messageEl.textContent = "Subscription failed. Please try again.";
+          messageEl.classList.add("is-error");
+        }
+      } finally {
+        if (button) button.disabled = false;
+      }
+    });
+  });
+
 
   /* =========================
      MOBILE MENU TOGGLE
@@ -9,26 +49,40 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.querySelector(".closebtn");
   const showSidebar = document.querySelector(".mobile__menubtn");
 
+  const closeMobileMenu = () => {
+    if (!toggleDiv) return;
+    toggleDiv.classList.remove("toggle__sidebar");
+    toggleDiv.setAttribute("aria-hidden", "true");
+    if (showSidebar) showSidebar.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("mobile-menu-open");
+  };
 
-  if (toggleDiv && closeBtn) {
+  const openMobileMenu = () => {
+    if (!toggleDiv) return;
+    toggleDiv.classList.add("toggle__sidebar");
+    toggleDiv.setAttribute("aria-hidden", "false");
+    if (showSidebar) showSidebar.setAttribute("aria-expanded", "true");
+    document.body.classList.add("mobile-menu-open");
+  };
 
-    closeBtn.addEventListener("click", () => {
-
-      toggleDiv.classList.remove("toggle__sidebar");
-
-    });
-
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closeMobileMenu);
   }
 
+  if (showSidebar) {
+    showSidebar.addEventListener("click", openMobileMenu);
+  }
 
-  if (toggleDiv && showSidebar) {
-
-    showSidebar.addEventListener("click", () => {
-
-      toggleDiv.classList.add("toggle__sidebar");
-
+  if (toggleDiv) {
+    toggleDiv.addEventListener("click", (event) => {
+      if (event.target === toggleDiv) closeMobileMenu();
     });
 
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && toggleDiv.classList.contains("toggle__sidebar")) {
+        closeMobileMenu();
+      }
+    });
   }
 
 

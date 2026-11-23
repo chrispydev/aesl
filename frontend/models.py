@@ -15,7 +15,6 @@ from django_ckeditor_5.fields import CKEditor5Field
 # IMAGE OPTIMIZATION MIXIN
 # ==============================
 class ImageOptimizeMixin:
-
     IMAGE_MAX_SIZE = (1200, 1200)
     IMAGE_QUALITY = 85
 
@@ -25,7 +24,6 @@ class ImageOptimizeMixin:
             return
 
         try:
-
             # Skip if no file
             if not image_field.name:
                 return
@@ -37,63 +35,35 @@ class ImageOptimizeMixin:
                 img = img.convert("RGB")
 
             # Resize while keeping aspect ratio
-            img.thumbnail(
-                self.IMAGE_MAX_SIZE,
-                Image.LANCZOS
-            )
+            img.thumbnail(self.IMAGE_MAX_SIZE, Image.LANCZOS)
 
             buffer = BytesIO()
 
-            ext = os.path.splitext(
-                image_field.name
-            )[1].lower()
+            ext = os.path.splitext(image_field.name)[1].lower()
 
             if ext in [".jpg", ".jpeg"]:
-
                 img.save(
-                    buffer,
-                    format="JPEG",
-                    quality=self.IMAGE_QUALITY,
-                    optimize=True
+                    buffer, format="JPEG", quality=self.IMAGE_QUALITY, optimize=True
                 )
 
             elif ext == ".png":
-
-                img.save(
-                    buffer,
-                    format="PNG",
-                    optimize=True
-                )
+                img.save(buffer, format="PNG", optimize=True)
 
             elif ext == ".webp":
-
-                img.save(
-                    buffer,
-                    format="WEBP",
-                    quality=self.IMAGE_QUALITY
-                )
+                img.save(buffer, format="WEBP", quality=self.IMAGE_QUALITY)
 
             else:
-
                 # Fallback for unsupported image formats
                 img.save(
-                    buffer,
-                    format="JPEG",
-                    quality=self.IMAGE_QUALITY,
-                    optimize=True
+                    buffer, format="JPEG", quality=self.IMAGE_QUALITY, optimize=True
                 )
 
             buffer.seek(0)
 
-            image_field.file = ContentFile(
-                buffer.read()
-            )
+            image_field.file = ContentFile(buffer.read())
 
         except Exception as e:
-
-            print(
-                f"Image optimization skipped: {e}"
-            )
+            print(f"Image optimization skipped: {e}")
 
 
 # ==============================
@@ -132,16 +102,13 @@ class Project(ImageOptimizeMixin, models.Model):
     location = models.CharField(max_length=300, default="Accra")
 
     picture = models.ImageField(
-        upload_to="projects/main_pictures/",
-        blank=True,
-        null=True,
-        max_length=300)
+        upload_to="projects/main_pictures/", blank=True, null=True, max_length=300
+    )
 
     little_text_details = models.TextField()
     project_coordinator = models.CharField(max_length=150)
 
-    project_leaders = models.ManyToManyField(
-        ProjectLeader, related_name="projects")
+    project_leaders = models.ManyToManyField(ProjectLeader, related_name="projects")
     other_team_members = models.ManyToManyField(
         ProjectTeamMember, related_name="projects", blank=True
     )
@@ -154,10 +121,8 @@ class Project(ImageOptimizeMixin, models.Model):
     certificate = models.CharField(max_length=300, blank=True)
 
     category = models.ForeignKey(
-        ProjectCategory,
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name="projects")
+        ProjectCategory, on_delete=models.SET_NULL, null=True, related_name="projects"
+    )
 
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -175,9 +140,7 @@ class Project(ImageOptimizeMixin, models.Model):
             # Optional: make unique if duplicate titles exist
             base_slug = self.slug
             counter = 1
-            while Project.objects.filter(
-                    slug=self.slug).exclude(
-                    pk=self.pk).exists():
+            while Project.objects.filter(slug=self.slug).exclude(pk=self.pk).exists():
                 self.slug = f"{base_slug}-{counter}"
                 counter += 1
         if self.picture:
@@ -197,7 +160,7 @@ class ProjectLocation(models.Model):
         on_delete=models.CASCADE,
         related_name="locations",
         null=True,
-        blank=True
+        blank=True,
     )
 
     region = models.CharField(max_length=200, null=True, blank=True)
@@ -208,9 +171,7 @@ class ProjectLocation(models.Model):
         help_text="e.g., 5.6037 for Accra",
     )
     longitude = models.FloatField(
-        null=True,
-        blank=True,
-        help_text="e.g., -0.1870 for Accra"
+        null=True, blank=True, help_text="e.g., -0.1870 for Accra"
     )
 
     created_at = models.DateTimeField(default=timezone.now)
@@ -303,8 +264,7 @@ class ProjectGalleryImage(ImageOptimizeMixin, models.Model):
     )
 
     # Optional useful fields (you can remove if not needed)
-    uploaded_at = models.DateTimeField(
-        auto_now_add=True, verbose_name="Upload Date")
+    uploaded_at = models.DateTimeField(auto_now_add=True, verbose_name="Upload Date")
     is_active = models.BooleanField(
         default=True,
         verbose_name="Visible",
@@ -356,9 +316,8 @@ class ProjectContractor(models.Model):
         Project, on_delete=models.CASCADE, related_name="contractors"
     )
     role = models.ForeignKey(
-        ContractorRole,
-        on_delete=models.PROTECT,
-        related_name="project_contractors")
+        ContractorRole, on_delete=models.PROTECT, related_name="project_contractors"
+    )
     company_name = models.CharField(max_length=200)
 
     class Meta:
@@ -422,8 +381,7 @@ class Staff(ImageOptimizeMixin, models.Model):
 # ==============================
 class People(ImageOptimizeMixin, models.Model):
     name = models.CharField(max_length=255)
-    profile_picture = models.ImageField(
-        upload_to="people/", blank=True, null=True)
+    profile_picture = models.ImageField(upload_to="people/", blank=True, null=True)
     position = models.CharField(max_length=100, default="position", blank=True)
     # rank = models.CharField(max_length=100, default="rank", blank=True)
     rank = models.CharField(max_length=100, default="category")
@@ -450,10 +408,7 @@ class Publications(ImageOptimizeMixin, models.Model):
     title = models.CharField(max_length=255)
     type = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    download = models.FileField(
-        upload_to="publications/",
-        blank=True,
-        null=True)
+    download = models.FileField(upload_to="publications/", blank=True, null=True)
     publication_image = models.ImageField(
         upload_to="publications/images/", blank=True, null=True
     )
@@ -578,7 +533,7 @@ class NewsArticle(ImageOptimizeMixin, models.Model):
         max_length=500,
         blank=True,
         null=True,
-        help_text="Original source link for external news articles"
+        help_text="Original source link for external news articles",
     )
 
     # Optional fields
@@ -601,17 +556,13 @@ class NewsArticle(ImageOptimizeMixin, models.Model):
     def save(self, *args, **kwargs):
 
         if not self.slug:
-
             base_slug = slugify(self.title)
 
             slug = base_slug
 
             counter = 1
 
-            while NewsArticle.objects.filter(
-                slug=slug
-            ).exclude(pk=self.pk).exists():
-
+            while NewsArticle.objects.filter(slug=slug).exclude(pk=self.pk).exists():
                 slug = f"{base_slug}-{counter}"
 
                 counter += 1
@@ -627,9 +578,7 @@ class NewsArticle(ImageOptimizeMixin, models.Model):
             self.meta_description = self.excerpt[:320]
 
         if self.featured_image:
-            self.optimize_image(
-                self.featured_image
-            )
+            self.optimize_image(self.featured_image)
 
         super().save(*args, **kwargs)
 
@@ -638,10 +587,7 @@ class NewsArticle(ImageOptimizeMixin, models.Model):
         if self.source_url:
             return self.source_url
 
-        return reverse(
-            "news_detail",
-            kwargs={"slug": self.slug}
-        )
+        return reverse("news_detail", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.title
@@ -762,3 +708,17 @@ class Alumni(ImageOptimizeMixin, models.Model):
 
     def get_absolute_url(self):
         return reverse("alumni_detail", args=[self.pk])
+
+
+class NewsletterSubscription(models.Model):
+    email = models.EmailField(unique=True)
+    is_active = models.BooleanField(default=True)
+    subscribed_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ["-subscribed_at"]
+        verbose_name = "Newsletter Subscription"
+        verbose_name_plural = "Newsletter Subscriptions"
+
+    def __str__(self):
+        return self.email

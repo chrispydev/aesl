@@ -1,13 +1,78 @@
 {% extends "admin/base.html" %}
-{% load static %}
+{% load i18n static %}
 
-{% block title %}
-{{ title }} | My Admin
-{% endblock %}
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('AESL Control Center') }}{% endblock %}
 
 {% block extrahead %}
-{{ block.super }}
-<link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/logo/favicon-32x32.png' %}">
-<link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/logo/favicon-16x16.png' %}">
-<link rel="manifest" href="{% static 'img/site.webmanifest' %}">
+  {{ block.super }}
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/logo/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/logo/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&family=Ubuntu:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <script src="{% static 'admin_theme/js/admin-theme.js' %}" defer></script>
+{% endblock %}
+
+{# Loaded after Django's own responsive.css so theme overrides always win. #}
+{% block responsive %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'admin_theme/css/admin-theme.css' %}">
+{% endblock %}
+
+{% block branding %}
+  <div class="aesl-brand">
+    <button class="mobile-nav-trigger" type="button" aria-label="{% translate 'Toggle navigation' %}" aria-expanded="false" aria-controls="nav-sidebar">
+      <span></span><span></span><span></span>
+    </button>
+    <a class="brand-mark" href="{% url 'admin:index' %}" aria-label="AESL Control Center home">
+      <img src="{% static 'img/logo/android-chrome-192x192.png' %}" alt="AESL" width="30" height="30">
+    </a>
+    <span class="brand-copy">
+      <span class="brand-title">AESL <em>Control Center</em></span>
+      <span class="brand-sub">Engineering content management</span>
+    </span>
+  </div>
+{% endblock %}
+
+{% block usertools %}
+  {% if has_permission %}
+    <div id="user-tools" class="aesl-user-tools">
+      <span class="topbar-date" id="topbar-date" aria-hidden="true"></span>
+      {% if site_url %}
+        <a class="topbar-link" href="{{ site_url }}" target="_blank" rel="noopener">View site <span aria-hidden="true">&#8599;</span></a>
+      {% endif %}
+      {% if user.has_usable_password %}
+        <a class="topbar-link topbar-link--icon" href="{% url 'admin:password_change' %}" title="{% translate 'Change password' %}">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 0-5 5v2H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 7V7a3 3 0 1 1 6 0v2H9Z" fill="currentColor"/></svg>
+        </a>
+      {% endif %}
+      <details class="user-menu">
+        <summary>
+          <span class="avatar">{{ user.get_username|slice:':1'|upper }}</span>
+          <span class="user-name">{{ user.get_short_name|default:user.get_username }}</span>
+          <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="user-menu-pop">
+          <span class="menu-label">{% translate 'Signed in as' %}</span>
+          <strong>{{ user.get_username }}</strong>
+          <div class="menu-divider"></div>
+          <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+            {% csrf_token %}
+            <button type="submit">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17l5-5-5-5v3H2v4h8v3Zm9-13h-6v2h6v12h-6v2h6a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Z" fill="currentColor"/></svg>
+              {% translate 'Log out' %}
+            </button>
+          </form>
+        </div>
+      </details>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block footer %}
+  <div class="aesl-footer">
+    <span>&copy; {% now "Y" %} AESL &middot; Architectural &amp; Engineering Services Ltd.</span>
+    <span class="footer-status"><span class="pulse-dot"></span> All systems operational</span>
+  </div>
 {% endblock %}

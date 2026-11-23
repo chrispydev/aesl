@@ -1,30 +1,12 @@
-<!-- Projects__cards -->
-<section class="projects__cards">
-    <!-- Practice -->
-    <div class="projects__card">
-        <a href="{% url 'practice' %}">Practice</a>
-    </div>
-
-    <!-- About / Institutional -->
-    <div class="projects__card">
-        <a href="{% url 'history' %}">History</a>
-        <a href="{% url 'mandate' %}">Mandate</a>
-        <a href="{% url 'functions' %}">Functions</a>
-        <a href="{% url 'mission_vision' %}">Mission, Vision and Values</a>
-    </div>
-
-    <!-- Governance & Management -->
-    <div class="projects__card">
-        <a href="{% url 'sector_ministry' %}">Sector Ministry</a>
-        <a href="{% url 'corporate_governance' %}">Corporate Governance</a>
-        <a href="{% url 'management' %}">Management</a>
-    </div>
-
-    <!-- Services & Others -->
-    <div class="projects__card-link">
-        <a href="{% url 'services' %}">Services</a>
-        <!-- Add when ready -->
-        <!-- <a href="">Client Speak</a> -->
-        <!-- <a href="">Corporate Responsibilities</a> -->
-    </div>
-</section>
+<!-- Practice sub-navigation -->
+<nav class="projects__cards" aria-label="Practice sections">
+  <a href="{% url 'practice' %}" class="{% if request.resolver_match.url_name == 'practice' %}active__link{% endif %}">Practice</a>
+  <a href="{% url 'history' %}" class="{% if request.resolver_match.url_name == 'history' %}active__link{% endif %}">History</a>
+  <a href="{% url 'mandate' %}" class="{% if request.resolver_match.url_name == 'mandate' %}active__link{% endif %}">Mandate</a>
+  <a href="{% url 'functions' %}" class="{% if request.resolver_match.url_name == 'functions' %}active__link{% endif %}">Functions</a>
+  <a href="{% url 'mission_vision' %}" class="{% if request.resolver_match.url_name == 'mission_vision' %}active__link{% endif %}">Mission, Vision &amp; Values</a>
+  <a href="{% url 'sector_ministry' %}" class="{% if request.resolver_match.url_name == 'sector_ministry' %}active__link{% endif %}">Sector Ministry</a>
+  <a href="{% url 'corporate_governance' %}" class="{% if request.resolver_match.url_name == 'corporate_governance' %}active__link{% endif %}">Corporate Governance</a>
+  <a href="{% url 'management' %}" class="{% if request.resolver_match.url_name == 'management' %}active__link{% endif %}">Management</a>
+  <a href="{% url 'services' %}" class="{% if request.resolver_match.url_name == 'services' %}active__link{% endif %}">Services</a>
+</nav>

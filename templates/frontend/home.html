@@ -1,446 +1,490 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
-<!-- Main content -->
-<section class="parallax-carousel">
-    <!-- Swiper container -->
-    <div class="swiper mySwiper">
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="home-page">
+
+  <!-- HERO -->
+  <section class="home-hero" aria-label="Featured highlights">
+    <div class="swiper home-hero-swiper">
       <div class="swiper-wrapper">
+
         <div class="swiper-slide" style="background-image: url('{% static 'img/carousel/carousel-4.jpg' %}');">
-          <div class="overlay"></div>
-          <div class="content">
-            <h1>ARCHITECTURAL AND ENGINEERING SERVICES LIMITED</h1>
-            <p>
-              Architectural and Engineering Services Limited (AESL) is a practicing and multidisciplinary firm that provides comprehensive architectural, engineering and surveying solutions for public and private sector clients in the construction industry.
+          <div class="home-hero__overlay"></div>
+          <div class="home-hero__content">
+            <p class="home-hero__eyebrow">Since 1973 &middot; Ghana</p>
+            <h1 class="home-hero__title">
+              Building Ghana's Future
+              <span>Architectural &amp; Engineering Services Limited</span>
+            </h1>
+            <p class="home-hero__desc">
+              A multidisciplinary consultancy delivering architectural, engineering, and surveying solutions for public and private sector clients across the nation.
             </p>
-            <div class="buttons">
-              <button class="button button__background">
-                <a href="{% url 'practice' %}">Read More</a>
-              </button>
-              <button class="button">
-                <a href="{% url 'practice' %}">Contact Us</a>
-              </button>
+            <div class="home-hero__actions">
+              <a href="{% url 'projects' %}" class="home-btn home-btn--primary">Explore Projects</a>
+              <a href="{% url 'practice' %}" class="home-btn home-btn--ghost">Our Practice</a>
             </div>
           </div>
         </div>
+
         <div class="swiper-slide" style="background-image: url('{% static 'img/carousel/carousel-1.jpeg' %}');">
-          <div class="overlay"></div>
-          <div class="content">
-            <h1>ARCHITECTURAL AND ENGINEERING SERVICES LIMITED</h1>
-            <p>
-              AESL offers a wide range of services combining the fields of architecture, engineering and surveying to create innovative and sustainable designs that are not only visually appealing but also structurally sound, efficient and accurately measured. 
+          <div class="home-hero__overlay"></div>
+          <div class="home-hero__content">
+            <p class="home-hero__eyebrow">Design &middot; Engineering &middot; Surveying</p>
+            <h1 class="home-hero__title">
+              Innovative by Design
+              <span>Integrated solutions for the built environment</span>
+            </h1>
+            <p class="home-hero__desc">
+              We combine architecture, engineering, and surveying to create sustainable designs that are visually compelling, structurally sound, and precisely measured.
             </p>
-            <div class="buttons">
-              <button class="button button__background">
-                <a href="{% url 'practice' %}">Read More</a>
-              </button>
-              <button class="button">
-                <a href="{% url 'practice' %}">Contact Us</a>
-              </button>
+            <div class="home-hero__actions">
+              <a href="{% url 'services' %}" class="home-btn home-btn--primary">Our Services</a>
+              <a href="{% url 'projects' %}" class="home-btn home-btn--ghost">View Projects</a>
             </div>
           </div>
         </div>
 
         <div class="swiper-slide" style="background-image: url('{% static 'img/carousel/carousel-2.jpg' %}');">
-          <div class="overlay"></div>
-          <div class="content">
-            <h1>ARCHITECTURAL AND ENGINEERING SERVICES LIMITED</h1>
-            <p>
-              AESL offers a wide range of services combining the fields of architecture, engineering and surveying to create innovative and sustainable designs that are not only visually appealing but also structurally sound, efficient and accurately measured. 
+          <div class="home-hero__overlay"></div>
+          <div class="home-hero__content">
+            <p class="home-hero__eyebrow">Nationwide Presence</p>
+            <h1 class="home-hero__title">
+              Shaping Communities
+              <span>Infrastructure that serves people and purpose</span>
+            </h1>
+            <p class="home-hero__desc">
+              From civic landmarks to essential infrastructure, our portfolio reflects decades of commitment to Ghana's social and economic development.
             </p>
-            <div class="buttons">
-              <button class="button button__background">
-                <a href="{% url 'practice' %}">Read More</a>
-              </button>
-              <button class="button">
-                <a href="{% url 'practice' %}">Contact Us</a>
-              </button>
+            <div class="home-hero__actions">
+              <a href="{% url 'projects' %}" class="home-btn home-btn--primary">See Our Work</a>
+              <a href="{% url 'history' %}" class="home-btn home-btn--ghost">Our History</a>
             </div>
           </div>
         </div>
 
         <div class="swiper-slide" style="background-image: url('{% static 'img/carousel/carousel-3.webp' %}');">
-          <div class="overlay"></div>
-          <div class="content">
-            <h1>ARCHITECTURAL AND ENGINEERING SERVICES LIMITED</h1>
-            <p>
-              AESL operates from its head office in the capital of Ghana — Accra, with other offices located in the regions of Ghana. 
+          <div class="home-hero__overlay"></div>
+          <div class="home-hero__content">
+            <p class="home-hero__eyebrow">Head Office &middot; Accra</p>
+            <h1 class="home-hero__title">
+              Nationwide Reach
+              <span>Offices across every region of Ghana</span>
+            </h1>
+            <p class="home-hero__desc">
+              With our head office in Accra and regional offices throughout Ghana, AESL delivers professional consultancy services wherever they are needed.
             </p>
-            <div class="buttons">
-              <button class="button button__background">
-                <a href="{% url 'practice' %}">Read More</a>
-              </button>
-              <button class="button">
-                <a href="{% url 'practice' %}">Contact Us</a>
-              </button>
+            <div class="home-hero__actions">
+              <a href="#branches" class="home-btn home-btn--primary">Find an Office</a>
+              <a href="{% url 'practice' %}" class="home-btn home-btn--ghost">About AESL</a>
             </div>
           </div>
         </div>
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="home-hero__scroll" aria-hidden="true">Scroll</div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="home-intro">
+    <div class="home-container">
+      <div class="home-intro__grid">
+        <div class="home-intro__text">
+          <p class="home-eyebrow">Who We Are</p>
+          <h2 class="home-section-title">A Legacy of Excellence in the Built Environment</h2>
+          <p>
+            Architectural and Engineering Services Limited (AESL) is a practicing multidisciplinary firm providing comprehensive architectural, engineering, and surveying solutions for public and private sector clients in the construction industry.
+          </p>
+          <p>
+            We offer a wide range of services combining architecture, engineering, and surveying to create innovative and sustainable designs that are not only visually appealing but also structurally sound, efficient, and accurately measured.
+          </p>
+          <p>
+            AESL operates from its head office in Accra, with regional offices across Ghana, bringing professional expertise closer to communities nationwide.
+          </p>
+          <div class="home-intro__signature">
+            <img src="{% static 'img/aesl_logo.png' %}" alt="AESL logo">
+            <div>
+              <strong>Architectural &amp; Engineering Services Limited</strong>
+              <span>Consulting Architects, Engineers &amp; Surveyors</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="home-intro__visual">
+          <img src="{% static 'img/management.jpeg' %}" alt="AESL professionals at work" class="home-intro__image">
+          <div class="home-intro__stat">
+            <span class="home-intro__stat-value">50+</span>
+            <span class="home-intro__stat-label">Years of Excellence</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="home-services">
+    <div class="home-container">
+      <div class="home-services__grid">
+        <article class="home-service-card">
+          <div class="home-service-card__icon"><i class="fas fa-drafting-compass" aria-hidden="true"></i></div>
+          <h3>Architecture &amp; Planning</h3>
+          <p>Thoughtful architectural design and planning solutions that balance function, aesthetics, and context.</p>
+        </article>
+        <article class="home-service-card">
+          <div class="home-service-card__icon"><i class="fas fa-building" aria-hidden="true"></i></div>
+          <h3>Engineering</h3>
+          <p>Civil, structural, geotechnical, installations, and water engineering delivered with technical rigor.</p>
+        </article>
+        <article class="home-service-card">
+          <div class="home-service-card__icon"><i class="fas fa-map-marked-alt" aria-hidden="true"></i></div>
+          <h3>Surveying</h3>
+          <p>Accurate land and quantity surveying services that provide a reliable foundation for every project.</p>
+        </article>
+        <article class="home-service-card">
+          <div class="home-service-card__icon"><i class="fas fa-balance-scale" aria-hidden="true"></i></div>
+          <h3>Valuation &amp; Consultancy</h3>
+          <p>Professional valuation and advisory services supporting informed decisions across the built environment.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="home-stats" aria-label="Key statistics">
+    <div class="home-container">
+      <div class="home-stats__grid stats-banner">
+        <div class="home-stat">
+          <span class="home-stat__value stats-number" data-target="1000">0</span>
+          <span class="home-stat__label">Projects Completed</span>
+        </div>
+        <div class="home-stat">
+          <span class="home-stat__value stats-number" data-target="1000">0</span>
+          <span class="home-stat__label">Clients Served</span>
+        </div>
+        <div class="home-stat">
+          <span class="home-stat__value stats-number" data-target="50">0</span>
+          <span class="home-stat__label">Years of Excellence</span>
+        </div>
+        <div class="home-stat">
+          <span class="home-stat__value stats-number" data-target="16">0</span>
+          <span class="home-stat__label">Regional Offices</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="home-projects">
+    <div class="home-container">
+      <div class="home-projects__header">
+        <div>
+          <p class="home-eyebrow">Our Portfolio</p>
+          <h2 class="home-section-title">Projects That Define Our Practice</h2>
+          <p class="home-lead">
+            Our portfolio spans diverse sectors and regions, reflecting innovative, sustainable design solutions that prioritize functionality, aesthetics, and the well-being of communities.
+          </p>
+        </div>
+        <a href="{% url 'projects' %}" class="home-btn home-btn--outline">All Projects <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
       </div>
 
-      <!-- Optional pagination dots -->
-      <div class="swiper-pagination"></div>
+      <div class="home-projects__grid">
+        <a href="{% url 'civic_culture' %}" class="home-project-card">
+          <img src="{% static 'img/civic_culture.jpg' %}" alt="Civic and Culture projects" class="home-project-card__image">
+          <div class="home-project-card__overlay"></div>
+          <div class="home-project-card__content">
+            <span class="home-project-card__index">01</span>
+            <h3 class="home-project-card__title">Civic &amp; Culture</h3>
+            <span class="home-project-card__cta">View Category <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
 
+        <a href="{% url 'health' %}" class="home-project-card">
+          <img src="{% static 'img/health.jpg' %}" alt="Health projects" class="home-project-card__image">
+          <div class="home-project-card__overlay"></div>
+          <div class="home-project-card__content">
+            <span class="home-project-card__index">02</span>
+            <h3 class="home-project-card__title">Health</h3>
+            <span class="home-project-card__cta">View Category <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+
+        <a href="{% url 'education' %}" class="home-project-card">
+          <img src="{% static 'img/education.jpg' %}" alt="Education projects" class="home-project-card__image">
+          <div class="home-project-card__overlay"></div>
+          <div class="home-project-card__content">
+            <span class="home-project-card__index">03</span>
+            <h3 class="home-project-card__title">Education</h3>
+            <span class="home-project-card__cta">View Category <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+
+        <a href="{% url 'office_retail' %}" class="home-project-card">
+          <img src="{% static 'img/office_and_mixed_use.jpg' %}" alt="Office and Mixed Use projects" class="home-project-card__image">
+          <div class="home-project-card__overlay"></div>
+          <div class="home-project-card__content">
+            <span class="home-project-card__index">04</span>
+            <h3 class="home-project-card__title">Office &amp; Mixed Use</h3>
+            <span class="home-project-card__cta">View Category <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+
+        <a href="{% url 'residential' %}" class="home-project-card">
+          <img src="{% static 'img/residential.jpg' %}" alt="Residential projects" class="home-project-card__image">
+          <div class="home-project-card__overlay"></div>
+          <div class="home-project-card__content">
+            <span class="home-project-card__index">05</span>
+            <h3 class="home-project-card__title">Residential</h3>
+            <span class="home-project-card__cta">View Category <i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+          </div>
+        </a>
+      </div>
     </div>
+  </section>
 
-</section>
+  <!-- SECTORS -->
+  <section class="home-sectors">
+    <div class="home-container">
+      <div class="home-sectors__header">
+        <p class="home-eyebrow">Sectors</p>
+        <h2 class="home-section-title">Expertise Across Every Sector</h2>
+        <p class="home-lead">We deliver specialized consultancy across the full spectrum of the built environment.</p>
+      </div>
 
-<!-- Info Section -->
-<section class="info">
-    <div class="info__content">
-        <h5>
-            Architectural and Engineering Services Limited (AESL) is a practicing and multidisciplinary firm that provides comprehensive architectural, engineering and surveying solutions for public and private sector clients in the construction industry.
-        </h5>
-        <h5>
-            AESL offers a wide range of services combining the fields of architecture, engineering and surveying to create innovative and sustainable designs that are not only visually appealing but also structurally sound, efficient and accurately measured.
-        </h5>
-        <h5>
-            AESL operates from its head office in the capital of Ghana — Accra, with other offices located in the regions of Ghana.
-        </h5>
+      <div class="home-sectors__grid">
+        <a href="{% url 'civic_culture' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-landmark" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Civic &amp; Culture</h3>
+            <p>Public buildings and cultural spaces that serve communities.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+
+        <a href="{% url 'education' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Education</h3>
+            <p>Learning environments from primary schools to universities.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+
+        <a href="{% url 'health' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-heartbeat" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Health</h3>
+            <p>Healthcare facilities designed for care and efficiency.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+
+        <a href="{% url 'office_retail' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-city" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Office &amp; Mixed Use</h3>
+            <p>Commercial and mixed-use developments for modern work.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+
+        <a href="{% url 'industrial_infrastructure' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-industry" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Industrial &amp; Infrastructure</h3>
+            <p>Industrial facilities and infrastructure that drive growth.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+
+        <a href="{% url 'sport_leisure' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-futbol" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Sports &amp; Leisure</h3>
+            <p>Recreational and sports facilities for active communities.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+
+        <a href="{% url 'hospitality' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-concierge-bell" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Hospitality</h3>
+            <p>Hotels and guest facilities with comfort and character.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+
+        <a href="{% url 'landscape_planning' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-tree" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Landscape &amp; Planning</h3>
+            <p>Landscape, planning, and survey solutions for living spaces.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+
+        <a href="{% url 'residential' %}" class="home-sector">
+          <div class="home-sector__icon"><i class="fas fa-home" aria-hidden="true"></i></div>
+          <div class="home-sector__body">
+            <h3>Residential</h3>
+            <p>Homes and residential developments built for quality living.</p>
+          </div>
+          <span class="home-sector__arrow"><i class="fas fa-arrow-right" aria-hidden="true"></i></span>
+        </a>
+      </div>
     </div>
-    <div class="info__image">
-        <div class="image__content image__background_1">
-            <div class="image__overlay"></div>
-            <h3 class="font__weight">Architecture & Planning</h3>
-            <h3>Architecture</h3>
-            <h3>Land Surveying</h3>
-            <h3>Quantity Surveying</h3>
-            <h3>Valuation</h3>
+  </section>
+
+  <!-- BRANCHES / MAP -->
+  <section class="home-branches" id="branches">
+    <div class="home-container">
+      <div class="home-branches__header">
+        <div>
+          <p class="home-eyebrow">Nationwide Presence</p>
+          <h2 class="home-section-title">Our Offices Across Ghana</h2>
         </div>
-        <div class="image__content image__background_2">
-            <div class="image__overlay"></div>
-            <h3 class="font__weight">Engineering</h3>
-            <h3>Civil/Structural</h3>
-            <h3>Geotech</h3>
-            <h3>Installations</h3>
-            <h3>Water</h3>
-        </div>
-    </div>
-</section>
-
-<!-- Trusted Companies Section -->
-<section class="trusted__companies">
-    <img
-        src="{% static 'img/vertered_1.jpg' %}"
-        alt="AESL company under"
-        class="info__building-image"
-    />
-    <img
-        src="{% static 'img/vertered_2.jpeg' %}"
-        alt="AESL company under"
-        class="info__building-image"
-    />
-    <img
-        src="{% static 'img/vertered_3.jpeg' %}"
-        alt="AESL company under "
-        class="info__building-image"
-    />
-    <img
-        src="{% static 'img/vertered_4.jpeg' %}"
-        alt="AESL Building"
-        class="info__building-image"
-    />
-    <img
-        src="{% static 'img/vertered_5.jpeg' %}"
-        alt="AESL company under "
-        class="info__building-image"
-    />
-    <img
-        src="{% static 'img/vertered_6.jpeg' %}"
-        alt="AESL company under "
-        class="info__building-image"
-    />
-</section>
-
-<!-- Projects Section -->
-<section class="projects">
-    <div class="projects__overlay-home"></div>
-    <!-- <img src="{% static 'img/project_background.jpg' %}" alt="project background-image"/> -->
-    <div class="projects__header">
-        <h2>Projects</h2>
-        <p>
-            Our impressive portfolio of diverse and notable projects is
-            characterized by innovative and sustainable design solutions that
-            prioritize functionality, aesthetics, and the well-being of
-            occupants. Our projects also cuts across all the tribal cultures and
-            the socioeconomic sectors of the Ghanaian economy.
+        <p class="home-lead">
+          Strategically located in regional capitals with our head office in Accra, our offices reflect a nationwide commitment to accessible, professional consultancy.
         </p>
-    </div>
-</section>
+      </div>
 
-<section class="projects-categories">
-    <div class="container">
-        <h2 class="section-title">Our Project Categories</h2>
-        <p class="section-subtitle">Explore our diverse portfolio across various sectors</p>
-
-        <div class="categories-grid">
-          <a href="{% url 'civic_culture' %}" class="category-card">
-                <div class="category-image">
-                    <img src="{% static 'img/civic_culture.jpg' %}" alt="Civic and Culture">
-                </div>
-                <div class="category-overlay">
-                    <h3>Civic and Culture</h3>
-                </div>
-            </a>
-
-            <a href="{% url 'education' %}" class="category-card">
-                <div class="category-image">
-                    <img src="{% static 'img/education.jpg' %}" alt="Education">
-                </div>
-                <div class="category-overlay">
-                    <h3>Education</h3>
-                </div>
-            </a>
-
-            <a href="{% url 'health' %}" class="category-card">
-                <div class="category-image">
-                    <img src="{% static 'img/health.jpg' %}" alt="Health">
-                </div>
-                <div class="category-overlay">
-                    <h3>Health</h3>
-                </div>
-            </a>
-
-            <a href="{% url 'office_retail' %}" class="category-card">
-                <div class="category-image">
-                    <img src="{% static 'img/office_and_mixed_use.jpg' %}" alt="Office and Mixed Use">
-                </div>
-                <div class="category-overlay">
-                    <h3>Office and Mixed Use</h3>
-                </div>
-            </a>
-
-
-            <a href="{% url 'industrial_infrastructure' %}" class="category-card"> <div class="category-image">
-                    <img src="{% static 'img/industrial_and_infrastructure.jpeg' %}" alt="office and mixed use">
-                </div>
-                <div class="category-overlay">
-                    <h3>Industrial and Infrastructure</h3>
-                </div>
-            </a>
-
-            <a href="{% url 'sport_leisure' %}" class="category-card"> <div class="category-image">
-                    <img src="{% static 'img/sports_and_leisure.jpg' %}" alt="office and mixed use">
-                </div>
-                <div class="category-overlay">
-                    <h3>Sports and Leisure</h3>
-                </div>
-            </a>
-
-            <a href="{% url 'hospitality' %}" class="category-card"> <div class="category-image">
-                    <img src="{% static 'img/Proposed Guest House for.jpg' %}" alt="office and mixed use">
-                </div>
-                <div class="category-overlay">
-                    <h3>Hospitality</h3>
-                </div>
-            </a>
-
-            <a href="{% url 'landscape_planning' %}" class="category-card"> <div class="category-image">
-                    <img src="{% static 'img/practice_6.jpg' %}" alt="office and mixed use">
-                </div>
-                <div class="category-overlay">
-                    <h3>Landscape, Planning and Survey</h3>
-                </div>
-            </a>
-
-            <a href="{% url 'residential' %}" class="category-card"> <div class="category-image">
-                    <img src="{% static 'img/residential.jpg' %}" alt="office and mixed use">
-                </div>
-                <div class="category-overlay">
-                    <h3>Residential</h3>
-                </div>
-            </a>
-
+      <div class="home-branches__layout">
+        <div class="home-map" aria-label="Map of AESL branch locations">
+          <div id="branch-map"></div>
         </div>
 
-      <div class="stats-banner">
-        <div class="stats-item">
-            <span class="stats-number" data-target="1000">+</span>
-            <span class="stats-label">Projects Completed</span>
-        </div>
-        <div class="stats-item">
-            <span class="stats-number" data-target="1000">+</span>   <!-- changed to 1000 → will display 1k+ -->
-            <span class="stats-label">Clients</span>
-        </div>
-        <div class="stats-item">
-            <span class="stats-number" data-target="50">+</span>
-            <span class="stats-label">Years of Excellence</span>
-        </div>
-    </div>
-    </div>
-</section>
-
-<!-- More Projects Section -->
-<section class="more__projects padding">
-    <p>AESL || Projects</p>
-    <article class="boxes">
-        <div class="box"></div>
-        <div class="box"></div>
-        <div class="box"></div>
-    </article>
-</section>
-
-
-<!-- Projects Section -->
-<section class="projects__location">
-    <div class="projects__overlay-home"></div>
-    <!-- <img src="{% static 'img/project_background.jpg' %}" alt="project background-image"/> -->
-    <div class="projects__header">
-        <h2>Offices</h2>
-        <p>
-          Our offices are strategically located in the capital cities of all regions in Ghana, with our Head Office in the Greater Accra in Ghana. They reflect our nation-wide presence and commitment to creating functional and aesthetically pleasing environment for clients across all regions. Our overseas partnerships and engagements also reflect our global reach and standard professional practice.
-        </p>
-    </div>
-</section>
-
-<section>
-<div class="container my-5">
-    <h1 class="text-center mb-4">Our Branches Across Ghana</h1>
-    <p class="text-center text-muted mb-5">
-        Click any marker on the map to view full branch details on the right.
-    </p>
-
-    <div class="row">
-        <!-- Left: Map (wider column) -->
-        <div class="col-lg-7 mb-4 mb-lg-0">
-            <div id="branch-map" style="height: 550px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.15);"></div>
-        </div>
-
-        <!-- Right: Details Panel -->
-        <div class="col-lg-5">
-            <div class="card shadow-sm border-0 h-100">
-                <div style="background-color:#2d4f7b;" class="card-header text-white">
-                    <h5 class="mb-0">Branch Details</h5>
-                </div>
-                <div class="card-body" id="branch-details">
-                    <!-- Default placeholder -->
-                    <div class="text-center text-muted py-5">
-                        <i class="fas fa-map-marker-alt fa-3x mb-3"></i>
-                        <p class="lead">Select a branch by clicking its marker on the map.</p>
-                    </div>
-                </div>
+        <aside class="home-branch-panel" aria-live="polite">
+          <p class="home-branch-panel__label">Branch Details</p>
+          <div id="branch-details">
+            <div class="home-branch-panel__empty">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              <p>Select a branch marker on the map to view its contact details and location.</p>
             </div>
-        </div>
+          </div>
+        </aside>
+      </div>
     </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="home-cta">
+    <div class="home-container">
+      <div class="home-cta__inner">
+        <div>
+          <h2 class="home-cta__title">Let's Build Something Enduring</h2>
+          <p class="home-cta__text">Partner with AESL for architectural, engineering, and surveying expertise backed by over five decades of national service.</p>
+        </div>
+        <div class="home-cta__actions">
+          <a href="{% url 'practice' %}" class="home-btn home-btn--primary">Learn About Us</a>
+          <a href="{% url 'projects' %}" class="home-btn home-btn--outline">View Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
 <!-- Leaflet -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<!-- Font Awesome (for icons) -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
 <script>
+  (function () {
     const branches = {{ branches_json|safe }};
 
-    // Ghana strict bounds – cuts off almost all of Togo
     const ghanaStrictBounds = L.latLngBounds(
-        [4.74, -3.25],     // South-West
-        [11.17, 0.99]      // North-East (tight to avoid Togo)
+      [4.74, -3.25],
+      [11.17, 0.99]
     );
 
-    // Create two icon styles
     const branchIconBlue = L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
     });
 
     const branchIconRed = L.icon({
-        iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
-        shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowSize: [41, 41]
+      iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+      shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
+      iconSize: [25, 41],
+      iconAnchor: [12, 41],
+      popupAnchor: [1, -34],
+      shadowSize: [41, 41]
     });
 
-    // Map with scroll wheel zoom DISABLED
     const map = L.map('branch-map', {
-        scrollWheelZoom: false,       // No wheel zoom – page scrolls normally
-        doubleClickZoom: false,
-        touchZoom: false,
-        boxZoom: false,
-        tap: false,
-        maxBounds: ghanaStrictBounds,
-        maxBoundsViscosity: 1.0,      // Hard boundary – cannot drag outside
-        minZoom: 6.48,
-        maxZoom: 18,
+      scrollWheelZoom: false,
+      doubleClickZoom: false,
+      touchZoom: false,
+      boxZoom: false,
+      tap: false,
+      maxBounds: ghanaStrictBounds,
+      maxBoundsViscosity: 1.0,
+      minZoom: 6.48,
+      maxZoom: 18
     });
 
-    // Start fitted exactly to Ghana
     map.fitBounds(ghanaStrictBounds);
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png?key=cb1_33u3_1_010f41a8b70e779c8604987a', {
-        attribution: '&copy; OpenStreetMap contributors & CARTO'
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OpenStreetMap contributors & CARTO'
     }).addTo(map);
 
     const markers = [];
-    const markerMap = {}; // for future list clicks if needed
 
-    branches.forEach((branch, index) => {
-        if (branch.latitude && branch.longitude) {
-            const latLng = [branch.latitude, branch.longitude];
-            if (ghanaStrictBounds.contains(latLng)) {
-
-                // Use RED marker for Head Office / Accra, blue for others
-                const icon = (branch.name.toLowerCase().includes("head office")) 
-                              ? branchIconRed : branchIconBlue;
-
-                const marker = L.marker(latLng, {icon: icon}).addTo(map);
-                markerMap[index] = marker;
-
-                // Click marker → update right panel
-                marker.on('click', function () {
-                    updateBranchDetails(branch);
-                });
-
-                markers.push(marker);
-            }
+    branches.forEach(function (branch) {
+      if (branch.latitude && branch.longitude) {
+        const latLng = [branch.latitude, branch.longitude];
+        if (ghanaStrictBounds.contains(latLng)) {
+          const icon = branch.name.toLowerCase().includes('head office') ? branchIconRed : branchIconBlue;
+          const marker = L.marker(latLng, { icon: icon }).addTo(map);
+          marker.on('click', function () {
+            updateBranchDetails(branch);
+          });
+          markers.push(marker);
         }
+      }
     });
 
-    // Fit logic – always at least Ghana
     if (markers.length > 0) {
-        const markerGroup = L.featureGroup(markers);
-        const combined = ghanaStrictBounds.extend(markerGroup.getBounds());
-        map.fitBounds(combined.pad(0.08));
+      const markerGroup = L.featureGroup(markers);
+      const combined = ghanaStrictBounds.extend(markerGroup.getBounds());
+      map.fitBounds(combined.pad(0.08));
     }
 
-    // Update details panel
+    function esc(value) {
+      return String(value == null ? '' : value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
     function updateBranchDetails(branch) {
-        const detailsDiv = document.getElementById('branch-details');
-        detailsDiv.innerHTML = `
-            <h5 class="card-title mb-3" style="color: #2d4f7b;">${branch.name}</h5>
-            <p class="mb-2"><strong>Address:</strong><br>${branch.address}</p>
-            ${branch.phone ? `<p class="mb-2"><strong>Phone:</strong> ${branch.phone}</p>` : ''}
-            ${branch.telephone ? `<p class="mb-2"><strong>Telephone:</strong> ${branch.telephone}</p>` : ''}
-            ${branch.email ? `<p class="mb-2"><strong>Email:</strong> <a href="mailto:${branch.email}">${branch.email}</a></p>` : ''}
-            <hr>
-            <small class="text-muted">
-                Coordinates: ${parseFloat(branch.latitude).toFixed(5)}, ${parseFloat(branch.longitude).toFixed(5)}
-            </small>
-        `;
+      const detailsDiv = document.getElementById('branch-details');
+      const phone = branch.phone ? '<div class="home-branch-detail"><span class="home-branch-detail__label">Phone</span><p class="home-branch-detail__value">' + esc(branch.phone) + '</p></div>' : '';
+      const telephone = branch.telephone ? '<div class="home-branch-detail"><span class="home-branch-detail__label">Telephone</span><p class="home-branch-detail__value">' + esc(branch.telephone) + '</p></div>' : '';
+      const email = branch.email ? '<div class="home-branch-detail"><span class="home-branch-detail__label">Email</span><p class="home-branch-detail__value"><a href="mailto:' + esc(branch.email) + '">' + esc(branch.email) + '</a></p></div>' : '';
+
+      detailsDiv.innerHTML =
+        '<div class="home-branch-panel__content">' +
+          '<h3>' + esc(branch.name) + '</h3>' +
+          '<div class="home-branch-detail">' +
+            '<span class="home-branch-detail__label">Address</span>' +
+            '<p class="home-branch-detail__value">' + esc(branch.address) + '</p>' +
+          '</div>' +
+          phone +
+          telephone +
+          email +
+          '<p class="home-branch-panel__coords">Coordinates: ' + parseFloat(branch.latitude).toFixed(5) + ', ' + parseFloat(branch.longitude).toFixed(5) + '</p>' +
+        '</div>';
     }
+  })();
 </script>
-
-</section>
-
-<!-- page location Section -->
-<section class="page__location">
-    <div class="page__flex">
-        <img
-            src="{% static 'img/aesl_logo.png' %}"
-            alt="aesl logo"
-            class="info__building-image-large"
-        />
-        <p>AESL || Homepage</p>
-    </div>
-    <p>
-        Consulting Architects,<br />
-        Engineers and Surveyors
-    </p>
-</section>
 {% endblock content %}

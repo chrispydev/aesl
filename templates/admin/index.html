@@ -1,0 +1,170 @@
+{% extends "admin/base_site.html" %}
+{% load i18n static log %}
+
+{% block bodyclass %}{{ block.super }} aesl-dashboard{% endblock %}
+{% block coltype %}colM{% endblock %}
+{% block nav-breadcrumbs %}{% endblock %}
+{% block content_title %}{% endblock %}
+
+{% block content %}
+{% widthratio aesl_metrics.news.published aesl_metrics.news.total 100 as news_pct %}
+{% widthratio aesl_metrics.projects.completed aesl_metrics.projects.total 100 as project_pct %}
+
+<div class="dash">
+  <section class="dash-hero">
+    <div class="dash-hero__copy">
+      <span class="eyebrow"><span class="pulse-dot"></span> Control center</span>
+      <h1 id="dash-greeting"><span id="dash-greeting-prefix">{% translate 'Welcome back' %}</span>, {{ user.get_short_name|default:user.get_username }}</h1>
+      <p>Here's a live snapshot of the content across every AESL practice.</p>
+    </div>
+    <div class="dash-hero__side">
+      <span class="date-chip" id="today-chip">&nbsp;</span>
+      <a class="hero-site-link" href="/" target="_blank" rel="noopener">View website <span aria-hidden="true">&#8599;</span></a>
+    </div>
+  </section>
+
+  <section class="metric-grid" aria-label="{% translate 'Content overview' %}">
+    <a class="metric-card metric-card--gold" href="{% url 'admin:frontend_project_changelist' %}">
+      <span class="metric-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13H3Zm4-2h4v-5H7v5Zm6 0h4v-5h-4v5Z" fill="currentColor"/></svg>
+      </span>
+      <span class="metric-label">{% translate 'Total projects' %}</span>
+      <strong class="metric-value">{{ aesl_metrics.projects.total|default:0 }}</strong>
+      <span class="metric-meta"><b>{{ aesl_metrics.projects.ongoing|default:0 }}</b> in progress &middot; <b>{{ aesl_metrics.projects.completed|default:0 }}</b> delivered</span>
+      <span class="metric-arrow" aria-hidden="true">&#8599;</span>
+    </a>
+
+    <a class="metric-card metric-card--blue" href="{% url 'admin:frontend_newsarticle_changelist' %}">
+      <span class="metric-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 3h12a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 5v2h8V8H6Zm0 4v2h8v-2H6Zm0 4v2h5v-2H6Zm13-8h3v12a2 2 0 0 1-2 2H8V4h7a2 2 0 0 1 2 2v2Z" fill="currentColor"/></svg>
+      </span>
+      <span class="metric-label">{% translate 'News articles' %}</span>
+      <strong class="metric-value">{{ aesl_metrics.news.total|default:0 }}</strong>
+      <span class="metric-meta"><b>{{ aesl_metrics.news.published|default:0 }}</b> live &middot; <b>{{ aesl_metrics.news.drafts|default:0 }}</b> drafts</span>
+      <span class="metric-arrow" aria-hidden="true">&#8599;</span>
+    </a>
+
+    <a class="metric-card metric-card--violet" href="{% url 'admin:frontend_staff_changelist' %}">
+      <span class="metric-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0 2c-3.9 0-7 2.5-7 5.5V21h14v-2.5c0-3-3.1-5.5-7-5.5Zm8-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm.5 2c-.5 0-1 .1-1.5.2 2 1.2 3.5 3.1 3.5 5.3V21H22v-5.5c0-2.5-2-4.5-4.5-4.5Z" fill="currentColor"/></svg>
+      </span>
+      <span class="metric-label">{% translate 'People' %}</span>
+      <strong class="metric-value">{{ aesl_metrics.team.staff|default:0 }}</strong>
+      <span class="metric-meta"><b>{{ aesl_metrics.team.board|default:0 }}</b> board &middot; <b>{{ aesl_metrics.team.alumni|default:0 }}</b> alumni</span>
+      <span class="metric-arrow" aria-hidden="true">&#8599;</span>
+    </a>
+
+    <a class="metric-card metric-card--teal" href="{% url 'admin:frontend_publications_changelist' %}">
+      <span class="metric-icon">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l5 5v15H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm8 2v4h4l-4-4ZM8 12v2h8v-2H8Zm0 4v2h6v-2H8Z" fill="currentColor"/></svg>
+      </span>
+      <span class="metric-label">{% translate 'Publications' %}</span>
+      <strong class="metric-value">{{ aesl_metrics.library.publications|default:0 }}</strong>
+      <span class="metric-meta"><b>{{ aesl_metrics.library.gallery|default:0 }}</b> gallery images &middot; <b>{{ aesl_metrics.library.branches|default:0 }}</b> branches</span>
+      <span class="metric-arrow" aria-hidden="true">&#8599;</span>
+    </a>
+  </section>
+
+  <section class="panel-grid">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>{% translate 'Quick actions' %}</h2>
+          <p>The things you do most, one click away.</p>
+        </div>
+        <span class="panel-badge">Shortcuts</span>
+      </div>
+      <div class="action-grid">
+        {% url 'admin:frontend_project_add' as add_project %}
+        {% url 'admin:frontend_newsarticle_add' as add_article %}
+        {% url 'admin:frontend_publications_add' as add_publication %}
+        {% url 'admin:frontend_projectgalleryimage_add' as add_gallery %}
+        {% url 'admin:frontend_staff_add' as add_staff %}
+        {% url 'admin:frontend_boardmember_add' as add_board %}
+        {% if add_project %}<a class="action-tile" href="{{ add_project }}"><span class="action-tile__icon">&#43;</span><span>New project</span></a>{% endif %}
+        {% if add_article %}<a class="action-tile" href="{{ add_article }}"><span class="action-tile__icon">&#9998;</span><span>Write article</span></a>{% endif %}
+        {% if add_publication %}<a class="action-tile" href="{{ add_publication }}"><span class="action-tile__icon">&#128196;</span><span>Add publication</span></a>{% endif %}
+        {% if add_gallery %}<a class="action-tile" href="{{ add_gallery }}"><span class="action-tile__icon">&#9673;</span><span>Upload image</span></a>{% endif %}
+        {% if add_staff %}<a class="action-tile" href="{{ add_staff }}"><span class="action-tile__icon">&#9832;</span><span>Add staff</span></a>{% endif %}
+        {% if add_board %}<a class="action-tile" href="{{ add_board }}"><span class="action-tile__icon">&#9733;</span><span>Add board member</span></a>{% endif %}
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>{% translate 'Content health' %}</h2>
+          <p>How much of your content is live.</p>
+        </div>
+      </div>
+      <div class="health-list">
+        <div class="health-item">
+          <div class="health-item__top"><span>Published articles</span><strong>{{ news_pct }}%</strong></div>
+          <div class="progress"><span style="width: {{ news_pct }}%"></span></div>
+          <small>{{ aesl_metrics.news.published|default:0 }} of {{ aesl_metrics.news.total|default:0 }} articles are live</small>
+        </div>
+        <div class="health-item">
+          <div class="health-item__top"><span>Completed projects</span><strong>{{ project_pct }}%</strong></div>
+          <div class="progress progress--blue"><span style="width: {{ project_pct }}%"></span></div>
+          <small>{{ aesl_metrics.projects.completed|default:0 }} of {{ aesl_metrics.projects.total|default:0 }} projects delivered</small>
+        </div>
+        <div class="health-item">
+          <div class="health-item__top"><span>Featured stories</span><strong>{{ aesl_metrics.news.featured|default:0 }}</strong></div>
+          <div class="progress progress--violet"><span style="width: {% widthratio aesl_metrics.news.featured aesl_metrics.news.total 100 %}%"></span></div>
+          <small>Highlighted on the public news page</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel-grid panel-grid--bottom">
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>{% translate 'Recent activity' %}</h2>
+          <p>Your latest changes and updates.</p>
+        </div>
+        <a class="panel-link" href="{% url 'admin:index' %}">Refresh</a>
+      </div>
+      {% get_admin_log 7 as admin_log for_user user %}
+      {% if admin_log %}
+        <ul class="activity-list">
+          {% for entry in admin_log %}
+            <li>
+              <span class="activity-dot {% if entry.is_addition %}activity-dot--add{% elif entry.is_deletion %}activity-dot--delete{% endif %}"></span>
+              <div class="activity-body">
+                {% if entry.is_addition %}<span class="activity-tag">Added</span>
+                {% elif entry.is_change %}<span class="activity-tag activity-tag--edit">Changed</span>
+                {% elif entry.is_deletion %}<span class="activity-tag activity-tag--delete">Deleted</span>{% endif %}
+                {% if entry.is_deletion or not entry.get_admin_url %}
+                  <strong>{{ entry.object_repr }}</strong>
+                {% else %}
+                  <a href="{{ entry.get_admin_url }}">{{ entry.object_repr }}</a>
+                {% endif %}
+                <small>{% if entry.content_type %}{{ entry.content_type.name }}{% else %}Unknown content{% endif %} &middot; {{ entry.action_time|date:"M d, Y H:i" }}</small>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <div class="empty-state">
+          <span>&#128203;</span>
+          <p>No activity yet. Changes you make in the admin will appear here.</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="panel">
+      <div class="panel-head">
+        <div>
+          <h2>{% translate 'Browse modules' %}</h2>
+          <p>Every model available to your account.</p>
+        </div>
+      </div>
+      <div id="content-main" class="module-browser">
+        {% include "admin/app_list.html" with app_list=app_list show_changelinks=False %}
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

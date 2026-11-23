@@ -3,9 +3,10 @@ import mimetypes
 import os
 
 # from django.conf import settings
-from django.http import Http404, HttpResponse
+from django.http import Http404, HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.utils import timezone
+from django.views.decorators.http import require_POST
 from django.views.generic import DetailView, View
 from django.views.generic.list import ListView
 
@@ -15,6 +16,7 @@ from frontend.models import (
     Category,
     MainCategory,
     NewsArticle,
+    NewsletterSubscription,
     People,
     Project,
     ProjectGalleryImage,
@@ -693,6 +695,32 @@ class CategoryNewsListView(ListView):
         context["categories"] = Category.objects.filter(is_active=True)
         context["page_title"] = f"{self.category.name} - News"
         return context
+
+
+@require_POST
+def newsletter_subscribe(request):
+    email = (request.POST.get("email") or "").strip().lower()
+    if not email:
+        return JsonResponse({"ok": False, "message": "Email is required."}, status=400)
+
+    try:
+        from django.core.validators import validate_email
+        from django.core.exceptions import ValidationError
+
+        validate_email(email)
+    except ValidationError:
+        return JsonResponse({"ok": False, "message": "Please enter a valid email address."}, status=400)
+
+    subscription, created = NewsletterSubscription.objects.get_or_create(
+        email=email,
+        defaults={"is_active": True},
+    )
+    if not created and not subscription.is_active:
+        subscription.is_active = True
+        subscription.save(update_fields=["is_active"])
+
+    message = "Thanks for subscribing!" if created else "This email is already subscribed."
+    return JsonResponse({"ok": True, "message": message})
 
 
 class NavbarSearchAPIView(APIView):

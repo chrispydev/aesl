@@ -1,101 +1,11 @@
-<section class="projects__cards">
-
-
-{% if has_people %}
-<div class="projects__card">
-
-    <a href="{% url 'people' %}">
-        People
-    </a>
-
-</div>
-{% endif %}
-
-
-
-{% if has_principal_consultants or has_senior_consultants or has_consultants %}
-<div class="projects__card">
-
-    {% if has_principal_consultants %}
-    <a href="{% url 'principal_consultants' %}">
-        Principal Consultants
-    </a>
-    {% endif %}
-
-
-    {% if has_senior_consultants %}
-    <a href="{% url 'senior_consultants' %}">
-        Senior Consultants
-    </a>
-    {% endif %}
-
-
-    {% if has_consultants %}
-    <a href="{% url 'consultants' %}">
-        Consultants
-    </a>
-    {% endif %}
-
-</div>
-{% endif %}
-
-
-
-
-
-{% if has_senior_professionals or has_professionals or has_assistant_professionals %}
-<div class="projects__card">
-
-
-    {% if has_senior_professionals %}
-    <a href="{% url 'senior_professional' %}">
-        Senior Professionals
-    </a>
-    {% endif %}
-
-
-    {% if has_professionals %}
-    <a href="{% url 'professional' %}">
-        Professionals
-    </a>
-    {% endif %}
-
-
-    {% if has_assistant_professionals %}
-    <a href="{% url 'assistant_professionals' %}">
-        Assistant Professionals
-    </a>
-    {% endif %}
-
-
-</div>
-{% endif %}
-
-
-
-
-
-{% if has_support_team or has_service_personnel %}
-<div class="projects__card">
-
-
-    {% if has_support_team %}
-    <a href="{% url 'support_team' %}">
-        Support Team
-    </a>
-    {% endif %}
-
-
-    {% if has_service_personnel %}
-    <a href="{% url 'service_personnel' %}">
-        Service Personnel
-    </a>
-    {% endif %}
-
-
-</div>
-{% endif %}
-
-
-
-</section>
+<nav class="projects__cards" aria-label="People categories">
+  {% if has_people %}<a href="{% url 'people' %}" class="{% if request.resolver_match.url_name == 'people' %}active__link{% endif %}">People</a>{% endif %}
+  {% if has_principal_consultants %}<a href="{% url 'principal_consultants' %}" class="{% if request.resolver_match.url_name == 'principal_consultants' %}active__link{% endif %}">Principal Consultants</a>{% endif %}
+  {% if has_senior_consultants %}<a href="{% url 'senior_consultants' %}" class="{% if request.resolver_match.url_name == 'senior_consultants' %}active__link{% endif %}">Senior Consultants</a>{% endif %}
+  {% if has_consultants %}<a href="{% url 'consultants' %}" class="{% if request.resolver_match.url_name == 'consultants' %}active__link{% endif %}">Consultants</a>{% endif %}
+  {% if has_senior_professionals %}<a href="{% url 'senior_professional' %}" class="{% if request.resolver_match.url_name == 'senior_professional' %}active__link{% endif %}">Senior Professionals</a>{% endif %}
+  {% if has_professionals %}<a href="{% url 'professional' %}" class="{% if request.resolver_match.url_name == 'professional' %}active__link{% endif %}">Professionals</a>{% endif %}
+  {% if has_assistant_professionals %}<a href="{% url 'assistant_professionals' %}" class="{% if request.resolver_match.url_name == 'assistant_professionals' %}active__link{% endif %}">Assistant Professionals</a>{% endif %}
+  {% if has_support_team %}<a href="{% url 'support_team' %}" class="{% if request.resolver_match.url_name == 'support_team' %}active__link{% endif %}">Support Team</a>{% endif %}
+  {% if has_service_personnel %}<a href="{% url 'service_personnel' %}" class="{% if request.resolver_match.url_name == 'service_personnel' %}active__link{% endif %}">Service Personnel</a>{% endif %}
+</nav>

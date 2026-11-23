@@ -1,34 +1,11 @@
 {% load static %}
-<!-- Projects__cards -->
-<section class="projects__cards">
-    <!-- Practice -->
-    <div class="projects__card">
-        <a href="{% url 'publications' %}">All Publications</a>
-    </div>
-
-    <!-- About / Institutional -->
-    <div class="projects__card">
-        <a href="#applications">Application</a>
-        <a href="#manual">Manual</a>
-        <a href="#secretariat">Secretariat</a>
-        <a href="#newsletter">AESL Newsletter</a>
-        <a href="#publications">Publications</a>
-    </div>
-
-    <!-- Governance & Management -->
-    <div class="projects__card">
-        <a href="">Right to Information</a>
-        <a
-            class="download-link"
-            href="{% static 'img/rti-form.pdf' %}"
-            download="RTI_Form.pdf"
-            >Download RTI Form</a
-        >
-        <a
-            class="download-link"
-            href="{% static 'img/2026 Revised RTI Manual.docx' %}"
-            download="2026 Revised RTI Manual.docx"
-            >Download 2026 Revised RTI Manual</a
-        >
-    </div>
-</section>
+<nav class="projects__cards" aria-label="Right to Information sections">
+  <a href="{% url 'publications' %}">All Publications</a>
+  <a href="#applications">Application</a>
+  <a href="#manual">Manuals</a>
+  <a href="#secretariat">Secretariat</a>
+  <a href="#newsletter">Newsletter</a>
+  <a href="#publications">Publications</a>
+  <a href="{% static 'img/rti-form.pdf' %}" download="RTI_Form.pdf">Download RTI Form</a>
+  <a href="{% static 'img/2026 Revised RTI Manual.docx' %}" download="2026 Revised RTI Manual.docx">Download RTI Manual</a>
+</nav>
