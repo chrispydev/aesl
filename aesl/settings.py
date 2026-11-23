@@ -1,4 +1,6 @@
 from pathlib import Path
+
+import dj_database_url
 from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -16,14 +18,24 @@ X_FRAME_OPTIONS = "DENY"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = [
-    "127.0.0.1",
-    "localhost",
-    "162.0.211.66",
-    "aesl.com.gh",
-    "www.aesl.com.gh",
-    "images.katalma.com",
-]
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    default="127.0.0.1,localhost,162.0.211.66,aesl.com.gh,www.aesl.com.gh,images.katalma.com",
+    cast=Csv(),
+)
+
+CSRF_TRUSTED_ORIGINS = config(
+    "CSRF_TRUSTED_ORIGINS",
+    default="https://aesl.com.gh,https://www.aesl.com.gh",
+    cast=Csv(),
+)
+
+RENDER_EXTERNAL_HOSTNAME = config("RENDER_EXTERNAL_HOSTNAME", default="")
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    render_origin = f"https://{RENDER_EXTERNAL_HOSTNAME}"
+    if render_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(render_origin)
 
 # Application definition
 INSTALLED_APPS = [
@@ -116,7 +128,17 @@ CACHES = {
 
 
 # Database (SQLite is fine for small apps; consider PostgreSQL for production)
-if DEBUG:
+DATABASE_URL = config("DATABASE_URL", default="")
+
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=CONN_MAX_AGE,
+            ssl_require=config("DB_SSL_REQUIRE", default=not DEBUG, cast=bool),
+        )
+    }
+elif DEBUG:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -127,11 +149,11 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": "aesl_db",
-            "USER": "aesl_user",
-            "PASSWORD": "christian@seer.com",
-            "HOST": "127.0.0.1",
-            "PORT": "5432",
+            "NAME": config("DB_NAME", default="aesl_db"),
+            "USER": config("DB_USER", default="aesl_user"),
+            "PASSWORD": config("DB_PASSWORD", default=""),
+            "HOST": config("DB_HOST", default="127.0.0.1"),
+            "PORT": config("DB_PORT", default="5432"),
         }
     }
 
@@ -158,6 +180,14 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
