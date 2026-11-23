@@ -61,7 +61,20 @@ h6 {
 
 img {
   max-width: 100%;
+  height: auto;
   display: block;
+}
+
+iframe,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+table {
+  width: 100%;
+  max-width: 100%;
 }
 
 a:hover {

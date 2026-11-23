@@ -1,5 +1,6 @@
 /* Desktop */
 @media (min-width: 998px) {
+
   .mobile__nav,
   .mobile__menuoverlay {
     display: none !important;
@@ -290,13 +291,25 @@
   }
 
   .mobile__menuoverlay {
-    width: 50%;
-    z-index: 1000;
+    width: 100%;
+    z-index: 1200;
+  }
+
+  .mobile__drawer {
+    width: min(360px, 92vw);
   }
 
   /* projects */
   .projects__showcases {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects__data {
+    grid-template-columns: 1fr;
+  }
+
+  .projects__data-span {
+    grid-column: auto;
   }
 
   /* info section*/
@@ -391,11 +404,6 @@
     grid-template-columns: repeat(3, 1fr);
     margin: 0 2rem;
   }
-
-  /* corporate governance */
-  .corporate__governance {
-    margin-top: 4rem;
-  }
 }
 
 /* mobile phones */
@@ -404,12 +412,49 @@
     padding-top: 68px;
   }
 
+
+
   .mobile__nav {
     padding: 0.65rem 0.85rem;
   }
 
   .mobile__brand-tagline {
     display: none;
+  }
+
+  .board__chairman,
+  .projects__parallax,
+  .civic__culture-parallax,
+  .education__parallax,
+  .health__parallax,
+  .office__parallax,
+  .office__retail-parallax,
+  .residential__parallax,
+  .industrial__parallax,
+  .hospitality__parallax,
+  .sport__leisure-parallax,
+  .landscape__planning-parallax,
+  .principles__parallax,
+  .history__parallax,
+  .mandate__parallax,
+  .functions__parallax,
+  .mission__parallax,
+  .sector__parallax,
+  .service__parallax,
+  .people__parallax,
+  .principal__parallax,
+  .publication__parallax,
+  .publication__parallax-type,
+  .projects__detail__parallax,
+  .managemet__parallax,
+  .news__parallax,
+  .national_sernive--parallax,
+  .projects__location,
+  .alumni__wrapper,
+  .alumni-detail-hero {
+    height: 45vh;
+    min-height: 260px;
+    background-attachment: scroll;
   }
 
   .mobile__drawer {
@@ -852,12 +897,23 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .projects__cards {
+    gap: 0.5rem;
+    padding: 1rem !important;
+  }
+
+  .projects__cards a {
+    font-size: 0.68rem;
+    padding: 0.55rem 0.65rem;
+  }
+
   /* Paralax effect */
   .parallax,
   .projects__parallax,
   .civic__culture-parallax,
   .education__parallax,
   .health__parallax,
+  .office__parallax,
   .office__retail-parallax,
   .residential__parallax,
   .industrial__parallax,
@@ -871,13 +927,19 @@
   .functions__parallax,
   .mission__parallax,
   .sector__parallax,
-  .sector__parallax,
-  .mandate__parallax,
   .service__parallax,
   .projects,
+  .projects__location,
   .people__parallax,
   .principal__parallax,
-  .publication__parallax {
+  .publication__parallax,
+  .publication__parallax-type,
+  .projects__detail__parallax,
+  .managemet__parallax,
+  .news__parallax,
+  .national_sernive--parallax,
+  .board__chairman,
+  .alumni__wrapper {
     background-attachment: scroll;
   }
 

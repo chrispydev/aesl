@@ -19,23 +19,20 @@
 </div>
 
 
-<section>
-  <!-- Projects Text -->
-  <section class="director__details">
-    <div class="">
-      {% if staff.image %}
-      <img src="{{ staff.image.url }}" alt="{{ staff.name }}" class="{{ staff.name }}" />
-      {% endif %}
+<section class="staff-detail">
+  <div class="staff-detail__image">
+    {% if staff.image %}
+    <img src="{{ staff.image.url }}" alt="{{ staff.name }}" loading="lazy" />
+    {% endif %}
+  </div>
+  <div class="staff-detail__content">
+    <p class="staff-detail__description">"{{ staff.description }}"</p>
+    <a href="mailto:{{ staff.email }}" class="staff-detail__email">{{ staff.email }}</a>
+    <h4 class="staff-detail__name">{{ staff.name }}</h4>
+    <div class="staff-detail__actions">
+      <a href="{% url 'management' %}" class="staff-detail__btn">Back to Management</a>
     </div>
-    <div class="director__text">
-      <p>" {{ staff.description }} "
-      </p>
-      <a href="mailto:{{ staff.email }}">- {{ staff.email }} -</a>
-      <h4>{{ staff.name }}</h4>
-      <button class="button"><a href="{% url 'management' %}">Back to Management</a></button>
-    </div>
-  </section>
-
+  </div>
 </section>
 
 

@@ -78,6 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
       if (event.target === toggleDiv) closeMobileMenu();
     });
 
+    toggleDiv.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", closeMobileMenu);
+    });
+
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape" && toggleDiv.classList.contains("toggle__sidebar")) {
         closeMobileMenu();

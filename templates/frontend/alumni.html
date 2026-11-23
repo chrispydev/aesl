@@ -1,41 +1,31 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- Main content -->
-<section class="alumni__wrapper" style="background-image: url('{{ alumni.project_image.url|default:'/static/img/default-bg.jpg' }}');">    <div class="projects__overlay"></div>
-  <p class="alumni__project-name">{{ alumni.project_name }}</p>
+<section class="alumni-detail-hero" style="background-image: url('{{ alumni.project_image.url|default:'/static/img/default-bg.jpg' }}');">
+  <div class="projects__overlay"></div>
+  {% if alumni.project_name %}
+  <p class="alumni-detail-hero__project">{{ alumni.project_name }}</p>
+  {% endif %}
 </section>
 
 <section class="projects__caption">
-    <div>
+  <div>
     <h1 class="projects__title-sub">{{ alumni.name }}</h1>
-    </div>
+  </div>
 </section>
 
-
-<section>
-    <!-- Projects Text -->
-    <section class="director__details">
-        <div class="">
-            {% if alumni.image %}
-            <img
-                src="{{ alumni.image.url }}"
-                alt="{{ alumni.name }}"
-                class="{{ alumni.name }}"
-            />
-            {% endif %}
-        </div>
-        <div class="director__text">
-            <p>~ {{ alumni.about }} ~</p>
-            <h4>{{ board_member.name }}</h4>
-
-            <a href="{% url 'board_chairman' %}">
-              <button class="button">
-                    Back to Board Chairman
-              </button>
-            </a
-                >
-        </div>
-    </section>
+<section class="alumni-detail">
+  <div class="alumni-detail__image">
+    {% if alumni.image %}
+    <img src="{{ alumni.image.url }}" alt="{{ alumni.name }}" loading="lazy" />
+    {% endif %}
+  </div>
+  <div class="alumni-detail__text">
+    <p>{{ alumni.about }}</p>
+    <div class="alumni-detail__actions">
+      <a href="{% url 'board_chairman' %}" class="alumni-detail__btn">Back to Board Chairman</a>
+    </div>
+  </div>
 </section>
 
 {% endblock content %}

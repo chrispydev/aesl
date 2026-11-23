@@ -448,7 +448,7 @@
 }
 
 .more__projects {
-  margin: 0 !important;
+  margin: 0;
   padding: 1rem 1.5rem;
   background: var(--page-navy);
   color: rgba(241, 241, 241, 0.7);
@@ -1977,6 +1977,24 @@ a.button:hover {
   margin: 0 auto 1.5rem;
 }
 
+.board-chairman-alumni {
+  padding: 2rem 1rem 3rem;
+  background: #f9f9f9;
+}
+
+.board-chairman-alumni .projects__title {
+  width: 100%;
+  margin: 0 0 1.5rem;
+}
+
+.board-chairman-alumni__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  padding: 0;
+  width: 100%;
+}
+
 .board__head,
 .dept__heads-wrapper {
   padding: 0 1.5rem 2rem;
@@ -2126,12 +2144,23 @@ a.button:hover {
 .dept__head-img,
 .dept__head img {
   width: 100%;
-  height: 280px !important;
+  height: 280px;
   object-fit: cover;
   object-position: top center;
   background-size: cover;
   background-position: top center;
   display: block;
+}
+
+#hods .dept__heads-wrapper {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+#hods .dept__head-img,
+#hods .dept__head img {
+  height: clamp(260px, 30vw, 360px);
 }
 
 .dept__head-info {
@@ -2156,9 +2185,29 @@ a.button:hover {
   word-break: break-word;
 }
 
-.dept__head-info .read__more {
-  margin-top: .85rem;
+.hod__readmore {
+  margin-top: 0.85rem;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid rgba(45, 79, 123, 0.3);
+  background: transparent;
+  color: var(--page-navy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1.2;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.hod__readmore:hover {
+  background: var(--page-navy);
+  border-color: var(--page-navy);
+  color: #fff;
+  text-decoration: none;
 }
 
 .director__heading {
@@ -2440,60 +2489,465 @@ a.button:hover {
   min-height: 320px;
 }
 
-/* Board Chairman page: profile (image + bio same row) */
-.chairman-profile {
-  /* display: grid; */
-  /* grid-template-columns: minmax(0, 340px) minmax(0, 1fr); */
-  gap: 0;
-  padding: 0;
+/* Management profile cards (board-card style, image side configurable) */
+.management-profile {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 2rem;
   margin: 0 1.5rem 2rem;
+  padding: 2rem;
   background: #fff;
   border: 1px solid var(--page-line);
   align-items: stretch;
 }
 
-.chairman-profile .director__CV {
-  background: #f9f9f9;
+.management-profile--image-left {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.chairman-profile .director__CV img {
+.management-profile__image {
+  grid-column: 3 / 4;
+  min-height: 320px;
+  background: #f9f9f9;
+  border: 1px solid var(--page-line);
+}
+
+.management-profile__image img {
   width: 100%;
   height: 100%;
-  min-height: 420px;
-  max-height: none;
+  min-height: 320px;
   object-fit: cover;
   object-position: top center;
   display: block;
 }
 
-.chairman-profile .director__text {
+.management-profile__content {
+  grid-column: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.management-profile--image-left .management-profile__image {
+  grid-column: 1 / 2;
+}
+
+.management-profile--image-left .management-profile__content {
+  grid-column: 2 / 4;
+}
+
+.management-profile__name {
+  color: var(--page-navy);
+  font-size: 1.75rem;
+  margin: 0 0 0.35rem;
+  line-height: 1.3;
+}
+
+.management-profile__role {
+  color: var(--page-gold);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+
+.management-profile__email {
+  color: #555;
+  font-size: 0.95rem;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  word-break: break-word;
+}
+
+.management-profile__email:hover {
+  color: var(--page-navy);
+  text-decoration: underline;
+}
+
+.management-profile__bio {
+  color: #555;
+  line-height: 1.85;
+  margin: 0;
+}
+
+.management-profile__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+
+.management-profile__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid rgba(45, 79, 123, 0.3);
+  background: transparent;
+  color: var(--page-navy);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.management-profile__btn:hover {
+  background: var(--page-navy);
+  border-color: var(--page-navy);
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Board member detail page */
+.board-member-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 0;
+  margin: 2rem 1.5rem 3rem;
+  border: 1px solid var(--page-line);
+  background: #fff;
+  align-items: stretch;
+}
+
+.board-member-detail__image {
+  background: #f9f9f9;
+}
+
+.board-member-detail__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.board-member-detail__text {
+  background: var(--page-navy);
+  color: #fff;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.board-member-detail__text h4 {
+  margin: 0 0 1rem;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.board-member-detail__text p {
+  margin: 0;
+  color: rgba(241, 241, 241, 0.92);
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+
+.board-member-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.board-member-detail__btn,
+.alumni-detail__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.15rem;
+  border: 1px solid rgba(244, 180, 0, 0.55);
+  color: #fff;
+  background: transparent;
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.board-member-detail__btn:hover,
+.alumni-detail__btn:hover,
+.board-member-detail__btn--primary {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--page-navy);
+  text-decoration: none;
+}
+
+.board-member-detail__btn--primary:hover {
+  background: var(--secondary-color-light);
+  border-color: var(--secondary-color-light);
+  color: var(--page-navy);
+}
+
+/* Alumni detail page */
+.alumni-detail-hero {
+  position: relative;
+  height: 65vh;
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alumni-detail-hero__project {
+  background-color: rgba(26, 26, 26, 0.65);
+  color: #fff;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  padding: 0.6rem 1rem;
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  z-index: 1;
+}
+
+.alumni-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 0;
+  margin: 2rem 1.5rem 3rem;
+  border: 1px solid var(--page-line);
+  background: #fff;
+  align-items: stretch;
+}
+
+.alumni-detail__image {
+  background: #f9f9f9;
+}
+
+.alumni-detail__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.alumni-detail__text {
+  background: var(--page-navy);
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.alumni-detail__text p {
+  margin: 0;
+  color: rgba(241, 241, 241, 0.92);
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+
+.alumni-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* Staff detail page */
+.staff-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  gap: 0;
+  margin: 2rem 1.5rem 3rem;
+  border: 1px solid var(--page-line);
+  background: #fff;
+  align-items: stretch;
+}
+
+.staff-detail__image {
+  background: #f9f9f9;
+}
+
+.staff-detail__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 360px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+.staff-detail__content {
+  background: var(--page-navy);
+  color: #fff;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.staff-detail__description {
+  margin: 0 0 1rem;
+  color: rgba(241, 241, 241, 0.92);
+  font-size: 0.98rem;
+  line-height: 1.85;
+}
+
+.staff-detail__email {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  word-break: break-word;
+}
+
+.staff-detail__email:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.staff-detail__name {
+  margin: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.staff-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.staff-detail__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.15rem;
+  border: 1px solid rgba(244, 180, 0, 0.55);
+  color: #fff;
+  background: transparent;
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.staff-detail__btn:hover {
+  background: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: var(--page-navy);
+  text-decoration: none;
+}
+
+/* Board Chairman page: profile (image + bio same row) */
+.board-chairman-profile {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0 1.5rem 2rem;
+  background: transparent;
+  border: 0;
+  align-items: stretch;
+}
+
+.board-chairman-profile__image {
+  background: #f9f9f9;
+  grid-column: span 1;
+}
+
+.board-chairman-profile__image img {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border: 0;
+}
+
+.board-chairman-profile__text {
+  grid-column: span 2;
+  padding: 0.8rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   background: var(--page-navy);
 }
 
-.chairman-profile .director__text p {
-  color: #fff !important;
-  font-size: 1rem;
-  line-height: 1.9;
+.board-chairman-profile__text p {
+  color: #fff;
+  font-size: 0.92rem;
+  line-height: 1.7;
   margin: 0;
 }
 
+.board-chairman-caption {
+  margin-bottom: 1.25rem;
+}
+
+.board-chairman-breadcrumb {
+  margin: 0 1.5rem 1.5rem;
+  padding: 1rem 1.5rem;
+  background: var(--page-navy);
+  color: rgba(241, 241, 241, 0.7);
+  border-top: 1px solid rgba(244, 180, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.board-chairman-breadcrumb p {
+  margin: 0;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-style: normal;
+  color: rgba(241, 241, 241, 0.72);
+}
+
+.board-chairman-breadcrumb__boxes {
+  gap: 0.5rem;
+  margin: 0;
+  display: flex;
+}
+
+.board-chairman-breadcrumb__box {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid rgba(244, 180, 0, 0.45);
+  background: transparent;
+}
+
 /* Board Chairman page: two-image gallery */
-.chairman-gallery {
+.board-chairman-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
   padding: 0 1.5rem 2rem;
 }
 
-.chairman-gallery .board__head {
+.board-chairman-gallery__item {
   margin: 0;
 }
 
-.chairman-gallery .board__head img {
+.board-chairman-gallery__item img {
   width: 100%;
   height: 300px;
   object-fit: cover;
@@ -2665,6 +3119,10 @@ a.button:hover {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
+  #hods .dept__heads-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .details__cards {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
@@ -2710,17 +3168,43 @@ a.button:hover {
     grid-template-columns: 1fr !important;
   }
 
-  .chairman-profile.director__details {
-    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  .board-member-detail,
+  .alumni-detail,
+  .staff-detail {
+    grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
   }
 
-  .chairman-gallery {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  .board-chairman-profile {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .board-chairman-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .board-chairman-alumni__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .board-card .card-text,
   .board-card .card-photo {
     grid-column: auto !important;
+  }
+
+  .management-profile,
+  .management-profile--image-left {
+    grid-template-columns: 1fr;
+  }
+
+  .management-profile__image,
+  .management-profile__content,
+  .management-profile--image-left .management-profile__image,
+  .management-profile--image-left .management-profile__content {
+    grid-column: auto;
+  }
+
+  .management-profile--image-right .management-profile__image {
+    order: -1;
   }
 
   .card-buttons {
@@ -2813,6 +3297,36 @@ a.button:hover {
     grid-template-columns: 1fr !important;
   }
 
+  #hods .dept__heads-wrapper {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem;
+    padding: 0 0.5rem 1.5rem;
+  }
+
+  #hods .dept__head-img,
+  #hods .dept__head img {
+    height: 180px;
+  }
+
+  #hods .dept__head-info {
+    padding: 0.85rem;
+  }
+
+  #hods .dept__head-info h4 {
+    font-size: 0.95rem;
+  }
+
+  #hods .dept__head-info p,
+  #hods .dept__head-info a {
+    font-size: 0.78rem;
+  }
+
+  #hods .hod__readmore {
+    width: 100%;
+    padding: 0.55rem 0.6rem;
+    font-size: 0.68rem;
+  }
+
   .page__location {
     flex-direction: column;
     align-items: flex-start;
@@ -2860,13 +3374,96 @@ a.button:hover {
     grid-template-columns: 1fr !important;
   }
 
-  .chairman-profile.director__details {
-    grid-template-columns: 1fr !important;
+  .board-member-detail,
+  .alumni-detail {
+    grid-template-columns: 1fr;
+    margin: 1.25rem 1rem 2rem;
   }
 
-  .chairman-profile .director__CV img {
+  .board-member-detail__image img,
+  .alumni-detail__image img {
     height: 320px;
     min-height: 320px;
+  }
+
+  .board-member-detail__text,
+  .alumni-detail__text {
+    padding: 1.25rem;
+  }
+
+  .board-chairman-profile {
+    grid-template-columns: 1fr;
+  }
+
+  .board-chairman-profile__image,
+  .board-chairman-profile__text {
+    grid-column: span 1;
+  }
+
+  .board-chairman-profile__image img {
+    height: 320px;
+    min-height: 320px;
+  }
+
+  .board-member-detail,
+  .alumni-detail,
+  .staff-detail {
+    grid-template-columns: 1fr;
+    margin: 1.25rem 1rem 2rem;
+  }
+
+  .board-member-detail__image img,
+  .alumni-detail__image img,
+  .staff-detail__image img {
+    height: 320px;
+    min-height: 320px;
+  }
+
+  .board-member-detail__text,
+  .alumni-detail__text,
+  .staff-detail__content {
+    padding: 1.25rem;
+  }
+
+  .board-member-detail__btn,
+  .alumni-detail__btn,
+  .management-profile__btn,
+  .staff-detail__btn {
+    width: 100%;
+  }
+
+  .management-profile {
+    margin: 0 1rem 1.5rem;
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .management-profile__image img {
+    min-height: 280px;
+  }
+
+  .board-chairman-gallery {
+    grid-template-columns: 1fr;
+    padding: 0 1rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .board-chairman-gallery__item img {
+    height: 240px;
+  }
+
+  .board-chairman-breadcrumb {
+    margin: 0 1rem 1.25rem;
+    padding: 0.85rem 1rem;
+  }
+
+  .board-chairman-alumni {
+    padding: 1.5rem 0.75rem 2rem;
+  }
+
+  .board-chairman-alumni__grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 
   .page-btn {
@@ -2880,18 +3477,4 @@ a.button:hover {
   .right__to-information {
     width: min(920px, calc(100% - 2rem));
   }
-}
-
-/* =========================================
-   BOARD CHAIRMAN PAGE - FINAL TWO-COLUMN OVERRIDE
-   Placed last so it wins over earlier / responsive rules.
-   ========================================= */
-.director__details.chairman-profile {
-  display: grid;
-  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
-}
-
-.dept__heads-wrapper.chairman-gallery {
-  display: grid !important;
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 }

@@ -11,8 +11,8 @@
     </div>
 </section>
 
-<section class="director__details">
-    <div class="director__CV">
+<section class="board-member-detail">
+    <div class="board-member-detail__image">
         {% if board_member.image %}
         <img
             src="{{ board_member.image.url }}"
@@ -20,17 +20,17 @@
         />
         {% endif %}
     </div>
-    <div class="director__text">
+    <div class="board-member-detail__text">
         <h4>{{ board_member.name }}</h4>
         <p>{{ board_member.about }}</p>
-        <div class="board-member-links">
+        <div class="board-member-detail__actions">
             {% if board_member.linkedin %}
-            <a href="{{ board_member.linkedin }}" target="_blank" rel="noopener noreferrer" class="link-btn">LinkedIn</a>
+            <a href="{{ board_member.linkedin }}" target="_blank" rel="noopener noreferrer" class="board-member-detail__btn">LinkedIn</a>
             {% endif %}
             {% if board_member.twitter %}
-            <a href="{{ board_member.twitter }}" target="_blank" rel="noopener noreferrer" class="link-btn">Twitter</a>
+            <a href="{{ board_member.twitter }}" target="_blank" rel="noopener noreferrer" class="board-member-detail__btn">Twitter</a>
             {% endif %}
-            <a href="{% url 'corporate_governance' %}" class="link-btn">Back to Corporate Governance</a>
+            <a href="{% url 'corporate_governance' %}" class="board-member-detail__btn board-member-detail__btn--primary">Back to Corporate Governance</a>
         </div>
     </div>
 </section>

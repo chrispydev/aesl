@@ -4,223 +4,176 @@
 {% block content %}
 
 <!-- Main content -->
-<section class="managemet__parallax">
-  <div class="projects__overlay"></div>
-</section>
+  <section class="managemet__parallax">
+    <div class="projects__overlay"></div>
+  </section>
 
-<section class="management__caption">
-  <div>
-    <h1 class="projects__title">
-      Management
-    </h1>
-  </div>
-</section>
+  <section class="management__caption">
+    <div>
+      <h1 class="projects__title">
+        Management
+      </h1>
+    </div>
+  </section>
 
 <!-- Projects__cards -->
-{% include 'partial/card-nav.html' %}
+  {% include 'partial/card-nav.html' %}
 
 
-<section id="management" class="sector">
+  <section id="management" class="sector">
   <!-- Projects Text -->
-  <article class="grid__span">
-    <section class="sector__text">
-      <p> The management team is responsible for driving innovation, maintaining high standards of quality, and providing exceptional architectural and engineering services to clients.
-      </p>
-      <p>They provide strategic direction and oversee the day-to-day activities of the company, working closely with employees to ensure projects are executed successfully, budgets and timelines are adhered to, and client satisfaction is achieved.
-      </p>
-    </section>
+    <article class="grid__span">
+      <section class="sector__text">
+        <p> The management team is responsible for driving innovation, maintaining high standards of quality, and providing exceptional architectural and engineering services to clients.
+        </p>
+        <p>They provide strategic direction and oversee the day-to-day activities of the company, working closely with employees to ensure projects are executed successfully, budgets and timelines are adhered to, and client satisfaction is achieved.
+        </p>
+      </section>
 
-    <div id="md" class="sector__headline padding">
-      <h4>Managing Director</h4>
-    </div>
-
-    {% comment %}
-    <!-- Director Divs -->
-    <section id="management" class="director__wrapper">
-      <div class="director__div ">
-        <div class="director__info">
-          <h5>Surv. Gordon Tanga</h5>
-          <p>Managing Director</p>
-        </div>
-        <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
+      <div id="md" class="sector__headline padding">
+        <h4>Managing Director</h4>
       </div>
 
-      <div class="director__div">
-        <div class="director__info">
-          <h5>Managing Director<br/> at official<br/> engagement</h5>
-          <p>Event highlight</p>
-        </div>
-        <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
-      </div>
-
-      <div class="director__div">
-        <div class="director__info">
-          <h5>MD with<br/> President, Hon.<br/> Minister for<br/> Local Govt</h5>
-          <p>Official photo</p>
-        </div>
-        <img src="{% static 'img/md-07.jpeg' %}" alt="Managing Director"/>
-      </div>
-
-      <div class="director__div">
-        <div class="director__info">
-          <h5>Managing<br/> Director<br/> engagement</h5>
-          <p>Event highlight</p>
-        </div>
-        <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
-      </div>
-    </section>
-    
-
-    <section class="managing__director">
-      <h3>Surv. Gordon Tanga (MD)</h3>
-      <h5>Managing Director</h5>
-      <a href="mailto:gordon.tanga@aesl.gov.gh">gordon.tanga@aesl.gov.gh</a>
-      <p>They provide strategic direction and oversee the day-to-day activities of the company, working closely with employees to ensure projects are executed successfully, budgets and timelines are adhered to, and client satisfaction is achieved.</p>
-      <button class="button"><a href="{% url 'managing_director' %}">Read More</a></button>
-    </section>
-
-    <section class="managing__director-message">
-      <h3>Managing Director's Message</h3>
-      <p>The achievement so far was against numerous odds and challenges that the construction industry encountered during the recent years.</p>
-      <p>The weak growth in the global economy which significantly affected the Ghanaian economy, resulted in the Government of Ghana reducing expenditures, particularly in construction works throughout the country.</p>
-      <p>Nevertheless, number of initiatives were undertaken including the Company’s strategic decision to adopt building information modelling (BIM) for project delivery. This is not only to improve staff skills but also to ensure quality service delivery to our clients.</p>
-      <p>Our major projects for the year including provision of administrative blocks and staff accommodation for the Six New Regions, the Foundry and numerical Tooling Centre, and the Renovation of Jubilee House and the national sports stadia have all been handled with great client satisfaction and continues to be landmark for the company.</p>
-      <p>The conditions of service for our staff are improved to ensure a motivated staff. We want to maintain AESL‘s leadership in the industry and ensure that it a place where people aspire to be to help build places of enduring values.</p>
-    </section>
-    {% endcomment %}
-
-    <section class="board-card">
+      <section class="board-card">
         <!-- Left: Text Content -->
         <div class="card-text">
-            <h2 class="board-name">Surv. Gordon Tanga (MD)</h2>
+          <h2 class="board-name">Surv. Gordon Tanga (MD)</h2>
 
-            <div class="board-description">
-                <p class="truncate__multi-10 ">
-                  The achievement so far was against numerous odds and challenges that the construction industry encountered during the recent years.
-                  The weak growth in the global economy which significantly affected the Ghanaian economy, resulted in the Government of Ghana reducing expenditures, particularly in construction works throughout the country.
-                  Nevertheless, number of initiatives were undertaken including the Company’s strategic decision to adopt building information modelling (BIM) for project delivery. This is not only to improve staff skills but also to ensure quality service delivery to our clients.
-                  Our major projects for the year including provision of administrative blocks and staff accommodation for the Six New Regions, the Foundry and numerical Tooling Centre, and the Renovation of Jubilee House and the national sports stadia have all been handled with great client satisfaction and continues to be landmark for the company.
-                  The conditions of service for our staff are improved to ensure a motivated staff. We want to maintain AESL‘s leadership in the industry and ensure that it a place where people aspire to be to help build places of enduring values.
-      </p>
+          <div class="board-description">
+            <p class="truncate__multi-10 ">
+              The achievement so far was against numerous odds and challenges that the construction industry encountered during the recent years.
+              The weak growth in the global economy which significantly affected the Ghanaian economy, resulted in the Government of Ghana reducing expenditures, particularly in construction works throughout the country.
+              Nevertheless, number of initiatives were undertaken including the Company’s strategic decision to adopt building information modelling (BIM) for project delivery. This is not only to improve staff skills but also to ensure quality service delivery to our clients.
+              Our major projects for the year including provision of administrative blocks and staff accommodation for the Six New Regions, the Foundry and numerical Tooling Centre, and the Renovation of Jubilee House and the national sports stadia have all been handled with great client satisfaction and continues to be landmark for the company.
+              The conditions of service for our staff are improved to ensure a motivated staff. We want to maintain AESL‘s leadership in the industry and ensure that it a place where people aspire to be to help build places of enduring values.
+            </p>
 
                 <!-- Buttons -->
-                <div class="card-buttons">
-                    <a href="{% url 'director' %}" class="btn"
-                        >Read More</a
-                    >
-                </div>
+            <div class="card-buttons">
+              <a href="{% url 'director' %}" class="btn"
+              >Read More</a
+                >
+              </div>
             </div>
-        </div>
+          </div>
 
         <!-- Right: Photo -->
-        <div class="card-photo">
-        <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
-        </div>
-    </section>
-
-    <div id="dept-md" class="sector__headline padding">
-      <h4>Deputy Managing Directors</h4>
-    </div>
-
-    <section class="managing__director-wrapper">
-        <img class="managing__image" src="{% static 'img/Arc. Naa Kwarley Quartey (DMD_Arch).jpg' %}" alt="Deputy Managing Director"/>
-
-      <div class="managing__director">
-        <h3>Arc. Naa Kwarley Quartey</h3>
-        <h5>Architecture and Planning</h5>
-        <a href="mailto:naa.quartey@aesl.gov.gh">naa.quartey@aesl.gov.gh</a>
-        <p>Arc. Naa Kwarley Quartey provides leadership for AESL's Architecture and Planning Directorate, overseeing project planning, design quality, and the successful delivery of architectural services while supporting the Managing Director in achieving the company's strategic objectives.</p>
-        <button class="button"><a href="{% url 'deputy_managing_director' %}">Read More</a></button>
-      </div>
-    </section>
-
-
-    <section class="managing__director-wrapper">
-      <div class="managing__director">
-        <h3>Ing. Charles Adigvom <br/>(Engineering)</h3>
-        <a href="mailto:charles.adigvom@aesl.gov.gh">charles.adigvom@aesl.gov.gh</a>
-        <p>AESL’s Deputy Managing Director for engineering supports the Managing Director and leads the directorate.
-The office works with department heads to ensure delivery quality, budgets, and client satisfaction</p>
-        <button class="button"><a href="{% url 'deputy_ii_managing_director' %}">Read More</a></button>
-      </div>
-
-        <img class='managing__image' src="{% static 'img/male.png' %}" alt="Deputy Managing Director"/>
-    </section>
-
-    {% for main in categories %}
-      <section id='hods'>
-        <div id="sector" class="sector__headline padding">
-          <h4>{{ main.name }}</h4>
-        </div>
-
-        {% for sub in main.sub_categories.all %}
-          {% if sub.name != "Regional Dept." %}
-          <div class="director__heading">
-            <h4>{{ sub.name }}</h4>
-            <hr/>
+          <div class="card-photo">
+            <img src="{% static 'img/md.jpeg' %}" alt="Managing Director"/>
           </div>
-          {% endif %}
+        </section>
 
-          <section class="dept__heads-wrapper">
-            {% for staff in sub.staff.all %}
-              <div class="dept__head">
-                  <div class="dept__head-img" style="background-image: url({{ staff.image.url }});"></div>
+        <div id="dept-md" class="sector__headline padding">
+          <h4>Deputy Managing Directors</h4>
+        </div>
+
+        <section class="management-profile management-profile--image-left">
+          <div class="management-profile__image">
+            <img src="{% static 'img/Arc. Naa Kwarley Quartey (DMD_Arch).jpg' %}" alt="Arc. Naa Kwarley Quartey"/>
+          </div>
+
+          <div class="management-profile__content">
+            <h2 class="management-profile__name">Arc. Naa Kwarley Quartey</h2>
+            <p class="management-profile__role">Architecture and Planning</p>
+            <a class="management-profile__email" href="mailto:naa.quartey@aesl.gov.gh">naa.quartey@aesl.gov.gh</a>
+            <p class="management-profile__bio">Arc. Naa Kwarley Quartey provides leadership for AESL's Architecture and Planning Directorate, overseeing project planning, design quality, and the successful delivery of architectural services while supporting the Managing Director in achieving the company's strategic objectives.</p>
+            <div class="management-profile__actions">
+              <a href="{% url 'deputy_managing_director' %}" class="management-profile__btn">Read More</a>
+            </div>
+          </div>
+        </section>
+
+
+        <section class="management-profile management-profile--image-right">
+          <div class="management-profile__content">
+            <h2 class="management-profile__name">Ing. Charles Adigvom <br/>(Engineering)</h2>
+            <p class="management-profile__role">Deputy Managing Director, Engineering</p>
+            <a class="management-profile__email" href="mailto:charles.adigvom@aesl.gov.gh">charles.adigvom@aesl.gov.gh</a>
+            <p class="management-profile__bio">AESL’s Deputy Managing Director for engineering supports the Managing Director and leads the directorate. The office works with department heads to ensure delivery quality, budgets, and client satisfaction.</p>
+            <div class="management-profile__actions">
+              <a href="{% url 'deputy_ii_managing_director' %}" class="management-profile__btn">Read More</a>
+            </div>
+          </div>
+
+          <div class="management-profile__image">
+            <img src="{% static 'img/male.png' %}" alt="Ing. Charles Adigvom"/>
+          </div>
+        </section>
+
+        {% for main in categories %}
+          <section id='hods'>
+            <div id="sector" class="sector__headline padding">
+              <h4>{{ main.name }}</h4>
+            </div>
+
+            {% for sub in main.sub_categories.all %}
+              {% if sub.name != "Regional Dept." %}
+                <div class="director__heading">
+                  <h4>{{ sub.name }}</h4>
+                  <hr/>
+                </div>
+              {% endif %}
+
+              <section class="dept__heads-wrapper">
+                {% for staff in sub.staff.all %}
+                  <div class="dept__head">
+                    <div class="dept__head-img" style="background-image: url({{ staff.image.url }});"></div>
                 {% comment %}
                     {% if staff.image %}
                     <img src="{{ staff.image.url }}" alt="{{ staff.name }}"/>
                     {% endif %}
                 {% endcomment %}
-                <div class="dept__head-info">
-                  <h4>{{ staff.name }}</h4>
-                  {% if staff.grade == 'Regional Dept.' %}
-                  <p>{{ staff.region }}</p>
-                  {% else %}
-                  <p>{{ staff.grade }}</p>
-                  {% endif %}
-                  <a href="mailto:{{staff.email}}">{{staff.email}}</a>
-                  <button class="read__more"><a href="{% url 'staff_detail' staff.pk %}">Read More</a></button>
-                </div>
-</div>              </div>
+                    <div class="dept__head-info">
+                      <h4>{{ staff.name }}</h4>
+                      {% if staff.grade == 'Regional Dept.' %}
+                        <p>{{ staff.region }}</p>
+                      {% else %}
+                        <p>{{ staff.grade }}</p>
+                      {% endif %}
+                      <a href="mailto:{{staff.email}}">{{staff.email}}</a>
+                      <a href="{% url 'staff_detail' staff.pk %}" class="hod__readmore">Read More</a>
+                    </div>
+                  </div>              </div>
+                {% endfor %}
+              </section>
             {% endfor %}
           </section>
         {% endfor %}
-      </section>
-    {% endfor %}
 
-  </article>
+      </article>
 
-  <aside class="sector__aside">
-    <div class="sector__links-wrapper">
-      <a href="{% url 'practice' %}">Back to Practice</a>
-      <p></p>
-      <div class="sector__links">
-        <a href="#management">Management</a>
-        <a href="#md">Managing Director</a>
-        <a href="#dept-md">Deputy Managing Directors</a>
-        <a href="#hods">Heads of Departments</a>
+      <aside class="sector__aside">
+        <div class="sector__links-wrapper">
+          <a href="{% url 'practice' %}">Back to Practice</a>
+          <p></p>
+          <div class="sector__links">
+            <a href="#management">Management</a>
+            <a href="#md">Managing Director</a>
+            <a href="#dept-md">Deputy Managing Directors</a>
+            <a href="#hods">Heads of Departments</a>
         {% comment %}
         <a href="#consultants">Regional Consultants</a>
         {% endcomment %}
-      </div>
-    </div>
-    <div class="sector__navigation">
-      <p>Previous</p>
-      <a href="{% url 'corporate_governance' %}">AESL Corporate Governance</a>
-      <p>Next</p>
-      <a href="{% url 'services' %}">AESL Services</a>
-    </div>
-  </aside>
-</section>
+          </div>
+        </div>
+        <div class="sector__navigation">
+          <p>Previous</p>
+          <a href="{% url 'corporate_governance' %}">AESL Corporate Governance</a>
+          <p>Next</p>
+          <a href="{% url 'services' %}">AESL Services</a>
+        </div>
+      </aside>
+    </section>
 
 
 <!-- page location Section -->
-<section class="page__location">
-  <div class="page__flex">
-    <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
-    <p>AESL || {{title}}</p>
-  </div>
-  <p>Consulting Architects,<br /> Engineers and Surveyors</p>
-</section>
+    <section class="page__location">
+      <div class="page__flex">
+        <img src="{% static 'img/aesl_logo.png' %}" alt="aesl logo" class="info__building-image-large" />
+        <p>AESL || {{title}}</p>
+      </div>
+      <p>Consulting Architects,<br /> Engineers and Surveyors</p>
+    </section>
 
 
 {% endblock content %}

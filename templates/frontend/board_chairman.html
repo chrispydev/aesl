@@ -5,7 +5,7 @@
     <div class="projects__overlay"></div>
   </section>
 
-  <section class="projects__caption">
+  <section class="projects__caption board-chairman-caption">
     <div>
       <h1 class="projects__title">ING. Kasser Ambrose Tee</h1>
     </div>
@@ -14,15 +14,15 @@
   <section id="ministy-work" class="sector">
     <!-- Projects Text -->
     <article class="grid__span">
-      <section class="director__details chairman-profile">
-        <div class="director__CV">
+      <section class="board-chairman-profile">
+        <div class="board-chairman-profile__image">
           <img
             src="{% static 'img/board-chairman.jpg'%}"
             alt="Kasser Ambrose Tee"
             loading="lazy"
           />
         </div>
-        <div class="director__text">
+        <div class="board-chairman-profile__text">
           <p>
             In 2019 your company operated in a domestic condition
             that witnessed a real GDP growth of 6.5% from 6.3% in
@@ -48,32 +48,32 @@
         </div>
       </section>
 
-      <section id="dept-director" class="dept__heads-wrapper chairman-gallery">
-        <div class="board__head">
-          <img src="{% static 'img/board-chairman/1.jpg' %}" alt="" />
+      <section id="dept-director" class="board-chairman-gallery">
+        <div class="board-chairman-gallery__item">
+          <img src="{% static 'img/board-chairman/1.jpg' %}" alt="Board chairman engagement" />
         </div>
 
-        <div class="board__head">
-          <img src="{% static 'img/board-chairman/2.jpg' %}" alt="" />
+        <div class="board-chairman-gallery__item">
+          <img src="{% static 'img/board-chairman/2.jpg' %}" alt="Board chairman engagement" />
         </div>
       </section>
 
-      <section class="more__projects padding">
+      <section class="board-chairman-breadcrumb">
         <p>
           AESL || Practice/Management/Managing Director's Title and Name
         </p>
-        <article class="boxes">
-          <div class="box"></div>
-          <div class="box"></div>
-          <div class="box"></div>
+        <article class="board-chairman-breadcrumb__boxes">
+          <div class="board-chairman-breadcrumb__box"></div>
+          <div class="board-chairman-breadcrumb__box"></div>
+          <div class="board-chairman-breadcrumb__box"></div>
         </article>
       </section>
 
-      <section class="alumni__board-wrapper">
+      <section class="board-chairman-alumni">
         <div>
           <h1 class="projects__title">Board Chairman Alumni</h1>
         </div>
-        <section id="members" class="sector__board-wrapper">
+        <section id="board-chairman-alumni-members" class="board-chairman-alumni__grid">
           {% for image in alumni %}
             <div class="board-member-card">
               <div class="board-member-header">
