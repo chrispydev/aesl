@@ -1,6 +1,5 @@
 from pathlib import Path
 
-import dj_database_url
 from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -127,35 +126,14 @@ CACHES = {
 }
 
 
-# Database (SQLite is fine for small apps; consider PostgreSQL for production)
-DATABASE_URL = config("DATABASE_URL", default="")
-
-if DATABASE_URL:
-    DATABASES = {
-        "default": dj_database_url.parse(
-            DATABASE_URL,
-            conn_max_age=CONN_MAX_AGE,
-            ssl_require=config("DB_SSL_REQUIRE", default=not DEBUG, cast=bool),
-        )
+# Database
+SQLITE_PATH = config("SQLITE_PATH", default=str(BASE_DIR / "db.sqlite3"))
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": SQLITE_PATH,
     }
-elif DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": config("DB_NAME", default="aesl_db"),
-            "USER": config("DB_USER", default="aesl_user"),
-            "PASSWORD": config("DB_PASSWORD", default=""),
-            "HOST": config("DB_HOST", default="127.0.0.1"),
-            "PORT": config("DB_PORT", default="5432"),
-        }
-    }
+}
 
 
 # Password validation
