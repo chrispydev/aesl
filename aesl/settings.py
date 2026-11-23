@@ -71,10 +71,8 @@ CKEDITOR_CONFIGS = {
     },
 }
 
-# Only add this in development to avoid serving static in runserver when
-# DEBUG=True
-if DEBUG:
-    INSTALLED_APPS.insert(0, "whitenoise.runserver_nostatic")
+# Allow WhiteNoise to serve static files when using runserver with DEBUG=False.
+INSTALLED_APPS.insert(0, "whitenoise.runserver_nostatic")
 
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",
