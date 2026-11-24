@@ -3356,6 +3356,11 @@ a.button:hover {
     padding: 2.5rem 1rem !important;
   }
 
+  /* Mobile: single-column news feed */
+  .news-grid {
+    grid-template-columns: 1fr !important;
+  }
+
   .news-card.featured .news-card-content {
     padding: 1.75rem !important;
   }
